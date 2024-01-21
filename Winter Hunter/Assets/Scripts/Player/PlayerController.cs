@@ -4,16 +4,19 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float speed;
+        public float moveSpeed;
         public GameObject throwingSnowballPrefab;
-        public Transform throwingPoint;
-        public float throwAngle;
+        public Transform throwPoint;
+        public float throwForce;
     
         private InputControls _inputControls;
         private Vector2 _moveInput;
         private Vector2 _mousePosition;
         private Rigidbody _rb;
         private Camera _camera;
+        
+        public LineRenderer aimingLineRenderer;
+        public int lineSegmentCount = 20;
 
         private void Awake()
         {
@@ -39,10 +42,11 @@ namespace Player
 
         private void FixedUpdate()
         {
-            var move = new Vector3(_moveInput.x, 0, _moveInput.y) * speed;
+            var move = new Vector3(_moveInput.x, 0, _moveInput.y) * moveSpeed;
             _rb.MovePosition(_rb.position + move * Time.fixedDeltaTime);
         
             RotateTowardsMouse();
+            UpdateAimingLine();
         }
 
         private void RotateTowardsMouse()
@@ -57,45 +61,39 @@ namespace Player
             var lookRotation = Quaternion.LookRotation(direction);
             _rb.MoveRotation(lookRotation);
         }
-
+        
         private void ThrowSnowball()
         {
-            if (throwingSnowballPrefab == null && throwingPoint == null) return;
-        
-            var ray = _camera.ScreenPointToRay((_mousePosition));
-            if (!Physics.Raycast(ray, out var hit)) return;
-
-            var targetPosition = hit.point;
-            var throwingSnowball = Instantiate(throwingSnowballPrefab, throwingPoint.position, Quaternion.identity);
-
+            if (throwingSnowballPrefab == null || throwPoint == null) return;
+            var throwingSnowball = Instantiate(throwingSnowballPrefab, throwPoint.position, throwPoint.rotation);
+            
             var snowballRb = throwingSnowball.GetComponent<Rigidbody>();
             if (snowballRb == null) return;
+            
+            var throwDirection = throwPoint.forward;
+            
+            snowballRb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+        }
         
-            var throwVelocity = CalculateThrowVelocity(throwingPoint.position, targetPosition);
-            snowballRb.velocity = throwVelocity;
-        }
-    
-        private Vector3 CalculateThrowVelocity(Vector3 origin, Vector3 target)
+        private void UpdateAimingLine()
         {
-            var toTarget = target - origin;
-            var toTargetXZ = toTarget;
-            toTargetXZ.y = 0;
+            if (aimingLineRenderer == null) return;
 
-            var x = toTargetXZ.magnitude;
-            var y = toTarget.y;
-            var g = Physics.gravity.magnitude;
-            var angle = Mathf.Deg2Rad * throwAngle;
+            var points = new Vector3[lineSegmentCount];
+            var startingPosition = throwPoint.position;
+            var startingVelocity = throwPoint.forward * throwForce;
 
-            if (x <= Mathf.Epsilon) return Vector3.zero;
+            for (int i = 0; i < lineSegmentCount; i++)
+            {
+                float t = i / (float)lineSegmentCount;
+                points[i] = startingPosition + t * startingVelocity;
+                points[i].y = startingPosition.y + t * startingVelocity.y + 0.5f * Physics.gravity.y * t * t;
+            }
 
-            var v0 = Mathf.Sqrt(g * x * x / (2 * Mathf.Cos(angle) * Mathf.Cos(angle) * (x * Mathf.Tan(angle) - y)));
-
-            if (float.IsNaN(v0)) return Vector3.zero;
-
-            var velocity = new Vector3(toTargetXZ.normalized.x * v0 * Mathf.Cos(angle), v0 * Mathf.Sin(angle),
-                toTargetXZ.normalized.z * v0 * Mathf.Cos(angle));
-    
-            return velocity;
+            aimingLineRenderer.positionCount = lineSegmentCount;
+            aimingLineRenderer.SetPositions(points);
         }
+
+
     }
 }
