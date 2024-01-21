@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftPoint: {fileID: 320201042329374918}
   rightPoint: {fileID: 320201042096146469}
-  speed: 0.5
+  speed: 0.3
 --- !u!114 &7170354391438532724
 MonoBehaviour:
   m_ObjectHideFlags: 0
