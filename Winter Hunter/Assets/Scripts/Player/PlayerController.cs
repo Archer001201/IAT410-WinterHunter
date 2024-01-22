@@ -1,20 +1,27 @@
 using System;
+using Snowball;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("Player Attributes")]
         public float moveSpeed;
-        public GameObject throwingSnowballPrefab;
-        public GameObject rollingSnowballPrefab;
-        public Transform throwPoint;
-        public Transform rollPoint;
-        public float throwForce;
-        public float pushForce;
-        public bool isRollingSnowball;
         public float rotationSpeed = 5.0f;
+        [Header("Throwing Snowballs")]
+        public GameObject throwingSnowballPrefab;
+        public Transform throwPoint;
+        public float throwForce;
+        public LineRenderer throwingLineRenderer;
+        public int lineSegmentCount = 20;
+        [Header("Rolling Snowballs")]
+        public bool isRollingSnowball;
+        public GameObject rollingSnowballPrefab;
+        public Transform rollPoint;
+        public float pushForce;
         public float rollingSnowballScaleFactor = 0.1f;
+        public GameObject rollingLine;
         
         private InputControls _inputControls;
         private Vector2 _moveInput;
@@ -22,10 +29,9 @@ namespace Player
         private Rigidbody _rb;
         private Camera _camera;
         private GameObject _rollingSnowball;
+        private RollingSnowball _rollingSnowballScript;
+        private Rigidbody _rollingSnowballRb;
         
-        public LineRenderer aimingLineRenderer;
-        public int lineSegmentCount = 20;
-
         private void Awake()
         {
             _inputControls = new InputControls();
@@ -52,7 +58,8 @@ namespace Player
 
         private void Update()
         {
-            aimingLineRenderer.enabled = !isRollingSnowball;
+            throwingLineRenderer.enabled = !isRollingSnowball;
+            rollingLine.SetActive(isRollingSnowball);
         }
 
         private void FixedUpdate()
@@ -65,7 +72,7 @@ namespace Player
             if (!isRollingSnowball)
             {
                 RotateTowardsMouse();
-                UpdateAimingLine();
+                UpdateThrowingLine();
             }
             else
             {
@@ -76,6 +83,8 @@ namespace Player
                     var scaleIncrease = new Vector3(rollingSnowballScaleFactor, rollingSnowballScaleFactor, rollingSnowballScaleFactor) * Time.fixedDeltaTime;
                     _rollingSnowball.transform.localScale += scaleIncrease;
                 }
+                if (_rollingSnowball == null) return;
+                UpdateRollingLine();
                 _rollingSnowball.transform.position = rollPoint.position;
                 _rollingSnowball.transform.rotation = rollPoint.rotation;
             }
@@ -107,10 +116,8 @@ namespace Player
             snowballRb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
         }
         
-        private void UpdateAimingLine()
+        private void UpdateThrowingLine()
         {
-            if (aimingLineRenderer == null) return;
-
             var points = new Vector3[lineSegmentCount];
             var startingPosition = throwPoint.position;
             var startingVelocity = throwPoint.forward * throwForce;
@@ -122,8 +129,16 @@ namespace Player
                 points[i].y = startingPosition.y + t * startingVelocity.y + 0.5f * Physics.gravity.y * t * t;
             }
 
-            aimingLineRenderer.positionCount = lineSegmentCount;
-            aimingLineRenderer.SetPositions(points);
+            throwingLineRenderer.positionCount = lineSegmentCount;
+            throwingLineRenderer.SetPositions(points);
+        }
+
+        private void UpdateRollingLine()
+        {
+            var rollingDistance = _rollingSnowballScript.rollingDistance - 5f;
+            rollingLine.transform.localScale = new Vector3(_rollingSnowball.transform.localScale.x,1,rollingDistance);
+            rollingLine.transform.position = rollPoint.position;
+            rollingLine.transform.rotation = rollPoint.rotation;
         }
 
         private void RollSnowball()
@@ -131,17 +146,21 @@ namespace Player
             isRollingSnowball = true;
             if (rollingSnowballPrefab == null || rollPoint == null) return;
             _rollingSnowball = Instantiate(rollingSnowballPrefab, rollPoint.position, rollPoint.rotation);
+            if (_rollingSnowball == null) return;
+            _rollingSnowballScript = _rollingSnowball.GetComponent<RollingSnowball>();
+            _rollingSnowballRb = _rollingSnowball.GetComponent<Rigidbody>();
         }
 
-        private void ReleaseSnowball()
+        public void ReleaseSnowball()
         {
             isRollingSnowball = false;
-            var snowballRb = _rollingSnowball.GetComponent<Rigidbody>();
-            if (snowballRb == null) return;
+            if (_rollingSnowball == null) return;
+            _rollingSnowballScript.SetReleasingState();
             var pushDirection = rollPoint.forward;
-            snowballRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+            _rollingSnowballRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
             
             _rollingSnowball = null;
+            Debug.Log("released");
         }
     }
 }
