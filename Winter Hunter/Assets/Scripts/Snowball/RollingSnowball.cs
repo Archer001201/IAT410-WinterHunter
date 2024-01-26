@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ namespace Snowball
             // if (Vector3.Distance(transform.position,_startPosition) >= rollingDistance) Destroy(gameObject);
             if (transform.localScale.x > rollingSize.y && !_isReleasing)
             {
-                _playerController.ReleaseSnowball();
+                _playerController.OnRollingSnowballEnd();
             }
         }
         
