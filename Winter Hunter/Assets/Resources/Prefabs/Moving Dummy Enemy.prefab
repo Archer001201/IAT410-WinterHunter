@@ -79,7 +79,6 @@ GameObject:
   - component: {fileID: 320201042199249618}
   - component: {fileID: 320201042199249619}
   - component: {fileID: 320201042199249616}
-  - component: {fileID: 7170354391438532724}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Enemy
@@ -194,21 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16871c6a3a36d4eb1be29ee30e3b53c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxShield: 100
+  resistance: 0
+  health: 100
+  shield: 100
   leftPoint: {fileID: 320201042329374918}
   rightPoint: {fileID: 320201042096146469}
   speed: 0.3
---- !u!114 &7170354391438532724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320201042199249622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0d4eb7f9c394a1ab7d4ec985bae21f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &320201042329374919
 GameObject:
   m_ObjectHideFlags: 0

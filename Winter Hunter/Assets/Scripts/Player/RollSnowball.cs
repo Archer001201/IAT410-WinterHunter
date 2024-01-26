@@ -9,13 +9,14 @@ namespace Player
         public GameObject rollingLine;
         [Header("RollSnowball Parameters")]
         public float scaleFactor;
+        public float staminaIncrease;
         
         private RollingSnowball _rollingSnowballScript;
 
-        private void OnEnable()
-        {
-            rollingLine.SetActive(true);
-        }
+        // private void OnEnable()
+        // {
+        //     rollingLine.SetActive(true);
+        // }
 
         private void OnDisable()
         {
@@ -24,8 +25,12 @@ namespace Player
 
         public override void CreateSnowball()
         {
+            if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
+            
             base.CreateSnowball();
+            rollingLine.SetActive(true);
             _rollingSnowballScript = SnowballInstance.GetComponent<RollingSnowball>();
+            PlayerAttr.stamina += stamina;
         }
 
         public override void Attack()
@@ -52,7 +57,7 @@ namespace Player
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
-                PlayerAttr.stamina += stamina;
+                PlayerAttr.stamina += staminaIncrease;
             }
             SnowballInstance.transform.position = startPosition.position;
             SnowballInstance.transform.rotation = startPosition.rotation;

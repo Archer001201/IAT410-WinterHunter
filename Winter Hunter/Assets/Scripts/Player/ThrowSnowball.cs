@@ -16,6 +16,7 @@ namespace Player
 
         public override void Attack()
         {
+            if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
             CreateSnowball();
             base.Attack();
             PlayerAttr.stamina += stamina;

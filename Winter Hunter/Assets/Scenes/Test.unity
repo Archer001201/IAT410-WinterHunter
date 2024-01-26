@@ -902,6 +902,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Dummy Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 320201041574834377, guid: 7d1a9413ffa264371b27e8178d427405,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d1a9413ffa264371b27e8178d427405, type: 3}
 --- !u!4 &1364265614 stripped
@@ -1061,6 +1066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Dummy Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 320201042199249616, guid: 7d1a9413ffa264371b27e8178d427405,
+        type: 3}
+      propertyPath: resistance
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d1a9413ffa264371b27e8178d427405, type: 3}
 --- !u!1001 &1730002451
@@ -1129,6 +1139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Moving Dummy Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 320201041574834377, guid: 7d1a9413ffa264371b27e8178d427405,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d1a9413ffa264371b27e8178d427405, type: 3}
@@ -1199,6 +1214,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6485443569269017576, guid: 5b1bf372232b545bd8377c1b2e4a98a5,
+        type: 3}
+      propertyPath: shield
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485443569269017576, guid: 5b1bf372232b545bd8377c1b2e4a98a5,
+        type: 3}
+      propertyPath: maxShield
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b1bf372232b545bd8377c1b2e4a98a5, type: 3}
 --- !u!1001 &5491273880513553368
@@ -1208,6 +1233,48 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1502783117, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: stamina
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502783118, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: stamina
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502783118, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: staminaIncrease
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: charge
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: maxCharge
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: maxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: staminaRecovery
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5491273880411766384, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: m_Name
@@ -1267,6 +1334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: staminaRecoveryTimer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}

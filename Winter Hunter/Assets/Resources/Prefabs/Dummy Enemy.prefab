@@ -128,3 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0d4eb7f9c394a1ab7d4ec985bae21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxShield: 0
+  resistance: 0
+  health: 100
+  shield: 0

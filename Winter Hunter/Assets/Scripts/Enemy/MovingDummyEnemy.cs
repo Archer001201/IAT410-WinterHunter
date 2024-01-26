@@ -5,9 +5,11 @@ namespace Enemy
 {
     public class MovingDummyEnemy : BasicEnemy
     {
+        [Header("Moving Enemy")]
         public Transform leftPoint;
         public Transform rightPoint;
         public float speed;
+        
         private Rigidbody _rb;
         private float _time;
 
