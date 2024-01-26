@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class MovingDummyEnemy : MonoBehaviour
+    public class MovingDummyEnemy : BasicEnemy
     {
         public Transform leftPoint;
         public Transform rightPoint;

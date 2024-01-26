@@ -1,4 +1,3 @@
-using System;
 using Snowball;
 using UnityEngine;
 
@@ -6,15 +5,18 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Player Attributes")]
+        [Header("Moving parameters")]
         public float moveSpeed;
         public float rotationSpeed = 5.0f;
+        
         [Header("Throwing Snowballs")]
         public GameObject throwingSnowballPrefab;
         public Transform throwPoint;
         public float throwForce;
         public LineRenderer throwingLineRenderer;
         public int lineSegmentCount = 20;
+        public float throwingStamina;
+        
         [Header("Rolling Snowballs")]
         public bool isRollingSnowball;
         public GameObject rollingSnowballPrefab;
@@ -22,7 +24,9 @@ namespace Player
         public float pushForce;
         public float rollingSnowballScaleFactor = 0.1f;
         public GameObject rollingLine;
-        
+        public float rollingStamina;
+
+        private float _rollingStaminaCount;
         private InputControls _inputControls;
         private Vector2 _moveInput;
         private Vector2 _mousePosition;
@@ -31,11 +35,13 @@ namespace Player
         private GameObject _rollingSnowball;
         private RollingSnowball _rollingSnowballScript;
         private Rigidbody _rollingSnowballRb;
+        private PlayerAttribute _playerAttr;
         
         private void Awake()
         {
             _inputControls = new InputControls();
             _rb = GetComponent<Rigidbody>();
+            _playerAttr = GetComponent<PlayerAttribute>();
             _camera = Camera.main;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
@@ -82,6 +88,7 @@ namespace Player
                     _rb.rotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
                     var scaleIncrease = new Vector3(rollingSnowballScaleFactor, rollingSnowballScaleFactor, rollingSnowballScaleFactor) * Time.fixedDeltaTime;
                     _rollingSnowball.transform.localScale += scaleIncrease;
+                    _rollingStaminaCount += rollingStamina;
                 }
                 if (_rollingSnowball == null) return;
                 UpdateRollingLine();
@@ -114,6 +121,7 @@ namespace Player
             var throwDirection = throwPoint.forward;
             
             snowballRb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+            _playerAttr.stamina += throwingStamina;
         }
         
         private void UpdateThrowingLine()
@@ -158,6 +166,8 @@ namespace Player
             _rollingSnowballScript.SetReleasingState();
             var pushDirection = rollPoint.forward;
             _rollingSnowballRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+            _playerAttr.stamina += _rollingStaminaCount;
+            _rollingStaminaCount = 0;
             
             _rollingSnowball = null;
             Debug.Log("released");

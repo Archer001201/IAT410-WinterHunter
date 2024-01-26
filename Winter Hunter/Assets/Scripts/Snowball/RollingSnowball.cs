@@ -32,14 +32,11 @@ namespace Snowball
         private void FixedUpdate()
         {
             if (!_isReleasing) return;
-            // 计算自上一帧以来物体移动的距离
             var distanceMoved = Vector3.Distance(transform.position, _lastPosition);
             _accumulatedDistance += distanceMoved;
-
-            // 更新 _lastPosition 为当前帧的位置
+            
             _lastPosition = transform.position;
-
-            // 如果累积的移动距离超过了 rollingDistance，则销毁物体
+            
             if (_accumulatedDistance > rollingDistance)
             {
                 Destroy(gameObject);

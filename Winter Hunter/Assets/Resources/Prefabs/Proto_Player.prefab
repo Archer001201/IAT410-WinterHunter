@@ -195,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4456304026906186728
 Transform:
   m_ObjectHideFlags: 0
@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 5491273880646760890}
   - component: {fileID: 5491273880646760892}
   - component: {fileID: 7191750729878670150}
+  - component: {fileID: 1564137759834253144}
   m_Layer: 0
   m_Name: Proto_PlayerMesh
   m_TagString: Player
@@ -344,21 +345,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  rotationSpeed: 10
   throwingSnowballPrefab: {fileID: 4335627477020040404, guid: 232545aa94fd04272bb7827defee3b90,
     type: 3}
-  rollingSnowballPrefab: {fileID: 2068380211416391289, guid: 48c33e6e466274ec086459dfd0d6af69,
-    type: 3}
   throwPoint: {fileID: 5491273881132748628}
-  rollPoint: {fileID: 3820334404654800207}
   throwForce: 30
-  pushForce: 20
-  isRollingSnowball: 0
-  rotationSpeed: 10
-  rollingSnowballScaleFactor: 0.1
   throwingLineRenderer: {fileID: 5491273880936710446}
   lineSegmentCount: 20
+  isRollingSnowball: 0
+  rollingSnowballPrefab: {fileID: 2068380211416391289, guid: 48c33e6e466274ec086459dfd0d6af69,
+    type: 3}
+  rollPoint: {fileID: 3820334404654800207}
+  pushForce: 20
+  rollingSnowballScaleFactor: 0.1
   rollingLine: {fileID: 3032048333869984960}
-  lineLength: 20
 --- !u!65 &7191750729878670150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372,6 +372,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.45, z: 1}
   m_Center: {x: 0, y: 0.47, z: 0}
+--- !u!114 &1564137759834253144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491273880646760888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4028bc42cbf45649e070a35a7a4fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  stamina: 0
+  charge: 0
 --- !u!1 &5491273880725227326
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +554,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.16038322
+        value: 0.20997429
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -551,7 +566,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.7830189, g: 0.19575472, b: 0.19575472, a: 1}
       key1: {r: 1, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -581,7 +596,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 1
+    textureMode: 3
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1

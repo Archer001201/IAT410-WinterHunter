@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class DummyEnemy : MonoBehaviour
+    public class DummyEnemy : BasicEnemy
     {
         private void OnCollisionEnter(Collision other)
         {
