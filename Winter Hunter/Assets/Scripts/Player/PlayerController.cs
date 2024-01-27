@@ -160,7 +160,8 @@ namespace Player
 
         private void OnSummonSnowman()
         {
-            if (!canSummonSnowman) return;
+            if (!canSummonSnowman || _playerAttr.charge < _summonSnowmanScript.summoningCost) return;
+            _playerAttr.charge -= _summonSnowmanScript.summoningCost;
             _summonSnowmanScript.SummonCurrentSnowman();
         }
     }

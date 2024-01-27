@@ -11,6 +11,7 @@ namespace Player
         public GameObject currentSnowman;
 
         public Transform startPosition;
+        public float summoningCost;
 
         private int _currentIndex;
 
@@ -41,6 +42,9 @@ namespace Player
                 SnowmanType.MeatShield => Resources.Load<GameObject>("Prefabs/Snowman/Proto_MeatShield"),
                 _ => currentSnowman
             };
+
+            if (currentSnowman == null) return;
+            summoningCost = currentSnowman.GetComponent<BasicSnowman>().summoningCost;
         }
     }
 }

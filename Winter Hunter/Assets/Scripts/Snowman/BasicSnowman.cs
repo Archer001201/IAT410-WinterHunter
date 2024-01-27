@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 
@@ -8,18 +7,19 @@ namespace Snowman
     {
         [Header("Static Attributes")] 
         public float maxHealth;
-        public float maxSummoningTimer;
-        public float castingCost;
-        public SnowmanType type;
+        public float summoningTimer;
+        public float summoningCost;
         [Header("Dynamic Attributes")] 
         public float health;
-        public float summoningTimer;
+        
 
         private PlayerController _playerController;
+        private float _startTime;
 
         private void Awake()
         {
-            Debug.Log(type);
+            health = maxHealth;
+            _startTime = Time.time;
         }
 
         private void Start()
@@ -30,7 +30,9 @@ namespace Snowman
 
         private void Update()
         {
-            if (health <= 0 || summoningTimer <= 0)
+            health = Mathf.Clamp(health, 0, maxHealth);
+            
+            if (health <= 0 || Time.time - _startTime >= summoningTimer)
             {
                 _playerController.canSummonSnowman = true;
                 Destroy(gameObject);

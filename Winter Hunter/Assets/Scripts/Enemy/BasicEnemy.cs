@@ -14,6 +14,8 @@ namespace Enemy
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
+        [Header("Component Settings")]
+        public GameObject hudCanvas;
 
         private PlayerAttribute _playerAttr;
 
@@ -21,6 +23,8 @@ namespace Enemy
         {
             health = maxHealth;
             shield = maxShield;
+            
+            hudCanvas.SetActive(true);
         }
 
         private void Start()

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxSummoningTimer: 100
-  castingCost: 0
+  summoningCost: 50
   type: 1
   health: 100
   summoningTimer: 100
