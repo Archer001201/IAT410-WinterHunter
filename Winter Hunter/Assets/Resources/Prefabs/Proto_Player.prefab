@@ -97,6 +97,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1270115728071190352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7296700131756586838}
+  m_Layer: 0
+  m_Name: Snowman Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7296700131756586838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270115728071190352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5491273880646760889}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2486726706522607101
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +322,7 @@ GameObject:
   - component: {fileID: 1564137759834253144}
   - component: {fileID: 1502783117}
   - component: {fileID: 1502783118}
+  - component: {fileID: 1521437837}
   m_Layer: 0
   m_Name: Proto_PlayerMesh
   m_TagString: Player
@@ -315,6 +347,7 @@ Transform:
   - {fileID: 5491273881132748628}
   - {fileID: 3820334404654800207}
   - {fileID: 1062613243}
+  - {fileID: 7296700131756586838}
   m_Father: {fileID: 5491273880411766385}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 10
+  staminaRecoveryTimer: 1
   isRollingSnowball: 0
 --- !u!114 &1564137759834253144
 MonoBehaviour:
@@ -374,7 +408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4028bc42cbf45649e070a35a7a4fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  maxHealth: 100
+  maxStamina: 100
+  maxCharge: 100
+  staminaRecovery: 10
+  health: 100
   stamina: 100
   charge: 0
 --- !u!114 &1502783117
@@ -395,7 +433,7 @@ MonoBehaviour:
   aimingLineRenderer: {fileID: 5491273880936710446}
   lineSegmentCount: 20
   force: 30
-  stamina: -10
+  stamina: -5
 --- !u!114 &1502783118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,10 +451,25 @@ MonoBehaviour:
   startPosition: {fileID: 3820334404654800207}
   aimingLineRenderer: {fileID: 0}
   lineSegmentCount: 20
-  force: 20
-  stamina: -0.1
+  force: 10
+  stamina: -10
   rollingLine: {fileID: 3032048333869984960}
   scaleFactor: 0.3
+  staminaIncrease: -0.1
+--- !u!114 &1521437837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491273880646760888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2c5e69beaf64198853632cb25f12d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowmanList: 0000000001000000
+  currentSnowman: {fileID: 0}
 --- !u!1 &5491273880725227326
 GameObject:
   m_ObjectHideFlags: 0

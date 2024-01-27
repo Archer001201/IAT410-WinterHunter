@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchSnowman",
+                    "type": "Button",
+                    "id": "a49def1a-7fbc-460a-9ad5-c335438362b0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SummonSnowman",
+                    "type": "Button",
+                    "id": "44c7d15b-bd2c-4dc7-be5a-801a84436f2b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +146,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RollSnowball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69170510-53a2-48d1-bf6a-d6f6aae14c4e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchSnowman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ff523f1-46d4-459f-8dad-1d7d52078661",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SummonSnowman",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -10,7 +10,8 @@ namespace Player
         public float rotationSpeed = 5.0f;
         public float staminaRecoveryTimer;
         [Header("Player State")]
-        public bool isRollingSnowball = false;
+        public bool isRollingSnowball;
+        public bool canSummonSnowman;
         
         private InputControls _inputControls;
         private Vector2 _moveInput;
@@ -22,6 +23,7 @@ namespace Player
         private ThrowSnowball _throwSnowballScript;
         private RollSnowball _rollSnowballScript;
         private PlayerAttribute _playerAttr;
+        private SummonSnowman _summonSnowmanScript;
         
         private void Awake()
         {
@@ -30,6 +32,7 @@ namespace Player
             _throwSnowballScript = GetComponent<ThrowSnowball>();
             _rollSnowballScript = GetComponent<RollSnowball>();
             _playerAttr = GetComponent<PlayerAttribute>();
+            _summonSnowmanScript = GetComponent<SummonSnowman>();
             _camera = Camera.main;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
@@ -39,8 +42,12 @@ namespace Player
             _inputControls.Gameplay.ThrowSnowball.canceled += _ => OnThrowingSnowballEnd();
             _inputControls.Gameplay.RollSnowball.performed += _ => OnRollingSnowballStart();
             _inputControls.Gameplay.RollSnowball.canceled += _ => OnRollingSnowballEnd();
+            _inputControls.Gameplay.SwitchSnowman.performed += _ => _summonSnowmanScript.SwitchSnowman();
+            _inputControls.Gameplay.SummonSnowman.performed += _ => OnSummonSnowman();
 
             _rollSnowballScript.enabled = false;
+
+            canSummonSnowman = true;
         }
 
         private void OnEnable()
@@ -149,6 +156,12 @@ namespace Player
                 StopCoroutine(_staminaCoroutine);
                 _staminaCoroutine = null;
             }
+        }
+
+        private void OnSummonSnowman()
+        {
+            if (!canSummonSnowman) return;
+            _summonSnowmanScript.SummonCurrentSnowman();
         }
     }
 }

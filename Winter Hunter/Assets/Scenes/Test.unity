@@ -706,6 +706,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b1bf372232b545bd8377c1b2e4a98a5, type: 3}
+--- !u!4 &782278738 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7296700131756586838, guid: bb8716ec82beb43dabf43000526ee4ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 5491273880513553368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,48 +1239,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1502783117, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
-      propertyPath: stamina
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1502783118, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
-      propertyPath: stamina
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1502783118, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
-      propertyPath: staminaIncrease
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: charge
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: maxCharge
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: maxStamina
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: staminaRecovery
-      value: 10
-      objectReference: {fileID: 0}
+    - target: {fileID: 1521437837, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: startPosition
+      value: 
+      objectReference: {fileID: 782278738}
     - target: {fileID: 5491273880411766384, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: m_Name
@@ -1334,11 +1302,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
-        type: 3}
-      propertyPath: staminaRecoveryTimer
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
