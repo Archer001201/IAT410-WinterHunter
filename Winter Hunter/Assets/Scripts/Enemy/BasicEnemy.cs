@@ -1,7 +1,7 @@
-using System;
 using Player;
 using Snowball;
 using UnityEngine;
+using BTFrame;
 
 namespace Enemy
 {
@@ -18,6 +18,7 @@ namespace Enemy
         public GameObject hudCanvas;
 
         private PlayerAttribute _playerAttr;
+        protected BehaviorTree BTree;
 
         private void Awake()
         {
@@ -25,6 +26,8 @@ namespace Enemy
             shield = maxShield;
             
             hudCanvas.SetActive(true);
+            
+            SetUpBehaviorTree();
         }
 
         private void Start()
@@ -39,6 +42,8 @@ namespace Enemy
             resistance = Mathf.Clamp(resistance, 0, 1);
             
             if (health <= 0) Destroy(gameObject);
+
+            BTree?.BTUpdate();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -79,5 +84,7 @@ namespace Enemy
                 _playerAttr.charge += damage;
             }
         }
+
+        protected virtual void SetUpBehaviorTree(){}
     }
 }

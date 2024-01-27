@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 6096469282343675293}
   - component: {fileID: 3567909604590656073}
   - component: {fileID: 8551575089273568385}
-  - component: {fileID: 7701710826629347120}
+  - component: {fileID: 2542159104874119055}
   m_Layer: 5
   m_Name: Enemy HUD Canvas
   m_TagString: Untagged
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7701710826629347120
+--- !u!114 &2542159104874119055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,14 +268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89dc7931b64d4281902d99c74546889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTransform: {fileID: 0}
-  offset: {x: 0, y: 2.25, z: 0}
-  mainCamera: {fileID: 0}
-  healthBar: {fileID: 4375568866266098345}
+  trans: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  hudPanel: {fileID: 4375568866266098345}
   healthFill: {fileID: 974011820672183362}
-  shieldBar: {fileID: 4375568866266098345}
   shieldFill: {fileID: 7701710827723380023}
   enemyAttr: {fileID: 0}
+  lerpSpeed: 5
 --- !u!1 &7701710827723380021
 GameObject:
   m_ObjectHideFlags: 0
