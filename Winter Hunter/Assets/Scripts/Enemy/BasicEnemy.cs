@@ -2,6 +2,7 @@ using Player;
 using Snowball;
 using UnityEngine;
 using BTFrame;
+using UnityEngine.AI;
 
 namespace Enemy
 {
@@ -17,8 +18,12 @@ namespace Enemy
         [Header("Component Settings")]
         public GameObject hudCanvas;
 
-        private PlayerAttribute _playerAttr;
+        private GameObject _player;
+        protected Transform PlayerTrans;
+        // ReSharper disable once MemberCanBePrivate.Global
+        protected PlayerAttribute PlayerAttr;
         protected BehaviorTree BTree;
+        protected NavMeshAgent Agent;
 
         private void Awake()
         {
@@ -26,13 +31,16 @@ namespace Enemy
             shield = maxShield;
             
             hudCanvas.SetActive(true);
+            Agent = GetComponent<NavMeshAgent>();
             
             SetUpBehaviorTree();
         }
 
         private void Start()
         {
-            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            _player = GameObject.FindWithTag("Player");
+            PlayerAttr = _player.GetComponent<PlayerAttribute>();
+            PlayerTrans = _player.GetComponent<Transform>();
         }
 
         private void Update()
@@ -81,7 +89,7 @@ namespace Enemy
                     health -= damage;
                 }
 
-                _playerAttr.charge += damage;
+                PlayerAttr.charge += damage;
             }
         }
 
