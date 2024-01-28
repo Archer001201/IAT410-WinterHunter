@@ -12,18 +12,23 @@ namespace Enemy
         public float maxHealth;
         public float maxShield;
         public float resistance;
+        public float chaseRange;
+        public float attackRange;
+        public float attackDamage;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
         [Header("Component Settings")]
         public GameObject hudCanvas;
+        public GameObject target;
 
-        private GameObject _player;
-        protected Transform PlayerTrans;
-        // ReSharper disable once MemberCanBePrivate.Global
-        protected PlayerAttribute PlayerAttr;
+        protected Transform TargetTrans;
         protected BehaviorTree BTree;
         protected NavMeshAgent Agent;
+        
+        private GameObject _player;
+        private PlayerAttribute _playerAttr;
+        
 
         private void Awake()
         {
@@ -39,8 +44,9 @@ namespace Enemy
         private void Start()
         {
             _player = GameObject.FindWithTag("Player");
-            PlayerAttr = _player.GetComponent<PlayerAttribute>();
-            PlayerTrans = _player.GetComponent<Transform>();
+            _playerAttr = _player.GetComponent<PlayerAttribute>();
+            
+            UpdateTarget(_player);
         }
 
         private void Update()
@@ -89,8 +95,14 @@ namespace Enemy
                     health -= damage;
                 }
 
-                PlayerAttr.charge += damage;
+                _playerAttr.charge += damage;
             }
+        }
+
+        public void UpdateTarget(GameObject tar)
+        {
+            target = tar;
+            TargetTrans = target.GetComponent<Transform>();
         }
 
         protected virtual void SetUpBehaviorTree(){}

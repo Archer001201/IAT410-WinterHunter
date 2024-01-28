@@ -78,9 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  summoningTimer: 100
+  summoningTimer: 10
   summoningCost: 20
-  type: 0
   health: 100
 --- !u!1001 &584477846657474362
 PrefabInstance:

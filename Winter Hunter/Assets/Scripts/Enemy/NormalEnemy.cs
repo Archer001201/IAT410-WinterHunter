@@ -1,51 +1,54 @@
 using BTFrame;
 using UnityEngine;
-using Input = UnityEngine.Input;
 
 namespace Enemy
 {
     public class NormalEnemy : BasicEnemy
     {
+        [Header("Normal Enemy Settings")] public ParticleSystem fireRing;
+        
         protected override void SetUpBehaviorTree()
         {
             base.SetUpBehaviorTree();
             var rootNode = new SelectorNode();
-
-            var idleNode = new SequenceNode();
-            idleNode.Children.Add(new ConditionNode(IsBeyondDistance));
-            idleNode.Children.Add(new ActionNode(Idle));
             
             var chaseNode = new SequenceNode();
-            chaseNode.Children.Add(new ConditionNode(IsPlayerInChaseRange));
+            chaseNode.Children.Add(new ConditionNode(IsTargetInChaseRange));
             chaseNode.Children.Add(new ActionNode(Chase));
             
-            rootNode.Children.Add(idleNode);
+            var attackNode = new SequenceNode();
+            chaseNode.Children.Add(new ConditionNode(IsTargetInAttackRange));
+            chaseNode.Children.Add(new ActionNode(Attack));
+            
             rootNode.Children.Add(chaseNode);
+            rootNode.Children.Add(attackNode);
 
             BTree = new BehaviorTree { RootNode = rootNode };
-        }
-        
-        private static void Idle()
-        {
-            Debug.Log("idle");
         }
 
         private void Chase()
         {
             if (Agent.isActiveAndEnabled)
             {
-                Agent.SetDestination(PlayerTrans.position);
+                Agent.SetDestination(TargetTrans.position);
             }
+            
+            if (fireRing.isPlaying) fireRing.Stop();
         }
 
-        private bool IsPlayerInChaseRange()
+        private void Attack()
         {
-            return Vector3.Distance(transform.position, PlayerTrans.position) < 20f;
+            if (fireRing.isStopped) fireRing.Play();
         }
-
-        private static bool IsBeyondDistance()
+        
+        private bool IsTargetInChaseRange()
         {
-            return Input.GetKeyDown("z");
+            return Vector3.Distance(transform.position, TargetTrans.position) < chaseRange;
+        }
+        
+        private bool IsTargetInAttackRange()
+        {
+            return Vector3.Distance(transform.position, TargetTrans.position) < attackRange;
         }
     }
 }
