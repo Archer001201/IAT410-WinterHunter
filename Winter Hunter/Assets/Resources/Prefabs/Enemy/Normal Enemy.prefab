@@ -135,7 +135,7 @@ MonoBehaviour:
   resistance: 0.5
   chaseRange: 30
   attackRange: 10
-  attackDamage: 50
+  attackDamage: 20
   health: 0
   shield: 0
   hudCanvas: {fileID: 6742336496809881690}
@@ -151,7 +151,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
