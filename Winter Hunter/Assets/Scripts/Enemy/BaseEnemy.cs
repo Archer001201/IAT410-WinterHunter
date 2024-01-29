@@ -99,6 +99,7 @@ namespace Enemy
             }
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public void UpdateTarget(GameObject tar)
         {
             target = tar;

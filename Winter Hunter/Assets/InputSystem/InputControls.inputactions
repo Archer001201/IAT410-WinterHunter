@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchSnowman",
+                    "name": "SwitchSnowmanLeft",
                     "type": "Button",
                     "id": "a49def1a-7fbc-460a-9ad5-c335438362b0",
                     "expectedControlType": "Button",
@@ -54,6 +54,15 @@
                     "name": "SummonSnowman",
                     "type": "Button",
                     "id": "44c7d15b-bd2c-4dc7-be5a-801a84436f2b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchSnowmanRight",
+                    "type": "Button",
+                    "id": "16be959f-c4de-48be-9358-5253fd553882",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -156,7 +165,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchSnowman",
+                    "action": "SwitchSnowmanLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -168,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SummonSnowman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "381e3132-c0cc-4fed-ad89-4656fa8a2707",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchSnowmanRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

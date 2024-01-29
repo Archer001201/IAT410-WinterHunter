@@ -1,4 +1,5 @@
 using System.Collections;
+using UISystem;
 using UnityEngine;
 
 namespace Player
@@ -24,6 +25,7 @@ namespace Player
         private RollSnowball _rollSnowballScript;
         private PlayerAttribute _playerAttr;
         private SummonSnowman _summonSnowmanScript;
+        private SkillPanel _skillPanelScript;
         
         private void Awake()
         {
@@ -33,6 +35,7 @@ namespace Player
             _rollSnowballScript = GetComponent<RollSnowball>();
             _playerAttr = GetComponent<PlayerAttribute>();
             _summonSnowmanScript = GetComponent<SummonSnowman>();
+            _skillPanelScript = GameObject.FindWithTag("SkillPanel").GetComponent<SkillPanel>();
             _camera = Camera.main;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
@@ -42,7 +45,8 @@ namespace Player
             _inputControls.Gameplay.ThrowSnowball.canceled += _ => OnThrowingSnowballEnd();
             _inputControls.Gameplay.RollSnowball.performed += _ => OnRollingSnowballStart();
             _inputControls.Gameplay.RollSnowball.canceled += _ => OnRollingSnowballEnd();
-            _inputControls.Gameplay.SwitchSnowman.performed += _ => _summonSnowmanScript.SwitchSnowman();
+            _inputControls.Gameplay.SwitchSnowmanLeft.performed += _ => OnSwitchSnowmanLeft();
+            _inputControls.Gameplay.SwitchSnowmanRight.performed += _ => OnSwitchSnowmanRight();
             _inputControls.Gameplay.SummonSnowman.performed += _ => OnSummonSnowman();
 
             _rollSnowballScript.enabled = false;
@@ -163,6 +167,20 @@ namespace Player
             if (!canSummonSnowman || _playerAttr.charge < _summonSnowmanScript.summoningCost) return;
             _playerAttr.charge -= _summonSnowmanScript.summoningCost;
             _summonSnowmanScript.SummonCurrentSnowman();
+        }
+
+        private void OnSwitchSnowmanLeft()
+        {
+            if (_skillPanelScript.isMoving) return;
+            _skillPanelScript.MoveIconsLeft();
+            _summonSnowmanScript.SwitchSnowmanLeft();
+        }
+        
+        private void OnSwitchSnowmanRight()
+        {
+            if (_skillPanelScript.isMoving) return;
+            _skillPanelScript.MoveIconsRight();
+            _summonSnowmanScript.SwitchSnowmanRight();
         }
     }
 }

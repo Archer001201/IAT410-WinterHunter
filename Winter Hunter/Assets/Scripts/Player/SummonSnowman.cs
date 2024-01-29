@@ -12,18 +12,26 @@ namespace Player
         public Transform startPosition;
         public float summoningCost;
 
-        private int _currentIndex;
+        public int currentIndex;
 
         private void Awake()
         {
-            _currentIndex = 0;
+            currentIndex = 0;
             LoadSnowmanPrefab();
         }
 
-        public void SwitchSnowman()
+        public void SwitchSnowmanLeft()
         {
-            if (_currentIndex < snowmanList.Count-1) _currentIndex++;
-            else _currentIndex = 0;
+            if (currentIndex < snowmanList.Count-1) currentIndex++;
+            else currentIndex = 0;
+            
+            LoadSnowmanPrefab();
+        }
+        
+        public void SwitchSnowmanRight()
+        {
+            if (currentIndex > 0) currentIndex--;
+            else currentIndex = snowmanList.Count-1;
             
             LoadSnowmanPrefab();
         }
@@ -35,7 +43,7 @@ namespace Player
 
         private void LoadSnowmanPrefab()
         {
-            currentSnowman = snowmanList[_currentIndex] switch
+            currentSnowman = snowmanList[currentIndex] switch
             {
                 SnowmanType.Normal => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Normal"),
                 SnowmanType.MeatShield => Resources.Load<GameObject>("Prefabs/Snowman/Proto_MeatShield"),

@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 440272703, guid: aa9f7204cd9ee4939b64654fd73f9b73, type: 3}
+      propertyPath: maxShield
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 789761186269842912, guid: aa9f7204cd9ee4939b64654fd73f9b73,
         type: 3}
       propertyPath: m_Name
@@ -769,6 +773,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 440272703, guid: aa9f7204cd9ee4939b64654fd73f9b73, type: 3}
+      propertyPath: maxShield
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 789761186269842912, guid: aa9f7204cd9ee4939b64654fd73f9b73,
         type: 3}
       propertyPath: m_Name
@@ -971,11 +979,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1521437837, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
       propertyPath: snowmanList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1521437837, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
       propertyPath: snowmanList.Array.data[2]
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521437837, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: snowmanList.Array.data[3]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5491273880411766384, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
