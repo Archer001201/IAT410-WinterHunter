@@ -43,9 +43,6 @@ namespace Player
             _snowballRb = null;
         }
 
-        public virtual void UpdateAimingLine() 
-        {
-            //override
-        }
+        public virtual void UpdateAimingLine(){}
     }
 }

@@ -1,53 +1,59 @@
-using System.Collections.Generic;
 using Player;
+using Snowman;
 using UnityEngine;
 
 namespace Enemy
 {
     public class FireRing : MonoBehaviour
     {
+        public float maxRadius = 10f;
+        public float duration = 2f;
+        
+        private float _damage;
+        private Transform _trans;
         private ParticleSystem _particle;
-        private GameObject _player;
-        private bool _hasDamaged;
-        private float _lastParticleTime;
-        private BasicEnemy _attr;
+        private SphereCollider _coll;
+        private float _startTime;
 
         private void Awake()
         {
-            _particle = GetComponent<ParticleSystem>();
-            _attr = GetComponentInParent<BasicEnemy>();
+            _coll = GetComponent<SphereCollider>();
+            _particle = GetComponentInChildren<ParticleSystem>();
+            _startTime = Time.time;
         }
 
-        private void Start()
-        {
-            _player = GameObject.FindWithTag("Player");
-            _particle.trigger.SetCollider(0, _player.GetComponent<Collider>());
-        }
+
 
         private void Update()
         {
-            if (_particle.time < _lastParticleTime)
+            if (_trans != null)
             {
-                _hasDamaged = false;
+                transform.position = _trans.position;
             }
-            _lastParticleTime = _particle.time;
+            
+            var timeElapsed = Time.time - _startTime;
+            var timeFraction = Mathf.Clamp(timeElapsed / duration, 0f, 1f);
+            _coll.radius = Mathf.Lerp(0f, maxRadius, timeFraction);
+            
+            if (_particle.isStopped) Destroy(gameObject);
         }
 
-        private void OnParticleTrigger()
+        public void FollowAt(Transform trans, float damage)
         {
-            if (_hasDamaged) return;
-            
-            var enter = new List<ParticleSystem.Particle>();
-            var numEnter = _particle.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
+            _trans = trans;
+            _damage = damage;
+            _coll.radius = 0;
+        }
 
-            if (numEnter > 0)
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
             {
-                var playerAttr = _player.GetComponent<PlayerAttribute>();
-                if (playerAttr != null)
-                {
-                    playerAttr.health -= _attr.attackDamage; 
-                    _hasDamaged = true;
-                }
+                other.gameObject.GetComponent<PlayerAttribute>().health -= _damage;
+            }
+            else if (other.CompareTag("Snowman"))
+            {
+                other.gameObject.GetComponent<BaseSnowman>().health -= _damage;
             }
         }
     }

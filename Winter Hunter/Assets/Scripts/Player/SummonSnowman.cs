@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Snowman;
 using UnityEngine;
@@ -44,7 +43,7 @@ namespace Player
             };
 
             if (currentSnowman == null) return;
-            summoningCost = currentSnowman.GetComponent<BasicSnowman>().summoningCost;
+            summoningCost = currentSnowman.GetComponent<BaseSnowman>().summoningCost;
         }
     }
 }

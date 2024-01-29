@@ -1,6 +1,6 @@
 namespace Snowman
 {
-    public class Normal : BasicSnowman
+    public class Normal : BaseSnowman
     {
         
     }

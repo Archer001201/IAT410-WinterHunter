@@ -1,6 +1,6 @@
 namespace Snowman
 {
-    public class MeatShield : BasicSnowman
+    public class MeatShield : BaseSnowman
     {
         
     }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
-    public class BasicEnemy : MonoBehaviour
+    public class BaseEnemy : MonoBehaviour
     {
         [Header("Static Attributes")]
         public float maxHealth;
@@ -30,7 +30,7 @@ namespace Enemy
         private PlayerAttribute _playerAttr;
         
 
-        private void Awake()
+        protected virtual void Awake()
         {
             health = maxHealth;
             shield = maxShield;
@@ -66,7 +66,7 @@ namespace Enemy
            
             if (otherGO.CompareTag("Projectile"))
             {
-                var snowballScript = otherGO.GetComponent<BasicSnowball>();
+                var snowballScript = otherGO.GetComponent<BaseSnowball>();
                 var damage = snowballScript.damage;
                 if (snowballScript.type == SnowballType.RollingSnowball)
                 {

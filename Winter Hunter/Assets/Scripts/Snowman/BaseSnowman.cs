@@ -3,14 +3,17 @@ using UnityEngine;
 
 namespace Snowman
 {
-    public class BasicSnowman : MonoBehaviour
+    public class BaseSnowman : MonoBehaviour
     {
         [Header("Static Attributes")] 
         public float maxHealth;
-        public float summoningTimer;
+        public float summoningTime;
         public float summoningCost;
         [Header("Dynamic Attributes")] 
         public float health;
+        public float summoningTimer;
+        [Header("Component Settings")] 
+        public GameObject hudCanvas;
         
 
         private PlayerController _playerController;
@@ -20,6 +23,8 @@ namespace Snowman
         {
             health = maxHealth;
             _startTime = Time.time;
+            
+            hudCanvas.SetActive(true);
         }
 
         private void Start()
@@ -31,8 +36,8 @@ namespace Snowman
         private void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
-            
-            if (health <= 0 || Time.time - _startTime >= summoningTimer)
+            summoningTimer = Time.time - _startTime;
+            if (health <= 0 || summoningTimer >= summoningTime)
             {
                 _playerController.canSummonSnowman = true;
                 Destroy(gameObject);

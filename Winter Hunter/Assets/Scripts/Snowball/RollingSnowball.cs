@@ -21,7 +21,6 @@ namespace Snowball
 
         private void Update()
         {
-            // if (Vector3.Distance(transform.position,_startPosition) >= rollingDistance) Destroy(gameObject);
             if (transform.localScale.x > rollingSize.y && !_isReleasing)
             {
                 _playerController.OnRollingSnowballEnd();

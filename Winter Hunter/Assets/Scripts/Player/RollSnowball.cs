@@ -13,11 +13,6 @@ namespace Player
         
         private RollingSnowball _rollingSnowballScript;
 
-        // private void OnEnable()
-        // {
-        //     rollingLine.SetActive(true);
-        // }
-
         private void OnDisable()
         {
             rollingLine.SetActive(false);

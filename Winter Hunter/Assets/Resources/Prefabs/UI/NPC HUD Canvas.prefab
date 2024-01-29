@@ -166,14 +166,13 @@ GameObject:
   - component: {fileID: 6096469282343675293}
   - component: {fileID: 3567909604590656073}
   - component: {fileID: 8551575089273568385}
-  - component: {fileID: 2542159104874119055}
   m_Layer: 5
-  m_Name: Enemy HUD Canvas
+  m_Name: NPC HUD Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1521256838636956908
 RectTransform:
   m_ObjectHideFlags: 0
@@ -256,25 +255,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2542159104874119055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297260224819312741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89dc7931b64d4281902d99c74546889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trans: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  hudPanel: {fileID: 4375568866266098345}
-  healthFill: {fileID: 974011820672183362}
-  shieldFill: {fileID: 7701710827723380023}
-  enemyAttr: {fileID: 0}
-  lerpSpeed: 5
 --- !u!1 &7701710827723380021
 GameObject:
   m_ObjectHideFlags: 0
