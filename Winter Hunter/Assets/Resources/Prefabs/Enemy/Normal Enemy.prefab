@@ -131,10 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxShield: 50
-  resistance: 0.5
+  resistance: 0.8
   chaseRange: 30
   attackRange: 6
-  attackDamage: 20
+  attackDamage: 10
   health: 0
   shield: 0
   hudCanvas: {fileID: 6742336496809881690}
