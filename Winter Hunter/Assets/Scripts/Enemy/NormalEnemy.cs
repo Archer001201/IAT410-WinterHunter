@@ -43,7 +43,7 @@ namespace Enemy
 
         private void SetNavigation()
         {
-            if (Agent.isActiveAndEnabled)
+            if (Agent.isActiveAndEnabled && TargetTrans != null)
             {
                 Agent.SetDestination(TargetTrans.position);
             }

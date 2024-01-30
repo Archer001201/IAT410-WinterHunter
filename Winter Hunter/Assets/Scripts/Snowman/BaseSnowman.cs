@@ -1,5 +1,7 @@
+using BTFrame;
 using Player;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Snowman
 {
@@ -15,7 +17,10 @@ namespace Snowman
         [Header("Component Settings")] 
         public GameObject hudCanvas;
         
-
+        protected BehaviorTree BTree;
+        protected NavMeshAgent Agent;
+        protected GameObject PlayerGO;
+        
         private PlayerController _playerController;
         private float _startTime;
 
@@ -25,12 +30,14 @@ namespace Snowman
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
-        }
-
-        private void Start()
-        {
-            _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            
+            Agent = GetComponent<NavMeshAgent>();
+            
+            PlayerGO = GameObject.FindWithTag("Player");
+            _playerController = PlayerGO.GetComponent<PlayerController>();
             _playerController.canSummonSnowman = false;
+            
+            SetUpBehaviorTree();
         }
 
         private void Update()
@@ -42,6 +49,10 @@ namespace Snowman
                 _playerController.canSummonSnowman = true;
                 Destroy(gameObject);
             }
+            
+            BTree?.BTUpdate();
         }
+        
+        protected virtual void SetUpBehaviorTree(){}
     }
 }

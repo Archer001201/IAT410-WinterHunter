@@ -166,8 +166,9 @@ GameObject:
   - component: {fileID: 6096469282343675293}
   - component: {fileID: 3567909604590656073}
   - component: {fileID: 8551575089273568385}
+  - component: {fileID: 7435977033822388207}
   m_Layer: 5
-  m_Name: NPC HUD Canvas
+  m_Name: Snowman HUD Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,6 +256,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7435977033822388207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297260224819312741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f6ff49e23ed40399292d90dd37c443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trans: {fileID: 0}
+  offset: {x: 0, y: 3.5, z: 0}
+  hudPanel: {fileID: 4375568866266098345}
+  fillImage1: {fileID: 974011820672183362}
+  fillImage2: {fileID: 7701710827723380023}
+  lerpSpeed: 5
+  snowmanAttr: {fileID: 0}
 --- !u!1 &7701710827723380021
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +287,7 @@ GameObject:
   - component: {fileID: 7701710827723380022}
   - component: {fileID: 7701710827723380023}
   m_Layer: 5
-  m_Name: Shield Bar
+  m_Name: Summoning Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.45693058, b: 0.94509804, a: 1}
+  m_Color: {r: 0.83191, g: 1, b: 0.45882356, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
