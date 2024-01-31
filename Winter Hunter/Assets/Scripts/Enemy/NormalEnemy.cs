@@ -41,9 +41,15 @@ namespace Enemy
             BTree = new BehaviorTree { RootNode = rootNode };
         }
 
+        protected override void UpdateTarget(GameObject tar)
+        {
+            base.UpdateTarget(tar);
+            SetNavigation();
+        }
+
         private void SetNavigation()
         {
-            if (Agent.isActiveAndEnabled && TargetTrans != null)
+            if (Agent != null && Agent.isActiveAndEnabled && TargetTrans != null)
             {
                 Agent.SetDestination(TargetTrans.position);
             }
@@ -51,11 +57,13 @@ namespace Enemy
 
         private void StartChase()
         {
+            if (!Agent.isActiveAndEnabled) return;
             if (Agent.isStopped) Agent.isStopped = false;
         }
 
         private void StopChase()
         {
+            if (!Agent.isActiveAndEnabled) return;
             if (!Agent.isStopped) Agent.isStopped = true;
         }
 
@@ -66,11 +74,9 @@ namespace Enemy
 
         private void StopAttack()
         {
-            if (_attackCoroutine != null)
-            {
-                StopCoroutine(_attackCoroutine);
-                _attackCoroutine = null;
-            }
+            if (_attackCoroutine == null) return;
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
         }
         
         private IEnumerator AttackCoroutine()

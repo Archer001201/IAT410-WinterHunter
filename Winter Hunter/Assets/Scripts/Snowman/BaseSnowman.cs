@@ -24,7 +24,7 @@ namespace Snowman
         private PlayerController _playerController;
         private float _startTime;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             health = maxHealth;
             _startTime = Time.time;
@@ -40,10 +40,11 @@ namespace Snowman
             SetUpBehaviorTree();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             summoningTimer = Time.time - _startTime;
+
             if (health <= 0 || summoningTimer >= summoningTime)
             {
                 _playerController.canSummonSnowman = true;

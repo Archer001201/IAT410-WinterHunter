@@ -11,5 +11,12 @@ namespace EventSystem
         // {
         //     OnSummonSnowman?.Invoke(snowman);
         // }
+
+        public static event Action<GameObject> OnEnemyChangeTarget;
+
+        public static void EnemyChangeTarget(GameObject target)
+        {
+            OnEnemyChangeTarget?.Invoke(target);
+        }
     }
 }

@@ -1,5 +1,5 @@
-using System;
 using BTFrame;
+using EventSystem;
 using UnityEngine;
 
 namespace Snowman
@@ -8,12 +8,23 @@ namespace Snowman
     {
         [Header("Meat shield Settings")] 
         public float followRange;
+
+        public GameObject go;
         
         private Transform _playerTrans;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             _playerTrans = PlayerGO.transform;
+            EventHandler.EnemyChangeTarget(go);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            if (health > 0 && summoningTimer < summoningTime) return;
+            EventHandler.EnemyChangeTarget(PlayerGO);
         }
 
         protected override void SetUpBehaviorTree()
@@ -35,7 +46,7 @@ namespace Snowman
 
             BTree = new BehaviorTree { RootNode = rootNode };
         }
-        
+
         private void SetNavigation()
         {
             if (Agent.isActiveAndEnabled && _playerTrans != null)
@@ -46,11 +57,13 @@ namespace Snowman
 
         private void StartChase()
         {
+            if (!Agent.isActiveAndEnabled) return;
             if (Agent.isStopped) Agent.isStopped = false;
         }
 
         private void StopChase()
         {
+            if (!Agent.isActiveAndEnabled) return;
             if (!Agent.isStopped) Agent.isStopped = true;
         }
 

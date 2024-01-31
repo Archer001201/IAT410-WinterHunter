@@ -2,6 +2,7 @@ using Player;
 using Snowball;
 using UnityEngine;
 using BTFrame;
+using EventSystem;
 using UnityEngine.AI;
 
 namespace Enemy
@@ -39,6 +40,8 @@ namespace Enemy
             Agent = GetComponent<NavMeshAgent>();
             
             SetUpBehaviorTree();
+
+            EventHandler.OnEnemyChangeTarget += UpdateTarget;
         }
 
         private void Start()
@@ -98,9 +101,8 @@ namespace Enemy
                 _playerAttr.charge += damage;
             }
         }
-
-        // ReSharper disable once MemberCanBePrivate.Global
-        public void UpdateTarget(GameObject tar)
+        
+        protected virtual void UpdateTarget(GameObject tar)
         {
             target = tar;
             TargetTrans = target.GetComponent<Transform>();

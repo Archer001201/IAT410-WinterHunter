@@ -47,6 +47,7 @@ namespace Player
             {
                 SnowmanType.Normal => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Normal"),
                 SnowmanType.MeatShield => Resources.Load<GameObject>("Prefabs/Snowman/Proto_MeatShield"),
+                SnowmanType.Healer => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Healer"),
                 _ => currentSnowman
             };
 
