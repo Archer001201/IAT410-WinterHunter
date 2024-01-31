@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 584477846658666776}
   - component: {fileID: -4593200135951004486}
   - component: {fileID: 2975020685506949172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Proto_MeatShield
   m_TagString: Snowman
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
@@ -83,11 +83,10 @@ MonoBehaviour:
   maxHealth: 100
   summoningTime: 20
   summoningCost: 50
+  followRange: 10
   health: 100
   summoningTimer: 100
   hudCanvas: {fileID: 3417969559084012272}
-  followRange: 10
-  go: {fileID: 584477846658666777}
 --- !u!195 &2975020685506949172
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ namespace Enemy
         [Header("Normal Enemy Settings")]
         public GameObject fireRing;
         public float chaseAndAttackRange;
-        
-        private Coroutine _attackCoroutine;
 
         protected override void SetUpBehaviorTree()
         {
@@ -46,40 +44,8 @@ namespace Enemy
             base.UpdateTarget(tar);
             SetNavigation();
         }
-
-        private void SetNavigation()
-        {
-            if (Agent != null && Agent.isActiveAndEnabled && TargetTrans != null)
-            {
-                Agent.SetDestination(TargetTrans.position);
-            }
-        }
-
-        private void StartChase()
-        {
-            if (!Agent.isActiveAndEnabled) return;
-            if (Agent.isStopped) Agent.isStopped = false;
-        }
-
-        private void StopChase()
-        {
-            if (!Agent.isActiveAndEnabled) return;
-            if (!Agent.isStopped) Agent.isStopped = true;
-        }
-
-        private void StartAttack()
-        {
-            _attackCoroutine ??= StartCoroutine(AttackCoroutine());
-        }
-
-        private void StopAttack()
-        {
-            if (_attackCoroutine == null) return;
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
         
-        private IEnumerator AttackCoroutine()
+        protected override IEnumerator AttackCoroutine()
         {
             while (IsTargetInAttackRange() || IsTargetInChaseAndAttackRange())
             {

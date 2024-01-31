@@ -11,6 +11,7 @@ namespace Snowman
         public float maxHealth;
         public float summoningTime;
         public float summoningCost;
+        public float followRange;
         [Header("Dynamic Attributes")] 
         public float health;
         public float summoningTimer;
@@ -18,11 +19,13 @@ namespace Snowman
         public GameObject hudCanvas;
         
         protected BehaviorTree BTree;
-        protected NavMeshAgent Agent;
         protected GameObject PlayerGO;
+        protected Transform TargetTrans;
         
+        private NavMeshAgent _agent;
         private PlayerController _playerController;
         private float _startTime;
+        
 
         protected virtual void Awake()
         {
@@ -31,7 +34,7 @@ namespace Snowman
             
             hudCanvas.SetActive(true);
             
-            Agent = GetComponent<NavMeshAgent>();
+            _agent = GetComponent<NavMeshAgent>();
             
             PlayerGO = GameObject.FindWithTag("Player");
             _playerController = PlayerGO.GetComponent<PlayerController>();
@@ -55,5 +58,25 @@ namespace Snowman
         }
         
         protected virtual void SetUpBehaviorTree(){}
+        
+        protected void SetNavigation()
+        {
+            if (_agent.isActiveAndEnabled && TargetTrans != null)
+            {
+                _agent.SetDestination(TargetTrans.position);
+            }
+        }
+        
+        protected void StartChase()
+        {
+            if (!_agent.isActiveAndEnabled) return;
+            if (_agent.isStopped) _agent.isStopped = false;
+        }
+
+        protected void StopChase()
+        {
+            if (!_agent.isActiveAndEnabled) return;
+            if (!_agent.isStopped) _agent.isStopped = true;
+        }
     }
 }

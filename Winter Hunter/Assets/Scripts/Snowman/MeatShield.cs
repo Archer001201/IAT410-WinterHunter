@@ -6,18 +6,11 @@ namespace Snowman
 {
     public class MeatShield : BaseSnowman
     {
-        [Header("Meat shield Settings")] 
-        public float followRange;
-
-        public GameObject go;
-        
-        private Transform _playerTrans;
-
         protected override void Awake()
         {
             base.Awake();
-            _playerTrans = PlayerGO.transform;
-            EventHandler.EnemyChangeTarget(go);
+            TargetTrans = PlayerGO.transform;
+            EventHandler.EnemyChangeTarget(gameObject);
         }
 
         protected override void Update()
@@ -47,34 +40,14 @@ namespace Snowman
             BTree = new BehaviorTree { RootNode = rootNode };
         }
 
-        private void SetNavigation()
-        {
-            if (Agent.isActiveAndEnabled && _playerTrans != null)
-            {
-                Agent.SetDestination(_playerTrans.position);
-            }
-        }
-
-        private void StartChase()
-        {
-            if (!Agent.isActiveAndEnabled) return;
-            if (Agent.isStopped) Agent.isStopped = false;
-        }
-
-        private void StopChase()
-        {
-            if (!Agent.isActiveAndEnabled) return;
-            if (!Agent.isStopped) Agent.isStopped = true;
-        }
-
         private bool IsPlayerOutFollowRange()
         {
-            return Vector3.Distance(transform.position, _playerTrans.position) > followRange;
+            return Vector3.Distance(transform.position, TargetTrans.position) > followRange;
         }
 
         private bool IsPlayerInFollowRange()
         {
-            return Vector3.Distance(transform.position, _playerTrans.position) <= followRange;
+            return Vector3.Distance(transform.position, TargetTrans.position) <= followRange;
         }
     }
 }

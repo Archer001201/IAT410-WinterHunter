@@ -1,3 +1,4 @@
+using System.Collections;
 using Player;
 using Snowball;
 using UnityEngine;
@@ -25,10 +26,11 @@ namespace Enemy
 
         protected Transform TargetTrans;
         protected BehaviorTree BTree;
-        protected NavMeshAgent Agent;
+        private NavMeshAgent _agent;
         
         private GameObject _player;
         private PlayerAttribute _playerAttr;
+        private Coroutine _attackCoroutine;
         
 
         protected virtual void Awake()
@@ -37,19 +39,16 @@ namespace Enemy
             shield = maxShield;
             
             hudCanvas.SetActive(true);
-            Agent = GetComponent<NavMeshAgent>();
+            _agent = GetComponent<NavMeshAgent>();
             
-            SetUpBehaviorTree();
-
-            EventHandler.OnEnemyChangeTarget += UpdateTarget;
-        }
-
-        private void Start()
-        {
             _player = GameObject.FindWithTag("Player");
             _playerAttr = _player.GetComponent<PlayerAttribute>();
             
             UpdateTarget(_player);
+            
+            SetUpBehaviorTree();
+
+            EventHandler.OnEnemyChangeTarget += UpdateTarget;
         }
 
         private void Update()
@@ -109,5 +108,42 @@ namespace Enemy
         }
 
         protected virtual void SetUpBehaviorTree(){}
+        
+        protected void SetNavigation()
+        {
+            if (_agent != null && _agent.isActiveAndEnabled && TargetTrans != null)
+            {
+                _agent.SetDestination(TargetTrans.position);
+            }
+        }
+
+        protected void StartChase()
+        {
+            if (!_agent.isActiveAndEnabled) return;
+            if (_agent.isStopped) _agent.isStopped = false;
+        }
+
+        protected void StopChase()
+        {
+            if (!_agent.isActiveAndEnabled) return;
+            if (!_agent.isStopped) _agent.isStopped = true;
+        }
+
+        protected void StartAttack()
+        {
+            _attackCoroutine ??= StartCoroutine(AttackCoroutine());
+        }
+
+        protected void StopAttack()
+        {
+            if (_attackCoroutine == null) return;
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
+        }
+
+        protected virtual IEnumerator AttackCoroutine()
+        {
+            return null;
+        }
     }
 }
