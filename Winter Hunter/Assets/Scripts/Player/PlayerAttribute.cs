@@ -9,6 +9,7 @@ namespace Player
         public float maxStamina;
         public float maxCharge;
         public float staminaRecovery;
+        public float attack;
         [Header("Dynamic Attributes")]
         public float health;
         public float stamina;

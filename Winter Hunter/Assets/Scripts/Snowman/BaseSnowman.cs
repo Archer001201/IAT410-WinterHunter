@@ -8,18 +8,22 @@ namespace Snowman
     public class BaseSnowman : MonoBehaviour
     {
         [Header("Static Attributes")] 
-        public float maxHealth;
+        public float healthFactor;
+        public float attackFactor;
         public float summoningTime;
         public float summoningCost;
         public float followRange;
         [Header("Dynamic Attributes")] 
+        public float maxHealth;
         public float health;
         public float summoningTimer;
+        public float attack;
         [Header("Component Settings")] 
         public GameObject hudCanvas;
         
         protected BehaviorTree BTree;
         protected GameObject PlayerGO;
+        protected PlayerAttribute PlayerAttr;
         protected Transform TargetTrans;
         
         private NavMeshAgent _agent;
@@ -29,16 +33,19 @@ namespace Snowman
 
         protected virtual void Awake()
         {
+            PlayerGO = GameObject.FindWithTag("Player");
+            PlayerAttr = PlayerGO.GetComponent<PlayerAttribute>();
+            _playerController = PlayerGO.GetComponent<PlayerController>();
+            _playerController.canSummonSnowman = false;
+            
+            maxHealth = healthFactor * PlayerAttr.maxHealth;
             health = maxHealth;
+            attack = attackFactor * PlayerAttr.attack;
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
             
             _agent = GetComponent<NavMeshAgent>();
-            
-            PlayerGO = GameObject.FindWithTag("Player");
-            _playerController = PlayerGO.GetComponent<PlayerController>();
-            _playerController.canSummonSnowman = false;
             
             SetUpBehaviorTree();
         }

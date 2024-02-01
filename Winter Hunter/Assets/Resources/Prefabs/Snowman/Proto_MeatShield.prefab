@@ -80,12 +80,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dca3634ae354649870fa9ef0db76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  healthFactor: 2
+  attackFactor: 0
   summoningTime: 20
   summoningCost: 50
   followRange: 10
+  maxHealth: 100
   health: 100
   summoningTimer: 100
+  attack: 0
   hudCanvas: {fileID: 3417969559084012272}
 --- !u!195 &2975020685506949172
 NavMeshAgent:
@@ -96,7 +99,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 584477846658666777}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
