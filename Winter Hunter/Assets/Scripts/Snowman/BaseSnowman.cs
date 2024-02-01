@@ -1,4 +1,5 @@
 using BTFrame;
+using DataSO;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,9 +22,10 @@ namespace Snowman
         [Header("Component Settings")] 
         public GameObject hudCanvas;
         
+        // ReSharper disable once MemberCanBePrivate.Global
+        protected PlayerSO PlayerSO;
         protected BehaviorTree BTree;
         protected GameObject PlayerGO;
-        protected PlayerAttribute PlayerAttr;
         protected Transform TargetTrans;
         
         private NavMeshAgent _agent;
@@ -33,14 +35,14 @@ namespace Snowman
 
         protected virtual void Awake()
         {
+            PlayerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             PlayerGO = GameObject.FindWithTag("Player");
-            PlayerAttr = PlayerGO.GetComponent<PlayerAttribute>();
             _playerController = PlayerGO.GetComponent<PlayerController>();
             _playerController.canSummonSnowman = false;
             
-            maxHealth = healthFactor * PlayerAttr.maxHealth;
+            maxHealth = healthFactor * PlayerSO.maxHealth;
             health = maxHealth;
-            attack = attackFactor * PlayerAttr.attack;
+            attack = attackFactor * PlayerSO.attack;
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);

@@ -1,4 +1,5 @@
 using System.Collections;
+using DataSO;
 using UISystem;
 using UnityEngine;
 
@@ -7,13 +8,13 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Player Parameters")]
-        public float moveSpeed;
         public float rotationSpeed = 5.0f;
         public float staminaRecoveryTimer;
         [Header("Player State")]
         public bool isRollingSnowball;
         public bool canSummonSnowman;
         
+        private PlayerSO _playerSO;
         private InputControls _inputControls;
         private Vector2 _moveInput;
         private Vector2 _mousePosition;
@@ -29,6 +30,7 @@ namespace Player
         
         private void Awake()
         {
+            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _inputControls = new InputControls();
             _rb = GetComponent<Rigidbody>();
             _throwSnowballScript = GetComponent<ThrowSnowball>();
@@ -69,7 +71,7 @@ namespace Player
             var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
             var currentVerticalVelocity = _rb.velocity.y;
 
-            _rb.velocity = new Vector3(moveDirection.x * moveSpeed, currentVerticalVelocity, moveDirection.z * moveSpeed);
+            _rb.velocity = new Vector3(moveDirection.x * _playerSO.speed, currentVerticalVelocity, moveDirection.z * _playerSO.speed);
             
             if (!isRollingSnowball)
             {
@@ -141,9 +143,9 @@ namespace Player
         private IEnumerator RecoverStaminaAfterDelay()
         {
             yield return new WaitForSeconds(staminaRecoveryTimer);
-            while (_playerAttr.stamina < _playerAttr.maxStamina)
+            while (_playerAttr.stamina < _playerSO.maxStamina)
             {
-                _playerAttr.stamina += _playerAttr.staminaRecovery * Time.deltaTime;
+                _playerAttr.stamina += _playerSO.staminaRecovery * Time.deltaTime;
                 yield return null;
             }
         }
@@ -164,8 +166,8 @@ namespace Player
 
         private void OnSummonSnowman()
         {
-            if (!canSummonSnowman || _playerAttr.charge < _summonSnowmanScript.summoningCost) return;
-            _playerAttr.charge -= _summonSnowmanScript.summoningCost;
+            if (!canSummonSnowman || _playerAttr.energy < _summonSnowmanScript.summoningCost) return;
+            _playerAttr.energy -= _summonSnowmanScript.summoningCost;
             _summonSnowmanScript.SummonCurrentSnowman();
         }
 

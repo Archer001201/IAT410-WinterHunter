@@ -97,7 +97,7 @@ namespace Enemy
                     health -= damage;
                 }
 
-                _playerAttr.charge += damage;
+                _playerAttr.energy += damage;
             }
         }
         

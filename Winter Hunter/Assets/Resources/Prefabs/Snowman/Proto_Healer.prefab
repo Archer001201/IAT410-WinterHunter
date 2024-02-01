@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c2ddeb30255488791217d46e5d7475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthFactor: 1.5
-  attackFactor: 1
+  healthFactor: 1
+  attackFactor: 0.5
   summoningTime: 50
   summoningCost: 50
   followRange: 5
@@ -101,7 +101,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

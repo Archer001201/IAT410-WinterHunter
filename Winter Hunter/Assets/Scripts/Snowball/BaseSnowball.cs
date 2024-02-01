@@ -1,4 +1,5 @@
 using System;
+using DataSO;
 using Player;
 using UnityEngine;
 
@@ -9,12 +10,12 @@ namespace Snowball
         public float attackFactor;
         public float damage;
         public SnowballType type;
-        private PlayerAttribute _playerAttr;
+        private PlayerSO _playerSO;
 
         private void Awake()
         {
-            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            damage = attackFactor * _playerAttr.attack;
+            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            damage = attackFactor * _playerSO.attack;
         }
     }
 }

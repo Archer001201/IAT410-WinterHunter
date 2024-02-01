@@ -15,7 +15,7 @@ namespace Snowman
             _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
             _healCoroutine ??= StartCoroutine(Heal());
@@ -35,7 +35,6 @@ namespace Snowman
                 _playerAttr.health += healerAttr.attack;
                 yield return new WaitForSeconds(healerAttr.healTimer);
             }
-            
         }
     }
 }

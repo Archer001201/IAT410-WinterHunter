@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DataSO;
 using Snowman;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Player
 {
     public class SummonSnowman : MonoBehaviour
     {
-        public List<SnowmanType> snowmanList;
+        // public List<SnowmanType> snowmanList;
         public GameObject currentSnowman;
 
         public Transform startPosition;
@@ -14,15 +15,18 @@ namespace Player
 
         public int currentIndex;
 
+        private PlayerSO _playerSO;
+
         private void Awake()
         {
+            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             currentIndex = 0;
             LoadSnowmanPrefab();
         }
 
         public void SwitchSnowmanLeft()
         {
-            if (currentIndex < snowmanList.Count-1) currentIndex++;
+            if (currentIndex < _playerSO.snowmanList.Count-1) currentIndex++;
             else currentIndex = 0;
             
             LoadSnowmanPrefab();
@@ -31,7 +35,7 @@ namespace Player
         public void SwitchSnowmanRight()
         {
             if (currentIndex > 0) currentIndex--;
-            else currentIndex = snowmanList.Count-1;
+            else currentIndex = _playerSO.snowmanList.Count-1;
             
             LoadSnowmanPrefab();
         }
@@ -43,7 +47,8 @@ namespace Player
 
         private void LoadSnowmanPrefab()
         {
-            currentSnowman = snowmanList[currentIndex] switch
+            if (_playerSO.snowmanList.Count < 1) return;
+            currentSnowman = _playerSO.snowmanList[currentIndex] switch
             {
                 SnowmanType.Normal => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Normal"),
                 SnowmanType.MeatShield => Resources.Load<GameObject>("Prefabs/Snowman/Proto_MeatShield"),

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DataSO;
 using Player;
 using Snowman;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace UISystem
         
         private SummonSnowman _summonSnowmanScript;
         private int _currentIndex;
+        private PlayerSO _playerSO;
         
         public bool isMoving;
         private const float MoveTime = 0.5f;
@@ -22,10 +24,11 @@ namespace UISystem
 
         private void Awake()
         {
+            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _summonSnowmanScript = GameObject.FindWithTag("Player").GetComponent<SummonSnowman>();
             if (_summonSnowmanScript == null) return;
             _currentIndex = _summonSnowmanScript.currentIndex;
-            var snowmanListCount = _summonSnowmanScript.snowmanList.Count;
+            var snowmanListCount = _playerSO.snowmanList.Count;
 
             for (var i = -2; i < 3; i++)
             {
@@ -136,7 +139,7 @@ namespace UISystem
 
         private void UpdateIconImage()
         {
-            var snowmanListCount = _summonSnowmanScript.snowmanList.Count;
+            var snowmanListCount = _playerSO.snowmanList.Count;
             if (snowmanListCount < 4) return;
             
             foreach (var icon in skillIcons)
@@ -155,20 +158,25 @@ namespace UISystem
 
         private Sprite GetIconSprite(int i, int snowmanListCount)
         {
+            if (_playerSO.snowmanList.Count < 1) return null;
             var sum = _currentIndex + i;
-            SnowmanType snowmanType; 
-
+            SnowmanType snowmanType;
+            if (_playerSO.snowmanList.Count < 2)
+            {
+                snowmanType = _playerSO.snowmanList[0];
+                return Resources.Load<Sprite>("Images/" + snowmanType);
+            }
             if (sum < 0)
             { 
-                snowmanType = _summonSnowmanScript.snowmanList[snowmanListCount+sum];
+                snowmanType = _playerSO.snowmanList[snowmanListCount+sum];
             }
             else if (sum > snowmanListCount - 1)
             {
-                snowmanType = _summonSnowmanScript.snowmanList[sum-snowmanListCount];
+                snowmanType = _playerSO.snowmanList[sum-snowmanListCount];
             }
             else
             {
-                snowmanType = _summonSnowmanScript.snowmanList[sum];
+                snowmanType = _playerSO.snowmanList[sum];
             }
             return Resources.Load<Sprite>("Images/" + snowmanType);
         }
