@@ -1,8 +1,10 @@
+using System;
 using BTFrame;
 using DataSO;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
+using EventHandler = EventSystem.EventHandler;
 
 namespace Snowman
 {
@@ -14,11 +16,13 @@ namespace Snowman
         public float summoningTime;
         public float summoningCost;
         public float followRange;
+        public static float Cooldown;
         [Header("Dynamic Attributes")] 
         public float maxHealth;
         public float health;
         public float summoningTimer;
         public float attack;
+        public static float CooldownTimer;
         [Header("Component Settings")] 
         public GameObject hudCanvas;
         
@@ -38,7 +42,7 @@ namespace Snowman
             PlayerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             PlayerGO = GameObject.FindWithTag("Player");
             _playerController = PlayerGO.GetComponent<PlayerController>();
-            _playerController.canSummonSnowman = false;
+            // _playerController.canSummonSnowman = false;
             
             maxHealth = healthFactor * PlayerSO.maxHealth;
             health = maxHealth;
@@ -46,10 +50,19 @@ namespace Snowman
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
-            
             _agent = GetComponent<NavMeshAgent>();
             
             SetUpBehaviorTree();
+        }
+
+        private void OnEnable()
+        {
+            EventHandler.OnDestroyExistedSnowman += DestroyMe;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.OnDestroyExistedSnowman -= DestroyMe;
         }
 
         protected virtual void Update()
@@ -59,7 +72,7 @@ namespace Snowman
 
             if (health <= 0 || summoningTimer >= summoningTime)
             {
-                _playerController.canSummonSnowman = true;
+                // _playerController.canSummonSnowman = true;
                 Destroy(gameObject);
             }
             
@@ -86,6 +99,11 @@ namespace Snowman
         {
             if (!_agent.isActiveAndEnabled) return;
             if (!_agent.isStopped) _agent.isStopped = true;
+        }
+
+        protected virtual void DestroyMe()
+        {
+            Destroy(gameObject);
         }
     }
 }

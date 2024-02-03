@@ -49,5 +49,11 @@ namespace Snowman
         {
             return Vector3.Distance(transform.position, TargetTrans.position) <= followRange;
         }
+
+        protected override void DestroyMe()
+        {
+            EventHandler.EnemyChangeTarget(PlayerGO);
+            base.DestroyMe();
+        }
     }
 }

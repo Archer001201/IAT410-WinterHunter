@@ -12,7 +12,7 @@ namespace Player
         public float staminaRecoveryTimer;
         [Header("Player State")]
         public bool isRollingSnowball;
-        public bool canSummonSnowman;
+        // public bool canSummonSnowman;
         
         private PlayerSO _playerSO;
         private InputControls _inputControls;
@@ -53,7 +53,7 @@ namespace Player
 
             _rollSnowballScript.enabled = false;
 
-            canSummonSnowman = true;
+            // canSummonSnowman = true;
         }
 
         private void OnEnable()
@@ -166,8 +166,8 @@ namespace Player
 
         private void OnSummonSnowman()
         {
-            if (!canSummonSnowman || _playerAttr.energy < _summonSnowmanScript.summoningCost) return;
-            _playerAttr.energy -= _summonSnowmanScript.summoningCost;
+            // if (_playerAttr.energy < _summonSnowmanScript.summoningCost) return;
+            // _playerAttr.energy -= _summonSnowmanScript.summoningCost;
             _summonSnowmanScript.SummonCurrentSnowman();
         }
 

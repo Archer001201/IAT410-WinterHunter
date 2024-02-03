@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace DataSO
 {
-    [CreateAssetMenu(menuName = "Create Player_SO", fileName = "Player_SO", order = 0)]
-    public class PlayerSO : UnityEngine.ScriptableObject
+    [CreateAssetMenu(menuName = "ScriptableObject/Create Player_SO", fileName = "Player_SO")]
+    public class PlayerSO : ScriptableObject
     {
         [Header("Static Attributes")]
         public float maxHealth;

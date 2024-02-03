@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using DataSO;
+using EventSystem;
 using Snowman;
 using UnityEngine;
 
@@ -7,7 +7,6 @@ namespace Player
 {
     public class SummonSnowman : MonoBehaviour
     {
-        // public List<SnowmanType> snowmanList;
         public GameObject currentSnowman;
 
         public Transform startPosition;
@@ -16,9 +15,11 @@ namespace Player
         public int currentIndex;
 
         private PlayerSO _playerSO;
+        private PlayerAttribute _playerAttr;
 
         private void Awake()
         {
+            _playerAttr = GetComponent<PlayerAttribute>();
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             currentIndex = 0;
             LoadSnowmanPrefab();
@@ -42,7 +43,12 @@ namespace Player
 
         public void SummonCurrentSnowman()
         {
+            var snowman = _playerAttr.snowmanList[currentIndex];
+            if (!snowman.canBeSummoned || _playerAttr.energy < snowman.summoningCost) return;
+            EventHandler.DestroyExistedSnowman();
             Instantiate(currentSnowman, startPosition.position, startPosition.rotation);
+            snowman.canBeSummoned = false;
+            _playerAttr.energy -= snowman.summoningCost;
         }
 
         private void LoadSnowmanPrefab()
