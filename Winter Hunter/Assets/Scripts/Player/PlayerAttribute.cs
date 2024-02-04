@@ -23,6 +23,7 @@ namespace Player
             stamina = _playerSO.maxStamina;
             energy = 0;
 
+            // Debug.Log(_playerSO.snowmanList.Count);
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
             {
                 var snowmanType = _playerSO.snowmanList[i];
@@ -44,11 +45,12 @@ namespace Player
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+                // Debug.Log(i);
                 if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfor());
                 snowmanList[i].type = snowmanType;
-                if (snowmanSO == null) return;
+                if (snowmanSO == null) continue;
                 snowmanList[i].cooldown = snowmanSO.cooldown;
-                snowmanList[i].cooldownTimer = snowmanList[i].cooldown;
+                snowmanList[i].cooldownTimer = 0;
                 snowmanList[i].canBeSummoned = true;
                 snowmanList[i].summoningCost = snowmanSO.summoningCost;
             }
@@ -71,7 +73,7 @@ namespace Player
                     else
                     {
                         snowman.canBeSummoned = true;
-                        snowman.cooldownTimer = snowman.cooldown;
+                        snowman.cooldownTimer = 0;
                     }
                 }
             }

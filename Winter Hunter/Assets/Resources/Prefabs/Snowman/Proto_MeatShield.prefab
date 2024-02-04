@@ -80,15 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dca3634ae354649870fa9ef0db76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthFactor: 2
-  attackFactor: 0
-  summoningTime: 20
   summoningCost: 50
+  snowmanSO: {fileID: 11400000, guid: e3742dc0d08784dd9b2eb1cee1c2739b, type: 2}
   followRange: 10
-  maxHealth: 100
   health: 100
   summoningTimer: 100
-  attack: 0
   hudCanvas: {fileID: 3417969559084012272}
 --- !u!195 &2975020685506949172
 NavMeshAgent:
@@ -404,6 +400,12 @@ PrefabInstance:
       propertyPath: trans
       value: 
       objectReference: {fileID: 584477846658666774}
+    - target: {fileID: 7435977033822388207, guid: 4ea7b831641ad4892860b6248e01c2c1,
+        type: 3}
+      propertyPath: snowmanSO
+      value: 
+      objectReference: {fileID: 11400000, guid: e3742dc0d08784dd9b2eb1cee1c2739b,
+        type: 2}
     - target: {fileID: 7435977033822388207, guid: 4ea7b831641ad4892860b6248e01c2c1,
         type: 3}
       propertyPath: snowmanAttr

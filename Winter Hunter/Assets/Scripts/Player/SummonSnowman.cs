@@ -49,6 +49,7 @@ namespace Player
             Instantiate(currentSnowman, startPosition.position, startPosition.rotation);
             snowman.canBeSummoned = false;
             _playerAttr.energy -= snowman.summoningCost;
+            snowman.cooldownTimer = snowman.cooldown;
         }
 
         private void LoadSnowmanPrefab()

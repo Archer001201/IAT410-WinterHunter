@@ -32,8 +32,8 @@ namespace Snowman
         {
             while (_playerAttr != null)
             {
-                _playerAttr.health += healerAttr.attack;
-                yield return new WaitForSeconds(healerAttr.healTimer);
+                _playerAttr.health += healerAttr.snowmanSO.attack;
+                yield return new WaitForSeconds(healerAttr.snowmanSO.attackRate);
             }
         }
     }

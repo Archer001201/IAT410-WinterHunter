@@ -15,11 +15,11 @@ namespace DataSO
         public float attack;
         public float speed;
         public float staminaRecovery;
-        public List<SnowmanType> snowmanList;
 
         [Header("Dynamic Attributes")] 
         public float currentHealth;
         public float currentStamina;
         public float currentEnergy;
+        public List<SnowmanType> snowmanList;
     }
 }

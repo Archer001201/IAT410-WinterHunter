@@ -20,3 +20,4 @@ MonoBehaviour:
   cooldown: 40
   attack: 10
   attackRate: 1
+  summoningCost: 20

@@ -5,7 +5,7 @@ namespace Snowman
 {
     public class Healer : BaseSnowman
     {
-        public float healTimer;
+        // public float healTimer;
         
         protected override void Awake()
         {

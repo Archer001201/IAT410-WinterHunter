@@ -175,16 +175,20 @@ namespace Player
         {
             //moving direction is reverse to switch direction
             if (_skillPanelScript.isMoving) return;
+            
             _skillPanelScript.MoveIconsRight();
             _summonSnowmanScript.SwitchSnowmanRight();
+            // _skillPanelScript.MoveIconsRight();
         }
         
         private void OnSwitchSnowmanRight()
         {
             //moving direction is reverse to switch direction
             if (_skillPanelScript.isMoving) return;
+            
             _skillPanelScript.MoveIconsLeft();
             _summonSnowmanScript.SwitchSnowmanLeft();
+            // _skillPanelScript.MoveIconsLeft();
         }
     }
 }

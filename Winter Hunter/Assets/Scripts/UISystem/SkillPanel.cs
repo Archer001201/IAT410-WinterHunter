@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using DataSO;
 using Player;
-using Snowman;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UISystem
 {
@@ -13,8 +10,7 @@ namespace UISystem
         public List<GameObject> skillIcons;
         
         private SummonSnowman _summonSnowmanScript;
-        private int _currentIndex;
-        private PlayerSO _playerSO;
+        private PlayerAttribute _playerAttr;
         
         public bool isMoving;
         private const float MoveTime = 0.5f;
@@ -24,17 +20,14 @@ namespace UISystem
 
         private void Awake()
         {
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
-            _summonSnowmanScript = GameObject.FindWithTag("Player").GetComponent<SummonSnowman>();
-            if (_summonSnowmanScript == null) return;
-            _currentIndex = _summonSnowmanScript.currentIndex;
-            var snowmanListCount = _playerSO.snowmanList.Count;
+            var player = GameObject.FindWithTag("Player");
+            _summonSnowmanScript = player.GetComponent<SummonSnowman>();
+            _playerAttr = player.GetComponent<PlayerAttribute>();
+        }
 
-            for (var i = -2; i < 3; i++)
-            {
-                var index = i + 2;
-                skillIcons[index].GetComponent<Image>().sprite = GetIconSprite(i, snowmanListCount);
-            }
+        private void Start()
+        {
+            UpdateSkillIcons();
         }
 
         private void Update()
@@ -49,12 +42,21 @@ namespace UISystem
             }
         }
 
+        private void UpdateSkillIcons()
+        {
+            var snowmanListCount = _playerAttr.snowmanList.Count;
+            for (var i = 0; i < 5; i++)
+            {
+                skillIcons[i].GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(i-2, snowmanListCount);
+                skillIcons[i].GetComponent<Skill>().UpdateSkillIcon();
+            }
+        }
+
         public void MoveIconsLeft()
         {
             if (isMoving) return;
-            isMoving = true;
+            
             _targetPositions.Clear();
-            _currentIndex = _summonSnowmanScript.currentIndex;
 
             foreach (var icon in skillIcons)
             {
@@ -68,15 +70,14 @@ namespace UISystem
 
             StartCoroutine(MoveIcons());
 
-            UpdateIconImage();
+            isMoving = true;
         }
         
         public void MoveIconsRight()
         {
             if (isMoving) return;
-            isMoving = true;
+            
             _targetPositions.Clear();
-            _currentIndex = _summonSnowmanScript.currentIndex;
 
             foreach (var icon in skillIcons)
             {
@@ -90,7 +91,7 @@ namespace UISystem
 
             StartCoroutine(MoveIcons());
             
-            UpdateIconImage();
+            isMoving = true;
         }
         
         private IEnumerator MoveIcons()
@@ -105,23 +106,17 @@ namespace UISystem
                 for (var i = 0; i < skillIcons.Count; i++)
                 {
                     var rectTransform = skillIcons[i].GetComponent<RectTransform>();
-
-                    if (Mathf.Abs(_targetPositions[i].x - 300f) < Mathf.Epsilon || Mathf.Abs(_targetPositions[i].x + 300f) < Mathf.Epsilon)
-                    {
-                        rectTransform.anchoredPosition = _targetPositions[i];
-                    }
-                    else
-                    {
-                        rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, _targetPositions[i], t);
-                    }
-
+                    
+                    rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, _targetPositions[i], t);
+                
                     UpdateIconScale(rectTransform);
                 }
-
+                
                 yield return null;
             }
 
             isMoving = false;
+            UpdateSideIcons();
         }
         
         private static void SetIconScale(GameObject icon, float scale)
@@ -136,49 +131,47 @@ namespace UISystem
             var scale = distance <= CenterThreshold ? 1.5f : 1.0f;
             SetIconScale(rectTransform.gameObject, scale);
         }
-
-        private void UpdateIconImage()
+        
+        private void UpdateSideIcons()
         {
-            var snowmanListCount = _playerSO.snowmanList.Count;
+            var snowmanListCount = _playerAttr.snowmanList.Count;
             if (snowmanListCount < 4) return;
-            
             foreach (var icon in skillIcons)
             {
                 var rectTransform = icon.GetComponent<RectTransform>();
                 if (Mathf.Abs(rectTransform.anchoredPosition.x - 300) < CenterThreshold)
                 {
-                    icon.GetComponent<Image>().sprite = GetIconSprite(2, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(2, snowmanListCount);
+                    icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
                 else if (Mathf.Abs(rectTransform.anchoredPosition.x - (-300)) < CenterThreshold)
                 {
-                    icon.GetComponent<Image>().sprite = GetIconSprite(-2, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(-2, snowmanListCount);
+                    icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
             }
         }
-
-        private Sprite GetIconSprite(int i, int snowmanListCount)
+        
+        private SnowmanInfor UpdateSnowmanBuffers(int i, int snowmanListCount)
         {
-            if (_playerSO.snowmanList.Count < 1) return null;
-            var sum = _currentIndex + i;
-            SnowmanType snowmanType;
-            if (_playerSO.snowmanList.Count < 2)
+            if (_playerAttr.snowmanList.Count < 1) return null;
+            var sum = _summonSnowmanScript.currentIndex + i;
+            if (_playerAttr.snowmanList.Count < 2)
             {
-                snowmanType = _playerSO.snowmanList[0];
-                return Resources.Load<Sprite>("Images/" + snowmanType);
-            }
-            if (sum < 0)
-            { 
-                snowmanType = _playerSO.snowmanList[snowmanListCount+sum];
-            }
-            else if (sum > snowmanListCount - 1)
-            {
-                snowmanType = _playerSO.snowmanList[sum-snowmanListCount];
+                sum = 0;
             }
             else
             {
-                snowmanType = _playerSO.snowmanList[sum];
+                if (sum < 0)
+                {
+                    sum += snowmanListCount;
+                }
+                else if (sum > snowmanListCount - 1)
+                {
+                    sum -= snowmanListCount;
+                }
             }
-            return Resources.Load<Sprite>("Images/" + snowmanType);
+            return _playerAttr.snowmanList[sum];
         }
     }
 }
