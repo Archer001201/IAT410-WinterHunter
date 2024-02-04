@@ -21,4 +21,4 @@ MonoBehaviour:
   currentHealth: 0
   currentStamina: 0
   currentEnergy: 0
-  snowmanList: 01000000
+  snowmanList: 010000000400000003000000

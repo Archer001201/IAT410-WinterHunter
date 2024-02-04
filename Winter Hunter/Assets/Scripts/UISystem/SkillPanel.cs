@@ -135,18 +135,24 @@ namespace UISystem
         private void UpdateSideIcons()
         {
             var snowmanListCount = _playerAttr.snowmanList.Count;
-            if (snowmanListCount < 4) return;
+            var offsetIndex = snowmanListCount switch
+            {
+                < 3 => 0,
+                < 4 => -1,
+                _ => -2
+            };
+
             foreach (var icon in skillIcons)
             {
                 var rectTransform = icon.GetComponent<RectTransform>();
                 if (Mathf.Abs(rectTransform.anchoredPosition.x - 300) < CenterThreshold)
                 {
-                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(2, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(offsetIndex, snowmanListCount);
                     icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
                 else if (Mathf.Abs(rectTransform.anchoredPosition.x - (-300)) < CenterThreshold)
                 {
-                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(-2, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(-offsetIndex, snowmanListCount);
                     icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
             }
