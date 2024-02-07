@@ -14,12 +14,23 @@ namespace Enemy
         {
             base.SetUpBehaviorTree();
             var rootNode = new SelectorNode();
+
+            var idleNode = new SequenceNode();
+            idleNode.Children.Add(new ConditionNode(IsInCampRange));
+            idleNode.Children.Add(new ConditionNode(IsOutOfChaseRange));
+            idleNode.Children.Add(new ActionNode(StopChase));
+
+            var goBackNode = new SequenceNode();
+            goBackNode.Children.Add(new ConditionNode(IsOutOfCampRange));
+            goBackNode.Children.Add(new ConditionNode(IsOutOfChaseRange));
+            goBackNode.Children.Add(new ActionNode(GoBackToCamp));
+            goBackNode.Children.Add(new ActionNode(StopAttack));
+            goBackNode.Children.Add(new ActionNode(StartChase));
             
             var chaseNode = new SequenceNode();
             chaseNode.Children.Add(new ConditionNode(IsTargetInChaseRange));
             chaseNode.Children.Add(new ActionNode(StopAttack));
             chaseNode.Children.Add(new ActionNode(SetNavigation));
-            chaseNode.Children.Add(new ActionNode(StartChase));
             
             var attackNode = new SequenceNode();
             attackNode.Children.Add(new ConditionNode(IsTargetInAttackRange));
@@ -32,6 +43,8 @@ namespace Enemy
             chaseAndAttackNode.Children.Add(new ActionNode(SetNavigation));
             chaseAndAttackNode.Children.Add(new ActionNode(StartChase));
             
+            rootNode.Children.Add(idleNode);
+            rootNode.Children.Add(goBackNode);
             rootNode.Children.Add(chaseNode);
             rootNode.Children.Add(attackNode);
             rootNode.Children.Add(chaseAndAttackNode);

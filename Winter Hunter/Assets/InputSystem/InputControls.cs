@@ -89,6 +89,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""91ee7add-a519-407c-bbfa-773cff030b0d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchSnowmanRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fdb3310-b685-4bcc-8caf-aee923d692b1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_SwitchSnowmanLeft = m_Gameplay.FindAction("SwitchSnowmanLeft", throwIfNotFound: true);
         m_Gameplay_SummonSnowman = m_Gameplay.FindAction("SummonSnowman", throwIfNotFound: true);
         m_Gameplay_SwitchSnowmanRight = m_Gameplay.FindAction("SwitchSnowmanRight", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +316,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SwitchSnowmanLeft;
     private readonly InputAction m_Gameplay_SummonSnowman;
     private readonly InputAction m_Gameplay_SwitchSnowmanRight;
+    private readonly InputAction m_Gameplay_Interact;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -306,6 +328,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @SwitchSnowmanLeft => m_Wrapper.m_Gameplay_SwitchSnowmanLeft;
         public InputAction @SummonSnowman => m_Wrapper.m_Gameplay_SummonSnowman;
         public InputAction @SwitchSnowmanRight => m_Wrapper.m_Gameplay_SwitchSnowmanRight;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -336,6 +359,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @SwitchSnowmanRight.started += instance.OnSwitchSnowmanRight;
             @SwitchSnowmanRight.performed += instance.OnSwitchSnowmanRight;
             @SwitchSnowmanRight.canceled += instance.OnSwitchSnowmanRight;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -361,6 +387,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @SwitchSnowmanRight.started -= instance.OnSwitchSnowmanRight;
             @SwitchSnowmanRight.performed -= instance.OnSwitchSnowmanRight;
             @SwitchSnowmanRight.canceled -= instance.OnSwitchSnowmanRight;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -387,5 +416,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnSwitchSnowmanLeft(InputAction.CallbackContext context);
         void OnSummonSnowman(InputAction.CallbackContext context);
         void OnSwitchSnowmanRight(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

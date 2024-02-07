@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Snowman;
 using UnityEngine;
 
 namespace EventSystem
@@ -17,6 +19,20 @@ namespace EventSystem
         public static void DestroyExistedSnowman()
         {
             OnDestroyExistedSnowman?.Invoke();
+        }
+
+        public static event Action<List<SnowmanType>> OnOpenSnowmanChest;
+
+        public static void OpenSnowmanChest(List<SnowmanType> snowmanList)
+        {
+            OnOpenSnowmanChest?.Invoke(snowmanList);
+        }
+
+        public static event Action OnUpdateSkillPanel;
+
+        public static void UpdateSkillPanel()
+        {
+            OnUpdateSkillPanel?.Invoke();
         }
     }
 }

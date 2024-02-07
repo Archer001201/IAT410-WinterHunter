@@ -17,6 +17,8 @@ namespace Enemy
         public float chaseRange;
         public float attackRange;
         public float attackDamage;
+        public float campRange;
+        public Transform campTrans;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
@@ -31,12 +33,16 @@ namespace Enemy
         private GameObject _player;
         private PlayerAttribute _playerAttr;
         private Coroutine _attackCoroutine;
+        private Coroutine _patrolCoroutine;
+        private Vector3 _originalPosition;
         
 
         protected virtual void Awake()
         {
             health = maxHealth;
             shield = maxShield;
+
+            _originalPosition = transform.position;
             
             hudCanvas.SetActive(true);
             _agent = GetComponent<NavMeshAgent>();
@@ -108,6 +114,32 @@ namespace Enemy
         }
 
         protected virtual void SetUpBehaviorTree(){}
+
+        protected bool IsOutOfCampRange()
+        {
+            var distance = Vector3.Distance(campTrans.position, transform.position);
+            return distance > campRange;
+        }
+        
+        protected bool IsInCampRange()
+        {
+            var distance = Vector3.Distance(campTrans.position, transform.position);
+            return distance < campRange;
+        }
+        
+        protected bool IsOutOfChaseRange()
+        {
+            var distance = Vector3.Distance(TargetTrans.position, transform.position);
+            return distance > chaseRange;
+        }
+
+        protected void GoBackToCamp()
+        {
+            if (_agent != null && _agent.isActiveAndEnabled && campTrans != null)
+            {
+                _agent.SetDestination(_originalPosition);
+            }
+        }
         
         protected void SetNavigation()
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSO;
 using Snowman;
 using UnityEngine;
+using EventHandler = EventSystem.EventHandler;
 
 namespace Player
 {
@@ -22,38 +23,18 @@ namespace Player
             health = _playerSO.maxHealth;
             stamina = _playerSO.maxStamina;
             energy = 0;
+            
+            LoadSnowmanList();
+        }
 
-            // Debug.Log(_playerSO.snowmanList.Count);
-            for (var i = 0; i < _playerSO.snowmanList.Count; i++)
-            {
-                var snowmanType = _playerSO.snowmanList[i];
-                SnowmanSO snowmanSO = null;
-                switch (snowmanType)
-                {
-                    case SnowmanType.MeatShield:
-                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/MeatShield_SO");
-                        break;
-                    case SnowmanType.Healer:
-                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/Healer_SO");
-                        break;
-                    case SnowmanType.Normal:
-                        break;
-                    case SnowmanType.MothToTheFlame:
-                        break;
-                    case SnowmanType.Bomb:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-                // Debug.Log(i);
-                if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfor());
-                snowmanList[i].type = snowmanType;
-                if (snowmanSO == null) continue;
-                snowmanList[i].cooldown = snowmanSO.cooldown;
-                snowmanList[i].cooldownTimer = 0;
-                snowmanList[i].canBeSummoned = true;
-                snowmanList[i].summoningCost = snowmanSO.summoningCost;
-            }
+        private void OnEnable()
+        {
+            EventHandler.OnOpenSnowmanChest += AddSnowmanToPlayer;
+        }
+        
+        private void OnDisable()
+        {
+            EventHandler.OnOpenSnowmanChest -= AddSnowmanToPlayer;
         }
 
         private void Update()
@@ -77,6 +58,53 @@ namespace Player
                     }
                 }
             }
+        }
+
+        private void LoadSnowmanList()
+        {
+            for (var i = 0; i < _playerSO.snowmanList.Count; i++)
+            {
+                var snowmanType = _playerSO.snowmanList[i];
+                SnowmanSO snowmanSO = null;
+                switch (snowmanType)
+                {
+                    case SnowmanType.MeatShield:
+                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/MeatShield_SO");
+                        break;
+                    case SnowmanType.Healer:
+                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/Healer_SO");
+                        break;
+                    case SnowmanType.Normal:
+                        break;
+                    case SnowmanType.MothToTheFlame:
+                        break;
+                    case SnowmanType.Bomb:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
+                if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfor());
+                snowmanList[i].type = snowmanType;
+                if (snowmanSO == null) continue;
+                snowmanList[i].cooldown = snowmanSO.cooldown;
+                snowmanList[i].cooldownTimer = 0;
+                snowmanList[i].canBeSummoned = true;
+                snowmanList[i].summoningCost = snowmanSO.summoningCost;
+            }
+        }
+
+        private void AddSnowmanToPlayer(List<SnowmanType> snowmanTypes)
+        {
+            foreach (var item in snowmanTypes)
+            {
+                if (!_playerSO.snowmanList.Contains(item))
+                {
+                    _playerSO.snowmanList.Add(item);
+                }
+            }
+            LoadSnowmanList();
+            EventHandler.UpdateSkillPanel();
         }
     }
 }

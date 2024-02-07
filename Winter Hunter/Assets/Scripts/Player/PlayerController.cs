@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using DataSO;
+using Props;
 using UISystem;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace Player
         public float staminaRecoveryTimer;
         [Header("Player State")]
         public bool isRollingSnowball;
+        public bool canAttack = true;
         // public bool canSummonSnowman;
         
         private PlayerSO _playerSO;
@@ -27,6 +30,7 @@ namespace Player
         private PlayerAttribute _playerAttr;
         private SummonSnowman _summonSnowmanScript;
         private SkillPanel _skillPanelScript;
+        private GameObject _currentInteractableObject;
         
         private void Awake()
         {
@@ -50,10 +54,9 @@ namespace Player
             _inputControls.Gameplay.SwitchSnowmanLeft.performed += _ => OnSwitchSnowmanLeft();
             _inputControls.Gameplay.SwitchSnowmanRight.performed += _ => OnSwitchSnowmanRight();
             _inputControls.Gameplay.SummonSnowman.performed += _ => OnSummonSnowman();
+            _inputControls.Gameplay.Interact.performed += _ => OnPressInteractButton();
 
             _rollSnowballScript.enabled = false;
-
-            // canSummonSnowman = true;
         }
 
         private void OnEnable()
@@ -64,6 +67,11 @@ namespace Player
         private void OnDisable()
         {
             _inputControls.Disable();
+        }
+
+        private void Update()
+        {
+            canAttack = _playerAttr.stamina >= 10;
         }
 
         private void FixedUpdate()
@@ -88,6 +96,22 @@ namespace Player
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Chest"))
+            {
+                _currentInteractableObject = other.gameObject;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Chest"))
+            {
+                _currentInteractableObject = null;
+            }
+        }
+
         private void RotateTowardsMouse()
         {
             var ray = _camera.ScreenPointToRay(_mousePosition);
@@ -109,6 +133,7 @@ namespace Player
 
         private void OnThrowingSnowballStart()
         {
+            if (!canAttack) return;
             StopStaminaCoroutine();
             _throwSnowballScript.Attack();
         }
@@ -120,6 +145,7 @@ namespace Player
 
         private void OnRollingSnowballStart()
         {
+            if (!canAttack) return;
             StopStaminaCoroutine();
             
             _rollSnowballScript.enabled = true;
@@ -166,8 +192,6 @@ namespace Player
 
         private void OnSummonSnowman()
         {
-            // if (_playerAttr.energy < _summonSnowmanScript.summoningCost) return;
-            // _playerAttr.energy -= _summonSnowmanScript.summoningCost;
             _summonSnowmanScript.SummonCurrentSnowman();
         }
 
@@ -178,7 +202,6 @@ namespace Player
             
             _skillPanelScript.MoveIconsRight();
             _summonSnowmanScript.SwitchSnowmanRight();
-            // _skillPanelScript.MoveIconsRight();
         }
         
         private void OnSwitchSnowmanRight()
@@ -188,7 +211,18 @@ namespace Player
             
             _skillPanelScript.MoveIconsLeft();
             _summonSnowmanScript.SwitchSnowmanLeft();
-            // _skillPanelScript.MoveIconsLeft();
+        }
+
+        private void OnPressInteractButton()
+        {
+            if (_currentInteractableObject == null) return;
+            
+            if (_currentInteractableObject.CompareTag("Chest"))
+            {
+                var chestScript = _currentInteractableObject.GetComponent<Chest>();
+                if (!chestScript.canOpen) return;
+                chestScript.PickUp();
+            }
         }
     }
 }

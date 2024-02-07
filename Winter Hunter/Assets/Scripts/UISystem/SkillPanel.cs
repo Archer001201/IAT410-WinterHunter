@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using EventHandler = EventSystem.EventHandler;
 
 namespace UISystem
 {
@@ -28,6 +30,16 @@ namespace UISystem
         private void Start()
         {
             UpdateSkillIcons();
+        }
+
+        private void OnEnable()
+        {
+            EventHandler.OnUpdateSkillPanel += UpdateSkillIcons;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.OnUpdateSkillPanel -= UpdateSkillIcons;
         }
 
         private void Update()

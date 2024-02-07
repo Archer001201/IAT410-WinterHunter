@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Snowman
   - SkillPanel
+  - Chest
   layers:
   - Default
   - TransparentFX
