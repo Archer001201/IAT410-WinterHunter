@@ -54,7 +54,7 @@ namespace UISystem
             }
         }
 
-        private void UpdateSkillIcons()
+        public void UpdateSkillIcons()
         {
             var snowmanListCount = _playerAttr.snowmanList.Count;
             for (var i = 0; i < 5; i++)
@@ -190,6 +190,17 @@ namespace UISystem
                 }
             }
             return _playerAttr.snowmanList[sum];
+        }
+
+        public void ResetIconsPosition()
+        {
+            for (var i = 0; i < skillIcons.Count; i++)
+            {
+                var xPos = -300 + 150*i;
+                var icon = skillIcons[i];
+                var iconPos = icon.GetComponent<RectTransform>().anchoredPosition;
+                icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos,iconPos.y);
+            }
         }
     }
 }

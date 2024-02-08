@@ -221,9 +221,10 @@ namespace Player
             {
                 var chestScript = _currentInteractableObject.GetComponent<Chest>();
                 if (!chestScript.canOpen) return;
-                chestScript.PickUp();
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
+                _skillPanelScript.ResetIconsPosition();
+                chestScript.PickUp();
             }
         }
     }
