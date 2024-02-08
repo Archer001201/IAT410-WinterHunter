@@ -8,19 +8,18 @@ namespace EventSystem
 {
     public class LevelController : MonoBehaviour
     {
-        public string nextLevel;
         public List<EnemyCamp> camps;
         public GameObject levelClearedPanel;
 
         private void Update()
         {
+            if (levelClearedPanel == null) return;
             CheckClearedCamp();
         }
 
-        public void GoToNextLevel()
+        public void GoToNextLevel(string nextScene)
         {
-            Debug.Log("go to " + nextLevel);
-            SceneManager.LoadScene(nextLevel);
+            SceneManager.LoadScene(nextScene);
         }
 
         public void QuitGame()
