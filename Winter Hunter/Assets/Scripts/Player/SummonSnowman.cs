@@ -43,6 +43,7 @@ namespace Player
 
         public void SummonCurrentSnowman()
         {
+            if (_playerAttr.snowmanList.Count < 1) return;
             var snowman = _playerAttr.snowmanList[currentIndex];
             if (!snowman.canBeSummoned || _playerAttr.energy < snowman.summoningCost) return;
             EventHandler.DestroyExistedSnowman();

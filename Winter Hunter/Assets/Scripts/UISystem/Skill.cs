@@ -21,11 +21,13 @@ namespace UISystem
 
         private void Update()
         {
+            if (snowmanInfor == null) return;
             cooldownMask.fillAmount = snowmanInfor.cooldownTimer / snowmanInfor.cooldown;
         }
 
         public void UpdateSkillIcon()
         {
+            if (snowmanInfor == null) return;
             iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
             _skillIcon.sprite = iconSprite;
         }
