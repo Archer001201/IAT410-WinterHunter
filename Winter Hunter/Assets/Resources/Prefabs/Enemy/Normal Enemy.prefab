@@ -132,7 +132,7 @@ MonoBehaviour:
   maxHealth: 100
   maxShield: 50
   resistance: 0.8
-  chaseRange: 30
+  chaseRange: 25
   attackRange: 6
   attackDamage: 10
   campRange: 0

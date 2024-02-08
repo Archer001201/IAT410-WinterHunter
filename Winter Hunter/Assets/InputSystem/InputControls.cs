@@ -98,6 +98,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CallBag"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2d39dcf-461e-4253-a2c6-6e972eedda3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ad267f8-9d18-4726-86fc-518117561cd9"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CallBag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +268,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_SummonSnowman = m_Gameplay.FindAction("SummonSnowman", throwIfNotFound: true);
         m_Gameplay_SwitchSnowmanRight = m_Gameplay.FindAction("SwitchSnowmanRight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_CallBag = m_Gameplay.FindAction("CallBag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +338,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SummonSnowman;
     private readonly InputAction m_Gameplay_SwitchSnowmanRight;
     private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_CallBag;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -329,6 +351,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @SummonSnowman => m_Wrapper.m_Gameplay_SummonSnowman;
         public InputAction @SwitchSnowmanRight => m_Wrapper.m_Gameplay_SwitchSnowmanRight;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @CallBag => m_Wrapper.m_Gameplay_CallBag;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +385,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @CallBag.started += instance.OnCallBag;
+            @CallBag.performed += instance.OnCallBag;
+            @CallBag.canceled += instance.OnCallBag;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -390,6 +416,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @CallBag.started -= instance.OnCallBag;
+            @CallBag.performed -= instance.OnCallBag;
+            @CallBag.canceled -= instance.OnCallBag;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -417,5 +446,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnSummonSnowman(InputAction.CallbackContext context);
         void OnSwitchSnowmanRight(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCallBag(InputAction.CallbackContext context);
     }
 }

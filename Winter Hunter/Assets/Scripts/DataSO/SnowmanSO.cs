@@ -1,5 +1,6 @@
 using Snowman;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DataSO
 {
@@ -8,11 +9,14 @@ namespace DataSO
     {
         public SnowmanType type;
         public GameObject snowmanPrefab;
+        public Sprite snowmanIcon;
         public float maxHealth;
         public float summoningTime;
         public float cooldown;
         public float attack;
         public float attackRate;
         public float summoningCost;
+        [TextArea]
+        public string description;
     }
 }
