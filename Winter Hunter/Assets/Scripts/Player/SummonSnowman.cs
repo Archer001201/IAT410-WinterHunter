@@ -52,7 +52,7 @@ namespace Player
             snowman.cooldownTimer = snowman.cooldown;
         }
 
-        private void LoadSnowmanPrefab()
+        public void LoadSnowmanPrefab()
         {
             if (_playerSO.snowmanList.Count < 1) return;
             currentSnowman = _playerSO.snowmanList[currentIndex] switch

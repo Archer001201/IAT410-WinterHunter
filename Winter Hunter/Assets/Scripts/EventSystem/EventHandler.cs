@@ -34,5 +34,12 @@ namespace EventSystem
         {
             OnUpdateSkillPanel?.Invoke();
         }
+
+        public static event Action OnPlayerDie;
+
+        public static void PlayerDie()
+        {
+            OnPlayerDie?.Invoke();
+        }
     }
 }

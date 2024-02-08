@@ -42,6 +42,8 @@ namespace Player
             stamina = Mathf.Clamp(stamina, 0, _playerSO.maxStamina);
             health = Mathf.Clamp(health, 0, _playerSO.maxHealth);
             energy = Mathf.Clamp(energy, 0, _playerSO.maxEnergy);
+            
+            if (health <= 0) EventHandler.PlayerDie();
         }
 
         private void FixedUpdate()
