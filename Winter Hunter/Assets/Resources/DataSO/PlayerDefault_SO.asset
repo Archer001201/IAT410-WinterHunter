@@ -17,7 +17,7 @@ MonoBehaviour:
   maxEnergy: 100
   attack: 15
   speed: 5
-  staminaRecovery: 10
+  staminaRecovery: 20
   currentHealth: 0
   currentStamina: 0
   currentEnergy: 0

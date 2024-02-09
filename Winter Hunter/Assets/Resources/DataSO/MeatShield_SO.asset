@@ -18,8 +18,8 @@ MonoBehaviour:
   snowmanIcon: {fileID: 21300000, guid: 6a3a7a464cb734f40bcb3188fef5a0b9, type: 3}
   maxHealth: 200
   summoningTime: 20
-  cooldown: 40
+  cooldown: 30
   attack: 0
   attackRate: 0
-  summoningCost: 20
+  summoningCost: 60
   description: 

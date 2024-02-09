@@ -19,7 +19,7 @@ MonoBehaviour:
   maxHealth: 100
   summoningTime: 20
   cooldown: 40
-  attack: 10
+  attack: 5
   attackRate: 1
-  summoningCost: 20
+  summoningCost: 40
   description: 
