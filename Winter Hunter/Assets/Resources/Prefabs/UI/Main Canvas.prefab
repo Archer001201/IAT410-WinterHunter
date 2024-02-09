@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1475489676}
   - component: {fileID: 1475489678}
   - component: {fileID: 1475489677}
+  - component: {fileID: 1929165171731995025}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
@@ -78,6 +79,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1929165171731995025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475489675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85672201a140f4e4397caf3cb67afcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &497265054487677434
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,13 +948,13 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EventSystem.LevelController, Assembly-CSharp
         m_MethodName: GoToNextLevel
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Title Screen
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2985747984180734796
@@ -1534,13 +1547,14 @@ GameObject:
   - component: {fileID: 7978139646906903198}
   - component: {fileID: 7167851325380018162}
   - component: {fileID: 1899867234112830113}
+  - component: {fileID: 2016133155}
   m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7978139646906903198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1602,6 +1616,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2016133155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981008130054029721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85672201a140f4e4397caf3cb67afcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5554712850023801543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,13 +1829,13 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EventSystem.LevelController, Assembly-CSharp
         m_MethodName: GoToNextLevel
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Title Screen
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5797311812724386995
@@ -1933,7 +1959,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5869730013760722776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1112356411}
+        m_TargetAssemblyTypeName: UISystem.MainCanvas, Assembly-CSharp
+        m_MethodName: HandleOptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6118127604583833895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,7 +2264,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6901536421602443433
 MonoBehaviour:
@@ -2282,6 +2320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1475489675}
   levelClearedPanel: {fileID: 6956488273069439292}
+  optionsMenu: {fileID: 4981008130054029721}
 --- !u!1 &6901536421824492618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2505,7 @@ GameObject:
   - component: {fileID: 1302169176297694957}
   - component: {fileID: 4998875446450107317}
   - component: {fileID: 4457132082867203035}
+  - component: {fileID: 1213439128828457349}
   m_Layer: 5
   m_Name: Level Cleared Panel
   m_TagString: Untagged
@@ -2533,6 +2573,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1213439128828457349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956488273069439292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85672201a140f4e4397caf3cb67afcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7129462712480673360
 GameObject:
   m_ObjectHideFlags: 0
