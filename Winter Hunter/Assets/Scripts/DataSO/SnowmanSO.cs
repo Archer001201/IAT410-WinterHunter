@@ -1,6 +1,5 @@
 using Snowman;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace DataSO
 {

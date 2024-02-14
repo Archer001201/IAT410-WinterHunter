@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
@@ -58,7 +57,7 @@ namespace UISystem
         }
 
         /*
-         * Update skill icons and informations
+         * Update skill icons and information
          */
         private void UpdateSkill()
         {
