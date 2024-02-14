@@ -3,16 +3,20 @@ using UnityEngine;
 
 namespace Snowman
 {
+    /*
+     * A type of snowman that can heal player by the healing ring
+     */
     public class Healer : BaseSnowman
     {
-        // public float healTimer;
-        
         protected override void Awake()
         {
             base.Awake();
             TargetTrans = PlayerGO.transform;
         }
 
+        /*
+         * Set up and initialize the behaviour tree
+         */
         protected override void SetUpBehaviorTree()
         {
             base.SetUpBehaviorTree();
@@ -33,11 +37,17 @@ namespace Snowman
             BTree = new BehaviorTree { RootNode = rootNode };
         }
         
+        /*
+         * Check is the player out the following range
+         */
         private bool IsPlayerOutFollowRange()
         {
             return Vector3.Distance(transform.position, TargetTrans.position) > followRange;
         }
 
+        /*
+         * Check is the player in the following range
+         */
         private bool IsPlayerInFollowRange()
         {
             return Vector3.Distance(transform.position, TargetTrans.position) <= followRange;

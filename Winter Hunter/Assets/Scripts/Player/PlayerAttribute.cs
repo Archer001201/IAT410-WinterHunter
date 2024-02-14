@@ -7,6 +7,9 @@ using EventHandler = EventSystem.EventHandler;
 
 namespace Player
 {
+    /*
+     * Store and handle player's attributes
+     */
     public class PlayerAttribute : MonoBehaviour
     {
         private PlayerSO _playerSO;
@@ -62,6 +65,9 @@ namespace Player
             }
         }
 
+        /*
+         * Load and fresh snowman list from player scriptable object
+         */
         private void LoadSnowmanList()
         {
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
@@ -96,6 +102,9 @@ namespace Player
             }
         }
 
+        /*
+         * when player opened a snowman chest, add the snowman into snowman list in player scriptable object, and notice skill panel to update icons
+         */
         private void AddSnowmanToPlayer(List<SnowmanType> snowmanTypes)
         {
             foreach (var item in snowmanTypes)

@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Snowball
 {
+    /*
+     * Throwing snowball
+     */
     public class ThrowingSnowball : MonoBehaviour
     {
         private void OnCollisionEnter(Collision other)

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace DataSO
 {
+    /*
+     * Store snowman's attributes
+     */
     [CreateAssetMenu(menuName = "ScriptableObject/Create Snowman_SO", fileName = "Snowman_SO")]
     public class SnowmanSO : ScriptableObject
     {

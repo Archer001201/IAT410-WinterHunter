@@ -7,14 +7,20 @@ using EventHandler = EventSystem.EventHandler;
 
 namespace Props
 {
+    /*
+     * A type of chest that stores snowman data
+     */
     public class SnowmanChest : Chest
     {
         public List<SnowmanType> snowmanList;
-
-        public override void PickUp()
+        
+        /*
+         * Open chest and notice player that the chest is opened 
+         */
+        public override void OpenChest()
         {
             EventHandler.OpenSnowmanChest(snowmanList);
-            base.PickUp();
+            base.OpenChest();
         }
     }
 }

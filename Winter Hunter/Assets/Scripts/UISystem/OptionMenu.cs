@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace UISystem
 {
+    /*
+     * Control option menu
+     */
     public class OptionMenu : MonoBehaviour
     {
         private void OnEnable()

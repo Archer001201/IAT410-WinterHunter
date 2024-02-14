@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * Super class for handle snowball attack
+     */
     public class SnowballAttack : MonoBehaviour
     {
         [Header("SnowballAttack Component Settings")]
@@ -23,12 +26,18 @@ namespace Player
             PlayerAttr = GetComponent<PlayerAttribute>();    
         }
 
+        /*
+         * Create snowball
+         */
         public virtual void CreateSnowball()
         {
             SnowballInstance = Instantiate(snowballPrefab, startPosition.position, startPosition.rotation);
             _snowballRb = SnowballInstance.GetComponent<Rigidbody>();
         }
 
+        /*
+         * Make snowball move forward and clean cache
+         */
         public virtual void Attack()
         {
             var forceDir = startPosition.forward;
@@ -37,12 +46,18 @@ namespace Player
             CleanCache();
         }
 
+        /*
+         * Clean snowball instance and rigidbody caches
+         */
         private void CleanCache()
         {
             SnowballInstance = null;
             _snowballRb = null;
         }
 
+        /*
+         * Update aiming line
+         */
         public virtual void UpdateAimingLine(){}
     }
 }

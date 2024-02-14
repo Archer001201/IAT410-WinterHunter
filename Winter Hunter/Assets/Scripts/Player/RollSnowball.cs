@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * The action of rolling snowball
+     */
     public class RollSnowball : SnowballAttack
     {
         [Header("RollSnowball Component Settings")]
@@ -18,6 +21,9 @@ namespace Player
             rollingLine.SetActive(false);
         }
 
+        /*
+         * Create rolling snowball
+         */
         public override void CreateSnowball()
         {
             if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
@@ -28,6 +34,9 @@ namespace Player
             PlayerAttr.stamina += stamina;
         }
 
+        /*
+         * Make snowball move forward
+         */
         public override void Attack()
         {
             if (SnowballInstance == null)
@@ -40,6 +49,9 @@ namespace Player
             base.Attack();
         }
 
+        /*
+         * Scale snowball and cost stamina, also update the aiming line
+         */
         public void UpdateSnowball(Vector3 moveDir)
         {
             if (SnowballInstance == null)

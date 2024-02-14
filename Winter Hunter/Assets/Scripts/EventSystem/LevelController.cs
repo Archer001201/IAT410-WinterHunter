@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace EventSystem
 {
+    /*
+     * Control game and level states
+     */
     public class LevelController : MonoBehaviour
     {
         public List<EnemyCamp> camps;
@@ -27,16 +30,25 @@ namespace EventSystem
             CheckClearedCamp();
         }
 
+        /*
+         * Load next scene
+         */
         public void GoToNextLevel(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
         }
 
+        /*
+         * Quit game
+         */
         public void QuitGame()
         {
             Application.Quit();
         }
 
+        /*
+         * Display level cleared panel after all enemies have been killed
+         */
         private void CheckClearedCamp()
         {
             var clearedCount = 0;
@@ -47,6 +59,9 @@ namespace EventSystem
             levelClearedPanel.SetActive(clearedCount == camps.Count);
         }
 
+        /*
+         * When click the start game button, initialize player's attributes
+         */
         public void ResetPlayerAttributes()
         {
             _playerAttr.snowmanList.Clear();

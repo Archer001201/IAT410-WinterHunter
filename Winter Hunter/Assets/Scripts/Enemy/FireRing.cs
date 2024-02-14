@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Enemy
 {
+    /*
+     * A type of enemy skill that spread fire as a ring
+     */
     public class FireRing : MonoBehaviour
     {
         public float maxRadius = 10f;
@@ -22,8 +25,6 @@ namespace Enemy
             _startTime = Time.time;
         }
 
-
-
         private void Update()
         {
             if (_trans != null)
@@ -37,14 +38,7 @@ namespace Enemy
             
             if (_particle.isStopped) Destroy(gameObject);
         }
-
-        public void FollowAt(Transform trans, float damage)
-        {
-            _trans = trans;
-            _damage = damage;
-            _coll.radius = 0;
-        }
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -55,6 +49,16 @@ namespace Enemy
             {
                 other.gameObject.GetComponent<BaseSnowman>().health -= _damage;
             }
+        }
+        
+        /*
+         * Follow the enemy that releases this fire ring
+         */
+        public void FollowAt(Transform trans, float damage)
+        {
+            _trans = trans;
+            _damage = damage;
+            _coll.radius = 0;
         }
     }
 }

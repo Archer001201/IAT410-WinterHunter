@@ -4,12 +4,18 @@ using UnityEngine;
 
 namespace Enemy
 {
+    /*
+     * Normal enemy extends from base enemy
+     */
     public class NormalEnemy : BaseEnemy
     {
         [Header("Normal Enemy Settings")]
         public GameObject fireRing;
         public float chaseAndAttackRange;
 
+        /*
+         * Set up and initialize the behaviour tree
+         */
         protected override void SetUpBehaviorTree()
         {
             base.SetUpBehaviorTree();
@@ -52,12 +58,18 @@ namespace Enemy
             BTree = new BehaviorTree { RootNode = rootNode };
         }
 
+        /*
+         * Update target game object and reset destination for NavMesh Agent
+         */
         protected override void UpdateTarget(GameObject tar)
         {
             base.UpdateTarget(tar);
             SetNavigation();
         }
         
+        /*
+         * Every 2 seconds create a fire ring if in attacking state
+         */
         protected override IEnumerator AttackCoroutine()
         {
             while (IsTargetInAttackRange() || IsTargetInChaseAndAttackRange())
@@ -68,17 +80,26 @@ namespace Enemy
             }
         }
         
+        /*
+         * Check is target in chase range
+         */
         private bool IsTargetInChaseRange()
         {
             var distance = Vector3.Distance(transform.position, TargetTrans.position);
             return distance < chaseRange && distance > chaseAndAttackRange;
         }
         
+        /*
+         * Check is target in attack range
+         */
         private bool IsTargetInAttackRange()
         {
             return Vector3.Distance(transform.position, TargetTrans.position) <= attackRange;
         }
         
+        /*
+         * Check is target in the chase and attack range
+         */
         private bool IsTargetInChaseAndAttackRange()
         {
             var distance = Vector3.Distance(transform.position, TargetTrans.position);

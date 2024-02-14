@@ -3,6 +3,9 @@ using Snowman;
 
 namespace Player
 {
+    /*
+     * Snowman summoning information
+     */
     [Serializable]
     public class SnowmanInfor
     {

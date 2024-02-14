@@ -8,6 +8,9 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
+    /*
+     * Super class of enemy
+     */
     public class BaseEnemy : MonoBehaviour
     {
         [Header("Static Attributes")]
@@ -74,65 +77,54 @@ namespace Enemy
            
             if (otherGO.CompareTag("Projectile"))
             {
-                var snowballScript = otherGO.GetComponent<BaseSnowball>();
-                var damage = snowballScript.damage;
-                if (snowballScript.type == SnowballType.RollingSnowball)
-                {
-                    damage *= otherGO.transform.localScale.x;
-                }
-                if (shield > 0)
-                {
-                    if (snowballScript.type == SnowballType.ThrowingSnowball)
-                    {
-                        damage *= 1f - resistance;
-                    }
-
-                    if (damage > shield)
-                    {
-                        var overflowDamage = damage - shield;
-                        shield = 0;
-                        health -= overflowDamage;
-                    }
-                    else
-                    {
-                        shield -= damage;
-                    }
-                }
-                else
-                {
-                    health -= damage;
-                }
-
-                _playerAttr.energy += damage/5;
+                GetHurtFromSnowball(otherGO);
             }
         }
         
+        /*
+         * Assign a target game object to enemy
+         */
         protected virtual void UpdateTarget(GameObject tar)
         {
             target = tar;
             TargetTrans = target.GetComponent<Transform>();
         }
 
+        /*
+         * Set up and initialize behaviour tree
+         */
         protected virtual void SetUpBehaviorTree(){}
 
+        /*
+         * Check is enemy out of the camp range
+         */
         protected bool IsOutOfCampRange()
         {
             var distance = Vector3.Distance(campTrans.position, transform.position);
             return distance > campRange;
         }
         
+        /*
+         * Check is enemy in the camp range
+         */
         protected bool IsInCampRange()
         {
             var distance = Vector3.Distance(campTrans.position, transform.position);
             return distance < campRange;
         }
         
+        /*
+         * Check is target object out of enemy's chase range
+         */
         protected bool IsOutOfChaseRange()
         {
             var distance = Vector3.Distance(TargetTrans.position, transform.position);
             return distance > chaseRange;
         }
 
+        /*
+         * Go back to camp
+         */
         protected void GoBackToCamp()
         {
             if (_agent != null && _agent.isActiveAndEnabled && campTrans != null)
@@ -141,6 +133,9 @@ namespace Enemy
             }
         }
         
+        /*
+         * Set target object's position as destination for NavMesh Agent
+         */
         protected void SetNavigation()
         {
             if (_agent != null && _agent.isActiveAndEnabled && TargetTrans != null)
@@ -149,23 +144,35 @@ namespace Enemy
             }
         }
 
+        /*
+         * Start chasing, set NavMesh Agent continue to move
+         */
         protected void StartChase()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (_agent.isStopped) _agent.isStopped = false;
         }
 
+        /*
+         * Stop chasing, set NavMesh Agent stop moving
+         */
         protected void StopChase()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (!_agent.isStopped) _agent.isStopped = true;
         }
 
+        /*
+         * Start attacking, start attack coroutine
+         */
         protected void StartAttack()
         {
             _attackCoroutine ??= StartCoroutine(AttackCoroutine());
         }
 
+        /*
+         * Stop attacking, stop and clear attack coroutine
+         */
         protected void StopAttack()
         {
             if (_attackCoroutine == null) return;
@@ -173,9 +180,49 @@ namespace Enemy
             _attackCoroutine = null;
         }
 
+        /*
+         * Attack coroutine
+         */
         protected virtual IEnumerator AttackCoroutine()
         {
             return null;
+        }
+
+        /*
+         * Calculate shield and health after snowball hit
+         */
+        private void GetHurtFromSnowball(GameObject otherGO)
+        {
+            var snowballScript = otherGO.GetComponent<BaseSnowball>();
+            var damage = snowballScript.damage;
+            if (snowballScript.type == SnowballType.RollingSnowball)
+            {
+                damage *= otherGO.transform.localScale.x;
+            }
+            if (shield > 0)
+            {
+                if (snowballScript.type == SnowballType.ThrowingSnowball)
+                {
+                    damage *= 1f - resistance;
+                }
+
+                if (damage > shield)
+                {
+                    var overflowDamage = damage - shield;
+                    shield = 0;
+                    health -= overflowDamage;
+                }
+                else
+                {
+                    shield -= damage;
+                }
+            }
+            else
+            {
+                health -= damage;
+            }
+
+            _playerAttr.energy += damage/5;
         }
     }
 }

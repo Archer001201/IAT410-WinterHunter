@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace UISystem
 {
+    /*
+     * Control skill icon
+     */
     public class Skill : MonoBehaviour
     {
         public SnowmanInfor snowmanInfor;
@@ -25,6 +28,9 @@ namespace UISystem
             cooldownMask.fillAmount = snowmanInfor.cooldownTimer / snowmanInfor.cooldown;
         }
 
+        /*
+         * Update skill icon on skill panel
+         */
         public void UpdateSkillIcon()
         {
             if (snowmanInfor == null) return;

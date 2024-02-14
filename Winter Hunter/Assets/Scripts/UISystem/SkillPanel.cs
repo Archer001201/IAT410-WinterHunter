@@ -7,6 +7,9 @@ using EventHandler = EventSystem.EventHandler;
 
 namespace UISystem
 {
+    /*
+     * Control skill panel
+     */
     public class SkillPanel : MonoBehaviour
     {
         public List<GameObject> skillIcons;
@@ -29,17 +32,17 @@ namespace UISystem
 
         private void Start()
         {
-            UpdateSkillIcons();
+            UpdateSkill();
         }
 
         private void OnEnable()
         {
-            EventHandler.OnUpdateSkillPanel += UpdateSkillIcons;
+            EventHandler.OnUpdateSkillPanel += UpdateSkill;
         }
 
         private void OnDisable()
         {
-            EventHandler.OnUpdateSkillPanel -= UpdateSkillIcons;
+            EventHandler.OnUpdateSkillPanel -= UpdateSkill;
         }
 
         private void Update()
@@ -54,7 +57,10 @@ namespace UISystem
             }
         }
 
-        public void UpdateSkillIcons()
+        /*
+         * Update skill icons and informations
+         */
+        private void UpdateSkill()
         {
             var snowmanListCount = _playerAttr.snowmanList.Count;
             for (var i = 0; i < 5; i++)
@@ -64,6 +70,9 @@ namespace UISystem
             }
         }
 
+        /*
+         * Move icon objects left
+         */
         public void MoveIconsLeft()
         {
             if (isMoving) return;
@@ -85,6 +94,9 @@ namespace UISystem
             isMoving = true;
         }
         
+        /*
+         * Move icon objects right
+         */
         public void MoveIconsRight()
         {
             if (isMoving) return;
@@ -106,6 +118,9 @@ namespace UISystem
             isMoving = true;
         }
         
+        /*
+         * Make the action of switching snowman has a short cooldown, and also make the transition smooth
+         */
         private IEnumerator MoveIcons()
         {
             float elapsedTime = 0;
@@ -131,12 +146,18 @@ namespace UISystem
             UpdateSideIcons();
         }
         
+        /*
+         * Scale snowman icon
+         */
         private static void SetIconScale(GameObject icon, float scale)
         {
             var rectTransform = icon.GetComponent<RectTransform>();
             rectTransform.localScale = new Vector3(scale, scale, 1);
         }
         
+        /*
+         * Scale up the icon which is placed in the middle
+         */
         private static void UpdateIconScale(RectTransform rectTransform)
         {
             var distance = Mathf.Abs(rectTransform.anchoredPosition.x);
@@ -144,6 +165,9 @@ namespace UISystem
             SetIconScale(rectTransform.gameObject, scale);
         }
         
+        /*
+         * Update the most left and right icons after switched snowman
+         */
         private void UpdateSideIcons()
         {
             var snowmanListCount = _playerAttr.snowmanList.Count;
@@ -170,6 +194,9 @@ namespace UISystem
             }
         }
         
+        /*
+         * Get the snowman information from player attributes
+         */
         private SnowmanInfor UpdateSnowmanBuffers(int i, int snowmanListCount)
         {
             if (_playerAttr.snowmanList.Count < 1) return null;
@@ -192,6 +219,9 @@ namespace UISystem
             return _playerAttr.snowmanList[sum];
         }
 
+        /*
+         * Reset position of all icon objects
+         */
         public void ResetIconsPosition()
         {
             for (var i = 0; i < skillIcons.Count; i++)

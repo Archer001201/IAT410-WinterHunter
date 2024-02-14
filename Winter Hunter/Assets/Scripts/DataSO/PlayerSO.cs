@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace DataSO
 {
+    /*
+     * Store player's attribute
+     */
     [CreateAssetMenu(menuName = "ScriptableObject/Create Player_SO", fileName = "Player_SO")]
     public class PlayerSO : ScriptableObject
     {

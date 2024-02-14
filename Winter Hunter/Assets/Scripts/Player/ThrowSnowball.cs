@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * The action of throwing snowball
+     */
     public class ThrowSnowball : SnowballAttack
     {
         private void OnEnable()
@@ -14,6 +17,9 @@ namespace Player
             aimingLineRenderer.enabled = false;
         }
 
+        /*
+         * Make snowball move forward and cost player's stamina
+         */
         public override void Attack()
         {
             if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
@@ -22,6 +28,9 @@ namespace Player
             PlayerAttr.stamina += stamina;
         }
 
+        /*
+         * Update aiming line
+         */
         public override void UpdateAimingLine()
         {
             base.UpdateAimingLine();

@@ -8,6 +8,9 @@ using EventHandler = EventSystem.EventHandler;
 
 namespace Snowman
 {
+    /*
+     * Super class of snowman
+     */
     public class BaseSnowman : MonoBehaviour
     {
         [Header("Static Attributes")]
@@ -67,8 +70,14 @@ namespace Snowman
             BTree?.BTUpdate();
         }
         
+        /*
+         * Set up and initialize behaviour tree
+         */
         protected virtual void SetUpBehaviorTree(){}
         
+        /*
+         * Set target's position as destination for NavMesh Agent
+         */
         protected void SetNavigation()
         {
             if (_agent.isActiveAndEnabled && TargetTrans != null)
@@ -77,18 +86,27 @@ namespace Snowman
             }
         }
         
+        /*
+         * Set NavMesh Agent continue to move
+         */
         protected void StartChase()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (_agent.isStopped) _agent.isStopped = false;
         }
 
+        /*
+         * Set NavMesh Agent stop moving
+         */
         protected void StopChase()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (!_agent.isStopped) _agent.isStopped = true;
         }
 
+        /*
+         * Destroy this game object
+         */
         protected virtual void DestroyMe()
         {
             Destroy(gameObject);

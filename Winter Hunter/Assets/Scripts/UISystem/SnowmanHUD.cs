@@ -5,6 +5,9 @@ namespace UISystem
 {
     public class SnowmanHUD : NpcHUD
     {
+        /*
+         * Snowman's HUD
+         */
         public BaseSnowman snowmanAttr;
         public SnowmanSO snowmanSO;
 

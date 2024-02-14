@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Enemy
 {
+    /*
+     * Store data of enemies and chests in the camp
+     */
     public class EnemyCamp : MonoBehaviour
     {
         public List<GameObject> enemyList;

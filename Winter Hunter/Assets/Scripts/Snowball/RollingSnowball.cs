@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Snowball
 {
+    /*
+     * Rolling snowball
+     */
     public class RollingSnowball : MonoBehaviour
     {
         public float rollingDistance;
@@ -46,6 +49,9 @@ namespace Snowball
             if (other.gameObject.CompareTag("Enemy")) Destroy(gameObject);
         }
 
+        /*
+         * Force release snowball when rolling snowball reached the max size
+         */
         public void SetReleasingState()
         {
             _isReleasing = true;

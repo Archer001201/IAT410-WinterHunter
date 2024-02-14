@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Snowball
 {
+    /*
+     * Super class of snowball
+     */
     public class BaseSnowball : MonoBehaviour
     {
         public float attackFactor;

@@ -2,6 +2,9 @@ using Enemy;
 
 namespace UISystem
 {
+    /*
+     * Control enemy's HUD
+     */
     public class EnemyHUD : NpcHUD
     {
         public BaseEnemy enemyAttr;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Snowman
 {
+    /*
+     * A type of snowman can taunt enemy
+     */
     public class MeatShield : BaseSnowman
     {
         protected override void Awake()
@@ -20,6 +23,9 @@ namespace Snowman
             EventHandler.EnemyChangeTarget(PlayerGO);
         }
 
+        /*
+         * Setup and initialize the behaviour tree
+         */
         protected override void SetUpBehaviorTree()
         {
             base.SetUpBehaviorTree();
@@ -40,16 +46,25 @@ namespace Snowman
             BTree = new BehaviorTree { RootNode = rootNode };
         }
 
+        /*
+         * Check is the player out of following range
+         */
         private bool IsPlayerOutFollowRange()
         {
             return Vector3.Distance(transform.position, TargetTrans.position) > followRange;
         }
 
+        /*
+         * Check is the player in the following range
+         */
         private bool IsPlayerInFollowRange()
         {
             return Vector3.Distance(transform.position, TargetTrans.position) <= followRange;
         }
 
+        /*
+         * Destroy this game object and notice enemy to change target to player
+         */
         protected override void DestroyMe()
         {
             EventHandler.EnemyChangeTarget(PlayerGO);

@@ -2,6 +2,9 @@ using System;
 
 namespace BTFrame
 {
+    /*
+     * Action node of behaviour tree
+     */
     public class ActionNode : BTNode
     {
         private readonly Action _action;
@@ -11,6 +14,9 @@ namespace BTFrame
             this._action = action;
         }
         
+        /*
+         * Execute action
+         */
         public override bool Evaluate()
         {
             _action();

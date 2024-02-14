@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace UISystem
 {
+    /*
+     * Control player's HUD
+     */
     public class PlayerHUD : MonoBehaviour
     {
         public Image healthBar;

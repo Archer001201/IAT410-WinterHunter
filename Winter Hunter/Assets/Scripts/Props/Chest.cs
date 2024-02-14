@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Props
 {
+    /*
+     * Store item data in the chest and handle player interaction
+     */
     public class Chest : MonoBehaviour
     {
         public bool canOpen;
@@ -29,7 +32,10 @@ namespace Props
             if (other.gameObject.CompareTag("Player")) hud.SetActive(false);
         }
 
-        public virtual void PickUp()
+        /*
+         * Open chest and destroy this game object
+         */
+        public virtual void OpenChest()
         {
             Destroy(gameObject);
         }

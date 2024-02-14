@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * Handle player's input
+     */
     public class PlayerController : MonoBehaviour
     {
         [Header("Player Parameters")]
@@ -112,6 +115,9 @@ namespace Player
             }
         }
 
+        /*
+         * Rotate player towards mouse direction
+         */
         private void RotateTowardsMouse()
         {
             var ray = _camera.ScreenPointToRay(_mousePosition);
@@ -125,12 +131,18 @@ namespace Player
             _rb.rotation = Quaternion.Slerp(_rb.rotation, lookRotation, Time.fixedDeltaTime * rotationSpeed);
         }
         
+        /*
+         * Rotate player towards moving direction
+         */
         private void RotateTowardMovingDirection(Vector3 moveDir)
         {
             var targetRotation = Quaternion.LookRotation(moveDir);
             _rb.rotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
         }
 
+        /*
+         * Start throwing snowball
+         */
         private void OnThrowingSnowballStart()
         {
             if (!canAttack) return;
@@ -138,11 +150,17 @@ namespace Player
             _throwSnowballScript.Attack();
         }
 
+        /*
+         * Stop throwing snowball
+         */
         private void OnThrowingSnowballEnd()
         {
             StartStaminaCoroutine();
         }
 
+        /*
+         * Start rolling snowball
+         */
         private void OnRollingSnowballStart()
         {
             if (!canAttack) return;
@@ -155,6 +173,9 @@ namespace Player
             _rollSnowballScript.CreateSnowball();
         }
 
+        /*
+         * Stop rolling snowball
+         */
         public void OnRollingSnowballEnd()
         {
             isRollingSnowball = false;
@@ -166,6 +187,9 @@ namespace Player
             StartStaminaCoroutine();
         }
 
+        /*
+         * Recover stamina after a specific time
+         */
         private IEnumerator RecoverStaminaAfterDelay()
         {
             yield return new WaitForSeconds(staminaRecoveryTimer);
@@ -176,11 +200,17 @@ namespace Player
             }
         }
 
+        /*
+         * Start stamina recovery coroutine
+         */
         private void StartStaminaCoroutine()
         {
             _staminaCoroutine ??= StartCoroutine(RecoverStaminaAfterDelay());
         }
 
+        /*
+         * Stop stamina recovery coroutine
+         */
         private void StopStaminaCoroutine()
         {
             if (_staminaCoroutine != null)
@@ -190,11 +220,17 @@ namespace Player
             }
         }
 
+        /*
+         * Summon snowman
+         */
         private void OnSummonSnowman()
         {
             _summonSnowmanScript.SummonCurrentSnowman();
         }
 
+        /*
+         * Press Q to switch snowman
+         */
         private void OnSwitchSnowmanLeft()
         {
             //moving direction is reverse to switch direction
@@ -204,6 +240,9 @@ namespace Player
             _summonSnowmanScript.SwitchSnowmanRight();
         }
         
+        /*
+         * Press E to switch snowman
+         */
         private void OnSwitchSnowmanRight()
         {
             //moving direction is reverse to switch direction
@@ -213,6 +252,9 @@ namespace Player
             _summonSnowmanScript.SwitchSnowmanLeft();
         }
 
+        /*
+         * Press F to interact with interactable objects
+         */
         private void OnPressInteractButton()
         {
             if (_currentInteractableObject == null) return;
@@ -222,7 +264,7 @@ namespace Player
                 var chestScript = _currentInteractableObject.GetComponent<Chest>();
                 if (!chestScript.canOpen) return;
                 _skillPanelScript.ResetIconsPosition();
-                chestScript.PickUp();
+                chestScript.OpenChest();
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
             }

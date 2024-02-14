@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Snowman
 {
+    /*
+     * The skill of snowman that can heal player by staying at the healing range
+     */
     public class HealRing : MonoBehaviour
     {
         public Healer healerAttr;
@@ -28,6 +31,9 @@ namespace Snowman
             _healCoroutine = null;
         }
 
+        /*
+         * Every a specific time heal player based on healer's attack
+         */
         private IEnumerator Heal()
         {
             while (_playerAttr != null)

@@ -2,6 +2,9 @@ using System;
 
 namespace BTFrame
 {
+    /*
+     * Condition node of behaviour tree
+     */
     public class ConditionNode : BTNode
     {
         private readonly Func<bool> _condition;
@@ -11,6 +14,9 @@ namespace BTFrame
             this._condition = condition;
         }
         
+        /*
+         * Evaluate condition
+         */
         public override bool Evaluate()
         {
             return _condition();

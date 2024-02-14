@@ -4,6 +4,9 @@ using EventHandler = EventSystem.EventHandler;
 
 namespace UISystem
 {
+    /*
+     * Control main canvas
+     */
     public class MainCanvas : MonoBehaviour
     {
         public GameObject gameOverPanel;
@@ -33,11 +36,17 @@ namespace UISystem
             _inputControls.Disable();
         }
 
+        /*
+         * Open game over panel
+         */
         private void OpenGameOverPanel()
         {
             gameOverPanel.SetActive(true);
         }
 
+        /*
+         * Handle option menu
+         */
         public void HandleOptionsMenu()
         {
             optionsMenu.SetActive(!optionsMenu.activeSelf);

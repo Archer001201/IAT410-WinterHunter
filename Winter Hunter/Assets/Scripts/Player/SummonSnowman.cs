@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * The action of summoning snowmen
+     */
     public class SummonSnowman : MonoBehaviour
     {
         public GameObject currentSnowman;
@@ -25,6 +28,9 @@ namespace Player
             LoadSnowmanPrefab();
         }
 
+        /*
+         * Press E to plus currentIndex and reload snowman prefab
+         */
         public void SwitchSnowmanLeft()
         {
             if (currentIndex < _playerSO.snowmanList.Count-1) currentIndex++;
@@ -33,6 +39,9 @@ namespace Player
             LoadSnowmanPrefab();
         }
         
+        /*
+         * Press Q to minus currentIndex and reload snowman prefab
+         */
         public void SwitchSnowmanRight()
         {
             if (currentIndex > 0) currentIndex--;
@@ -41,6 +50,9 @@ namespace Player
             LoadSnowmanPrefab();
         }
 
+        /*
+         * Summon a new snowman and replace the existed one
+         */
         public void SummonCurrentSnowman()
         {
             if (_playerAttr.snowmanList.Count < 1) return;
@@ -53,6 +65,9 @@ namespace Player
             snowman.cooldownTimer = snowman.cooldown;
         }
 
+        /*
+         * Load snowman prefab by currentIndex
+         */
         public void LoadSnowmanPrefab()
         {
             if (_playerSO.snowmanList.Count < 1) return;

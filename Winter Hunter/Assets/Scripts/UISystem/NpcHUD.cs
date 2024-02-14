@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace UISystem
 {
+    /*
+     * Control NPC's HUD
+     */
     public class NpcHUD : MonoBehaviour
     {        
         public Transform trans;
