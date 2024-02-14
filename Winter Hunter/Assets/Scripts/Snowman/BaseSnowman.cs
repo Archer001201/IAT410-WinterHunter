@@ -1,7 +1,5 @@
-using System;
 using BTFrame;
 using DataSO;
-using Player;
 using UnityEngine;
 using UnityEngine.AI;
 using EventHandler = EventSystem.EventHandler;
@@ -28,14 +26,12 @@ namespace Snowman
         protected Transform TargetTrans;
         
         private NavMeshAgent _agent;
-        private PlayerController _playerController;
         private float _startTime;
         
 
         protected virtual void Awake()
         {
             PlayerGO = GameObject.FindWithTag("Player");
-            _playerController = PlayerGO.GetComponent<PlayerController>();
             summoningCost = snowmanSO.summoningCost;
 
             health = snowmanSO.maxHealth;
