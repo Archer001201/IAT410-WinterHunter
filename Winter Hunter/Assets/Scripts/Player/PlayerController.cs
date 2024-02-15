@@ -12,11 +12,14 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Player Parameters")]
-        public float rotationSpeed = 5.0f;
+        public float rotationSpeed;
         public float stopAttackTimer;
+        public float atkMovingSpeedFactor;
+        public float dashTimer;
+        public float dashSpeedFactor;
+        public float dashCost;
         [Header("Player State")]
         public bool isRollingSnowball;
-        public bool canAttack = true;
         public bool isAttacking;
         public bool isDashing;
         
@@ -35,8 +38,7 @@ namespace Player
         private SkillPanel _skillPanelScript;
         private GameObject _currentInteractableObject;
 
-        private float _fullSpeed;
-        private float _halfSpeed;
+        private float _initMovingSpeed;
         private float _movingSpeed;
         
         private void Awake()
@@ -51,9 +53,8 @@ namespace Player
             _skillPanelScript = GameObject.FindWithTag("SkillPanel").GetComponent<SkillPanel>();
             _camera = Camera.main;
 
-            _fullSpeed = _playerSO.speed;
-            _halfSpeed = _fullSpeed * 0.6f;
-            _movingSpeed = _fullSpeed;
+            _initMovingSpeed = _playerSO.speed;
+            _movingSpeed = _initMovingSpeed;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
             _inputControls.Gameplay.Move.canceled += _ => _moveInput = Vector2.zero;
@@ -84,15 +85,15 @@ namespace Player
 
         private void Update()
         {
-            canAttack = _playerAttr.stamina >= 10;
+            // canAttack = _playerAttr.stamina >= 10;
 
             if (isAttacking)
             {
-                _movingSpeed = _halfSpeed;
+                _movingSpeed = _initMovingSpeed * atkMovingSpeedFactor;
             }
             else
             {
-                _movingSpeed = _fullSpeed;
+                _movingSpeed = _initMovingSpeed;
             }
         }
 
@@ -171,7 +172,7 @@ namespace Player
          */
         private void OnThrowingSnowballStart()
         {
-            if (!canAttack) return;
+            if (_playerAttr.stamina < Mathf.Abs(_throwSnowballScript.stamina)) return;
             StopStaminaCoroutine();
             _throwSnowballScript.Attack();
             isAttacking = true;
@@ -190,7 +191,7 @@ namespace Player
          */
         private void OnRollingSnowballStart()
         {
-            if (!canAttack) return;
+            if (_playerAttr.stamina < Mathf.Abs(_rollSnowballScript.stamina)) return;
             StopStaminaCoroutine();
             
             _rollSnowballScript.enabled = true;
@@ -303,10 +304,10 @@ namespace Player
 
         private void OnPressDashButton()
         {
-            if (isDashing || _playerAttr.stamina < 20) return;
+            if (isDashing || _playerAttr.stamina < dashCost) return;
             StartCoroutine(Dash());
             isDashing = true;
-            _playerAttr.stamina -= 20;
+            _playerAttr.stamina -= dashCost;
             StopStaminaCoroutine();
         }
 
@@ -319,11 +320,11 @@ namespace Player
         {
             var startTime = Time.time;
 
-            while (Time.time < startTime + 0.3)
+            while (Time.time < startTime + dashTimer)
             {
-                // var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
-                var moveDirection = transform.forward.normalized;
-                _rb.velocity = moveDirection * 15;
+                var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
+                // var moveDirection = transform.forward.normalized;
+                _rb.velocity = moveDirection * (_initMovingSpeed * dashSpeedFactor);
                 yield return null;
             }
             

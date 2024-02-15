@@ -64,8 +64,19 @@ namespace Player
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
-                PlayerAttr.stamina += staminaIncrease;
+                // PlayerAttr.stamina += staminaIncrease;
+
+                if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease))
+                {
+                    PlayerAttr.stamina += staminaIncrease;
+                }
+                else
+                {
+                    Attack();
+                }
             }
+
+            if (SnowballInstance == null) return;
             SnowballInstance.transform.position = startPosition.position;
             SnowballInstance.transform.rotation = startPosition.rotation;
             
