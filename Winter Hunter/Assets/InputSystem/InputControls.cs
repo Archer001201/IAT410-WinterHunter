@@ -116,6 +116,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rush"",
+                    ""type"": ""Button"",
+                    ""id"": ""13644ed1-b528-4877-a0ab-6ae285f2fd1f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""EscButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2697c6a1-9e72-4b07-bacc-f1b19d97e9b4"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -290,6 +310,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_CallBag = m_Gameplay.FindAction("CallBag", throwIfNotFound: true);
         m_Gameplay_EscButton = m_Gameplay.FindAction("EscButton", throwIfNotFound: true);
+        m_Gameplay_Rush = m_Gameplay.FindAction("Rush", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_CallBag;
     private readonly InputAction m_Gameplay_EscButton;
+    private readonly InputAction m_Gameplay_Rush;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -375,6 +397,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @CallBag => m_Wrapper.m_Gameplay_CallBag;
         public InputAction @EscButton => m_Wrapper.m_Gameplay_EscButton;
+        public InputAction @Rush => m_Wrapper.m_Gameplay_Rush;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +437,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @EscButton.started += instance.OnEscButton;
             @EscButton.performed += instance.OnEscButton;
             @EscButton.canceled += instance.OnEscButton;
+            @Rush.started += instance.OnRush;
+            @Rush.performed += instance.OnRush;
+            @Rush.canceled += instance.OnRush;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -448,6 +474,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @EscButton.started -= instance.OnEscButton;
             @EscButton.performed -= instance.OnEscButton;
             @EscButton.canceled -= instance.OnEscButton;
+            @Rush.started -= instance.OnRush;
+            @Rush.performed -= instance.OnRush;
+            @Rush.canceled -= instance.OnRush;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -477,5 +506,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnCallBag(InputAction.CallbackContext context);
         void OnEscButton(InputAction.CallbackContext context);
+        void OnRush(InputAction.CallbackContext context);
     }
 }

@@ -13,11 +13,12 @@ namespace Player
     {
         [Header("Player Parameters")]
         public float rotationSpeed = 5.0f;
-        public float staminaRecoveryTimer;
+        public float stopAttackTimer;
         [Header("Player State")]
         public bool isRollingSnowball;
         public bool canAttack = true;
-        // public bool canSummonSnowman;
+        public bool isAttacking;
+        public bool isDashing;
         
         private PlayerSO _playerSO;
         private InputControls _inputControls;
@@ -33,6 +34,10 @@ namespace Player
         private SummonSnowman _summonSnowmanScript;
         private SkillPanel _skillPanelScript;
         private GameObject _currentInteractableObject;
+
+        private float _fullSpeed;
+        private float _halfSpeed;
+        private float _movingSpeed;
         
         private void Awake()
         {
@@ -46,6 +51,10 @@ namespace Player
             _skillPanelScript = GameObject.FindWithTag("SkillPanel").GetComponent<SkillPanel>();
             _camera = Camera.main;
 
+            _fullSpeed = _playerSO.speed;
+            _halfSpeed = _fullSpeed * 0.6f;
+            _movingSpeed = _fullSpeed;
+
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
             _inputControls.Gameplay.Move.canceled += _ => _moveInput = Vector2.zero;
             _inputControls.Gameplay.MousePosition.performed += context => _mousePosition = context.ReadValue<Vector2>();
@@ -57,6 +66,8 @@ namespace Player
             _inputControls.Gameplay.SwitchSnowmanRight.performed += _ => OnSwitchSnowmanRight();
             _inputControls.Gameplay.SummonSnowman.performed += _ => OnSummonSnowman();
             _inputControls.Gameplay.Interact.performed += _ => OnPressInteractButton();
+            _inputControls.Gameplay.Rush.performed += _ => OnPressDashButton();
+            _inputControls.Gameplay.Rush.canceled += _ => OnReleaseDashButton();
 
             _rollSnowballScript.enabled = false;
         }
@@ -74,6 +85,15 @@ namespace Player
         private void Update()
         {
             canAttack = _playerAttr.stamina >= 10;
+
+            if (isAttacking)
+            {
+                _movingSpeed = _halfSpeed;
+            }
+            else
+            {
+                _movingSpeed = _fullSpeed;
+            }
         }
 
         private void FixedUpdate()
@@ -81,20 +101,27 @@ namespace Player
             var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
             var currentVerticalVelocity = _rb.velocity.y;
 
-            _rb.velocity = new Vector3(moveDirection.x * _playerSO.speed, currentVerticalVelocity, moveDirection.z * _playerSO.speed);
+            if (!isDashing) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
             
+            RotateTowardsMouse();
             if (!isRollingSnowball)
             {
-                RotateTowardsMouse();
+                // RotateTowardsMouse();
                 _throwSnowballScript.UpdateAimingLine();
             }
             else
             {
-                if (moveDirection != Vector3.zero)
-                {
-                    RotateTowardMovingDirection(moveDirection);
-                }
+                // if (moveDirection != Vector3.zero)
+                // {
+                //     RotateTowardMovingDirection(moveDirection);
+                // }
                 _rollSnowballScript.UpdateSnowball(moveDirection);
+            }
+
+            if (_playerAttr.stamina < _playerSO.maxStamina && !isAttacking)
+            {
+                var deltaStamina = Time.deltaTime * _playerSO.staminaRecovery;
+                _playerAttr.stamina += deltaStamina;
             }
         }
 
@@ -147,6 +174,7 @@ namespace Player
             if (!canAttack) return;
             StopStaminaCoroutine();
             _throwSnowballScript.Attack();
+            isAttacking = true;
         }
 
         /*
@@ -170,6 +198,8 @@ namespace Player
             
             isRollingSnowball = true;
             _rollSnowballScript.CreateSnowball();
+
+            isAttacking = true;
         }
 
         /*
@@ -189,14 +219,16 @@ namespace Player
         /*
          * Recover stamina after a specific time
          */
-        private IEnumerator RecoverStaminaAfterDelay()
+        private IEnumerator StopAttackAfterSeconds()
         {
-            yield return new WaitForSeconds(staminaRecoveryTimer);
-            while (_playerAttr.stamina < _playerSO.maxStamina)
-            {
-                _playerAttr.stamina += _playerSO.staminaRecovery * Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(stopAttackTimer);
+            // while (_playerAttr.stamina < _playerSO.maxStamina)
+            // {
+            //     // _playerAttr.stamina += _playerSO.staminaRecovery * Time.deltaTime;
+            //     isAttacking = false;
+            //     yield return null;
+            // }
+            isAttacking = false;
         }
 
         /*
@@ -204,7 +236,7 @@ namespace Player
          */
         private void StartStaminaCoroutine()
         {
-            _staminaCoroutine ??= StartCoroutine(RecoverStaminaAfterDelay());
+            _staminaCoroutine ??= StartCoroutine(StopAttackAfterSeconds());
         }
 
         /*
@@ -267,6 +299,36 @@ namespace Player
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
             }
+        }
+
+        private void OnPressDashButton()
+        {
+            if (isDashing || _playerAttr.stamina < 20) return;
+            StartCoroutine(Dash());
+            isDashing = true;
+            _playerAttr.stamina -= 20;
+            StopStaminaCoroutine();
+        }
+
+        private void OnReleaseDashButton()
+        {
+            StartStaminaCoroutine();
+        }
+
+        private IEnumerator Dash()
+        {
+            var startTime = Time.time;
+
+            while (Time.time < startTime + 0.3)
+            {
+                // var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
+                var moveDirection = transform.forward.normalized;
+                _rb.velocity = moveDirection * 15;
+                yield return null;
+            }
+            
+            _rb.velocity = Vector3.zero;
+            isDashing = false;
         }
     }
 }

@@ -3169,6 +3169,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 91.19
       objectReference: {fileID: 0}
+    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: dashForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: stopAttackTimer
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491273880646760892, guid: bb8716ec82beb43dabf43000526ee4ca,
+        type: 3}
+      propertyPath: staminaRecoveryTimer
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
 --- !u!1001 &6901536421324732842

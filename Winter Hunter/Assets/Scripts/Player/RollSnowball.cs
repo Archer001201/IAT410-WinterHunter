@@ -29,7 +29,7 @@ namespace Player
             if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
             
             base.CreateSnowball();
-            rollingLine.SetActive(true);
+            
             _rollingSnowballScript = SnowballInstance.GetComponent<RollingSnowball>();
             PlayerAttr.stamina += stamina;
         }
@@ -59,7 +59,7 @@ namespace Player
                 enabled = false;
                 return;
             }
-            
+            UpdateRollingLine();
             if (moveDir != Vector3.zero)
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
@@ -68,11 +68,12 @@ namespace Player
             }
             SnowballInstance.transform.position = startPosition.position;
             SnowballInstance.transform.rotation = startPosition.rotation;
-            UpdateRollingLine();
+            
         }
 
         private void UpdateRollingLine()
         {
+            if (!rollingLine.activeInHierarchy) rollingLine.SetActive(true);
             var distance = _rollingSnowballScript.rollingDistance - 5f;
             rollingLine.transform.localScale = new Vector3(SnowballInstance.transform.localScale.x,1,distance);
             rollingLine.transform.position = startPosition.position;
