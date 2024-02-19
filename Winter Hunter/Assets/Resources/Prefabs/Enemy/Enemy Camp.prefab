@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4375653700032547867}
   - component: {fileID: 9111118795738536196}
   - component: {fileID: 4027186807606948690}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy Camp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,6 @@ MonoBehaviour:
   - {fileID: 0}
   chestList:
   - {fileID: 0}
-  campRange: 5
   isCleared: 0
 --- !u!135 &4027186807606948690
 SphereCollider:

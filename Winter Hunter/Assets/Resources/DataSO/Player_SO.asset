@@ -15,10 +15,10 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   maxEnergy: 100
-  attack: 10
+  attack: 15
   speed: 5
   staminaRecovery: 20
   currentHealth: 0
   currentStamina: 0
   currentEnergy: 0
-  snowmanList: 0100000004000000
+  snowmanList: 040000000000000001000000

@@ -1,3 +1,4 @@
+using DataSO;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +34,8 @@ namespace UISystem
         public void UpdateSkillIcon()
         {
             if (snowmanInfor == null) return;
-            iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
+            // iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
+            iconSprite = Resources.Load<SnowmanSO>("DataSO/" + snowmanInfor.type + "_SO").snowmanIcon;
             _skillIcon.sprite = iconSprite;
         }
     }

@@ -1,7 +1,8 @@
+using System;
 using DataSO;
-using EventSystem;
 using Snowman;
 using UnityEngine;
+using EventHandler = EventSystem.EventHandler;
 
 namespace Player
 {
@@ -17,14 +18,18 @@ namespace Player
 
         public int currentIndex;
 
-        private PlayerSO _playerSO;
+        // private PlayerSO _playerSO;
         private PlayerAttribute _playerAttr;
 
         private void Awake()
         {
             _playerAttr = GetComponent<PlayerAttribute>();
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            // _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             currentIndex = 0;
+        }
+
+        private void Start()
+        {
             LoadSnowmanPrefab();
         }
 
@@ -33,7 +38,7 @@ namespace Player
          */
         public void SwitchSnowmanLeft()
         {
-            if (currentIndex < _playerSO.snowmanList.Count-1) currentIndex++;
+            if (currentIndex < _playerAttr.snowmanList.Count-1) currentIndex++;
             else currentIndex = 0;
             
             LoadSnowmanPrefab();
@@ -45,7 +50,7 @@ namespace Player
         public void SwitchSnowmanRight()
         {
             if (currentIndex > 0) currentIndex--;
-            else currentIndex = _playerSO.snowmanList.Count-1;
+            else currentIndex = _playerAttr.snowmanList.Count-1;
             
             LoadSnowmanPrefab();
         }
@@ -70,14 +75,9 @@ namespace Player
          */
         public void LoadSnowmanPrefab()
         {
-            if (_playerSO.snowmanList.Count < 1) return;
-            currentSnowman = _playerSO.snowmanList[currentIndex] switch
-            {
-                SnowmanType.Normal => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Normal"),
-                SnowmanType.MeatShield => Resources.Load<GameObject>("Prefabs/Snowman/Proto_MeatShield"),
-                SnowmanType.Healer => Resources.Load<GameObject>("Prefabs/Snowman/Proto_Healer"),
-                _ => currentSnowman
-            };
+            if (_playerAttr.snowmanList.Count < 1) return;
+            var snowmanType = _playerAttr.snowmanList[currentIndex].type;
+            currentSnowman = Resources.Load<SnowmanSO>("DataSO/" + snowmanType + "_SO").snowmanPrefab;
 
             if (currentSnowman == null) return;
             summoningCost = currentSnowman.GetComponent<BaseSnowman>().summoningCost;
