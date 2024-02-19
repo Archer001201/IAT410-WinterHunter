@@ -2,7 +2,6 @@ using System.Collections;
 using Player;
 using Snowball;
 using UnityEngine;
-using BTFrame;
 using EventSystem;
 using UnityEngine.AI;
 
@@ -17,26 +16,23 @@ namespace Enemy
         public float maxHealth;
         public float maxShield;
         public float resistance;
-        public float chaseRange;
-        public float attackRange;
+        public float attackingRange;
         public float attackDamage;
-        public float campRange;
         public Transform campTrans;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
+        public bool isChasing;
         [Header("Component Settings")]
         public GameObject hudCanvas;
         public GameObject target;
 
         protected Transform TargetTrans;
-        protected BehaviorTree BTree;
-        private NavMeshAgent _agent;
         
+        private NavMeshAgent _agent;
         private GameObject _player;
         private PlayerAttribute _playerAttr;
         private Coroutine _attackCoroutine;
-        private Coroutine _patrolCoroutine;
         private Vector3 _originalPosition;
         
 
@@ -54,8 +50,6 @@ namespace Enemy
             _playerAttr = _player.GetComponent<PlayerAttribute>();
             
             UpdateTarget(_player);
-            
-            SetUpBehaviorTree();
 
             EventHandler.OnEnemyChangeTarget += UpdateTarget;
         }
@@ -68,7 +62,22 @@ namespace Enemy
             
             if (health <= 0) Destroy(gameObject);
 
-            BTree?.BTUpdate();
+            var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
+            var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
+            
+            if (distanceBetweenTarget > attackingRange) StopAttacking();
+            else StartAttacking();
+           
+            if (isChasing)
+            {
+                StartMoving();
+                MoveTowardsTarget();
+            }
+            else
+            {
+                if (distanceBetweenOriginalPos > 0.5f) GoBackToCamp();
+                else StopMoving();
+            }
         }
 
         private void OnCollisionEnter(Collision other)
@@ -90,42 +99,11 @@ namespace Enemy
             TargetTrans = target.GetComponent<Transform>();
         }
 
-        /*
-         * Set up and initialize behaviour tree
-         */
-        protected virtual void SetUpBehaviorTree(){}
-
-        /*
-         * Check is enemy out of the camp range
-         */
-        protected bool IsOutOfCampRange()
-        {
-            var distance = Vector3.Distance(campTrans.position, transform.position);
-            return distance > campRange;
-        }
-        
-        /*
-         * Check is enemy in the camp range
-         */
-        protected bool IsInCampRange()
-        {
-            var distance = Vector3.Distance(campTrans.position, transform.position);
-            return distance < campRange;
-        }
-        
-        /*
-         * Check is target object out of enemy's chase range
-         */
-        protected bool IsOutOfChaseRange()
-        {
-            var distance = Vector3.Distance(TargetTrans.position, transform.position);
-            return distance > chaseRange;
-        }
 
         /*
          * Go back to camp
          */
-        protected void GoBackToCamp()
+        private void GoBackToCamp()
         {
             if (_agent != null && _agent.isActiveAndEnabled && campTrans != null)
             {
@@ -136,7 +114,7 @@ namespace Enemy
         /*
          * Set target object's position as destination for NavMesh Agent
          */
-        protected void SetNavigation()
+        protected void MoveTowardsTarget()
         {
             if (_agent != null && _agent.isActiveAndEnabled && TargetTrans != null)
             {
@@ -147,7 +125,7 @@ namespace Enemy
         /*
          * Start chasing, set NavMesh Agent continue to move
          */
-        protected void StartChase()
+        private void StartMoving()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (_agent.isStopped) _agent.isStopped = false;
@@ -156,7 +134,7 @@ namespace Enemy
         /*
          * Stop chasing, set NavMesh Agent stop moving
          */
-        protected void StopChase()
+        private void StopMoving()
         {
             if (!_agent.isActiveAndEnabled) return;
             if (!_agent.isStopped) _agent.isStopped = true;
@@ -165,7 +143,7 @@ namespace Enemy
         /*
          * Start attacking, start attack coroutine
          */
-        protected void StartAttack()
+        private void StartAttacking()
         {
             _attackCoroutine ??= StartCoroutine(AttackCoroutine());
         }
@@ -173,7 +151,7 @@ namespace Enemy
         /*
          * Stop attacking, stop and clear attack coroutine
          */
-        protected void StopAttack()
+        private void StopAttacking()
         {
             if (_attackCoroutine == null) return;
             StopCoroutine(_attackCoroutine);

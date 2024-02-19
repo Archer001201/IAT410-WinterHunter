@@ -11,7 +11,6 @@ namespace Enemy
     {
         public List<GameObject> enemyList;
         public List<Chest> chestList;
-        public float campRange;
         public bool isCleared;
 
         private void Awake()
@@ -20,7 +19,6 @@ namespace Enemy
             {
                 var baseEnemy = enemy.GetComponent<BaseEnemy>();
                 baseEnemy.campTrans = transform;
-                baseEnemy.campRange = campRange;
             }
         }
 
@@ -36,6 +34,26 @@ namespace Enemy
             foreach (var t in chestList)
             {
                 t.canOpen = isCleared;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.gameObject.CompareTag("Player")) return;
+
+            foreach (var enemy in enemyList)
+            {
+                enemy.GetComponent<BaseEnemy>().isChasing = true;
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.gameObject.CompareTag("Player")) return;
+
+            foreach (var enemy in enemyList)
+            {
+                enemy.GetComponent<BaseEnemy>().isChasing = false;
             }
         }
     }

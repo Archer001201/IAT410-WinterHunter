@@ -130,20 +130,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  maxShield: 50
+  maxShield: 0
   resistance: 0.8
-  chaseRange: 25
-  attackRange: 6
+  chasingRange: 10
+  attackingRange: 15
   attackDamage: 10
   campRange: 0
   campTrans: {fileID: 0}
   health: 0
   shield: 0
+  isChasing: 0
   hudCanvas: {fileID: 5998041306890683963}
   target: {fileID: 0}
   fireRing: {fileID: 6226103546333560817, guid: a9521664d1fa24afc9f2de572eebf65d,
     type: 3}
-  chaseAndAttackRange: 20
 --- !u!195 &440272704
 NavMeshAgent:
   m_ObjectHideFlags: 0

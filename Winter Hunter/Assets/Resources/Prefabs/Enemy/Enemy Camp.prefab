@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1589259148057012488}
   - component: {fileID: 4375653700032547867}
   - component: {fileID: 9111118795738536196}
+  - component: {fileID: 4027186807606948690}
   m_Layer: 0
   m_Name: Enemy Camp
   m_TagString: Untagged
@@ -96,7 +97,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca45e8e212a4548b93e8a6af72166f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
-  chestList: []
-  campRange: 0
+  enemyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  chestList:
+  - {fileID: 0}
+  campRange: 5
   isCleared: 0
+--- !u!135 &4027186807606948690
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978744955467350263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 50
+  m_Center: {x: 0, y: 0, z: 0}
