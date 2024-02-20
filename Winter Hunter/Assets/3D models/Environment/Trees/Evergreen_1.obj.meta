@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 86d426eb65fe9b144b93a64ad6913494
+guid: 2a8717711b6254c4991a436c2a69c0eb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Branch_Tree_
-    second: {fileID: 2100000, guid: 0a1fcd0f381e9b744838d8162470c676, type: 2}
+      name: Leaves_3
+    second: {fileID: 2100000, guid: dfe8f78d79b93b343ab88b458ee91d07, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tree_Snow
     second: {fileID: 2100000, guid: dd9e263c54478b94b9afc32f6934252b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trunk
+    second: {fileID: 2100000, guid: cc2e41484e4536d4dab5b2c6680ff5bb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
