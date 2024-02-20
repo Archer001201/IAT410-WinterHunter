@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 425885347}
   - component: {fileID: 425885349}
   - component: {fileID: 425885348}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425885346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: -304, y: -0.1, z: -257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2346,7 +2346,7 @@ GameObject:
   - component: {fileID: 1496992601}
   - component: {fileID: 1496992600}
   - component: {fileID: 1496992599}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3266,6 +3266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111118795738536196, guid: 4b05c80678011484ea593b1b0e129e2a,
+        type: 3}
+      propertyPath: raycastDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9111118795738536196, guid: 4b05c80678011484ea593b1b0e129e2a,
         type: 3}

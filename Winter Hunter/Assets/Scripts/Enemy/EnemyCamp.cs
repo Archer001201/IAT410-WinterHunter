@@ -12,9 +12,13 @@ namespace Enemy
         public List<GameObject> enemyList;
         public List<Chest> chestList;
         public bool isCleared;
+        public float raycastDistance;
+
+        private GameObject _player;
 
         private void Awake()
         {
+            _player = GameObject.FindWithTag("Player");
             foreach (var enemy in enemyList)
             {
                 var baseEnemy = enemy.GetComponent<BaseEnemy>();
@@ -35,25 +39,46 @@ namespace Enemy
             {
                 t.canOpen = isCleared;
             }
+            
+            CheckPlayerInRaycastRange();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!other.gameObject.CompareTag("Player")) return;
+        // private void OnTriggerEnter(Collider other)
+        // {
+        //     if (!other.gameObject.CompareTag("Player")) return;
+        //
+        //     foreach (var enemy in enemyList)
+        //     {
+        //         enemy.GetComponent<BaseEnemy>().isChasing = true;
+        //     }
+        // }
+        //
+        // private void OnTriggerExit(Collider other)
+        // {
+        //     if (!other.gameObject.CompareTag("Player")) return;
+        //
+        //     foreach (var enemy in enemyList)
+        //     {
+        //         enemy.GetComponent<BaseEnemy>().isChasing = false;
+        //     }
+        // }
 
-            foreach (var enemy in enemyList)
-            {
-                enemy.GetComponent<BaseEnemy>().isChasing = true;
-            }
+        private void CheckPlayerInRaycastRange()
+        {
+            var dir = _player.transform.position - transform.position;
+
+            NotifyEnemiesToChangeChasingState(
+                Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance) &&
+                hit.collider.CompareTag("Player"));
+            
+            Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
         }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            if (!other.gameObject.CompareTag("Player")) return;
 
+        private void NotifyEnemiesToChangeChasingState(bool isChasing)
+        {
             foreach (var enemy in enemyList)
             {
-                enemy.GetComponent<BaseEnemy>().isChasing = false;
+                enemy.GetComponent<BaseEnemy>().isChasing = isChasing;
             }
         }
     }

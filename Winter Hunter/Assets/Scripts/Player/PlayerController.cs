@@ -148,8 +148,9 @@ namespace Player
         private void RotateTowardsMouse()
         {
             var ray = _camera.ScreenPointToRay(_mousePosition);
+            var layerMask = 1 << LayerMask.NameToLayer("Base");
 
-            if (!Physics.Raycast(ray, out var hit)) return;
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask)) return;
             var target = hit.point;
             var trans = transform.position;
             target.y = trans.y;
