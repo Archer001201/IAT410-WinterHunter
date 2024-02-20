@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1062613243}
   - component: {fileID: 1062613246}
   - component: {fileID: 1062613245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7296700131756586838}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snowman Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 6787860783689003145}
   - component: {fileID: 8873574923150213596}
   - component: {fileID: 1928237152763592848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456304026906186728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rolling Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3820334404654800207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roll Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491273880411766385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Proto_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 1502783117}
   - component: {fileID: 1502783118}
   - component: {fileID: 1521437837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Proto_PlayerMesh
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5491273880646760888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.3, y: 1.15, z: 10.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -379,9 +379,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
-  staminaRecoveryTimer: 1
+  stopAttackTimer: 0.5
+  atkMovingSpeedFactor: 0.6
+  dashTimer: 0.3
+  dashSpeedFactor: 3
+  dashCost: 20
   isRollingSnowball: 0
-  canAttack: 1
+  isAttacking: 0
+  isDashing: 0
 --- !u!114 &1564137759834253144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +420,7 @@ MonoBehaviour:
   startPosition: {fileID: 5491273881132748628}
   aimingLineRenderer: {fileID: 5491273880936710446}
   lineSegmentCount: 20
-  force: 30
+  force: 25
   stamina: -5
 --- !u!114 &1502783118
 MonoBehaviour:
@@ -435,9 +440,9 @@ MonoBehaviour:
   aimingLineRenderer: {fileID: 0}
   lineSegmentCount: 20
   force: 10
-  stamina: -10
+  stamina: -20
   rollingLine: {fileID: 3032048333869984960}
-  scaleFactor: 0.3
+  scaleFactor: 0.2
   staminaIncrease: -0.2
 --- !u!114 &1521437837
 MonoBehaviour:
@@ -466,7 +471,7 @@ GameObject:
   - component: {fileID: 5491273880725227327}
   - component: {fileID: 5491273880725227314}
   - component: {fileID: 5491273880725227313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5491273880936710447}
   - component: {fileID: 5491273880936710446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Throwing Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491273881132748628}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Throw Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +716,7 @@ GameObject:
   - component: {fileID: 5491273881476056728}
   - component: {fileID: 5491273881476056731}
   - component: {fileID: 5491273881476056730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5504267134997968929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Aiming Lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}

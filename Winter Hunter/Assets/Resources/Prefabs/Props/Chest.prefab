@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8276334067262884546}
   - component: {fileID: 9045690398397706121}
   - component: {fileID: 3678658766432518536}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 8125088666404495585}
   - component: {fileID: 3914480918040594833}
   - component: {fileID: 6309631969194701411}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,6 +452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChestUnlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676730903761977973, guid: fe7f5f93cabea4258b6d065f777b08ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8676730904067807581, guid: fe7f5f93cabea4258b6d065f777b08ad,
         type: 3}

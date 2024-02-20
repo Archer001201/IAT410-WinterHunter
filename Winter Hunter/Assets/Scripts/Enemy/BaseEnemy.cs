@@ -65,7 +65,7 @@ namespace Enemy
             var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
             var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
             
-            if (distanceBetweenTarget > attackingRange) StopAttacking();
+            if (distanceBetweenTarget > attackingRange || !isChasing) StopAttacking();
             else StartAttacking();
            
             if (isChasing)

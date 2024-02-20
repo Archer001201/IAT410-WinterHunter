@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 584477846658666776}
   - component: {fileID: -4593200135951004486}
   - component: {fileID: 2975020685506949172}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Proto_MeatShield
   m_TagString: Snowman
   m_Icon: {fileID: 0}
@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dca3634ae354649870fa9ef0db76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summoningCost: 50
   snowmanSO: {fileID: 11400000, guid: e3742dc0d08784dd9b2eb1cee1c2739b, type: 2}
   followRange: 10
+  summoningCost: 50
   health: 100
   summoningTimer: 100
   hudCanvas: {fileID: 3417969559084012272}
@@ -190,10 +190,70 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6661124618135536281, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6425664202701758014, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6060934540939853529, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5472540474689050522, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -259972160606440404, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae403f5b3f9704287a3602dd5807b0e8,
         type: 3}
       propertyPath: m_Name
       value: Snowman
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173846950537059905, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461056740803520370, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430749202921235643, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056641991662537310, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452842067702816403, guid: ae403f5b3f9704287a3602dd5807b0e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae403f5b3f9704287a3602dd5807b0e8, type: 3}
@@ -214,6 +274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Taunt Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 3990281613732934954, guid: 42627e3efcf49c648beefee0ccde8144,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7880910435842778430, guid: 42627e3efcf49c648beefee0ccde8144,
         type: 3}
@@ -268,6 +333,11 @@ PrefabInstance:
     - target: {fileID: 7880910435842778430, guid: 42627e3efcf49c648beefee0ccde8144,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987593618850967879, guid: 42627e3efcf49c648beefee0ccde8144,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -390,10 +460,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2592946986815786135, guid: 4ea7b831641ad4892860b6248e01c2c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822173892290231204, guid: 4ea7b831641ad4892860b6248e01c2c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6297260224819312741, guid: 4ea7b831641ad4892860b6248e01c2c1,
         type: 3}
       propertyPath: m_Name
       value: Snowman HUD Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297260224819312741, guid: 4ea7b831641ad4892860b6248e01c2c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7435977033822388207, guid: 4ea7b831641ad4892860b6248e01c2c1,
         type: 3}
@@ -411,6 +496,11 @@ PrefabInstance:
       propertyPath: snowmanAttr
       value: 
       objectReference: {fileID: -4593200135951004486}
+    - target: {fileID: 7701710827723380021, guid: 4ea7b831641ad4892860b6248e01c2c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ea7b831641ad4892860b6248e01c2c1, type: 3}
 --- !u!1 &3417969559084012272 stripped

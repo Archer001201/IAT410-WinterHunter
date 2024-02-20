@@ -67,8 +67,10 @@ namespace Enemy
         {
             var dir = _player.transform.position - transform.position;
 
+            var layerMask =  1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Player");
+
             NotifyEnemiesToChangeChasingState(
-                Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance) &&
+                Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
                 hit.collider.CompareTag("Player"));
             
             Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
