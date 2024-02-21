@@ -1,17 +1,18 @@
 # Winter Hunter Development Documentation
 ***
-# Contents
-## [Unity Editor](#unity-editor)
-+ ### [Camera](#camera)
-+ ### [Level](#level)
-  + #### [Terrain](#terrain)
-  + #### [Wall (Layer)](#wall-layer)
-  + #### [NavMesh](#navmesh)
-  + #### [Enemy Camp](#enemy-camp)
-+ ### [Player](#player)
-+ ### [Snowman](#snowman)
-+ ### [Enemy](#enemy)
-## [Csharp Scripts](#csharp-scripts)
+## Contents
+[Unity Editor](#unity-editor)
++ [Camera](#camera)
++ [Level](#level)
+  + [Terrain](#terrain)
+  + [Wall (Layer)](#wall-layer)
+  + [NavMesh](#navmesh)
+  + [Enemy Camp](#enemy-camp)
++ [Player](#player)
++ [Snowman](#snowman)
++ [Enemy](#enemy)
+
+[Csharp Scripts](#csharp-scripts)
 ***
 
 ## Unity Editor
@@ -30,7 +31,7 @@
 > > Wall is a **Layer** type that can block rays emitted from enemy camps. 
 > > When a game object marked as a Wall layer is positioned between the enemy camp and the player, the enemy camp will not be able to detect the player, causing all enemies within the camp to enter a state of disengagement from combat.
 > 
-> > #### Nav Mesh
+> > #### NavMesh
 > > NavMesh is an AI component in Unity used for NPC pathfinding. 
 > > After each level adjustment, the NavMesh navigation area needs to be manually rebaked:
 > > 1. Select <u>**Window -> AI -> Navigation**</u> from the Tool Bar at the top of the Unity Editor to open the NavMesh panel. 
@@ -59,7 +60,7 @@
 
 > ### Snowman
 
-> ### Enemy 
+> ### Enemy
 ***
 
 ## Csharp Scripts
