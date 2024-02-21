@@ -5,12 +5,13 @@
 + ### [Camera](#camera)
 + ### [Level](#level)
   + #### [Terrain](#terrain)
-  + #### [Wall (Layer)](#wall)
+  + #### [Wall (Layer)](#wall-layer)
   + #### [NavMesh](#navmesh)
   + #### [Enemy Camp](#enemy-camp)
 + ### [Player](#player)
 + ### [Snowman](#snowman)
 + ### [Enemy](#enemy)
+## [Csharp Scripts](#csharp-scripts)
 ***
 
 ## Unity Editor
@@ -25,11 +26,11 @@
 > > In the new scene, create a **Terrain** game object as the basic ground for the level. 
 > > In the Inspector window, set the **Terrain's Layer** to ***Base*** to allow interaction between the mouse input and the terrain object.
 >
-> > #### Wall
+> > #### Wall (Layer)
 > > Wall is a **Layer** type that can block rays emitted from enemy camps. 
 > > When a game object marked as a Wall layer is positioned between the enemy camp and the player, the enemy camp will not be able to detect the player, causing all enemies within the camp to enter a state of disengagement from combat.
 > 
-> > #### NavMesh
+> > #### Nav Mesh
 > > NavMesh is an AI component in Unity used for NPC pathfinding. 
 > > After each level adjustment, the NavMesh navigation area needs to be manually rebaked:
 > > 1. Select <u>**Window -> AI -> Navigation**</u> from the Tool Bar at the top of the Unity Editor to open the NavMesh panel. 
@@ -61,4 +62,4 @@
 > ### Enemy 
 ***
 
-## C# Scripts
+## Csharp Scripts
