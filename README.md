@@ -5,7 +5,7 @@
 + ### [Camera](#camera)
 + ### [Level](#level)
   + #### [Terrain](#terrain)
-  + #### [Wall (Layer)](#wall(layer))
+  + #### [Wall (Layer)](#wall)
   + #### [NavMesh](#navmesh)
   + #### [Enemy Camp](#enemy-camp)
 + ### [Player](#player)
@@ -25,7 +25,7 @@
 > > In the new scene, create a **Terrain** game object as the basic ground for the level. 
 > > In the Inspector window, set the **Terrain's Layer** to ***Base*** to allow interaction between the mouse input and the terrain object.
 >
-> > #### Wall (Layer)
+> > #### Wall
 > > Wall is a **Layer** type that can block rays emitted from enemy camps. 
 > > When a game object marked as a Wall layer is positioned between the enemy camp and the player, the enemy camp will not be able to detect the player, causing all enemies within the camp to enter a state of disengagement from combat.
 > 
