@@ -46,7 +46,7 @@ namespace Snowball
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Enemy")) Destroy(gameObject);
+            if (!other.gameObject.CompareTag("Ground") && !other.gameObject.CompareTag("Projectile")) Destroy(gameObject);
         }
 
         /*
