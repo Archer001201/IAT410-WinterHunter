@@ -34,9 +34,9 @@ namespace EventSystem
         /*
          * Notice player a snowman chest has been opened
          */
-        public static event Action<List<Enums.SnowmanType>> OnOpenSnowmanChest;
+        public static event Action<List<SnowmanTypeAndLevel>> OnOpenSnowmanChest;
 
-        public static void OpenSnowmanChest(List<Enums.SnowmanType> snowmanList)
+        public static void OpenSnowmanChest(List<SnowmanTypeAndLevel> snowmanList)
         {
             OnOpenSnowmanChest?.Invoke(snowmanList);
         }

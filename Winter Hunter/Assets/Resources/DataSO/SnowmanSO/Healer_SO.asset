@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: Healer_SO
   m_EditorClassIdentifier: 
   type: 2
-  snowmanPrefab: {fileID: 584477846658666777, guid: ca458a0817aa6854f98dc41e92160ab9,
-    type: 3}
-  snowmanIcon: {fileID: 21300000, guid: c7b154a4f41f54c4895609a5165c90e1, type: 3}
-  maxHealth: 100
-  summoningTime: 20
+  prefab: {fileID: 584477846658666777, guid: ca458a0817aa6854f98dc41e92160ab9, type: 3}
+  icon: {fileID: 21300000, guid: c7b154a4f41f54c4895609a5165c90e1, type: 3}
+  health: 100
+  summonDuration: 40
   cooldown: 40
   attack: 5
-  attackRate: 1
-  summoningCost: 40
+  attackSpeed: 1
+  manaCost: 20
   description: 

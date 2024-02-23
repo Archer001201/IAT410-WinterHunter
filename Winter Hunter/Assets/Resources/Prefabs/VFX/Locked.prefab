@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8676730903761977972}
   - component: {fileID: 6520078433945021011}
   m_Layer: 2
-  m_Name: ChestUnlock
+  m_Name: Locked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fd77ec5c73d470896343435bef91bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healerAttr: {fileID: 0}
 --- !u!1 &8676730904067807568
 GameObject:
   m_ObjectHideFlags: 0

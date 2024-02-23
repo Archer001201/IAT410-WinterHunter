@@ -11,14 +11,14 @@ namespace DataSO
     public class SnowmanSO : ScriptableObject
     {
         public Enums.SnowmanType type;
-        public GameObject snowmanPrefab;
-        public Sprite snowmanIcon;
-        public float maxHealth;
-        public float summoningTime;
+        public GameObject prefab;
+        public Sprite icon;
+        public float health;
+        public float summonDuration;
         public float cooldown;
         public float attack;
-        public float attackRate;
-        public float summoningCost;
+        public float attackSpeed;
+        public float manaCost;
         [TextArea]
         public string description;
     }

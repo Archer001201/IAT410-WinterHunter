@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  maxEnergy: 100
+  maxMana: 100
   attack: 15
   speed: 5
   staminaRecovery: 20
   currentHealth: 0
   currentStamina: 0
-  currentEnergy: 0
-  snowmanList: 02000000
+  currentMana: 0
+  snowmanList:
+  - type: 2
+    level: 1

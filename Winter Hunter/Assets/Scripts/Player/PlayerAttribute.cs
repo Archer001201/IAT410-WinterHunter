@@ -17,7 +17,7 @@ namespace Player
 
         public float health;
         public float stamina;
-        public float energy;
+        public float mana;
 
         public List<SnowmanInfo> snowmanList;
 
@@ -26,7 +26,7 @@ namespace Player
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             health = _playerSO.maxHealth;
             stamina = _playerSO.maxStamina;
-            energy = 0;
+            mana = 0;
             
             LoadSnowmanList();
         }
@@ -45,7 +45,7 @@ namespace Player
         {
             stamina = Mathf.Clamp(stamina, 0, _playerSO.maxStamina);
             health = Mathf.Clamp(health, 0, _playerSO.maxHealth);
-            energy = Mathf.Clamp(energy, 0, _playerSO.maxEnergy);
+            mana = Mathf.Clamp(mana, 0, _playerSO.maxMana);
             
             if (health <= 0) EventHandler.PlayerDie();
         }
@@ -73,9 +73,9 @@ namespace Player
         {
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
             {
-                var snowmanType = _playerSO.snowmanList[i];
+                var snowmanTypeAndLevel = _playerSO.snowmanList[i];
                 // SnowmanSO snowmanSO = null;
-                var snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanType + "_SO");
+                var snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanTypeAndLevel.type + "_SO");
                 // switch (snowmanType)
                 // {
                 //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/");
@@ -98,23 +98,41 @@ namespace Player
                 // }
                 
                 if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfo());
-                snowmanList[i].type = snowmanType;
+                snowmanList[i].type = snowmanTypeAndLevel.type;
+                snowmanList[i].level = snowmanTypeAndLevel.level;
                 if (snowmanSO == null) continue;
                 snowmanList[i].cooldown = snowmanSO.cooldown;
                 snowmanList[i].cooldownTimer = 0;
                 snowmanList[i].canBeSummoned = true;
-                snowmanList[i].summoningCost = snowmanSO.summoningCost;
+                snowmanList[i].summoningCost = snowmanSO.manaCost;
             }
         }
 
         /*
          * when player opened a snowman chest, add the snowman into snowman list in player scriptable object, and notice skill panel to update icons
          */
-        private void AddSnowmanToPlayer(List<Enums.SnowmanType> snowmanTypes)
+        private void AddSnowmanToPlayer(List<SnowmanTypeAndLevel> snowmanTypes)
         {
             foreach (var item in snowmanTypes)
             {
-                if (!_playerSO.snowmanList.Contains(item))
+                // if (!_playerSO.snowmanList.Contains(item))
+                // {
+                //     _playerSO.snowmanList.Add(item);
+                // }
+                // else
+                // {
+                //     var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
+                //     if (foundItem != null)
+                //     {
+                //         foundItem.level = Enums.SnowmanLevel.Advanced;
+                //     }
+                // }
+                var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
+                if (foundItem != null)
+                {
+                    foundItem.level = Enums.SnowmanLevel.Advanced;
+                }
+                else
                 {
                     _playerSO.snowmanList.Add(item);
                 }

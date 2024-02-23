@@ -10,7 +10,7 @@ namespace Props
      */
     public class SnowmanChest : Chest
     {
-        public List<Enums.SnowmanType> snowmanList;
+        public List<SnowmanTypeAndLevel> snowmanList;
         
         /*
          * Open chest and notice player that the chest is opened 

@@ -14,7 +14,7 @@ namespace DataSO
         [Header("Static Attributes")]
         public float maxHealth;
         public float maxStamina;
-        public float maxEnergy;
+        public float maxMana;
         public float attack;
         public float speed;
         public float staminaRecovery;
@@ -22,7 +22,7 @@ namespace DataSO
         [Header("Dynamic Attributes")] 
         public float currentHealth;
         public float currentStamina;
-        public float currentEnergy;
-        public List<Enums.SnowmanType> snowmanList;
+        public float currentMana;
+        public List<SnowmanTypeAndLevel> snowmanList;
     }
 }

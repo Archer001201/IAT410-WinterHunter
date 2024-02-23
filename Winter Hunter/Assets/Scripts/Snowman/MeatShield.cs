@@ -19,7 +19,7 @@ namespace Snowman
         protected override void Update()
         {
             base.Update();
-            if (health > 0 && summoningTimer < snowmanSO.summoningTime) return;
+            if (health > 0 && summoningTimer < snowmanSO.manaCost) return;
             EventHandler.EnemyChangeTarget(PlayerGO);
         }
 

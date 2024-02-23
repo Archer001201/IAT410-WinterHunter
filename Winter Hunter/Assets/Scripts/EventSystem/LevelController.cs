@@ -65,7 +65,7 @@ namespace EventSystem
         {
             _playerAttr.snowmanList.Clear();
             _playerAttr.maxHealth = _playerDefaultAttr.maxHealth;
-            _playerAttr.maxEnergy = _playerDefaultAttr.maxEnergy;
+            _playerAttr.maxMana = _playerDefaultAttr.maxMana;
             _playerAttr.maxStamina = _playerDefaultAttr.maxStamina;
             _playerAttr.attack = _playerDefaultAttr.attack;
             _playerAttr.staminaRecovery = _playerDefaultAttr.staminaRecovery;

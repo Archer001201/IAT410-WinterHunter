@@ -32,9 +32,9 @@ namespace Snowman
         protected virtual void Awake()
         {
             PlayerGO = GameObject.FindWithTag("Player");
-            summoningCost = snowmanSO.summoningCost;
+            summoningCost = snowmanSO.manaCost;
 
-            health = snowmanSO.maxHealth;
+            health = snowmanSO.health;
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
@@ -55,10 +55,10 @@ namespace Snowman
 
         protected virtual void Update()
         {
-            health = Mathf.Clamp(health, 0, snowmanSO.maxHealth);
+            health = Mathf.Clamp(health, 0, snowmanSO.health);
             summoningTimer = Time.time - _startTime;
 
-            if (health <= 0 || summoningTimer >= snowmanSO.summoningTime)
+            if (health <= 0 || summoningTimer >= snowmanSO.manaCost)
             {
                 Destroy(gameObject);
             }

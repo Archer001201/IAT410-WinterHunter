@@ -14,4 +14,11 @@ namespace Snowman
         public float summoningCost;
         public bool canBeSummoned;
     }
+
+    [Serializable]
+    public class SnowmanTypeAndLevel
+    {
+        public Enums.SnowmanType type;
+        public Enums.SnowmanLevel level;
+    }
 }
