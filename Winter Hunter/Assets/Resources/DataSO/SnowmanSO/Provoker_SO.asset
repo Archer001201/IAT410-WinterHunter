@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9adf14a00aa48404a90cd5da3a8e76cf, type: 3}
-  m_Name: MeatShield_SO
+  m_Name: Provoker_SO
   m_EditorClassIdentifier: 
-  type: 1
-  snowmanPrefab: {fileID: 584477846658666777, guid: 634b32e587de949f89998de92e5375f3,
-    type: 3}
-  snowmanIcon: {fileID: 21300000, guid: 6a3a7a464cb734f40bcb3188fef5a0b9, type: 3}
-  maxHealth: 200
-  summoningTime: 20
-  cooldown: 30
+  type: 3
+  snowmanPrefab: {fileID: 0}
+  snowmanIcon: {fileID: 0}
+  maxHealth: 0
+  summoningTime: 0
+  cooldown: 0
   attack: 0
   attackRate: 0
-  summoningCost: 60
+  summoningCost: 0
   description: 

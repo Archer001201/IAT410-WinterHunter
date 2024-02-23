@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9adf14a00aa48404a90cd5da3a8e76cf, type: 3}
-  m_Name: Normal_SO
+  m_Name: Marksman_SO
   m_EditorClassIdentifier: 
-  type: 0
+  type: 4
   snowmanPrefab: {fileID: 0}
-  maxHealth: 100
-  summoningTime: 20
-  cooldown: 20
-  attack: 1
-  attackRate: 10
-  summoningCost: 10
+  snowmanIcon: {fileID: 0}
+  maxHealth: 0
+  summoningTime: 0
+  cooldown: 0
+  attack: 0
+  attackRate: 0
+  summoningCost: 0
+  description: 

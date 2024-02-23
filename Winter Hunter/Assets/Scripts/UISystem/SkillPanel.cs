@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Player;
+using Snowman;
 using UnityEngine;
 using EventHandler = EventSystem.EventHandler;
 
@@ -64,7 +65,7 @@ namespace UISystem
             var snowmanListCount = _playerAttr.snowmanList.Count;
             for (var i = 0; i < 5; i++)
             {
-                skillIcons[i].GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(i-2, snowmanListCount);
+                skillIcons[i].GetComponent<Skill>().snowmanInfo = UpdateSnowmanBuffers(i-2, snowmanListCount);
                 skillIcons[i].GetComponent<Skill>().UpdateSkillIcon();
             }
         }
@@ -182,12 +183,12 @@ namespace UISystem
                 var rectTransform = icon.GetComponent<RectTransform>();
                 if (Mathf.Abs(rectTransform.anchoredPosition.x - 300) < CenterThreshold)
                 {
-                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(offsetIndex, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfo = UpdateSnowmanBuffers(offsetIndex, snowmanListCount);
                     icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
                 else if (Mathf.Abs(rectTransform.anchoredPosition.x - (-300)) < CenterThreshold)
                 {
-                    icon.GetComponent<Skill>().snowmanInfor = UpdateSnowmanBuffers(-offsetIndex, snowmanListCount);
+                    icon.GetComponent<Skill>().snowmanInfo = UpdateSnowmanBuffers(-offsetIndex, snowmanListCount);
                     icon.GetComponent<Skill>().UpdateSkillIcon();
                 }
             }
@@ -196,7 +197,7 @@ namespace UISystem
         /*
          * Get the snowman information from player attributes
          */
-        private SnowmanInfor UpdateSnowmanBuffers(int i, int snowmanListCount)
+        private SnowmanInfo UpdateSnowmanBuffers(int i, int snowmanListCount)
         {
             if (_playerAttr.snowmanList.Count < 1) return null;
             var sum = _summonSnowmanScript.currentIndex + i;

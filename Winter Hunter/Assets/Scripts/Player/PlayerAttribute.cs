@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSO;
 using Snowman;
 using UnityEngine;
+using Utilities;
 using EventHandler = EventSystem.EventHandler;
 
 namespace Player
@@ -18,7 +19,7 @@ namespace Player
         public float stamina;
         public float energy;
 
-        public List<SnowmanInfor> snowmanList;
+        public List<SnowmanInfo> snowmanList;
 
         private void Awake()
         {
@@ -73,26 +74,30 @@ namespace Player
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
             {
                 var snowmanType = _playerSO.snowmanList[i];
-                SnowmanSO snowmanSO = null;
-                switch (snowmanType)
-                {
-                    case SnowmanType.MeatShield:
-                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/MeatShield_SO");
-                        break;
-                    case SnowmanType.Healer:
-                        snowmanSO = Resources.Load<SnowmanSO>("DataSO/Healer_SO");
-                        break;
-                    case SnowmanType.Normal:
-                        break;
-                    case SnowmanType.MothToTheFlame:
-                        break;
-                    case SnowmanType.Bomb:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                // SnowmanSO snowmanSO = null;
+                var snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanType + "_SO");
+                // switch (snowmanType)
+                // {
+                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/");
+                //     case Enums.SnowmanType.Warrior:
+                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/");
+                //         break;
+                //     case Enums.SnowmanType.Healer:
+                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/Healer_SO");
+                //         break;
+                //     case Enums.SnowmanType.Guardian:
+                //         break;
+                //     case Enums.SnowmanType.Marksman:
+                //         break;
+                //     case Enums.SnowmanType.Provoker:
+                //         break;
+                //     case Enums.SnowmanType.Alchemist:
+                //         break;
+                //     default:
+                //         throw new ArgumentOutOfRangeException();
+                // }
                 
-                if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfor());
+                if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfo());
                 snowmanList[i].type = snowmanType;
                 if (snowmanSO == null) continue;
                 snowmanList[i].cooldown = snowmanSO.cooldown;
@@ -105,7 +110,7 @@ namespace Player
         /*
          * when player opened a snowman chest, add the snowman into snowman list in player scriptable object, and notice skill panel to update icons
          */
-        private void AddSnowmanToPlayer(List<SnowmanType> snowmanTypes)
+        private void AddSnowmanToPlayer(List<Enums.SnowmanType> snowmanTypes)
         {
             foreach (var item in snowmanTypes)
             {

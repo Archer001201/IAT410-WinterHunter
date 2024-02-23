@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Snowman;
+using Utilities;
 using EventHandler = EventSystem.EventHandler;
 
 namespace Props
@@ -9,7 +10,7 @@ namespace Props
      */
     public class SnowmanChest : Chest
     {
-        public List<SnowmanType> snowmanList;
+        public List<Enums.SnowmanType> snowmanList;
         
         /*
          * Open chest and notice player that the chest is opened 

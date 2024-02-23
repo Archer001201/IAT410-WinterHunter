@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Snowman;
 using UnityEngine;
+using Utilities;
 
 namespace EventSystem
 {
@@ -33,9 +34,9 @@ namespace EventSystem
         /*
          * Notice player a snowman chest has been opened
          */
-        public static event Action<List<SnowmanType>> OnOpenSnowmanChest;
+        public static event Action<List<Enums.SnowmanType>> OnOpenSnowmanChest;
 
-        public static void OpenSnowmanChest(List<SnowmanType> snowmanList)
+        public static void OpenSnowmanChest(List<Enums.SnowmanType> snowmanList)
         {
             OnOpenSnowmanChest?.Invoke(snowmanList);
         }

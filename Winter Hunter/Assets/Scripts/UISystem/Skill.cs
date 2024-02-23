@@ -1,5 +1,6 @@
 using DataSO;
 using Player;
+using Snowman;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace UISystem
      */
     public class Skill : MonoBehaviour
     {
-        public SnowmanInfor snowmanInfor;
+        public SnowmanInfo snowmanInfo;
         public Sprite iconSprite;
         public Image cooldownMask;
         
@@ -24,8 +25,8 @@ namespace UISystem
 
         private void Update()
         {
-            if (snowmanInfor == null) return;
-            cooldownMask.fillAmount = snowmanInfor.cooldownTimer / snowmanInfor.cooldown;
+            if (snowmanInfo == null) return;
+            cooldownMask.fillAmount = snowmanInfo.cooldownTimer / snowmanInfo.cooldown;
         }
 
         /*
@@ -33,9 +34,9 @@ namespace UISystem
          */
         public void UpdateSkillIcon()
         {
-            if (snowmanInfor == null) return;
+            if (snowmanInfo == null) return;
             // iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
-            iconSprite = Resources.Load<SnowmanSO>("DataSO/" + snowmanInfor.type + "_SO").snowmanIcon;
+            iconSprite = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanInfo.type + "_SO").snowmanIcon;
             _skillIcon.sprite = iconSprite;
         }
     }

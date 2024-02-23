@@ -1,5 +1,6 @@
 using Snowman;
 using UnityEngine;
+using Utilities;
 
 namespace DataSO
 {
@@ -9,7 +10,7 @@ namespace DataSO
     [CreateAssetMenu(menuName = "ScriptableObject/Create Snowman_SO", fileName = "Snowman_SO")]
     public class SnowmanSO : ScriptableObject
     {
-        public SnowmanType type;
+        public Enums.SnowmanType type;
         public GameObject snowmanPrefab;
         public Sprite snowmanIcon;
         public float maxHealth;

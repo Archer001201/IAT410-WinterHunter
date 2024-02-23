@@ -1,15 +1,14 @@
 using System;
-using Snowman;
+using UnityEngine;
+using Utilities;
 
-namespace Player
+namespace Snowman
 {
-    /*
-     * Snowman summoning information
-     */
     [Serializable]
-    public class SnowmanInfor
+    public class SnowmanInfo
     {
-        public SnowmanType type;
+        public Enums.SnowmanType type;
+        public Enums.SnowmanLevel level;
         public float cooldown;
         public float cooldownTimer;
         public float summoningCost;

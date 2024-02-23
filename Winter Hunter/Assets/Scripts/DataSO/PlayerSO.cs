@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Snowman;
 using UnityEngine;
+using Utilities;
 
 namespace DataSO
 {
@@ -22,6 +23,6 @@ namespace DataSO
         public float currentHealth;
         public float currentStamina;
         public float currentEnergy;
-        public List<SnowmanType> snowmanList;
+        public List<Enums.SnowmanType> snowmanList;
     }
 }
