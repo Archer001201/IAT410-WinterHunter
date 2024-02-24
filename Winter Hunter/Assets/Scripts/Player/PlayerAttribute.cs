@@ -18,6 +18,7 @@ namespace Player
         public float health;
         public float stamina;
         public float mana;
+        public float attack;
 
         public List<SnowmanInfo> snowmanList;
 
@@ -27,6 +28,7 @@ namespace Player
             health = _playerSO.maxHealth;
             stamina = _playerSO.maxStamina;
             mana = 0;
+            attack = _playerSO.attack;
             
             LoadSnowmanList();
         }

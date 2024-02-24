@@ -90,9 +90,9 @@ MonoBehaviour:
   hudCanvas: {fileID: 7888768729661789891}
   detectedTargets: []
   visualEffect: {fileID: 4074062188426286203}
-  playerTransform: {fileID: 0}
-  activationDistance: 5
-  isNpcAlive: 1
+  attackBonusDivisor: 10
+  vfxLengthDivisor: 6
+  healRange: 12
 --- !u!195 &2501146952846705647
 NavMeshAgent:
   m_ObjectHideFlags: 0

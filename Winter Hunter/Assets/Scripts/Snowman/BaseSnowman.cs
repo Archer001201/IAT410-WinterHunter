@@ -58,7 +58,7 @@ namespace Snowman
 
             if (health <= 0 || summonTimer >= snowmanSO.summonDuration)
             {
-                Destroy(gameObject);
+                DestroyMe();
             }
             
             Move();

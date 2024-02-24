@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using BTFrame;
+using DataSO;
 using Player;
 using UnityEngine;
 using UnityEngine.VFX;
+using Utilities;
 
 namespace Snowman
 {
@@ -13,22 +15,32 @@ namespace Snowman
     public class Healer : BaseSnowman
     {
         public VisualEffect visualEffect;
-        public Transform playerTransform;
+        public float attackBonusDivisor;
+        public float vfxLengthDivisor;
+        public float healRange;
+        
+        private Transform _playerTransform;
         private Coroutine _healCoroutine;
         private PlayerAttribute _playerAttr;
-        
+        private PlayerSO _playerSO;
+        private float _attackBonus;
+        private SphereCollider _healRangeCollider;
 
         protected override void Awake()
         {
             base.Awake();
-            playerTransform = GameObject.FindWithTag("Player").transform;
-            _playerAttr = playerTransform.gameObject.GetComponent<PlayerAttribute>();
+            _attackBonus = 0;
+            _playerTransform = GameObject.FindWithTag("Player").transform;
+            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _playerAttr = _playerTransform.gameObject.GetComponent<PlayerAttribute>();
+            _healRangeCollider = GetComponent<SphereCollider>();
+            _healRangeCollider.radius = healRange;
         }
 
         protected override void Update()
         {
             base.Update();
-            visualEffect.transform.LookAt(playerTransform);
+            visualEffect.transform.LookAt(_playerTransform);
         }
 
         protected override void OnTriggerEnter(Collider other)
@@ -42,8 +54,13 @@ namespace Snowman
         private void OnTriggerStay(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            var distance = Vector3.Distance(transform.position, playerTransform.position);
-            visualEffect.SetFloat("Length", distance/6f);
+            var distance = Vector3.Distance(transform.position, _playerTransform.position);
+            visualEffect.SetFloat("Length", distance/vfxLengthDivisor);
+
+            if (level == SnowmanLevel.Advanced)
+            {
+                _playerAttr.attack = _playerSO.attack + _attackBonus;
+            }
         }
 
         protected override void OnTriggerExit(Collider other)
@@ -54,15 +71,25 @@ namespace Snowman
             if (_healCoroutine == null) return;
             StopCoroutine(_healCoroutine);
             _healCoroutine = null;
+
+            _playerAttr.attack = _playerSO.attack;
+            _attackBonus = 0;
         }
         
         private IEnumerator Heal()
         {
             while (_playerAttr != null)
             {
-                _playerAttr.health += snowmanSO.attack;
+                if (_playerAttr.health < _playerSO.maxHealth) _playerAttr.health += snowmanSO.attack;
+                else _attackBonus += snowmanSO.attack/attackBonusDivisor;
                 yield return new WaitForSeconds(snowmanSO.attackSpeed);
             }
+        }
+
+        protected override void DestroyMe()
+        {
+            _playerAttr.attack = _playerSO.attack;
+            base.DestroyMe();
         }
     }
 }
