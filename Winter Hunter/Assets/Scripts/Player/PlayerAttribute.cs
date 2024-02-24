@@ -22,6 +22,8 @@ namespace Player
 
         public List<SnowmanInfo> snowmanList;
 
+        public bool isInvincible;
+
         private void Awake()
         {
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
@@ -76,28 +78,7 @@ namespace Player
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
             {
                 var snowmanTypeAndLevel = _playerSO.snowmanList[i];
-                // SnowmanSO snowmanSO = null;
                 var snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanTypeAndLevel.type + "_SO");
-                // switch (snowmanType)
-                // {
-                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/");
-                //     case Enums.SnowmanType.Warrior:
-                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/");
-                //         break;
-                //     case Enums.SnowmanType.Healer:
-                //         snowmanSO = Resources.Load<SnowmanSO>("DataSO/Healer_SO");
-                //         break;
-                //     case Enums.SnowmanType.Guardian:
-                //         break;
-                //     case Enums.SnowmanType.Marksman:
-                //         break;
-                //     case Enums.SnowmanType.Provoker:
-                //         break;
-                //     case Enums.SnowmanType.Alchemist:
-                //         break;
-                //     default:
-                //         throw new ArgumentOutOfRangeException();
-                // }
                 
                 if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfo());
                 snowmanList[i].type = snowmanTypeAndLevel.type;
@@ -117,18 +98,6 @@ namespace Player
         {
             foreach (var item in snowmanTypes)
             {
-                // if (!_playerSO.snowmanList.Contains(item))
-                // {
-                //     _playerSO.snowmanList.Add(item);
-                // }
-                // else
-                // {
-                //     var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
-                //     if (foundItem != null)
-                //     {
-                //         foundItem.level = Enums.SnowmanLevel.Advanced;
-                //     }
-                // }
                 var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
                 if (foundItem != null)
                 {
@@ -141,6 +110,22 @@ namespace Player
             }
             LoadSnowmanList();
             EventHandler.UpdateSkillPanel();
+        }
+
+        public void TakeDamage(float damage)
+        {
+            if (isInvincible) return;
+            health -= damage;
+        }
+
+        public void ReceiveHealing(float healing)
+        {
+            health += healing;
+        }
+
+        public void AddAttackBonus(float attackBonus)
+        {
+            attack = _playerSO.attack + attackBonus;
         }
     }
 }

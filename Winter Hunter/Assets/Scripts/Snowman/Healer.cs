@@ -15,7 +15,7 @@ namespace Snowman
     public class Healer : BaseSnowman
     {
         public VisualEffect visualEffect;
-        public float attackBonusDivisor;
+        public float attackBonusFactor;
         public float vfxLengthDivisor;
         public float healRange;
         
@@ -59,7 +59,7 @@ namespace Snowman
 
             if (level == SnowmanLevel.Advanced)
             {
-                _playerAttr.attack = _playerSO.attack + _attackBonus;
+                _playerAttr.AddAttackBonus(_attackBonus);
             }
         }
 
@@ -72,7 +72,7 @@ namespace Snowman
             StopCoroutine(_healCoroutine);
             _healCoroutine = null;
 
-            _playerAttr.attack = _playerSO.attack;
+            _playerAttr.AddAttackBonus(0);
             _attackBonus = 0;
         }
         
@@ -80,15 +80,15 @@ namespace Snowman
         {
             while (_playerAttr != null)
             {
-                if (_playerAttr.health < _playerSO.maxHealth) _playerAttr.health += snowmanSO.attack;
-                else _attackBonus += snowmanSO.attack/attackBonusDivisor;
-                yield return new WaitForSeconds(snowmanSO.attackSpeed);
+                if (_playerAttr.health < _playerSO.maxHealth) _playerAttr.ReceiveHealing(MySnowmanSO.attack);
+                else _attackBonus += MySnowmanSO.attack/attackBonusFactor;
+                yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
             }
         }
 
         protected override void DestroyMe()
         {
-            _playerAttr.attack = _playerSO.attack;
+            _playerAttr.AddAttackBonus(0);
             base.DestroyMe();
         }
     }

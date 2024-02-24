@@ -1,3 +1,4 @@
+using Enemy;
 using Player;
 using UnityEngine;
 
@@ -46,7 +47,9 @@ namespace Snowball
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground") && !other.gameObject.CompareTag("Projectile")) Destroy(gameObject);
+            var otherGO = other.gameObject;
+            if (otherGO.CompareTag("Enemy")) otherGO.GetComponent<BaseEnemy>().TakeDamageFromSnowball(gameObject);
+            if (!otherGO.CompareTag("Ground") && !otherGO.CompareTag("Projectile")) Destroy(gameObject);
         }
 
         /*

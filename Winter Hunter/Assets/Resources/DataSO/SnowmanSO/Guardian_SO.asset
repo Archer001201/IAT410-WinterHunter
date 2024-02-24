@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Guardian_SO
   m_EditorClassIdentifier: 
   type: 1
-  snowmanPrefab: {fileID: 0}
-  snowmanIcon: {fileID: 0}
-  maxHealth: 0
-  summoningTime: 0
-  cooldown: 0
-  attack: 0
-  attackRate: 0
-  summoningCost: 0
+  prefab: {fileID: 584477846658666777, guid: 78a9b4c6e4a014a47a95a73b5197439c, type: 3}
+  icon: {fileID: 21300000, guid: 6a3a7a464cb734f40bcb3188fef5a0b9, type: 3}
+  health: 100
+  summonDuration: 40
+  cooldown: 60
+  attack: 1
+  attackSpeed: 2
+  manaCost: 20
+  movementMode: 2
   description: 

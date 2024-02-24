@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 
 namespace Snowball
@@ -9,7 +10,9 @@ namespace Snowball
     {
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Player")) return;
+            var otherGO = other.gameObject;
+            if (otherGO.CompareTag("Player")) return;
+            if (otherGO.CompareTag("Enemy")) otherGO.GetComponent<BaseEnemy>().TakeDamageFromSnowball(gameObject);
             Destroy(gameObject);
         }
     }

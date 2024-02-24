@@ -20,7 +20,7 @@ namespace UISystem
         
         private Camera _mainCamera;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _mainCamera = Camera.main;
         }

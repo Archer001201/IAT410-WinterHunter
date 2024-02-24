@@ -13,8 +13,8 @@ namespace Snowman
      */
     public class BaseSnowman : MonoBehaviour
     {
-        [Header("Static Attributes")]
-        public SnowmanSO snowmanSO;
+        [Header("Static Attributes")] 
+        public SnowmanType type;
         public float manaCost;
         public SnowmanLevel level;
         [Header("Dynamic Attributes")] 
@@ -24,6 +24,7 @@ namespace Snowman
         public GameObject hudCanvas;
         public List<Transform> detectedTargets;
 
+        protected SnowmanSO MySnowmanSO;
         private Transform _targetTrans;
         private NavMeshAgent _agent;
         private float _startTime;
@@ -31,9 +32,10 @@ namespace Snowman
 
         protected virtual void Awake()
         {
-            manaCost = snowmanSO.manaCost;
+            MySnowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + type + "_SO");
+            manaCost = MySnowmanSO.manaCost;
 
-            health = snowmanSO.health;
+            health = MySnowmanSO.health;
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
@@ -53,10 +55,10 @@ namespace Snowman
 
         protected virtual void Update()
         {
-            health = Mathf.Clamp(health, 0, snowmanSO.health);
+            health = Mathf.Clamp(health, 0, MySnowmanSO.health);
             summonTimer = Time.time - _startTime;
 
-            if (health <= 0 || summonTimer >= snowmanSO.summonDuration)
+            if (health <= 0 || summonTimer >= MySnowmanSO.summonDuration)
             {
                 DestroyMe();
             }
@@ -66,12 +68,12 @@ namespace Snowman
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (snowmanSO.movementMode != MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Add(other.transform);
+            if (MySnowmanSO.movementMode != MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Add(other.transform);
         }
 
         protected virtual void OnTriggerExit(Collider other)
         {
-            if (snowmanSO.movementMode == MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Remove(other.transform);
+            if (MySnowmanSO.movementMode == MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Remove(other.transform);
         }
         
         private Transform FindClosestEnemy()
@@ -99,7 +101,7 @@ namespace Snowman
         
         private void Move()
         {
-            switch (snowmanSO.movementMode)
+            switch (MySnowmanSO.movementMode)
             {
                 case MovementMode.Stationary:
                     return;
@@ -136,6 +138,11 @@ namespace Snowman
         public void SetLevel(SnowmanLevel snowmanLevel)
         {
             level = snowmanLevel;
+        }
+
+        public virtual void TakeDamage(float damage)
+        {
+            health -= damage;
         }
     }
 }

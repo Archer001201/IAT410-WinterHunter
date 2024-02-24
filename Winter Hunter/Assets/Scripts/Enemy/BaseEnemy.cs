@@ -80,15 +80,15 @@ namespace Enemy
             }
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            var otherGO = other.gameObject;
-           
-            if (otherGO.CompareTag("Projectile"))
-            {
-                GetHurtFromSnowball(otherGO);
-            }
-        }
+        // private void OnCollisionEnter(Collision other)
+        // {
+        //     var otherGO = other.gameObject;
+        //    
+        //     if (otherGO.CompareTag("Projectile"))
+        //     {
+        //         TakeDamageFromSnowball(otherGO);
+        //     }
+        // }
         
         /*
          * Assign a target game object to enemy
@@ -169,7 +169,7 @@ namespace Enemy
         /*
          * Calculate shield and health after snowball hit
          */
-        private void GetHurtFromSnowball(GameObject otherGO)
+        public void TakeDamageFromSnowball(GameObject otherGO)
         {
             var snowballScript = otherGO.GetComponent<BaseSnowball>();
             var damage = snowballScript.damage;

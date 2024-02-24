@@ -7,7 +7,7 @@ namespace Snowman
     /*
      * A type of snowman can taunt enemy
      */
-    public class MeatShield : BaseSnowman
+    public class Provoker : BaseSnowman
     {
         protected override void Awake()
         {
@@ -19,7 +19,7 @@ namespace Snowman
         protected override void Update()
         {
             base.Update();
-            if (health > 0 && summonTimer < snowmanSO.summonDuration) return;
+            if (health > 0 && summonTimer < MySnowmanSO.summonDuration) return;
             // EventHandler.EnemyChangeTarget(PlayerGO);
         }
 

@@ -1,5 +1,6 @@
 using DataSO;
 using Snowman;
+using UnityEngine;
 
 namespace UISystem
 {
@@ -10,6 +11,12 @@ namespace UISystem
          */
         public BaseSnowman snowmanAttr;
         public SnowmanSO snowmanSO;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanAttr.type + "_SO");
+        }
 
         protected override void Update()
         {
