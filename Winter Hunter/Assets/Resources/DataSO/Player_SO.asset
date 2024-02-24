@@ -23,4 +23,4 @@ MonoBehaviour:
   currentMana: 0
   snowmanList:
   - type: 2
-    level: 1
+    level: 0
