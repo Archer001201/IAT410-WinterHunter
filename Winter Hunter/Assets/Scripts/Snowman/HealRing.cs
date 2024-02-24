@@ -1,6 +1,7 @@
 using System.Collections;
 using Player;
 using UnityEngine;
+using Utilities;
 
 namespace Snowman
 {
@@ -22,6 +23,8 @@ namespace Snowman
         {
             if (!other.gameObject.CompareTag("Player")) return;
             _healCoroutine ??= StartCoroutine(Heal());
+            
+            if (healerAttr.level == SnowmanLevel.Advanced) Debug.Log("advanced");
         }
 
         private void OnTriggerExit(Collider other)
@@ -29,6 +32,8 @@ namespace Snowman
             if (_healCoroutine == null) return;
             StopCoroutine(_healCoroutine);
             _healCoroutine = null;
+            
+            if (healerAttr.level == SnowmanLevel.Advanced) Debug.Log("clear effect");
         }
 
         /*

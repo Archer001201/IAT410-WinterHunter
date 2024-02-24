@@ -9,7 +9,7 @@ namespace Enemy
      */
     public class EnemyCamp : MonoBehaviour
     {
-        public List<GameObject> enemyList;
+        public List<BaseEnemy> enemyList;
         public List<Chest> chestList;
         public bool isCleared;
         public float raycastDistance;
@@ -19,11 +19,6 @@ namespace Enemy
         private void Awake()
         {
             _player = GameObject.FindWithTag("Player");
-            foreach (var enemy in enemyList)
-            {
-                var baseEnemy = enemy.GetComponent<BaseEnemy>();
-                baseEnemy.campTrans = transform;
-            }
         }
 
         private void Update()
@@ -43,26 +38,6 @@ namespace Enemy
             CheckPlayerInRaycastRange();
         }
 
-        // private void OnTriggerEnter(Collider other)
-        // {
-        //     if (!other.gameObject.CompareTag("Player")) return;
-        //
-        //     foreach (var enemy in enemyList)
-        //     {
-        //         enemy.GetComponent<BaseEnemy>().isChasing = true;
-        //     }
-        // }
-        //
-        // private void OnTriggerExit(Collider other)
-        // {
-        //     if (!other.gameObject.CompareTag("Player")) return;
-        //
-        //     foreach (var enemy in enemyList)
-        //     {
-        //         enemy.GetComponent<BaseEnemy>().isChasing = false;
-        //     }
-        // }
-
         private void CheckPlayerInRaycastRange()
         {
             var dir = _player.transform.position - transform.position;
@@ -80,7 +55,7 @@ namespace Enemy
         {
             foreach (var enemy in enemyList)
             {
-                enemy.GetComponent<BaseEnemy>().isChasing = isChasing;
+                enemy.isChasing = isChasing;
             }
         }
     }

@@ -21,4 +21,5 @@ MonoBehaviour:
   attack: 5
   attackSpeed: 1
   manaCost: 20
+  movementMode: 1
   description: 

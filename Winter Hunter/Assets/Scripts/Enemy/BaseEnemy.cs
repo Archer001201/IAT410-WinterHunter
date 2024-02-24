@@ -4,6 +4,7 @@ using Snowball;
 using UnityEngine;
 using EventSystem;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
@@ -16,9 +17,8 @@ namespace Enemy
         public float maxHealth;
         public float maxShield;
         public float resistance;
-        public float attackingRange;
+        public float attackRange;
         public float attackDamage;
-        public Transform campTrans;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
@@ -65,7 +65,7 @@ namespace Enemy
             var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
             var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
             
-            if (distanceBetweenTarget > attackingRange || !isChasing) StopAttacking();
+            if (distanceBetweenTarget > attackRange || !isChasing) StopAttacking();
             else StartAttacking();
            
             if (isChasing)
@@ -105,7 +105,7 @@ namespace Enemy
          */
         private void GoBackToCamp()
         {
-            if (_agent != null && _agent.isActiveAndEnabled && campTrans != null)
+            if (_agent != null && _agent.isActiveAndEnabled)
             {
                 _agent.SetDestination(_originalPosition);
             }

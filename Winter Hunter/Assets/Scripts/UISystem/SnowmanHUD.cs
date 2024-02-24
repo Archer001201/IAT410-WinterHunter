@@ -14,7 +14,7 @@ namespace UISystem
         protected override void Update()
         {
             FillPercentage1 = snowmanAttr.health / snowmanSO.health;
-            FillPercentage2 = (snowmanSO.summonDuration - snowmanAttr.summoningTimer) / snowmanSO.summonDuration;
+            FillPercentage2 = (snowmanSO.summonDuration - snowmanAttr.summonTimer) / snowmanSO.summonDuration;
             
             base.Update();
         }

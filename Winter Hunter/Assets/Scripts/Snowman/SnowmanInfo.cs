@@ -7,8 +7,8 @@ namespace Snowman
     [Serializable]
     public class SnowmanInfo
     {
-        public Enums.SnowmanType type;
-        public Enums.SnowmanLevel level;
+        public SnowmanType type;
+        public SnowmanLevel level;
         public float cooldown;
         public float cooldownTimer;
         public float summoningCost;
@@ -18,7 +18,7 @@ namespace Snowman
     [Serializable]
     public class SnowmanTypeAndLevel
     {
-        public Enums.SnowmanType type;
-        public Enums.SnowmanLevel level;
+        public SnowmanType type;
+        public SnowmanLevel level;
     }
 }

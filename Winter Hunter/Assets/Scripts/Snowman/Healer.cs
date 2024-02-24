@@ -1,5 +1,9 @@
+using System;
+using System.Collections;
 using BTFrame;
+using Player;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Snowman
 {
@@ -8,49 +12,57 @@ namespace Snowman
      */
     public class Healer : BaseSnowman
     {
+        public VisualEffect visualEffect;
+        public Transform playerTransform;
+        private Coroutine _healCoroutine;
+        private PlayerAttribute _playerAttr;
+        
+
         protected override void Awake()
         {
             base.Awake();
-            TargetTrans = PlayerGO.transform;
+            playerTransform = GameObject.FindWithTag("Player").transform;
+            _playerAttr = playerTransform.gameObject.GetComponent<PlayerAttribute>();
         }
 
-        /*
-         * Set up and initialize the behaviour tree
-         */
-        protected override void SetUpBehaviorTree()
+        protected override void Update()
         {
-            base.SetUpBehaviorTree();
-            var rootNode = new SequenceNode();
-            
-            var chaseNode = new SequenceNode();
-            chaseNode.Children.Add(new ConditionNode(IsPlayerOutFollowRange));
-            chaseNode.Children.Add(new ActionNode(SetNavigation));
-            chaseNode.Children.Add(new ActionNode(StartChase));
+            base.Update();
+            visualEffect.transform.LookAt(playerTransform);
+        }
 
-            var idleNode = new SequenceNode();
-            idleNode.Children.Add(new ConditionNode(IsPlayerInFollowRange));
-            idleNode.Children.Add(new ActionNode(StopChase));
-            
-            rootNode.Children.Add(chaseNode);
-            rootNode.Children.Add(idleNode);
+        protected override void OnTriggerEnter(Collider other)
+        {
+            base.OnTriggerEnter(other);
+            if (!other.CompareTag("Player")) return;
+            visualEffect.Play();
+            _healCoroutine ??= StartCoroutine(Heal());
+        }
 
-            BTree = new BehaviorTree { RootNode = rootNode };
+        private void OnTriggerStay(Collider other)
+        {
+            if (!other.CompareTag("Player")) return;
+            var distance = Vector3.Distance(transform.position, playerTransform.position);
+            visualEffect.SetFloat("Length", distance/6f);
+        }
+
+        protected override void OnTriggerExit(Collider other)
+        {
+            base.OnTriggerExit(other);
+            if (!other.CompareTag("Player")) return;
+            visualEffect.Stop();
+            if (_healCoroutine == null) return;
+            StopCoroutine(_healCoroutine);
+            _healCoroutine = null;
         }
         
-        /*
-         * Check is the player out the following range
-         */
-        private bool IsPlayerOutFollowRange()
+        private IEnumerator Heal()
         {
-            return Vector3.Distance(transform.position, TargetTrans.position) > followRange;
-        }
-
-        /*
-         * Check is the player in the following range
-         */
-        private bool IsPlayerInFollowRange()
-        {
-            return Vector3.Distance(transform.position, TargetTrans.position) <= followRange;
+            while (_playerAttr != null)
+            {
+                _playerAttr.health += snowmanSO.attack;
+                yield return new WaitForSeconds(snowmanSO.attackSpeed);
+            }
         }
     }
 }

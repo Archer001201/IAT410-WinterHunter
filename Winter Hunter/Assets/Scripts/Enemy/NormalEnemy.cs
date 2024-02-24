@@ -26,7 +26,7 @@ namespace Enemy
          */
         protected override IEnumerator AttackCoroutine()
         {
-            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackingRange)
+            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
             {
                 yield return new WaitForSeconds(2); 
                 var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);

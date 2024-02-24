@@ -130,7 +130,7 @@ namespace Player
                 var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
                 if (foundItem != null)
                 {
-                    foundItem.level = Enums.SnowmanLevel.Advanced;
+                    foundItem.level = SnowmanLevel.Advanced;
                 }
                 else
                 {
