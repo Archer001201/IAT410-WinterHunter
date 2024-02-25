@@ -1,6 +1,7 @@
 using System.Collections;
 using Snowman.Skills;
 using UnityEngine;
+using Utilities;
 
 namespace Snowman
 {
@@ -25,7 +26,7 @@ namespace Snowman
             {
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
                 var slashGO = Instantiate(slashPrefab, transform.position, Quaternion.identity, transform);
-                slashGO.GetComponent<SnowmanSlash>().SetAttack(MySnowmanSO.attack);
+                slashGO.GetComponent<SnowmanSlash>().SetAttack(MySnowmanSO.attack, level == SnowmanLevel.Advanced);
             }
         }
         

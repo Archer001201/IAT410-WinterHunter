@@ -64,9 +64,10 @@ namespace Player
                     else
                     {
                         snowman.canBeSummoned = true;
-                        snowman.cooldownTimer = 0;
                     }
                 }
+
+                snowman.cooldownTimer = Mathf.Clamp(snowman.cooldownTimer, 0, snowman.cooldown);
             }
         }
 
