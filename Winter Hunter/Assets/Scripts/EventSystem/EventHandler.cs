@@ -12,16 +12,6 @@ namespace EventSystem
     public static class EventHandler
     {
         /*
-         * Notice enemy to change target
-         */
-        public static event Action<GameObject> OnEnemyChangeTarget;
-
-        public static void EnemyChangeTarget(GameObject target)
-        {
-            OnEnemyChangeTarget?.Invoke(target);
-        }
-
-        /*
          * Notice existed snowman to destroy itself
          */
         public static event Action OnDestroyExistedSnowman;

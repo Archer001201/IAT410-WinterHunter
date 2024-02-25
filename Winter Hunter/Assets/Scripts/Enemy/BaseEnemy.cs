@@ -49,9 +49,7 @@ namespace Enemy
             _player = GameObject.FindWithTag("Player");
             _playerAttr = _player.GetComponent<PlayerAttribute>();
             
-            UpdateTarget(_player);
-
-            EventHandler.OnEnemyChangeTarget += UpdateTarget;
+            SetTarget(_player);
         }
 
         private void Update()
@@ -59,9 +57,14 @@ namespace Enemy
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
             resistance = Mathf.Clamp(resistance, 0, 1);
-            
-            if (health <= 0) Destroy(gameObject);
 
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            if (TargetTrans == null) TargetTrans = _player.transform;
             var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
             var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
             
@@ -79,24 +82,14 @@ namespace Enemy
                 else StopMoving();
             }
         }
-
-        // private void OnCollisionEnter(Collision other)
-        // {
-        //     var otherGO = other.gameObject;
-        //    
-        //     if (otherGO.CompareTag("Projectile"))
-        //     {
-        //         TakeDamageFromSnowball(otherGO);
-        //     }
-        // }
         
         /*
          * Assign a target game object to enemy
          */
-        protected virtual void UpdateTarget(GameObject tar)
+        public virtual void SetTarget(GameObject tar)
         {
             target = tar;
-            TargetTrans = target.GetComponent<Transform>();
+            TargetTrans = target.transform;
         }
 
 
@@ -201,6 +194,27 @@ namespace Enemy
             }
 
             _playerAttr.mana += damage/5;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            if (shield > 0)
+            {
+                if (damage > shield)
+                {
+                    var overflowDamage = damage - shield;
+                    shield = 0;
+                    health -= overflowDamage;
+                }
+                else
+                {
+                    shield -= damage;
+                }
+            }
+            else
+            {
+                health -= damage;
+            }
         }
     }
 }

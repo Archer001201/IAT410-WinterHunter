@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   prefab: {fileID: 584477846658666777, guid: 78a9b4c6e4a014a47a95a73b5197439c, type: 3}
-  icon: {fileID: 21300000, guid: 6a3a7a464cb734f40bcb3188fef5a0b9, type: 3}
+  icon: {fileID: 21300000, guid: 92b9eafaabeea404ea395197d5858608, type: 3}
   health: 100
   summonDuration: 40
   cooldown: 60

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   prefab: {fileID: 584477846658666777, guid: 634b32e587de949f89998de92e5375f3, type: 3}
-  icon: {fileID: 21300000, guid: 0b49ddd5ff9ab4377a5ec18cf7312789, type: 3}
+  icon: {fileID: 21300000, guid: c01d230820cbb433e86204d4113e6bb5, type: 3}
   health: 100
   summonDuration: 20
   cooldown: 40
   attack: 40
   attackSpeed: 1
-  manaCost: 40
+  manaCost: 20
   movementMode: 0
   description: 

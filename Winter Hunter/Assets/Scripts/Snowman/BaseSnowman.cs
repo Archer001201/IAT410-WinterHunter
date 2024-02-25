@@ -22,10 +22,10 @@ namespace Snowman
         public float summonTimer;
         [Header("Component Settings")] 
         public GameObject hudCanvas;
-        public List<Transform> detectedTargets;
+        public List<Transform> detectedEnemies;
 
         protected SnowmanSO MySnowmanSO;
-        private Transform _targetTrans;
+        protected Transform TargetTrans;
         private NavMeshAgent _agent;
         private float _startTime;
         
@@ -39,7 +39,7 @@ namespace Snowman
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
-            _targetTrans = GameObject.FindWithTag("Player").transform;
+            TargetTrans = GameObject.FindWithTag("Player").transform;
             _agent = GetComponent<NavMeshAgent>();
         }
 
@@ -68,12 +68,12 @@ namespace Snowman
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (MySnowmanSO.movementMode != MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Add(other.transform);
+            if (other.CompareTag("Enemy")) detectedEnemies.Add(other.transform);
         }
 
         protected virtual void OnTriggerExit(Collider other)
         {
-            if (MySnowmanSO.movementMode == MovementMode.ChaseEnemy && other.CompareTag("Enemy")) detectedTargets.Remove(other.transform);
+            if (other.CompareTag("Enemy")) detectedEnemies.Remove(other.transform);
         }
         
         private Transform FindClosestEnemy()
@@ -81,19 +81,19 @@ namespace Snowman
             Transform closestTarget = null;
             var closestDistance = Mathf.Infinity;
             
-            for (var i = detectedTargets.Count - 1; i >= 0; i--)
+            for (var i = detectedEnemies.Count - 1; i >= 0; i--)
             {
-                if (detectedTargets[i] == null)
+                if (detectedEnemies[i] == null)
                 {
-                    detectedTargets.RemoveAt(i);
+                    detectedEnemies.RemoveAt(i);
                     continue;
                 }
 
-                var distance = Vector3.Distance(this.transform.position, detectedTargets[i].position);
+                var distance = Vector3.Distance(this.transform.position, detectedEnemies[i].position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestTarget = detectedTargets[i];
+                    closestTarget = detectedEnemies[i];
                 }
             }
             return closestTarget != null ? closestTarget : transform;
@@ -106,7 +106,7 @@ namespace Snowman
                 case MovementMode.Stationary:
                     return;
                 case MovementMode.ChaseEnemy:
-                    _targetTrans = FindClosestEnemy();
+                    TargetTrans = FindClosestEnemy();
                     break;
                 case MovementMode.FollowPlayer:
                     break;
@@ -121,9 +121,9 @@ namespace Snowman
          */
         private void SetNavigation()
         {
-            if (_agent.isActiveAndEnabled && _targetTrans != null)
+            if (_agent.isActiveAndEnabled && TargetTrans != null)
             {
-                _agent.SetDestination(_targetTrans.position);
+                _agent.SetDestination(TargetTrans.position);
             }
         }
 

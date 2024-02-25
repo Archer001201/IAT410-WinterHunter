@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Marksman_SO
   m_EditorClassIdentifier: 
   type: 4
-  snowmanPrefab: {fileID: 0}
-  snowmanIcon: {fileID: 0}
-  maxHealth: 0
-  summoningTime: 0
+  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: a500ae8afed2f401286e109b6c2700f5, type: 3}
+  health: 0
+  summonDuration: 0
   cooldown: 0
   attack: 0
-  attackRate: 0
-  summoningCost: 0
+  attackSpeed: 0
+  manaCost: 0
+  movementMode: 0
   description: 

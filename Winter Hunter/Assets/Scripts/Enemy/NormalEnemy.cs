@@ -15,9 +15,9 @@ namespace Enemy
         /*
          * Update target game object and reset destination for NavMesh Agent
          */
-        protected override void UpdateTarget(GameObject tar)
+        public override void SetTarget(GameObject tar)
         {
-            base.UpdateTarget(tar);
+            base.SetTarget(tar);
             MoveTowardsTarget();
         }
         
