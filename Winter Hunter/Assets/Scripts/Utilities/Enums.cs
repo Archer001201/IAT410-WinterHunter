@@ -15,4 +15,9 @@ namespace Utilities
     {
         ChaseEnemy, FollowPlayer, Stationary
     }
+
+    public enum ShieldBreakEfficiency
+    {
+        Low, Median, High
+    }
 }

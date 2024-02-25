@@ -74,9 +74,13 @@ MonoBehaviour:
   hudCanvas: {fileID: 7888768729661789891}
   detectedEnemies: []
   visualEffect: {fileID: 4074062188426286203}
-  attackBonusFactor: 0.1
   vfxLengthDivisor: 6
   healRange: 12
+  overflowHealing: 0
+  frozenRingThreshold: 15
+  frozenRingPrefab: {fileID: 6226103546333560817, guid: e8b013bf6a7d74d77839876fc59b2dd8,
+    type: 3}
+  attackFactor: 5
 --- !u!195 &2501146952846705647
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -87,7 +91,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

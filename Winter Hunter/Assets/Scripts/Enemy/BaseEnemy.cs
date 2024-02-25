@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Player;
 using Snowball;
@@ -5,6 +6,7 @@ using UnityEngine;
 using EventSystem;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Utilities;
 
 namespace Enemy
 {
@@ -31,7 +33,6 @@ namespace Enemy
         
         private NavMeshAgent _agent;
         private GameObject _player;
-        private PlayerAttribute _playerAttr;
         private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
         
@@ -47,7 +48,6 @@ namespace Enemy
             _agent = GetComponent<NavMeshAgent>();
             
             _player = GameObject.FindWithTag("Player");
-            _playerAttr = _player.GetComponent<PlayerAttribute>();
             
             SetTarget(_player);
         }
@@ -159,47 +159,19 @@ namespace Enemy
             return null;
         }
 
-        /*
-         * Calculate shield and health after snowball hit
-         */
-        public void TakeDamageFromSnowball(GameObject otherGO)
-        {
-            var snowballScript = otherGO.GetComponent<BaseSnowball>();
-            var damage = snowballScript.damage;
-            if (snowballScript.type == SnowballType.RollingSnowball)
-            {
-                damage *= otherGO.transform.localScale.x;
-            }
-            if (shield > 0)
-            {
-                if (snowballScript.type == SnowballType.ThrowingSnowball)
-                {
-                    damage *= 1f - resistance;
-                }
-
-                if (damage > shield)
-                {
-                    var overflowDamage = damage - shield;
-                    shield = 0;
-                    health -= overflowDamage;
-                }
-                else
-                {
-                    shield -= damage;
-                }
-            }
-            else
-            {
-                health -= damage;
-            }
-
-            _playerAttr.mana += damage/5;
-        }
-
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, ShieldBreakEfficiency shieldBreakEfficiency)
         {
             if (shield > 0)
             {
+                damage *= shieldBreakEfficiency switch
+                {
+                    ShieldBreakEfficiency.Low => 0.2f,
+                    ShieldBreakEfficiency.Median => 0.6f,
+                    ShieldBreakEfficiency.High => 1f,
+                    _ => throw new ArgumentOutOfRangeException(nameof(shieldBreakEfficiency), shieldBreakEfficiency,
+                        null)
+                };
+
                 if (damage > shield)
                 {
                     var overflowDamage = damage - shield;

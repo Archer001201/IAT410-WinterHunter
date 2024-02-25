@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2068380209546676602}
   - component: {fileID: 2068380209546676601}
   - component: {fileID: 2068380209546676600}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Snowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,8 +95,7 @@ GameObject:
   - component: {fileID: 3117865261606069103}
   - component: {fileID: 4536533450010636551}
   - component: {fileID: -9023819966820897797}
-  - component: {fileID: 5406427827526667377}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Proto_RollingSnowball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -160,20 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d5bb74f73474de787d0a54b00b1c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  type: 0
+  shieldBreakEfficiency: 2
   rollingDistance: 15
   rollingSize: {x: 1, y: 2}
---- !u!114 &5406427827526667377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068380211416391289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498dc2ff13d1e4f2392f11d7ce6b4b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackFactor: 2
-  damage: 20
-  type: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using BTFrame;
 using DataSO;
 using Player;
+using Snowman.Skills;
 using UnityEngine;
 using UnityEngine.VFX;
 using Utilities;
@@ -15,21 +16,23 @@ namespace Snowman
     public class Healer : BaseSnowman
     {
         public VisualEffect visualEffect;
-        public float attackBonusFactor;
         public float vfxLengthDivisor;
         public float healRange;
+        public float overflowHealing;
+        public float frozenRingThreshold;
+        public GameObject frozenRingPrefab;
+        public float attackFactor;
         
         private Transform _playerTransform;
         private Coroutine _healCoroutine;
         private PlayerAttribute _playerAttr;
         private PlayerSO _playerSO;
-        private float _attackBonus;
         private SphereCollider _healRangeCollider;
 
         protected override void Awake()
         {
             base.Awake();
-            _attackBonus = 0;
+            overflowHealing = 0;
             _playerTransform = GameObject.FindWithTag("Player").transform;
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _playerAttr = _playerTransform.gameObject.GetComponent<PlayerAttribute>();
@@ -59,7 +62,10 @@ namespace Snowman
 
             if (level == SnowmanLevel.Advanced)
             {
-                _playerAttr.AddAttackBonus(_attackBonus);
+                if (overflowHealing < frozenRingThreshold) return;
+                var frozenRingGO = Instantiate(frozenRingPrefab, transform.position, Quaternion.identity);
+                frozenRingGO.GetComponent<SnowmanExplosion>().SetAttack(MySnowmanSO.attack*attackFactor, MySnowmanSO.shieldBreakEfficiency);
+                overflowHealing = 0;
             }
         }
 
@@ -71,9 +77,7 @@ namespace Snowman
             if (_healCoroutine == null) return;
             StopCoroutine(_healCoroutine);
             _healCoroutine = null;
-
-            _playerAttr.AddAttackBonus(0);
-            _attackBonus = 0;
+            overflowHealing = 0;
         }
         
         private IEnumerator Heal()
@@ -81,15 +85,9 @@ namespace Snowman
             while (_playerAttr != null)
             {
                 if (_playerAttr.health < _playerSO.maxHealth) _playerAttr.ReceiveHealing(MySnowmanSO.attack);
-                else _attackBonus += MySnowmanSO.attack/attackBonusFactor;
+                else overflowHealing += MySnowmanSO.attack;
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
             }
-        }
-
-        protected override void DestroyMe()
-        {
-            _playerAttr.AddAttackBonus(0);
-            base.DestroyMe();
         }
     }
 }

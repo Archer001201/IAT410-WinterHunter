@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 2927413850065173649}
   - component: {fileID: -8927566577266703588}
   - component: {fileID: -1268664249093449802}
-  - component: {fileID: 7779985681814269183}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Proto_ThrowingSnowball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4335627477020040404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.45, y: 4.85, z: 23.54}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -128,18 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c171c528c698c407abc14f9c01360a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7779985681814269183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335627477020040404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498dc2ff13d1e4f2392f11d7ce6b4b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackFactor: 1
-  damage: 10
+  damage: 0
   type: 1
+  shieldBreakEfficiency: 0

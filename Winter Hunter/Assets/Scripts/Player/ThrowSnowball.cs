@@ -1,3 +1,4 @@
+using Snowball;
 using UnityEngine;
 
 namespace Player
@@ -7,6 +8,8 @@ namespace Player
      */
     public class ThrowSnowball : SnowballAttack
     {
+        private ThrowingSnowball _throwingSnowballScript;
+        
         private void OnEnable()
         {
             aimingLineRenderer.enabled = true;
@@ -16,6 +19,12 @@ namespace Player
         {
             aimingLineRenderer.enabled = false;
         }
+        
+        public override void CreateSnowball()
+        {
+            base.CreateSnowball();
+            _throwingSnowballScript = SnowballInstance.GetComponent<ThrowingSnowball>();
+        }
 
         /*
          * Make snowball move forward and cost player's stamina
@@ -24,6 +33,8 @@ namespace Player
         {
             if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
             CreateSnowball();
+            
+            _throwingSnowballScript.SetAttack(PlayerAttr.attack);
             base.Attack();
             PlayerAttr.stamina += stamina;
         }

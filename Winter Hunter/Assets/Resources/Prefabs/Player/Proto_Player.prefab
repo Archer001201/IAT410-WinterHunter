@@ -401,8 +401,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   stamina: 100
-  energy: 0
+  mana: 0
+  attack: 0
   snowmanList: []
+  isInvincible: 0
 --- !u!114 &1502783117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +444,7 @@ MonoBehaviour:
   force: 10
   stamina: -20
   rollingLine: {fileID: 3032048333869984960}
+  attackBonusFactor: 10
   scaleFactor: 0.2
   staminaIncrease: -0.2
 --- !u!114 &1521437837

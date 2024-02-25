@@ -63,7 +63,7 @@ namespace Snowman
         protected override void DestroyMe()
         {
             var explosionGO = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            explosionGO.GetComponent<SnowmanExplosion>().SetAttack(MySnowmanSO.attack * (1 + attackBonusFactor * (_detectedEnemyScripts.Count-1)));
+            explosionGO.GetComponent<SnowmanExplosion>().SetAttack(MySnowmanSO.attack * (1 + attackBonusFactor * (_detectedEnemyScripts.Count-1)), MySnowmanSO.shieldBreakEfficiency);
             
             base.DestroyMe();
         }

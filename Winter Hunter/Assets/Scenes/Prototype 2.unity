@@ -610,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1502783118, guid: bb8716ec82beb43dabf43000526ee4ca, type: 3}
+      propertyPath: attackBonusFactor
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1270115728071190352, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: m_Layer

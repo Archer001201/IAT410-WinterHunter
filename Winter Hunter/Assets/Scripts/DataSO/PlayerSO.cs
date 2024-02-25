@@ -18,6 +18,7 @@ namespace DataSO
         public float attack;
         public float speed;
         public float staminaRecovery;
+        public float manaRecovery;
 
         [Header("Dynamic Attributes")] 
         public float currentHealth;

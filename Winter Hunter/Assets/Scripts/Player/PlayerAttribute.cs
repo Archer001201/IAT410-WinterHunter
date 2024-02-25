@@ -19,6 +19,7 @@ namespace Player
         public float stamina;
         public float mana;
         public float attack;
+        public float manaRecovery;
 
         public List<SnowmanInfo> snowmanList;
 
@@ -31,6 +32,7 @@ namespace Player
             stamina = _playerSO.maxStamina;
             mana = 0;
             attack = _playerSO.attack;
+            manaRecovery = _playerSO.manaRecovery;
             
             LoadSnowmanList();
         }
@@ -122,11 +124,6 @@ namespace Player
         public void ReceiveHealing(float healing)
         {
             health += healing;
-        }
-
-        public void AddAttackBonus(float attackBonus)
-        {
-            attack = _playerSO.attack + attackBonus;
         }
     }
 }

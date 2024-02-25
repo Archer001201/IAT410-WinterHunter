@@ -20,6 +20,7 @@ namespace DataSO
         public float attackSpeed;
         public float manaCost;
         public MovementMode movementMode;
+        public ShieldBreakEfficiency shieldBreakEfficiency;
         [TextArea]
         public string description;
     }

@@ -2,6 +2,7 @@ using System;
 using Enemy;
 using Player;
 using UnityEngine;
+using Utilities;
 
 namespace Snowman.Skills
 {
@@ -12,6 +13,7 @@ namespace Snowman.Skills
         private float _rotationSpeed;
         private float _currentTime;
         private float _attack;
+        private ShieldBreakEfficiency _shieldBreakEfficiency;
         private Collider _collider;
         private bool _isAdvanced;
         private PlayerAttribute _playerAttr;
@@ -41,7 +43,7 @@ namespace Snowman.Skills
         private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
-            other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack);
+            other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
 
             if (_isAdvanced)
             {
@@ -52,10 +54,11 @@ namespace Snowman.Skills
             }
         }
 
-        public void SetAttack(float attack, bool isAdvanced)
+        public void SetAttack(float attack, bool isAdvanced, ShieldBreakEfficiency shieldBreakEfficiency)
         {
             _attack = attack;
             _isAdvanced = isAdvanced;
+            _shieldBreakEfficiency = shieldBreakEfficiency;
         }
     }
 }
