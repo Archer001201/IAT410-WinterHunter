@@ -51,13 +51,9 @@ namespace UISystem
                 _snowmenPlayerHas.Add(snowman.type, snowman.level);
             }
 
-            if (!_snowmenPlayerHas.ContainsKey(typeAndLevel.type))
+            if (_snowmenPlayerHas.TryGetValue(typeAndLevel.type, out var level))
             {
-                prompt.text = "New snowman unlocked!";
-            }
-            else
-            {
-                prompt.text = _snowmenPlayerHas[typeAndLevel.type] == SnowmanLevel.Basic ? "Snowman upgraded!" : "Snowman already unlocked";
+                prompt.text = level == SnowmanLevel.Basic ? "New snowman unlocked!" : "Snowman upgraded!";
             }
 
             StartCoroutine(AdjustHeight());
