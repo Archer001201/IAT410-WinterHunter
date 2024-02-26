@@ -100,24 +100,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CallBag"",
-                    ""type"": ""Button"",
-                    ""id"": ""e2d39dcf-461e-4253-a2c6-6e972eedda3c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EscButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""dbe98b0c-8ef1-4c4d-933f-6ccbafe08e15"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Rush"",
                     ""type"": ""Button"",
                     ""id"": ""13644ed1-b528-4877-a0ab-6ae285f2fd1f"",
@@ -262,34 +244,108 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6ad267f8-9d18-4726-86fc-518117561cd9"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CallBag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d9eb76ef-c3f1-4746-acd6-17c41171350f"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EscButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2697c6a1-9e72-4b07-bacc-f1b19d97e9b4"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""3cb348d6-d862-48a4-8bbe-4e4ae8be97c8"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a4063b6-c58c-442a-9ffc-85a1b793097a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""742bd21b-dca8-492b-b090-c5607cc94bb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""79b105bc-cd6e-499f-8875-194f0044e540"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e91c57e-c30e-4a64-9fa1-861268f265d6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Global"",
+            ""id"": ""bcbd5083-6fe2-453e-b5c0-bf0b3d1eec38"",
+            ""actions"": [
+                {
+                    ""name"": ""OptionButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""62595445-2875-4e25-a40a-ff77e9950c63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""73f71972-9765-4f7f-ac5a-c95eb73ba1df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""154bdd61-df4d-4d2a-afcd-6f5da545b3e9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OptionButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb5b91bf-7af7-4938-a334-4ced05377cfb"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -308,9 +364,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_SummonSnowman = m_Gameplay.FindAction("SummonSnowman", throwIfNotFound: true);
         m_Gameplay_SwitchSnowmanRight = m_Gameplay.FindAction("SwitchSnowmanRight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
-        m_Gameplay_CallBag = m_Gameplay.FindAction("CallBag", throwIfNotFound: true);
-        m_Gameplay_EscButton = m_Gameplay.FindAction("EscButton", throwIfNotFound: true);
         m_Gameplay_Rush = m_Gameplay.FindAction("Rush", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
+        m_UI_Down = m_UI.FindAction("Down", throwIfNotFound: true);
+        // Global
+        m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
+        m_Global_OptionButton = m_Global.FindAction("OptionButton", throwIfNotFound: true);
+        m_Global_InventoryButton = m_Global.FindAction("InventoryButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -380,8 +442,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SummonSnowman;
     private readonly InputAction m_Gameplay_SwitchSnowmanRight;
     private readonly InputAction m_Gameplay_Interact;
-    private readonly InputAction m_Gameplay_CallBag;
-    private readonly InputAction m_Gameplay_EscButton;
     private readonly InputAction m_Gameplay_Rush;
     public struct GameplayActions
     {
@@ -395,8 +455,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @SummonSnowman => m_Wrapper.m_Gameplay_SummonSnowman;
         public InputAction @SwitchSnowmanRight => m_Wrapper.m_Gameplay_SwitchSnowmanRight;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
-        public InputAction @CallBag => m_Wrapper.m_Gameplay_CallBag;
-        public InputAction @EscButton => m_Wrapper.m_Gameplay_EscButton;
         public InputAction @Rush => m_Wrapper.m_Gameplay_Rush;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -431,12 +489,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @CallBag.started += instance.OnCallBag;
-            @CallBag.performed += instance.OnCallBag;
-            @CallBag.canceled += instance.OnCallBag;
-            @EscButton.started += instance.OnEscButton;
-            @EscButton.performed += instance.OnEscButton;
-            @EscButton.canceled += instance.OnEscButton;
             @Rush.started += instance.OnRush;
             @Rush.performed += instance.OnRush;
             @Rush.canceled += instance.OnRush;
@@ -468,12 +520,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @CallBag.started -= instance.OnCallBag;
-            @CallBag.performed -= instance.OnCallBag;
-            @CallBag.canceled -= instance.OnCallBag;
-            @EscButton.started -= instance.OnEscButton;
-            @EscButton.performed -= instance.OnEscButton;
-            @EscButton.canceled -= instance.OnEscButton;
             @Rush.started -= instance.OnRush;
             @Rush.performed -= instance.OnRush;
             @Rush.canceled -= instance.OnRush;
@@ -494,6 +540,114 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Up;
+    private readonly InputAction m_UI_Down;
+    public struct UIActions
+    {
+        private @InputControls m_Wrapper;
+        public UIActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_UI_Up;
+        public InputAction @Down => m_Wrapper.m_UI_Down;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
+
+    // Global
+    private readonly InputActionMap m_Global;
+    private List<IGlobalActions> m_GlobalActionsCallbackInterfaces = new List<IGlobalActions>();
+    private readonly InputAction m_Global_OptionButton;
+    private readonly InputAction m_Global_InventoryButton;
+    public struct GlobalActions
+    {
+        private @InputControls m_Wrapper;
+        public GlobalActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OptionButton => m_Wrapper.m_Global_OptionButton;
+        public InputAction @InventoryButton => m_Wrapper.m_Global_InventoryButton;
+        public InputActionMap Get() { return m_Wrapper.m_Global; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GlobalActions set) { return set.Get(); }
+        public void AddCallbacks(IGlobalActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GlobalActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GlobalActionsCallbackInterfaces.Add(instance);
+            @OptionButton.started += instance.OnOptionButton;
+            @OptionButton.performed += instance.OnOptionButton;
+            @OptionButton.canceled += instance.OnOptionButton;
+            @InventoryButton.started += instance.OnInventoryButton;
+            @InventoryButton.performed += instance.OnInventoryButton;
+            @InventoryButton.canceled += instance.OnInventoryButton;
+        }
+
+        private void UnregisterCallbacks(IGlobalActions instance)
+        {
+            @OptionButton.started -= instance.OnOptionButton;
+            @OptionButton.performed -= instance.OnOptionButton;
+            @OptionButton.canceled -= instance.OnOptionButton;
+            @InventoryButton.started -= instance.OnInventoryButton;
+            @InventoryButton.performed -= instance.OnInventoryButton;
+            @InventoryButton.canceled -= instance.OnInventoryButton;
+        }
+
+        public void RemoveCallbacks(IGlobalActions instance)
+        {
+            if (m_Wrapper.m_GlobalActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGlobalActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GlobalActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GlobalActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GlobalActions @Global => new GlobalActions(this);
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -504,8 +658,16 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnSummonSnowman(InputAction.CallbackContext context);
         void OnSwitchSnowmanRight(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnCallBag(InputAction.CallbackContext context);
-        void OnEscButton(InputAction.CallbackContext context);
         void OnRush(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+    }
+    public interface IGlobalActions
+    {
+        void OnOptionButton(InputAction.CallbackContext context);
+        void OnInventoryButton(InputAction.CallbackContext context);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using DataSO;
+using EventSystem;
 using Props;
 using UISystem;
 using UnityEngine;
@@ -40,6 +41,7 @@ namespace Player
 
         private float _initMovingSpeed;
         private float _movingSpeed;
+        private int _panelAmount;
         
         private void Awake()
         {
@@ -76,11 +78,13 @@ namespace Player
         private void OnEnable()
         {
             _inputControls.Enable();
+            EventHandler.OnSetGameplayActionMap += SetGameplayActionMode;
         }
 
         private void OnDisable()
         {
             _inputControls.Disable();
+            EventHandler.OnSetGameplayActionMap -= SetGameplayActionMode;
         }
 
         private void Update()
@@ -148,7 +152,7 @@ namespace Player
         private void RotateTowardsMouse()
         {
             var ray = _camera.ScreenPointToRay(_mousePosition);
-            var layerMask = 1 << LayerMask.NameToLayer("Base");
+            var layerMask = 1 << LayerMask.NameToLayer("Base") | 1 << LayerMask.NameToLayer("UI");
 
             if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask)) return;
             var target = hit.point;
@@ -294,12 +298,13 @@ namespace Player
             
             if (_currentInteractableObject.CompareTag("Chest"))
             {
-                var chestScript = _currentInteractableObject.GetComponent<Chest>();
+                var chestScript = _currentInteractableObject.GetComponent<TreasureChest>();
                 if (!chestScript.canOpen) return;
                 _skillPanelScript.ResetIconsPosition();
                 chestScript.OpenChest();
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
+                EventHandler.OpenSnowmanObtainedPrompt(chestScript.snowman);
             }
         }
 
@@ -331,6 +336,15 @@ namespace Player
             
             _rb.velocity = Vector3.zero;
             isDashing = false;
+        }
+
+        private void SetGameplayActionMode(bool isActive)
+        {
+            if (isActive) _panelAmount--;
+            else _panelAmount++;
+            
+            if (_panelAmount < 1)_inputControls.Enable();
+            else _inputControls.Disable();
         }
     }
 }

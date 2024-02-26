@@ -22,4 +22,11 @@ MonoBehaviour:
   attackSpeed: 1
   manaCost: 20
   movementMode: 1
-  description: 
+  shieldBreakEfficiency: 0
+  basicAbilities: 'Follows the player
+
+    Continuously heals the player if they
+    are within healing range'
+  advancedAbilities: If the healing amount exceeds a certain threshold (excess healing
+    is cleared if the player goes out of range), it enhances the player's attack
+    power.

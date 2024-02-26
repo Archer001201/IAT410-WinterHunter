@@ -97,20 +97,20 @@ namespace Player
         /*
          * when player opened a snowman chest, add the snowman into snowman list in player scriptable object, and notice skill panel to update icons
          */
-        private void AddSnowmanToPlayer(List<SnowmanTypeAndLevel> snowmanTypes)
+        private void AddSnowmanToPlayer(SnowmanTypeAndLevel snowman)
         {
-            foreach (var item in snowmanTypes)
-            {
-                var foundItem = _playerSO.snowmanList.Find(x => x.type == item.type);
-                if (foundItem != null)
-                {
-                    foundItem.level = SnowmanLevel.Advanced;
-                }
-                else
-                {
-                    _playerSO.snowmanList.Add(item);
-                }
+            // foreach (var item in snowmanTypes)
+            // {
+            var foundItem = _playerSO.snowmanList.Find(x => x.type == snowman.type);
+            if (foundItem != null) 
+            { 
+                foundItem.level = SnowmanLevel.Advanced;
             }
+            else 
+            { 
+                _playerSO.snowmanList.Add(snowman);
+            }
+            // }
             LoadSnowmanList();
             EventHandler.UpdateSkillPanel();
         }

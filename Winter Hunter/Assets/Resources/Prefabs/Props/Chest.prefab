@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3972353607448007792}
   - component: {fileID: 6870357780360575950}
   - component: {fileID: 1765432842}
-  - component: {fileID: 1765432841}
+  - component: {fileID: 7641557093225610107}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Chest
@@ -64,7 +64,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1765432841
+--- !u!114 &7641557093225610107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,13 +73,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 104305451279869257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2273d68b4723c40e0b01b3f84e3723e8, type: 3}
+  m_Script: {fileID: 11500000, guid: d6d7a02b72135461f84e9dc65c487677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canOpen: 0
   unlockingVFX: {fileID: 5135034180918503777}
   hud: {fileID: 690036638731209128}
-  snowmanList: 04000000
+  snowman:
+    type: 0
+    level: 0
 --- !u!1 &690036638731209128
 GameObject:
   m_ObjectHideFlags: 0

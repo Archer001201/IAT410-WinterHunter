@@ -472,18 +472,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 119682480}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &119682482 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1765432841, guid: 16f069851701741d0bcdaa1a008dc547,
-    type: 3}
-  m_PrefabInstance: {fileID: 119682480}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2273d68b4723c40e0b01b3f84e3723e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &175142678
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 1564137759834253144, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: snowmanList.Array.data[0].type
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2486726706522607101, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
@@ -717,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 5491273880646760889, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.86
+      value: 48.31
       objectReference: {fileID: 0}
     - target: {fileID: 5491273880646760889, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
@@ -727,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 5491273880646760889, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.64
+      value: 34.29
       objectReference: {fileID: 0}
     - target: {fileID: 5491273880725227326, guid: bb8716ec82beb43dabf43000526ee4ca,
         type: 3}
@@ -871,16 +859,16 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1282011311}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &614479982 stripped
+--- !u!114 &614479985 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1765432841, guid: 16f069851701741d0bcdaa1a008dc547,
+  m_CorrespondingSourceObject: {fileID: 7641557093225610107, guid: 16f069851701741d0bcdaa1a008dc547,
     type: 3}
   m_PrefabInstance: {fileID: 1282011311}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2273d68b4723c40e0b01b3f84e3723e8, type: 3}
+  m_Script: {fileID: 11500000, guid: d6d7a02b72135461f84e9dc65c487677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &675081639
@@ -890,6 +878,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2051256214183314739, guid: 16b0c9bac84d844108724d8ea440a496,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719578409583526788, guid: 16b0c9bac84d844108724d8ea440a496,
+        type: 3}
+      propertyPath: duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719578409583526788, guid: 16b0c9bac84d844108724d8ea440a496,
+        type: 3}
+      propertyPath: maxHeight
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719578409583526788, guid: 16b0c9bac84d844108724d8ea440a496,
+        type: 3}
+      propertyPath: animationDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6901536421602443435, guid: 16b0c9bac84d844108724d8ea440a496,
         type: 3}
       propertyPath: m_Name
@@ -2172,6 +2180,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1231289563}
     m_Modifications:
     - target: {fileID: 1765432841, guid: 16f069851701741d0bcdaa1a008dc547, type: 3}
+      propertyPath: snowman.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765432841, guid: 16f069851701741d0bcdaa1a008dc547, type: 3}
       propertyPath: snowmanList.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2250,6 +2262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7641557093225610107, guid: 16f069851701741d0bcdaa1a008dc547,
+        type: 3}
+      propertyPath: snowman.type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f069851701741d0bcdaa1a008dc547, type: 3}
@@ -2379,7 +2396,7 @@ PrefabInstance:
     - target: {fileID: 538110804894587076, guid: a7bdeafe026da42ca8a9a9f48029c314,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.86
+      value: 48.31
       objectReference: {fileID: 0}
     - target: {fileID: 538110804894587076, guid: a7bdeafe026da42ca8a9a9f48029c314,
         type: 3}
@@ -2389,7 +2406,7 @@ PrefabInstance:
     - target: {fileID: 538110804894587076, guid: a7bdeafe026da42ca8a9a9f48029c314,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1208296
+      value: 19.770828
       objectReference: {fileID: 0}
     - target: {fileID: 538110804894587076, guid: a7bdeafe026da42ca8a9a9f48029c314,
         type: 3}
@@ -2617,6 +2634,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &2001726027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7641557093225610107, guid: 16f069851701741d0bcdaa1a008dc547,
+    type: 3}
+  m_PrefabInstance: {fileID: 119682480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d7a02b72135461f84e9dc65c487677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2071478840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2698,12 +2727,12 @@ PrefabInstance:
         type: 3}
       propertyPath: chestList.Array.data[0]
       value: 
-      objectReference: {fileID: 119682482}
+      objectReference: {fileID: 2001726027}
     - target: {fileID: 9111118795738536196, guid: 4b05c80678011484ea593b1b0e129e2a,
         type: 3}
       propertyPath: chestList.Array.data[1]
       value: 
-      objectReference: {fileID: 614479982}
+      objectReference: {fileID: 614479985}
     - target: {fileID: 9111118795738536196, guid: 4b05c80678011484ea593b1b0e129e2a,
         type: 3}
       propertyPath: enemyList.Array.data[0]

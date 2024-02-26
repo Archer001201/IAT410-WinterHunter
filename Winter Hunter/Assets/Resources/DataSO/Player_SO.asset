@@ -18,15 +18,16 @@ MonoBehaviour:
   attack: 15
   speed: 5
   staminaRecovery: 20
+  manaRecovery: 0.2
   currentHealth: 0
   currentStamina: 0
   currentMana: 0
   snowmanList:
-  - type: 0
-    level: 0
   - type: 1
     level: 0
   - type: 3
     level: 0
   - type: 2
     level: 1
+  - type: 0
+    level: 0

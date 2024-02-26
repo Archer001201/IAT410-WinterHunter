@@ -22,6 +22,8 @@ namespace DataSO
         public MovementMode movementMode;
         public ShieldBreakEfficiency shieldBreakEfficiency;
         [TextArea]
-        public string description;
+        public string basicAbilities;
+        [TextArea]
+        public string advancedAbilities;
     }
 }

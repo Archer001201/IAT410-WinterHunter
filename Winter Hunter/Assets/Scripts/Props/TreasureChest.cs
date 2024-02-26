@@ -1,3 +1,5 @@
+using EventSystem;
+using Snowman;
 using UnityEngine;
 
 namespace Props
@@ -5,11 +7,12 @@ namespace Props
     /*
      * Store item data in the chest and handle player interaction
      */
-    public class Chest : MonoBehaviour
+    public class TreasureChest : MonoBehaviour
     {
         public bool canOpen;
         public GameObject unlockingVFX;
         public GameObject hud;
+        public SnowmanTypeAndLevel snowman;
 
         private void Awake()
         {
@@ -34,8 +37,9 @@ namespace Props
         /*
          * Open chest and destroy this game object
          */
-        public virtual void OpenChest()
+        public void OpenChest()
         {
+            EventHandler.OpenSnowmanChest(snowman);
             Destroy(gameObject);
         }
     }

@@ -24,11 +24,11 @@ namespace EventSystem
         /*
          * Notice player a snowman chest has been opened
          */
-        public static event Action<List<SnowmanTypeAndLevel>> OnOpenSnowmanChest;
+        public static event Action<SnowmanTypeAndLevel> OnOpenSnowmanChest;
 
-        public static void OpenSnowmanChest(List<SnowmanTypeAndLevel> snowmanList)
+        public static void OpenSnowmanChest(SnowmanTypeAndLevel snowman)
         {
-            OnOpenSnowmanChest?.Invoke(snowmanList);
+            OnOpenSnowmanChest?.Invoke(snowman);
         }
 
         /*
@@ -49,6 +49,34 @@ namespace EventSystem
         public static void PlayerDie()
         {
             OnPlayerDie?.Invoke();
+        }
+
+        public static event Action<bool> OnSetGameplayActionMap;
+
+        public static void SetGameplayActionMap(bool isActive)
+        {
+            OnSetGameplayActionMap?.Invoke(isActive);
+        }
+
+        public static event Action<SnowmanTypeAndLevel, bool> OnShowSnowmanDetail;
+
+        public static void ShowSnowmanDetail(SnowmanTypeAndLevel typeAndLevel, bool isUnlocked)
+        {
+            OnShowSnowmanDetail?.Invoke(typeAndLevel, isUnlocked);
+        }
+
+        public static event Action<SnowmanTypeAndLevel> OnShowSnowmanObtainedPrompt;
+
+        public static void ShowSnowmanObtainedPrompt(SnowmanTypeAndLevel typeAndLevel)
+        {
+            OnShowSnowmanObtainedPrompt?.Invoke(typeAndLevel);
+        }
+        
+        public static event Action<SnowmanTypeAndLevel> OnOpenSnowmanObtainedPrompt;
+
+        public static void OpenSnowmanObtainedPrompt(SnowmanTypeAndLevel typeAndLevel)
+        {
+            OnOpenSnowmanObtainedPrompt?.Invoke(typeAndLevel);
         }
     }
 }

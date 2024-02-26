@@ -10,7 +10,7 @@ namespace Enemy
     public class EnemyCamp : MonoBehaviour
     {
         public List<BaseEnemy> enemyList;
-        public List<Chest> chestList;
+        public List<TreasureChest> chestList;
         public bool isCleared;
         public float raycastDistance;
 
