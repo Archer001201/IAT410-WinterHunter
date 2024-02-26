@@ -4,7 +4,7 @@ using DataSO;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace Snowman
 {

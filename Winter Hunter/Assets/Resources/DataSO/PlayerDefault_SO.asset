@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  maxMana: 0
+  maxMana: 100
   attack: 15
   speed: 5
   staminaRecovery: 20

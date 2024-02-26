@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace UISystem
 {

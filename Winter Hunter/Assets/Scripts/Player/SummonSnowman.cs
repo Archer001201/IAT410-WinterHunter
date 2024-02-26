@@ -2,7 +2,7 @@ using System;
 using DataSO;
 using Snowman;
 using UnityEngine;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace Player
 {

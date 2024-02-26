@@ -4,7 +4,7 @@ using DataSO;
 using Snowman;
 using UnityEngine;
 using Utilities;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace Player
 {

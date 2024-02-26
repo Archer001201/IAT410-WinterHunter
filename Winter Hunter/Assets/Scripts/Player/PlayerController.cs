@@ -1,9 +1,9 @@
 using System.Collections;
 using DataSO;
-using EventSystem;
 using Props;
 using UISystem;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
