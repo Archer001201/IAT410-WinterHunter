@@ -5,6 +5,7 @@ using DataSO;
 using Player;
 using Snowman.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 using Utilities;
 
@@ -19,8 +20,8 @@ namespace Snowman
         public float vfxLengthDivisor;
         public float healRange;
         public float overflowHealing;
-        public float frozenRingThreshold;
-        public GameObject frozenRingPrefab;
+        public float overflowHealingThreshold;
+        public GameObject iceSpikePrefab;
         public float attackFactor;
         
         private Transform _playerTransform;
@@ -62,9 +63,9 @@ namespace Snowman
 
             if (level == SnowmanLevel.Advanced)
             {
-                if (overflowHealing < frozenRingThreshold) return;
-                var frozenRingGO = Instantiate(frozenRingPrefab, transform.position, Quaternion.identity);
-                frozenRingGO.GetComponent<SnowmanExplosion>().SetAttack(MySnowmanSO.attack*attackFactor, MySnowmanSO.shieldBreakEfficiency);
+                if (overflowHealing < overflowHealingThreshold) return;
+                var spikeGO = Instantiate(iceSpikePrefab, _playerTransform.position, Quaternion.identity);
+                spikeGO.GetComponent<IceSpike>().SetAttack(MySnowmanSO.attack*attackFactor, MySnowmanSO.shieldBreakEfficiency);
                 overflowHealing = 0;
             }
         }

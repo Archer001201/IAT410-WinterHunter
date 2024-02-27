@@ -11,9 +11,10 @@ namespace Snowman.Skills
         private float _attack;
         private ShieldBreakEfficiency _shieldBreakEfficiency;
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Enemy")) other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
+            if (!other.gameObject.CompareTag("Enemy")) return;
+            other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
         }
 
         public void SetAttack(float attack, ShieldBreakEfficiency shieldBreakEfficiency)

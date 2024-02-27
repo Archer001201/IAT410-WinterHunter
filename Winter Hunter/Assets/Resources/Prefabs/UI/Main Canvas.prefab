@@ -1182,7 +1182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5774233692153150498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1272,7 +1272,9 @@ MonoBehaviour:
   icon: {fileID: 3213211366526160889}
   type: {fileID: 8300895955754380382}
   prompt: {fileID: 9019434646511799405}
-  height: 200
+  maxHeight: 200
+  animationDuration: 1
+  displayDuration: 2
 --- !u!1 &2097766239303140053
 GameObject:
   m_ObjectHideFlags: 0

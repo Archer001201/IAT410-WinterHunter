@@ -77,10 +77,10 @@ MonoBehaviour:
   vfxLengthDivisor: 6
   healRange: 12
   overflowHealing: 0
-  frozenRingThreshold: 15
-  frozenRingPrefab: {fileID: 6226103546333560817, guid: e8b013bf6a7d74d77839876fc59b2dd8,
+  overflowHealingThreshold: 15
+  iceSpikePrefab: {fileID: 7158464270276841170, guid: 834daa8a487994b53938f32565ac0d9d,
     type: 3}
-  attackFactor: 5
+  attackFactor: 3
 --- !u!195 &2501146952846705647
 NavMeshAgent:
   m_ObjectHideFlags: 0

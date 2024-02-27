@@ -11,14 +11,22 @@ namespace Enemy
     {
         public List<BaseEnemy> enemyList;
         public List<TreasureChest> chestList;
-        public bool isCleared;
+        public int waveThreshold;
+        public int enemiesPerWave;
         public float raycastDistance;
+        public bool isCleared;
 
         private GameObject _player;
+        private readonly List<GameObject> _enemiesOnStandby = new();
 
         private void Awake()
         {
             _player = GameObject.FindWithTag("Player");
+
+            foreach (var enemy in enemyList)
+            {
+                if (!enemy.gameObject.activeSelf) _enemiesOnStandby.Add(enemy.gameObject);
+            }
         }
 
         private void Update()
@@ -36,6 +44,7 @@ namespace Enemy
             }
             
             CheckPlayerInRaycastRange();
+            UpdateEnemyWave();
         }
 
         private void CheckPlayerInRaycastRange()
@@ -56,6 +65,19 @@ namespace Enemy
             foreach (var enemy in enemyList)
             {
                 enemy.isChasing = isChasing;
+            }
+        }
+
+        private void UpdateEnemyWave()
+        {
+            var activatedAmount = enemyList.Count - _enemiesOnStandby.Count;
+            if (activatedAmount > waveThreshold) return;
+            for (var i = 0; i < _enemiesOnStandby.Count; i++)
+            {
+                if (i >= enemiesPerWave) return;
+                var enemy = _enemiesOnStandby[i];
+                enemy.SetActive(true);
+                _enemiesOnStandby.RemoveAt(i);
             }
         }
     }

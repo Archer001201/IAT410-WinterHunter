@@ -17,7 +17,8 @@ namespace Enemy
         [Header("Static Attributes")]
         public float maxHealth;
         public float maxShield;
-        public float resistance;
+        // public float resistance;
+        public float speed;
         public float attackRange;
         public float attackDamage;
         [Header("Dynamic Attributes")]
@@ -45,6 +46,7 @@ namespace Enemy
             
             hudCanvas.SetActive(true);
             _agent = GetComponent<NavMeshAgent>();
+            _agent.speed = speed;
             
             _player = GameObject.FindWithTag("Player");
             
@@ -55,7 +57,7 @@ namespace Enemy
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
-            resistance = Mathf.Clamp(resistance, 0, 1);
+            // resistance = Mathf.Clamp(resistance, 0, 1)
 
             if (health <= 0)
             {
@@ -186,6 +188,18 @@ namespace Enemy
             {
                 health -= damage;
             }
+        }
+
+        public void Slowdown(float originalSpeed, float slowRate, float duration)
+        {
+            StartCoroutine(SlowdownCoroutine(originalSpeed, slowRate, duration));
+        }
+
+        private IEnumerator SlowdownCoroutine(float originalSpeed, float slowRate, float duration)
+        {
+            _agent.speed = originalSpeed * slowRate;
+            yield return new WaitForSeconds(duration);
+            _agent.speed = originalSpeed;
         }
     }
 }
