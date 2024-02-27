@@ -13,7 +13,7 @@ namespace Snowman.Skills
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (!other.gameObject.CompareTag("Enemy")) return;
+            if (!other.CompareTag("Enemy")) return;
             other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
         }
 

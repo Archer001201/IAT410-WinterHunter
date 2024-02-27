@@ -25,16 +25,14 @@ namespace Snowman
         protected override void OnTriggerEnter(Collider other)
         {
             base.OnTriggerEnter(other);
-            var otherGO = other.gameObject;
-            if (!otherGO.CompareTag("Player")) return;
+            if (!other.CompareTag("Player")) return;
             _playerAttr.isInvincible = true;
         }
         
         protected override void OnTriggerExit(Collider other)
         {
             base.OnTriggerExit(other);
-            var otherGO = other.gameObject;
-            if (!otherGO.CompareTag("Player")) return;
+            if (!other.CompareTag("Player")) return;
             _playerAttr.isInvincible = false;
         }
 

@@ -25,7 +25,7 @@ namespace Snowman.Skills
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.gameObject.CompareTag("Enemy")) return;
+            if (!other.CompareTag("Enemy")) return;
             var enemy = other.gameObject.GetComponent<BaseEnemy>();
             enemy.TakeDamage(_attack, _shieldBreakEfficiency);
             enemy.Slowdown(enemy.speed, slowRate, 1f);

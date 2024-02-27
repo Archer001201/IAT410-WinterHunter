@@ -26,12 +26,12 @@ namespace Props
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) hud.SetActive(true);
+            if (other.CompareTag("Player")) hud.SetActive(true);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) hud.SetActive(false);
+            if (other.CompareTag("Player")) hud.SetActive(false);
         }
 
         /*
