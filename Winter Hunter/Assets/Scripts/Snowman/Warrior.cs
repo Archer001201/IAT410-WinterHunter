@@ -9,6 +9,7 @@ namespace Snowman
     {
         public GameObject slashPrefab;
         public float attackRange;
+        public Transform slashStartTrans;
         private Coroutine _attackCoroutine;
 
         protected override void Update()
@@ -25,8 +26,8 @@ namespace Snowman
             while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
             {
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
-                var slashGO = Instantiate(slashPrefab, transform.position, Quaternion.identity, transform);
-                slashGO.GetComponent<SnowmanSlash>().SetAttack(MySnowmanSO.attack, level == SnowmanLevel.Advanced, MySnowmanSO.shieldBreakEfficiency);
+                var slashGO = Instantiate(slashPrefab, slashStartTrans.position, Quaternion.identity);
+                slashGO.GetComponent<DimensionalSlash>().SetAttack(MySnowmanSO.attack, level == SnowmanLevel.Advanced, MySnowmanSO.shieldBreakEfficiency);
             }
         }
         
