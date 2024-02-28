@@ -96,11 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca45e8e212a4548b93e8a6af72166f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  chestList:
-  - {fileID: 0}
-  isCleared: 0
+  enemyList: []
+  chestList: []
+  waveThreshold: 2
+  enemiesPerWave: 5
   raycastDistance: 20
+  isCleared: 0
