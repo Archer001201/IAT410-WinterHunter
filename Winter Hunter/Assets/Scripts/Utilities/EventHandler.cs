@@ -1,4 +1,5 @@
 using System;
+using Dialogue;
 using Snowman;
 
 namespace Utilities
@@ -74,6 +75,13 @@ namespace Utilities
         public static void OpenSnowmanObtainedPrompt(SnowmanTypeAndLevel typeAndLevel)
         {
             OnOpenSnowmanObtainedPrompt?.Invoke(typeAndLevel);
+        }
+        
+        public static event Action<DialoguePiece> OnShowDialoguePiece;
+
+        public static void ShowDialoguePiece(DialoguePiece dialoguePiece)
+        {
+            OnShowDialoguePiece?.Invoke(dialoguePiece);
         }
     }
 }
