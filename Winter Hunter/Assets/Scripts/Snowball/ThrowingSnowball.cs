@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 
 namespace Snowball
@@ -5,11 +6,17 @@ namespace Snowball
     /*
      * Throwing snowball
      */
-    public class ThrowingSnowball : MonoBehaviour
+    public class ThrowingSnowball : BaseSnowball
     {
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Player")) return;
+            var otherGO = other.gameObject;
+            if (otherGO.CompareTag("Player")) return;
+            if (otherGO.CompareTag("Enemy"))
+            {
+                otherGO.GetComponent<BaseEnemy>().TakeDamage(damage, shieldBreakEfficiency);
+                PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+            }
             Destroy(gameObject);
         }
     }

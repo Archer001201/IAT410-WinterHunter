@@ -10,11 +10,15 @@ namespace Player
     {
         [Header("RollSnowball Component Settings")]
         public GameObject rollingLine;
+        public float attackBonusFactor;
         [Header("RollSnowball Parameters")]
         public float scaleFactor;
         public float staminaIncrease;
+        private float _attackBonus;
         
         private RollingSnowball _rollingSnowballScript;
+        
+        
 
         private void OnDisable()
         {
@@ -45,8 +49,10 @@ namespace Player
                 return;
             }
             
+            _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
             _rollingSnowballScript.SetReleasingState();
             base.Attack();
+            _attackBonus = 0;
         }
 
         /*
@@ -64,6 +70,7 @@ namespace Player
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
+                _attackBonus += (scaleFactor * attackBonusFactor * Time.fixedDeltaTime);
                 // PlayerAttr.stamina += staminaIncrease;
 
                 if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease))

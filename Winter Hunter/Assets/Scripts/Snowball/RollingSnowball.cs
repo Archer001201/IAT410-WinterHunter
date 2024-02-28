@@ -1,3 +1,5 @@
+using System;
+using Enemy;
 using Player;
 using UnityEngine;
 
@@ -6,7 +8,7 @@ namespace Snowball
     /*
      * Rolling snowball
      */
-    public class RollingSnowball : MonoBehaviour
+    public class RollingSnowball : BaseSnowball
     {
         public float rollingDistance;
         public Vector2 rollingSize;
@@ -15,11 +17,12 @@ namespace Snowball
         private PlayerController _playerController;
         private bool _isReleasing;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _accumulatedDistance = 0f;
             transform.localScale = new Vector3(rollingSize.x, rollingSize.x, rollingSize.x);
-            _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            _playerController = PlayerAttr.gameObject.GetComponent<PlayerController>();
         }
 
         private void Update()
@@ -46,7 +49,13 @@ namespace Snowball
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground") && !other.gameObject.CompareTag("Projectile")) Destroy(gameObject);
+            var otherGO = other.gameObject;
+            if (otherGO.CompareTag("Enemy"))
+            {
+                otherGO.GetComponent<BaseEnemy>().TakeDamage(damage, shieldBreakEfficiency);
+                PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+            }
+            if (!otherGO.CompareTag("Ground") && !otherGO.CompareTag("Projectile")) Destroy(gameObject);
         }
 
         /*

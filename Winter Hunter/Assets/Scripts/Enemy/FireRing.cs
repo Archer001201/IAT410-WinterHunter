@@ -43,11 +43,11 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
-                other.gameObject.GetComponent<PlayerAttribute>().health -= _damage;
+                other.gameObject.GetComponent<PlayerAttribute>().TakeDamage(_damage);
             }
             else if (other.CompareTag("Snowman"))
             {
-                other.gameObject.GetComponent<BaseSnowman>().health -= _damage;
+                other.gameObject.GetComponent<BaseSnowman>().TakeDamage(_damage);
             }
         }
         

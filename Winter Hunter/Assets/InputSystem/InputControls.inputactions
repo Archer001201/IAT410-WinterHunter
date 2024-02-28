@@ -78,24 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CallBag",
-                    "type": "Button",
-                    "id": "e2d39dcf-461e-4253-a2c6-6e972eedda3c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EscButton",
-                    "type": "Button",
-                    "id": "dbe98b0c-8ef1-4c4d-933f-6ccbafe08e15",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Rush",
                     "type": "Button",
                     "id": "13644ed1-b528-4877-a0ab-6ae285f2fd1f",
@@ -240,34 +222,108 @@
                 },
                 {
                     "name": "",
-                    "id": "6ad267f8-9d18-4726-86fc-518117561cd9",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CallBag",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d9eb76ef-c3f1-4746-acd6-17c41171350f",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EscButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2697c6a1-9e72-4b07-bacc-f1b19d97e9b4",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Rush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "3cb348d6-d862-48a4-8bbe-4e4ae8be97c8",
+            "actions": [
+                {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "1a4063b6-c58c-442a-9ffc-85a1b793097a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "742bd21b-dca8-492b-b090-c5607cc94bb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "79b105bc-cd6e-499f-8875-194f0044e540",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e91c57e-c30e-4a64-9fa1-861268f265d6",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Global",
+            "id": "bcbd5083-6fe2-453e-b5c0-bf0b3d1eec38",
+            "actions": [
+                {
+                    "name": "OptionButton",
+                    "type": "Button",
+                    "id": "62595445-2875-4e25-a40a-ff77e9950c63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryButton",
+                    "type": "Button",
+                    "id": "73f71972-9765-4f7f-ac5a-c95eb73ba1df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "154bdd61-df4d-4d2a-afcd-6f5da545b3e9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OptionButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb5b91bf-7af7-4938-a334-4ced05377cfb",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

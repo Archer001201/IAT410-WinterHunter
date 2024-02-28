@@ -1,8 +1,10 @@
-using BTFrame;
+using System;
+using System.Collections.Generic;
 using DataSO;
 using UnityEngine;
 using UnityEngine.AI;
-using EventHandler = EventSystem.EventHandler;
+using Utilities;
+using EventHandler = Utilities.EventHandler;
 
 namespace Snowman
 {
@@ -11,36 +13,34 @@ namespace Snowman
      */
     public class BaseSnowman : MonoBehaviour
     {
-        [Header("Static Attributes")]
-        public SnowmanSO snowmanSO;
-        public float followRange;
-        public float summoningCost;
+        [Header("Static Attributes")] 
+        public SnowmanType type;
+        public float manaCost;
+        public SnowmanLevel level;
         [Header("Dynamic Attributes")] 
         public float health;
-        public float summoningTimer;
+        public float summonTimer;
         [Header("Component Settings")] 
         public GameObject hudCanvas;
-        
-        protected BehaviorTree BTree;
-        protected GameObject PlayerGO;
+        public List<Transform> detectedEnemies;
+
+        protected SnowmanSO MySnowmanSO;
         protected Transform TargetTrans;
-        
         private NavMeshAgent _agent;
         private float _startTime;
         
 
         protected virtual void Awake()
         {
-            PlayerGO = GameObject.FindWithTag("Player");
-            summoningCost = snowmanSO.summoningCost;
+            MySnowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + type + "_SO");
+            manaCost = MySnowmanSO.manaCost;
 
-            health = snowmanSO.maxHealth;
+            health = MySnowmanSO.health;
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
+            TargetTrans = GameObject.FindWithTag("Player").transform;
             _agent = GetComponent<NavMeshAgent>();
-            
-            SetUpBehaviorTree();
         }
 
         private void OnEnable()
@@ -55,49 +55,76 @@ namespace Snowman
 
         protected virtual void Update()
         {
-            health = Mathf.Clamp(health, 0, snowmanSO.maxHealth);
-            summoningTimer = Time.time - _startTime;
+            health = Mathf.Clamp(health, 0, MySnowmanSO.health);
+            summonTimer = Time.time - _startTime;
 
-            if (health <= 0 || summoningTimer >= snowmanSO.summoningTime)
+            if (health <= 0 || summonTimer >= MySnowmanSO.summonDuration)
             {
-                Destroy(gameObject);
+                DestroyMe();
             }
             
-            BTree?.BTUpdate();
+            Move();
+        }
+
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Enemy")) detectedEnemies.Add(other.transform);
+        }
+
+        protected virtual void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Enemy")) detectedEnemies.Remove(other.transform);
         }
         
-        /*
-         * Set up and initialize behaviour tree
-         */
-        protected virtual void SetUpBehaviorTree(){}
+        private Transform FindClosestEnemy()
+        {
+            Transform closestTarget = null;
+            var closestDistance = Mathf.Infinity;
+            
+            for (var i = detectedEnemies.Count - 1; i >= 0; i--)
+            {
+                if (detectedEnemies[i] == null)
+                {
+                    detectedEnemies.RemoveAt(i);
+                    continue;
+                }
+
+                var distance = Vector3.Distance(this.transform.position, detectedEnemies[i].position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = detectedEnemies[i];
+                }
+            }
+            return closestTarget != null ? closestTarget : transform;
+        }
+        
+        private void Move()
+        {
+            switch (MySnowmanSO.movementMode)
+            {
+                case MovementMode.Stationary:
+                    return;
+                case MovementMode.ChaseEnemy:
+                    TargetTrans = FindClosestEnemy();
+                    break;
+                case MovementMode.FollowPlayer:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            SetNavigation();
+        }
         
         /*
          * Set target's position as destination for NavMesh Agent
          */
-        protected void SetNavigation()
+        private void SetNavigation()
         {
             if (_agent.isActiveAndEnabled && TargetTrans != null)
             {
                 _agent.SetDestination(TargetTrans.position);
             }
-        }
-        
-        /*
-         * Set NavMesh Agent continue to move
-         */
-        protected void StartChase()
-        {
-            if (!_agent.isActiveAndEnabled) return;
-            if (_agent.isStopped) _agent.isStopped = false;
-        }
-
-        /*
-         * Set NavMesh Agent stop moving
-         */
-        protected void StopChase()
-        {
-            if (!_agent.isActiveAndEnabled) return;
-            if (!_agent.isStopped) _agent.isStopped = true;
         }
 
         /*
@@ -106,6 +133,16 @@ namespace Snowman
         protected virtual void DestroyMe()
         {
             Destroy(gameObject);
+        }
+
+        public void SetLevel(SnowmanLevel snowmanLevel)
+        {
+            level = snowmanLevel;
+        }
+
+        public virtual void TakeDamage(float damage)
+        {
+            health -= damage;
         }
     }
 }

@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using Player;
 using Snowball;
 using UnityEngine;
-using EventSystem;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
+using Utilities;
 
 namespace Enemy
 {
@@ -15,10 +17,10 @@ namespace Enemy
         [Header("Static Attributes")]
         public float maxHealth;
         public float maxShield;
-        public float resistance;
-        public float attackingRange;
+        // public float resistance;
+        public float speed;
+        public float attackRange;
         public float attackDamage;
-        public Transform campTrans;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
@@ -31,7 +33,6 @@ namespace Enemy
         
         private NavMeshAgent _agent;
         private GameObject _player;
-        private PlayerAttribute _playerAttr;
         private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
         
@@ -45,27 +46,30 @@ namespace Enemy
             
             hudCanvas.SetActive(true);
             _agent = GetComponent<NavMeshAgent>();
+            _agent.speed = speed;
             
             _player = GameObject.FindWithTag("Player");
-            _playerAttr = _player.GetComponent<PlayerAttribute>();
             
-            UpdateTarget(_player);
-
-            EventHandler.OnEnemyChangeTarget += UpdateTarget;
+            SetTarget(_player);
         }
 
         private void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
-            resistance = Mathf.Clamp(resistance, 0, 1);
-            
-            if (health <= 0) Destroy(gameObject);
+            // resistance = Mathf.Clamp(resistance, 0, 1)
 
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            if (TargetTrans == null) TargetTrans = _player.transform;
             var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
             var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
             
-            if (distanceBetweenTarget > attackingRange || !isChasing) StopAttacking();
+            if (distanceBetweenTarget > attackRange || !isChasing) StopAttacking();
             else StartAttacking();
            
             if (isChasing)
@@ -79,24 +83,14 @@ namespace Enemy
                 else StopMoving();
             }
         }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            var otherGO = other.gameObject;
-           
-            if (otherGO.CompareTag("Projectile"))
-            {
-                GetHurtFromSnowball(otherGO);
-            }
-        }
         
         /*
          * Assign a target game object to enemy
          */
-        protected virtual void UpdateTarget(GameObject tar)
+        public virtual void SetTarget(GameObject tar)
         {
             target = tar;
-            TargetTrans = target.GetComponent<Transform>();
+            TargetTrans = target.transform;
         }
 
 
@@ -105,7 +99,7 @@ namespace Enemy
          */
         private void GoBackToCamp()
         {
-            if (_agent != null && _agent.isActiveAndEnabled && campTrans != null)
+            if (_agent != null && _agent.isActiveAndEnabled)
             {
                 _agent.SetDestination(_originalPosition);
             }
@@ -166,23 +160,18 @@ namespace Enemy
             return null;
         }
 
-        /*
-         * Calculate shield and health after snowball hit
-         */
-        private void GetHurtFromSnowball(GameObject otherGO)
+        public void TakeDamage(float damage, ShieldBreakEfficiency shieldBreakEfficiency)
         {
-            var snowballScript = otherGO.GetComponent<BaseSnowball>();
-            var damage = snowballScript.damage;
-            if (snowballScript.type == SnowballType.RollingSnowball)
-            {
-                damage *= otherGO.transform.localScale.x;
-            }
             if (shield > 0)
             {
-                if (snowballScript.type == SnowballType.ThrowingSnowball)
+                damage *= shieldBreakEfficiency switch
                 {
-                    damage *= 1f - resistance;
-                }
+                    ShieldBreakEfficiency.Low => 0.2f,
+                    ShieldBreakEfficiency.Median => 0.6f,
+                    ShieldBreakEfficiency.High => 1f,
+                    _ => throw new ArgumentOutOfRangeException(nameof(shieldBreakEfficiency), shieldBreakEfficiency,
+                        null)
+                };
 
                 if (damage > shield)
                 {
@@ -199,8 +188,18 @@ namespace Enemy
             {
                 health -= damage;
             }
+        }
 
-            _playerAttr.energy += damage/5;
+        public void Slowdown(float originalSpeed, float slowRate, float duration)
+        {
+            StartCoroutine(SlowdownCoroutine(originalSpeed, slowRate, duration));
+        }
+
+        private IEnumerator SlowdownCoroutine(float originalSpeed, float slowRate, float duration)
+        {
+            _agent.speed = originalSpeed * slowRate;
+            yield return new WaitForSeconds(duration);
+            _agent.speed = originalSpeed;
         }
     }
 }

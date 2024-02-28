@@ -9,20 +9,23 @@ namespace Enemy
      */
     public class EnemyCamp : MonoBehaviour
     {
-        public List<GameObject> enemyList;
-        public List<Chest> chestList;
-        public bool isCleared;
+        public List<BaseEnemy> enemyList;
+        public List<TreasureChest> chestList;
+        public int waveThreshold;
+        public int enemiesPerWave;
         public float raycastDistance;
+        public bool isCleared;
 
         private GameObject _player;
+        private readonly List<GameObject> _enemiesOnStandby = new();
 
         private void Awake()
         {
             _player = GameObject.FindWithTag("Player");
+
             foreach (var enemy in enemyList)
             {
-                var baseEnemy = enemy.GetComponent<BaseEnemy>();
-                baseEnemy.campTrans = transform;
+                if (!enemy.gameObject.activeSelf) _enemiesOnStandby.Add(enemy.gameObject);
             }
         }
 
@@ -41,27 +44,8 @@ namespace Enemy
             }
             
             CheckPlayerInRaycastRange();
+            UpdateEnemyWave();
         }
-
-        // private void OnTriggerEnter(Collider other)
-        // {
-        //     if (!other.gameObject.CompareTag("Player")) return;
-        //
-        //     foreach (var enemy in enemyList)
-        //     {
-        //         enemy.GetComponent<BaseEnemy>().isChasing = true;
-        //     }
-        // }
-        //
-        // private void OnTriggerExit(Collider other)
-        // {
-        //     if (!other.gameObject.CompareTag("Player")) return;
-        //
-        //     foreach (var enemy in enemyList)
-        //     {
-        //         enemy.GetComponent<BaseEnemy>().isChasing = false;
-        //     }
-        // }
 
         private void CheckPlayerInRaycastRange()
         {
@@ -80,7 +64,20 @@ namespace Enemy
         {
             foreach (var enemy in enemyList)
             {
-                enemy.GetComponent<BaseEnemy>().isChasing = isChasing;
+                enemy.isChasing = isChasing;
+            }
+        }
+
+        private void UpdateEnemyWave()
+        {
+            var activatedAmount = enemyList.Count - _enemiesOnStandby.Count;
+            if (activatedAmount > waveThreshold) return;
+            for (var i = 0; i < _enemiesOnStandby.Count; i++)
+            {
+                if (i >= enemiesPerWave) return;
+                var enemy = _enemiesOnStandby[i];
+                enemy.SetActive(true);
+                _enemiesOnStandby.RemoveAt(i);
             }
         }
     }

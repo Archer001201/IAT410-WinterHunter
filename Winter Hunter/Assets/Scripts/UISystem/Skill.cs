@@ -36,7 +36,7 @@ namespace UISystem
         {
             if (snowmanInfo == null) return;
             // iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
-            iconSprite = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanInfo.type + "_SO").snowmanIcon;
+            iconSprite = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanInfo.type + "_SO").icon;
             _skillIcon.sprite = iconSprite;
         }
     }

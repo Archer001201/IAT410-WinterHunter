@@ -2,7 +2,7 @@ using System;
 using DataSO;
 using Snowman;
 using UnityEngine;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace Player
 {
@@ -62,11 +62,12 @@ namespace Player
         {
             if (_playerAttr.snowmanList.Count < 1) return;
             var snowman = _playerAttr.snowmanList[currentIndex];
-            if (!snowman.canBeSummoned || _playerAttr.energy < snowman.summoningCost) return;
+            if (!snowman.canBeSummoned || _playerAttr.mana < snowman.summoningCost) return;
             EventHandler.DestroyExistedSnowman();
-            Instantiate(currentSnowman, startPosition.position, startPosition.rotation);
+            var snowmanGO = Instantiate(currentSnowman, startPosition.position, startPosition.rotation);
+            snowmanGO.GetComponent<BaseSnowman>().SetLevel(snowman.level);
             snowman.canBeSummoned = false;
-            _playerAttr.energy -= snowman.summoningCost;
+            _playerAttr.mana -= snowman.summoningCost;
             snowman.cooldownTimer = snowman.cooldown;
         }
 
@@ -77,10 +78,10 @@ namespace Player
         {
             if (_playerAttr.snowmanList.Count < 1) return;
             var snowmanType = _playerAttr.snowmanList[currentIndex].type;
-            currentSnowman = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanType + "_SO").snowmanPrefab;
+            currentSnowman = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanType + "_SO").prefab;
 
             if (currentSnowman == null) return;
-            summoningCost = currentSnowman.GetComponent<BaseSnowman>().summoningCost;
+            summoningCost = currentSnowman.GetComponent<BaseSnowman>().manaCost;
         }
     }
 }

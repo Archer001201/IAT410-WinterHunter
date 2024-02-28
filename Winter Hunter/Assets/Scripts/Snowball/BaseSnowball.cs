@@ -1,5 +1,8 @@
+using System;
 using DataSO;
+using Player;
 using UnityEngine;
+using Utilities;
 
 namespace Snowball
 {
@@ -8,15 +11,18 @@ namespace Snowball
      */
     public class BaseSnowball : MonoBehaviour
     {
-        public float attackFactor;
         public float damage;
-        public SnowballType type;
-        private PlayerSO _playerSO;
+        public ShieldBreakEfficiency shieldBreakEfficiency;
+        protected PlayerAttribute PlayerAttr;
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
-            damage = attackFactor * _playerSO.attack;
+            PlayerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+        }
+
+        public void SetAttack(float attack)
+        {
+            damage = attack;
         }
     }
 }

@@ -1,15 +1,23 @@
 namespace Utilities
 {
-    public class Enums
-    {
-        public enum SnowmanType
-        {
-            Warrior, Guardian, Healer, Provoker, Marksman, Alchemist 
-        }
 
-        public enum SnowmanLevel
-        {
-            Basic, Advanced
-        }
+    public enum SnowmanType
+    {
+        Warrior, Guardian, Healer, Provoker, Marksman, Alchemist 
+    }
+
+    public enum SnowmanLevel
+    {
+        Basic, Advanced
+    }
+
+    public enum MovementMode
+    {
+        ChaseEnemy, FollowPlayer, Stationary
+    }
+
+    public enum ShieldBreakEfficiency
+    {
+        Low, Median, High
     }
 }

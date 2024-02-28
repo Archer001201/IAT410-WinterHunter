@@ -31,7 +31,7 @@ namespace UISystem
         {
             _targetHealthFill = _playerAttr.health / _playerSO.maxHealth;
             _targetStaminaFill = _playerAttr.stamina / _playerSO.maxStamina;
-            _targetEnergyFill = _playerAttr.energy / _playerSO.maxEnergy;
+            _targetEnergyFill = _playerAttr.mana / _playerSO.maxMana;
             
             healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, _targetHealthFill, lerpSpeed * Time.deltaTime);
             staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, _targetStaminaFill, lerpSpeed * Time.deltaTime);

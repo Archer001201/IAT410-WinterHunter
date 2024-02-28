@@ -15,9 +15,9 @@ namespace Enemy
         /*
          * Update target game object and reset destination for NavMesh Agent
          */
-        protected override void UpdateTarget(GameObject tar)
+        public override void SetTarget(GameObject tar)
         {
-            base.UpdateTarget(tar);
+            base.SetTarget(tar);
             MoveTowardsTarget();
         }
         
@@ -26,7 +26,7 @@ namespace Enemy
          */
         protected override IEnumerator AttackCoroutine()
         {
-            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackingRange)
+            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
             {
                 yield return new WaitForSeconds(2); 
                 var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);

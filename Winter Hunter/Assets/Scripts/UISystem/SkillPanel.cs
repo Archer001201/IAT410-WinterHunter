@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Player;
 using Snowman;
 using UnityEngine;
-using EventHandler = EventSystem.EventHandler;
+using EventHandler = Utilities.EventHandler;
 
 namespace UISystem
 {
