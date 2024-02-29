@@ -66,7 +66,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.40000004
+  m_ScreenY: 0.6
   m_CameraDistance: 25
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_SoftZoneWidth: 2
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.000000074505806
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -150,7 +150,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 50
+  field of view: 30
   orthographic: 0
   orthographic size: 15
   m_Depth: -1
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 30
     OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 1000
