@@ -23,10 +23,9 @@ MonoBehaviour:
   manaCost: 20
   movementMode: 1
   shieldBreakEfficiency: 0
-  basicAbilities: 'Follows the player
-
-    Continuously heals the player if they
-    are within healing range'
-  advancedAbilities: If the healing amount exceeds a certain threshold (excess healing
-    is cleared if the player goes out of range), it enhances the player's attack
-    power.
+  basicAbilities: Follows the player and continuously heals the player within a certain
+    range.
+  advancedAbilities: When the healing amount overflows, the player can generate a
+    field of ice spikes that deal damage and slow enemies. The overflow of healing
+    will be reset to zero after the ice spikes are released or the player leaves
+    the healing range.

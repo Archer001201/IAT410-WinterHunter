@@ -1,6 +1,7 @@
 using System;
 using DataSO;
 using Enemy;
+using Player;
 using UnityEngine;
 using Utilities;
 
@@ -11,6 +12,15 @@ namespace Snowman.Skills
         private float _attack;
         private ShieldBreakEfficiency _shieldBreakEfficiency;
         public ParticleSystem particle;
+        private SphereCollider _collider;
+        private bool _isRollingSnowball;
+        private PlayerAttribute _playerAttr;
+
+        private void Awake()
+        {
+            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            _collider = GetComponent<SphereCollider>();
+        }
 
         private void Update()
         {
@@ -21,12 +31,27 @@ namespace Snowman.Skills
         {
             if (!other.CompareTag("Enemy")) return;
             other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
+            if (_isRollingSnowball)
+            {
+                _playerAttr.mana += _attack * _playerAttr.manaRecovery;
+            }
         }
 
         public void SetAttack(float attack, ShieldBreakEfficiency shieldBreakEfficiency)
         {
             _attack = attack;
             _shieldBreakEfficiency = shieldBreakEfficiency;
+        }
+
+        public void SetRadius(float radius, bool isRollingSnowball)
+        {
+            // var particleShape = particle.shape;
+            // particleShape.radius = radius;
+            var particleMain = particle.main;
+            particleMain.startLifetime = radius;
+            particleMain.duration = radius;
+            _collider.radius = radius + 1;
+            _isRollingSnowball = isRollingSnowball;
         }
     }
 }

@@ -23,4 +23,6 @@ MonoBehaviour:
   manaCost: 20
   movementMode: 0
   shieldBreakEfficiency: 2
-  description: 
+  basicAbilities: Can pursue and taunt enemies within a range.
+  advancedAbilities: Upon death, it explodes, and the more enemies taunted, the higher
+    the damage caused by the explosion.

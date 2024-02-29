@@ -23,4 +23,7 @@ MonoBehaviour:
   manaCost: 20
   movementMode: 0
   shieldBreakEfficiency: 1
-  description: 
+  basicAbilities: Melee attack, capable of pursuing and prioritizing the nearest
+    enemy, and can cause area damage.
+  advancedAbilities: Each time an enemy is hit, it reduces the cooldown time of all
+    snowmen's skills.

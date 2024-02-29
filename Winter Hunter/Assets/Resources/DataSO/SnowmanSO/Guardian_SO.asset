@@ -22,4 +22,8 @@ MonoBehaviour:
   attackSpeed: 2
   manaCost: 20
   movementMode: 2
-  description: 
+  shieldBreakEfficiency: 0
+  basicAbilities: Deploys a force field to block damage for the player, but cannot
+    move.
+  advancedAbilities: When the player is within the force field, it converts the damage
+    taken into healing for the player.

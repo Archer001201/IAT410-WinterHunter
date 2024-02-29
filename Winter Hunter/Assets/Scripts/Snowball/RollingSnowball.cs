@@ -1,6 +1,7 @@
 using System;
 using Enemy;
 using Player;
+using Snowman.Skills;
 using UnityEngine;
 
 namespace Snowball
@@ -12,6 +13,7 @@ namespace Snowball
     {
         public float rollingDistance;
         public Vector2 rollingSize;
+        public GameObject explosionVfx;
         private Vector3 _lastPosition;
         private float _accumulatedDistance;
         private PlayerController _playerController;
@@ -50,12 +52,25 @@ namespace Snowball
         private void OnCollisionEnter(Collision other)
         {
             var otherGO = other.gameObject;
-            if (otherGO.CompareTag("Enemy"))
+            // if (otherGO.CompareTag("Enemy"))
+            // {
+            //     // otherGO.GetComponent<BaseEnemy>().TakeDamage(damage, shieldBreakEfficiency);
+            //     var explosion = Instantiate(explosionVfx, transform.position, Quaternion.identity);
+            //     var explosionScript = explosion.GetComponent<SnowmanExplosion>();
+            //     explosionScript.SetRadius(transform.localScale.x);
+            //     explosionScript.SetAttack(damage, shieldBreakEfficiency);
+            //     PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+            // }
+            if (!otherGO.CompareTag("Ground") && !otherGO.CompareTag("Projectile"))
             {
-                otherGO.GetComponent<BaseEnemy>().TakeDamage(damage, shieldBreakEfficiency);
-                PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+                var explosion = Instantiate(explosionVfx, transform.position, Quaternion.identity);
+                var explosionScript = explosion.GetComponent<SnowmanExplosion>();
+                explosionScript.SetRadius(transform.localScale.x, true);
+                explosionScript.SetAttack(damage, shieldBreakEfficiency);
+                Debug.Log(other.gameObject.name);
+                // PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+                Destroy(gameObject);
             }
-            if (!otherGO.CompareTag("Ground") && !otherGO.CompareTag("Projectile")) Destroy(gameObject);
         }
 
         /*

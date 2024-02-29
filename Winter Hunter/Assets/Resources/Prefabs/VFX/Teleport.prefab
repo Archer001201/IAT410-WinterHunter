@@ -4881,6 +4881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878806593484693952}
   - component: {fileID: 8680132801219620869}
+  - component: {fileID: 1425323146}
   m_Layer: 0
   m_Name: Teleport
   m_TagString: Untagged
@@ -4915,5 +4916,19 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1425323146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624089683474788820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868b59e89b17d4bb8bd59849f80eca14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: Traning Ground
+  prompt: Go to training ground

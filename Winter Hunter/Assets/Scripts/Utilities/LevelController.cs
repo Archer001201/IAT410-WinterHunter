@@ -72,6 +72,12 @@ namespace Utilities
             asyncSceneLoader.SetActive(true);
             asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(sceneName);
         }
+
+        public void ReloadCurrentScene()
+        {
+            asyncSceneLoader.SetActive(true);
+            asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
         
         // // 用于开始加载新场景的方法
         // public void LoadSceneAsync(string sceneName)
