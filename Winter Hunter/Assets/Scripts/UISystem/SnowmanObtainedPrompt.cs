@@ -61,6 +61,7 @@ namespace UISystem
 
         private IEnumerator AdjustHeight()
         {
+            _snowmenPlayerHas.Clear();
             // 首先，从0增长到目标高度
             const float startHeight = 0; // 开始高度应为0
             float time = 0;
@@ -91,7 +92,6 @@ namespace UISystem
             _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, 0);
 
             // 最后，设置GameObject为不激活
-            _snowmenPlayerHas.Clear();
             _trans.gameObject.SetActive(false);
         }
     }

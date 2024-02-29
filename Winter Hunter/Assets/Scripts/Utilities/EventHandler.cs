@@ -98,11 +98,11 @@ namespace Utilities
             OnShowInteractableSign?.Invoke(isActive, text);
         }
 
-        public static event Action<bool, string> OnOpenTeleportPanel;
+        public static event Action<bool, string, string> OnOpenTeleportPanel;
 
-        public static void OpenTeleportPanel(bool isOpen, string nextLevel)
+        public static void OpenTeleportPanel(bool isOpen, string nextLevel, string prompt)
         {
-            OnOpenTeleportPanel?.Invoke(isOpen, nextLevel);
+            OnOpenTeleportPanel?.Invoke(isOpen, nextLevel, prompt);
         }
         
         public static event Action<bool> OnAllowMouseInput;

@@ -107,10 +107,12 @@ namespace UISystem
             EventHandler.ShowSnowmanObtainedPrompt(snowman);
         }
 
-        private void HandleTeleportPanel(bool isOpen, string nextLevel)
+        private void HandleTeleportPanel(bool isOpen, string nextLevel, string prompt)
         {
             teleportPanel.SetActive(isOpen);
-            teleportPanel.GetComponent<TeleportPanel>().nextLevel = nextLevel;
+            var teleportScript = teleportPanel.GetComponent<TeleportPanel>();
+            teleportScript.nextLevel = nextLevel;
+            teleportScript.prompt = prompt;
         }
     }
 }

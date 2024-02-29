@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using Utilities;
 using EventHandler = Utilities.EventHandler;
@@ -8,7 +9,14 @@ namespace UISystem
     public class TeleportPanel : MonoBehaviour
     {
         public string nextLevel;
+        public string prompt;
+        public TextMeshProUGUI promptText;
         public GameObject asyncSceneLoader;
+
+        private void Update()
+        {
+            promptText.text = prompt;
+        }
 
         private void OnEnable()
         {

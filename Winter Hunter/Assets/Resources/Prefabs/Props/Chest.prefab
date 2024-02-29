@@ -61,7 +61,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7641557093225610107
 MonoBehaviour:
@@ -237,6 +237,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8676730903761977972, guid: fe7f5f93cabea4258b6d065f777b08ad,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8676730903761977973, guid: fe7f5f93cabea4258b6d065f777b08ad,
         type: 3}
       propertyPath: m_Name
@@ -314,6 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6520078433945021011, guid: fe7f5f93cabea4258b6d065f777b08ad, type: 3}
+    - {fileID: 8676730903761977972, guid: fe7f5f93cabea4258b6d065f777b08ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe7f5f93cabea4258b6d065f777b08ad, type: 3}
 --- !u!1 &5135034180918503777 stripped
 GameObject:
