@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 440272703}
   - component: {fileID: 440272704}
   - component: {fileID: 3946855064793031736}
+  - component: {fileID: 3030625091392737825}
   m_Layer: 8
   m_Name: Normal Enemy
   m_TagString: Enemy
@@ -120,7 +121,7 @@ MonoBehaviour:
   maxHealth: 100
   maxShield: 0
   speed: 4
-  attackRange: 0
+  attackRange: 5
   attackDamage: 10
   health: 0
   shield: 0
@@ -138,7 +139,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 789761186269842912}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
@@ -160,10 +161,23 @@ CapsuleCollider:
   m_GameObject: {fileID: 789761186269842912}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!65 &3030625091392737825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789761186269842912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &313297064855076446
 PrefabInstance:
