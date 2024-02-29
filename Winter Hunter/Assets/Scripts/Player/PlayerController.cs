@@ -79,12 +79,16 @@ namespace Player
         {
             _inputControls.Enable();
             EventHandler.OnSetGameplayActionMap += SetGameplayActionMode;
+            EventHandler.OnAllowInputControl += AllowInputControl;
+            EventHandler.OnAllowMouseInput += AllowMouseInput;
         }
 
         private void OnDisable()
         {
             _inputControls.Disable();
             EventHandler.OnSetGameplayActionMap -= SetGameplayActionMode;
+            EventHandler.OnAllowInputControl -= AllowInputControl;
+            EventHandler.OnAllowMouseInput -= AllowMouseInput;
         }
 
         private void Update()
@@ -345,6 +349,26 @@ namespace Player
             
             if (_panelAmount < 1)_inputControls.Enable();
             else _inputControls.Disable();
+        }
+
+        private void AllowInputControl(bool allow)
+        {
+            if (allow) _inputControls.Enable();
+            else _inputControls.Disable();
+        }
+
+        private void AllowMouseInput(bool allow)
+        {
+            if (allow)
+            {
+                _inputControls.Gameplay.ThrowSnowball.Enable();
+                _inputControls.Gameplay.RollSnowball.Enable();
+            }
+            else
+            {
+                _inputControls.Gameplay.ThrowSnowball.Disable();
+                _inputControls.Gameplay.RollSnowball.Disable();
+            }
         }
     }
 }

@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5936471205561474313}
   - component: {fileID: 6708536008664741899}
+  - component: {fileID: 4708694058442440413}
   m_Layer: 6
   m_Name: House_4
   m_TagString: Untagged
@@ -131,5 +132,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1, z: 1.24}
+  m_Size: {x: 1.2, y: 1, z: 1.25}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!208 &4708694058442440413
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424742996916553651}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 0.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5

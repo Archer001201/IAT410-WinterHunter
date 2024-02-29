@@ -22,7 +22,7 @@ namespace Dialogue
         {
             FillDialogueStack();
             _inputControls = new InputControls();
-            _inputControls.Gameplay.Interact.performed += _ => { StartCoroutine(DialogueRoutine()); };
+            _inputControls.Gameplay.Interact.performed += _ => { if (canTalk && !isTalking) StartCoroutine(DialogueRoutine()); };
         }
 
         private void OnEnable()
@@ -37,7 +37,20 @@ namespace Dialogue
 
         private void OnTriggerEnter(Collider other)
         {
-            canTalk = other.CompareTag("Player");
+            if (other.CompareTag("Player"))
+            {
+                canTalk = true;
+                EventHandler.ShowInteractableSign(true, "Talk");
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                canTalk = false;
+                EventHandler.ShowInteractableSign(false, "Talk");
+            }
         }
 
         private void FillDialogueStack()
@@ -53,14 +66,28 @@ namespace Dialogue
         private IEnumerator DialogueRoutine()
         {
             isTalking = true;
-            {
+            // {
                 if (_dialogueStack.TryPop(out var result))
                 {
                     EventHandler.ShowDialoguePiece(result);
                     yield return new WaitUntil(() => result.isDone);
                     isTalking = false;
                 }
-            }
+                else
+                {
+                    EventHandler.ShowDialoguePiece(null);
+                    FillDialogueStack();
+                    isTalking = false;
+
+                    onFinishEvent?.Invoke();
+                }
+            // }
+        }
+
+        public void DestroyMe()
+        {
+            EventHandler.ShowInteractableSign(false, "Talk");
+            Destroy(gameObject);
         }
     }
 }

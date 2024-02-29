@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3834453685902732467}
   - component: {fileID: -1328057065400536951}
+  - component: {fileID: 8365660510886381116}
   m_Layer: 6
   m_Name: BranchTree_2
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4502869427722335753}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 36.768562, y: 0.0000104904175, z: 42.41634}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4415361057735204331}
@@ -47,6 +48,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0.06}
+--- !u!208 &8365660510886381116
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502869427722335753}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.25, y: 0.5, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0.06}
+  m_TimeToStationary: 0.5
 --- !u!1 &4895601925660626640
 GameObject:
   m_ObjectHideFlags: 0

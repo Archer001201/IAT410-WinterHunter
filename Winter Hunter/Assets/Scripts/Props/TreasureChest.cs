@@ -11,13 +11,7 @@ namespace Props
     {
         public bool canOpen;
         public GameObject unlockingVFX;
-        public GameObject hud;
         public SnowmanTypeAndLevel snowman;
-
-        private void Awake()
-        {
-            hud.SetActive(false);
-        }
 
         private void Update()
         {
@@ -26,12 +20,12 @@ namespace Props
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player")) hud.SetActive(true);
+            if (other.CompareTag("Player")) EventHandler.ShowInteractableSign(true, "Open");
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player")) hud.SetActive(false);
+            if (other.CompareTag("Player")) EventHandler.ShowInteractableSign(false, "Open");
         }
 
         /*
@@ -40,6 +34,7 @@ namespace Props
         public void OpenChest()
         {
             EventHandler.OpenSnowmanChest(snowman);
+            EventHandler.ShowInteractableSign(false, "Open");
             Destroy(gameObject);
         }
     }

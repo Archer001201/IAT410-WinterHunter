@@ -12,7 +12,7 @@ namespace Dialogue
         [TextArea]
         public string dialogueText;
 
-        public bool hasToPause;
+        // public bool hasToPause;
         [HideInInspector]public bool isDone;
         public UnityEvent afterTalkEvent;
     }

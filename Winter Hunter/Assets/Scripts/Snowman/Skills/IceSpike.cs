@@ -13,6 +13,7 @@ namespace Snowman.Skills
         public float attackSpeed = 0.5f;
         public float totalDuration = 5f;
         public float slowRate = 0.4f;
+        public ParticleSystem particle;
         
         private SphereCollider _sphereCollider;
 
@@ -21,6 +22,11 @@ namespace Snowman.Skills
             _sphereCollider = GetComponent<SphereCollider>();
             _sphereCollider.radius = 1;
             StartCoroutine(Attack());
+        }
+
+        private void Update()
+        {
+            if (particle.isStopped) Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)

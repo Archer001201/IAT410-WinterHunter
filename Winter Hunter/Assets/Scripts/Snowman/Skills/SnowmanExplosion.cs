@@ -6,12 +6,18 @@ using Utilities;
 
 namespace Snowman.Skills
 {
-    public class SnowmanExplosion : MonoBehaviour
+    public sealed class SnowmanExplosion : MonoBehaviour
     {
         private float _attack;
         private ShieldBreakEfficiency _shieldBreakEfficiency;
+        public ParticleSystem particle;
 
-        protected virtual void OnTriggerEnter(Collider other)
+        private void Update()
+        {
+            if (particle.isStopped) Destroy(gameObject);
+        }
+
+        private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Enemy")) return;
             other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);

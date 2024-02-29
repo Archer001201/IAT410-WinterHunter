@@ -15,6 +15,7 @@ namespace Dialogue
         public TextMeshProUGUI dialogueText;
         public GameObject dialogueBox;
         public GameObject continueSign;
+        public GameObject playerHUD;
 
         private void Awake()
         {
@@ -41,6 +42,8 @@ namespace Dialogue
             if (piece != null)
             {
                 piece.isDone = false;
+                EventHandler.AllowInputControl(false);
+                playerHUD.SetActive(false);
 
                 dialogueBox.SetActive(true);
                 continueSign.SetActive(false);
@@ -52,11 +55,13 @@ namespace Dialogue
 
                 piece.isDone = true;
                 
-               continueSign.SetActive(piece.hasToPause && piece.isDone); 
+               continueSign.SetActive(piece.isDone); 
             }
             else
             {
                dialogueBox.SetActive(false);
+               EventHandler.AllowInputControl(true);
+               playerHUD.SetActive(true);
             }
         }
     }

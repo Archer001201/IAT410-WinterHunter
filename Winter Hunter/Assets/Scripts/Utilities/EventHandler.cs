@@ -83,5 +83,33 @@ namespace Utilities
         {
             OnShowDialoguePiece?.Invoke(dialoguePiece);
         }
+
+        public static event Action<bool> OnAllowInputControl;
+
+        public static void AllowInputControl(bool allow)
+        {
+            OnAllowInputControl?.Invoke(allow);
+        }
+
+        public static event Action<bool, string> OnShowInteractableSign;
+
+        public static void ShowInteractableSign(bool isActive, string text)
+        {
+            OnShowInteractableSign?.Invoke(isActive, text);
+        }
+
+        public static event Action<bool, string> OnOpenTeleportPanel;
+
+        public static void OpenTeleportPanel(bool isOpen, string nextLevel)
+        {
+            OnOpenTeleportPanel?.Invoke(isOpen, nextLevel);
+        }
+        
+        public static event Action<bool> OnAllowMouseInput;
+
+        public static void AllowMouseInput(bool allow)
+        {
+            OnAllowMouseInput?.Invoke(allow);
+        }
     }
 }

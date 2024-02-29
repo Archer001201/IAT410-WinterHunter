@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Props;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemy
 {
@@ -9,6 +10,7 @@ namespace Enemy
      */
     public class EnemyCamp : MonoBehaviour
     {
+        public UnityEvent onCampCleared;
         public List<BaseEnemy> enemyList;
         public List<TreasureChest> chestList;
         public int waveThreshold;
@@ -31,7 +33,11 @@ namespace Enemy
 
         private void Update()
         {
-            if (enemyList.Count < 1 && !isCleared) isCleared = true;
+            if (enemyList.Count < 1 && !isCleared)
+            {
+                isCleared = true;
+                onCampCleared?.Invoke();
+            }
             
             for (var i = 0; i < enemyList.Count; i++)
             {

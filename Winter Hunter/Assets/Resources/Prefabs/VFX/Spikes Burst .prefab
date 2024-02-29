@@ -4861,6 +4861,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0.2
   totalDuration: 5
+  slowRate: 0.4
+  particle: {fileID: 8087674961185015696}
 --- !u!135 &4327666129991729344
 SphereCollider:
   m_ObjectHideFlags: 0

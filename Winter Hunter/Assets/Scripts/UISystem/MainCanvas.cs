@@ -14,6 +14,7 @@ namespace UISystem
         public GameObject optionsMenu;
         public GameObject inventoryPanel;
         public GameObject snowmanObtainedPrompt;
+        public GameObject teleportPanel;
 
         private InputControls _inputControls;
 
@@ -31,13 +32,15 @@ namespace UISystem
         {
             EventHandler.OnPlayerDie += OpenGameOverPanel;
             EventHandler.OnOpenSnowmanObtainedPrompt += OpenSnowmanObtainedPrompt;
+            EventHandler.OnOpenTeleportPanel += HandleTeleportPanel;
             _inputControls.Enable();
         }
 
         private void OnDisable()
         {
             EventHandler.OnPlayerDie -= OpenGameOverPanel;
-            EventHandler.OnShowSnowmanObtainedPrompt += OpenSnowmanObtainedPrompt;
+            EventHandler.OnShowSnowmanObtainedPrompt -= OpenSnowmanObtainedPrompt;
+            EventHandler.OnOpenTeleportPanel -= HandleTeleportPanel;
             _inputControls.Disable();
         }
 
@@ -102,6 +105,12 @@ namespace UISystem
         {
             snowmanObtainedPrompt.SetActive(true);
             EventHandler.ShowSnowmanObtainedPrompt(snowman);
+        }
+
+        private void HandleTeleportPanel(bool isOpen, string nextLevel)
+        {
+            teleportPanel.SetActive(isOpen);
+            teleportPanel.GetComponent<TeleportPanel>().nextLevel = nextLevel;
         }
     }
 }
