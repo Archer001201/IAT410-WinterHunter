@@ -14,11 +14,25 @@ namespace Dialogue
         public bool isTalking;
         public bool canTalk;
 
+        private InputControls _inputControls;
+
         private Stack<DialoguePiece> _dialogueStack;
 
         private void Awake()
         {
             FillDialogueStack();
+            _inputControls = new InputControls();
+            _inputControls.Gameplay.Interact.performed += _ => { StartCoroutine(DialogueRoutine()); };
+        }
+
+        private void OnEnable()
+        {
+            _inputControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _inputControls.Disable();
         }
 
         private void OnTriggerEnter(Collider other)
