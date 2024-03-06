@@ -36,19 +36,8 @@ namespace Enemy
          */
         protected override IEnumerator AttackCoroutine()
         {
-            if (targetTrans == null)
-            {
-                Debug.Log("null");
-                yield return null;
-            }
             while (Vector3.Distance(targetTrans.position, transform.position) <= attackRange)
             {
-                // if (targetTrans == null)
-                // {
-                //     Debug.Log("target null");
-                //     yield return null;
-                // }
-                
                 yield return new WaitForSeconds(2); 
                 var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);
                 createdFireRing.GetComponent<FireRing>().FollowAt(transform,attackDamage);

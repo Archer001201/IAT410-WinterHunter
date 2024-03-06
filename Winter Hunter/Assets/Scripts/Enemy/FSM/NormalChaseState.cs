@@ -20,7 +20,8 @@ namespace Enemy.FSM
             
             CurrentEnemy.StartMoving();
             CurrentEnemy.MoveTowardsTarget();
-            CurrentEnemy.Attack();
+            // CurrentEnemy.Attack();
+            // CurrentEnemy.StartAttacking();
         }
 
         public override void OnFixedUpdate()

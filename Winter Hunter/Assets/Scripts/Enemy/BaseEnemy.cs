@@ -34,7 +34,7 @@ namespace Enemy
         public Transform detectedSnowman;
         public Transform detectedPlayer;
         
-        private NavMeshAgent _agent;
+        protected NavMeshAgent Agent;
         private GameObject _player;
         private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
@@ -52,8 +52,8 @@ namespace Enemy
             _originalPosition = transform.position;
             
             hudCanvas.SetActive(true);
-            _agent = GetComponent<NavMeshAgent>();
-            _agent.speed = speed;
+            Agent = GetComponent<NavMeshAgent>();
+            Agent.speed = speed;
             
             _player = GameObject.FindWithTag("Player");
 
@@ -63,6 +63,7 @@ namespace Enemy
         private void OnEnable()
         {
             _currentState.OnEnter(this);
+            // StartAttacking();
         }
 
         private void OnDisable()
@@ -70,7 +71,7 @@ namespace Enemy
             _currentState.OnExist();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
@@ -169,9 +170,9 @@ namespace Enemy
          */
         public void GoBackToCamp()
         {
-            if (_agent != null && _agent.isActiveAndEnabled)
+            if (Agent != null && Agent.isActiveAndEnabled)
             {
-                _agent.SetDestination(_originalPosition);
+                Agent.SetDestination(_originalPosition);
             }
         }
         
@@ -180,9 +181,9 @@ namespace Enemy
          */
         public void MoveTowardsTarget()
         {
-            if (_agent != null && _agent.isActiveAndEnabled && targetTrans != null)
+            if (Agent != null && Agent.isActiveAndEnabled && targetTrans != null)
             {
-                _agent.SetDestination(targetTrans.position);
+                Agent.SetDestination(targetTrans.position);
             }
         }
 
@@ -191,8 +192,8 @@ namespace Enemy
          */
         public void StartMoving()
         {
-            if (!_agent.isActiveAndEnabled) return;
-            if (_agent.isStopped) _agent.isStopped = false;
+            if (!Agent.isActiveAndEnabled) return;
+            if (Agent.isStopped) Agent.isStopped = false;
         }
 
         /*
@@ -200,31 +201,33 @@ namespace Enemy
          */
         public void StopMoving()
         {
-            if (!_agent.isActiveAndEnabled) return;
-            if (!_agent.isStopped) _agent.isStopped = true;
+            if (!Agent.isActiveAndEnabled) return;
+            if (!Agent.isStopped) Agent.isStopped = true;
         }
 
-        public void Attack()
-        {
-            if (targetTrans == null) return;
-            var distanceBetweenTarget = Vector3.Distance(targetTrans.position, transform.position);
-            
-            if (distanceBetweenTarget > attackRange) StopAttacking();
-            else StartAttacking();
-        }
+        // public void Attack()
+        // {
+        //     if (targetTrans == null) return;
+        //     // var distanceBetweenTarget = Vector3.Distance(targetTrans.position, transform.position);
+        //     //
+        //     // if (distanceBetweenTarget > attackRange) StopAttacking();
+        //     // else 
+        //         StartAttacking();
+        // }
 
         /*
          * Start attacking, start attack coroutine
          */
-        private void StartAttacking()
+        protected void StartAttacking()
         {
+            if (targetTrans == null) return;
             _attackCoroutine ??= StartCoroutine(AttackCoroutine());
         }
 
         /*
          * Stop attacking, stop and clear attack coroutine
          */
-        private void StopAttacking()
+        protected void StopAttacking()
         {
             if (_attackCoroutine == null) return;
             StopCoroutine(_attackCoroutine);
@@ -276,9 +279,9 @@ namespace Enemy
 
         private IEnumerator SlowdownCoroutine(float originalSpeed, float slowRate, float duration)
         {
-            _agent.speed = originalSpeed * slowRate;
+            Agent.speed = originalSpeed * slowRate;
             yield return new WaitForSeconds(duration);
-            _agent.speed = originalSpeed;
+            Agent.speed = originalSpeed;
         }
     }
 }
