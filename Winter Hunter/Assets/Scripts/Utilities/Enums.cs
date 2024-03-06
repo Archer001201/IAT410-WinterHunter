@@ -20,4 +20,9 @@ namespace Utilities
     {
         Low, Median, High
     }
+
+    public enum EnemyState
+    {
+        Chase, Retreat
+    }
 }

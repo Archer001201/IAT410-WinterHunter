@@ -1,5 +1,6 @@
 using System.Collections;
 using BTFrame;
+using Enemy.FSM;
 using UnityEngine;
 
 namespace Enemy
@@ -12,13 +13,21 @@ namespace Enemy
         [Header("Normal Enemy Settings")]
         public GameObject fireRing;
 
+        protected override void Awake()
+        {
+            IdleState = new NormalIdleState();
+            ChaseState = new NormalChaseState();
+            RetreatState = new NormalRetreatState();
+            base.Awake();
+        }
+
         /*
          * Update target game object and reset destination for NavMesh Agent
          */
-        public override void SetTarget(GameObject tar)
+        public override void SetTarget(Transform tar)
         {
             base.SetTarget(tar);
-            MoveTowardsTarget();
+            // MoveTowardsTarget();
         }
         
         /*
@@ -26,7 +35,7 @@ namespace Enemy
          */
         protected override IEnumerator AttackCoroutine()
         {
-            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
+            while (Vector3.Distance(targetTrans.position, transform.position) <= attackRange)
             {
                 yield return new WaitForSeconds(2); 
                 var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);

@@ -56,7 +56,7 @@ namespace Snowman
                     continue;
                 }
                 var distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance <= tauntRange) enemy.SetTarget(gameObject);
+                if (distance <= tauntRange) enemy.SetTarget(gameObject.transform);
             }
         }
 

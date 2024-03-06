@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Props;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
 
 namespace Enemy
 {
@@ -66,11 +67,15 @@ namespace Enemy
             Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
         }
 
-        private void NotifyEnemiesToChangeChasingState(bool isChasing)
+        private void NotifyEnemiesToChangeChasingState(bool isPlayerInCampRange)
         {
             foreach (var enemy in enemyList)
             {
-                enemy.isChasing = isChasing;
+                if (enemy.isPlayerInCampRange == isPlayerInCampRange) return;
+                enemy.isPlayerInCampRange = isPlayerInCampRange;
+                enemy.SetChaseTarget();
+                // if (isChasing && enemy.CurrentState != enemy.ChaseState)
+                //     enemy.SwitchState(EnemyState.Chase);
             }
         }
 
