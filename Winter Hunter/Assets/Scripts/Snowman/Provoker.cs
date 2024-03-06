@@ -19,6 +19,7 @@ namespace Snowman
         
         private SphereCollider _sphereCollider;
         private readonly List<BaseEnemy> _detectedEnemyScripts = new();
+        private readonly List<BaseEnemy> _tauntedEnemies = new();
 
         protected override void Awake()
         {
@@ -56,7 +57,12 @@ namespace Snowman
                     continue;
                 }
                 var distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance <= tauntRange) enemy.SetTarget(gameObject.transform);
+                if (distance <= tauntRange)
+                {
+                    if (_tauntedEnemies.Contains(enemy)) return;
+                    enemy.SetTauntingTarget(gameObject.transform);
+                    _tauntedEnemies.Add(enemy);
+                }
             }
         }
 
@@ -66,6 +72,11 @@ namespace Snowman
             {
                 var explosionGO = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 explosionGO.GetComponent<SnowmanExplosion>().SetAttack(MySnowmanSO.attack * (1 + attackBonusFactor * (_detectedEnemyScripts.Count-1)), MySnowmanSO.shieldBreakEfficiency);
+            }
+
+            foreach (var enemy in _tauntedEnemies)
+            {
+                enemy.SetTauntingTarget(null);
             }
             
             base.DestroyMe();

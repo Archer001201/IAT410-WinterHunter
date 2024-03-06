@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 789761186269842939}
   - component: {fileID: 789761186269842940}
   - component: {fileID: 789761186269842942}
-  - component: {fileID: 440272703}
   - component: {fileID: 440272704}
   - component: {fileID: 3030625091392737825}
+  - component: {fileID: 5623827496699714581}
   m_Layer: 8
-  m_Name: Normal Enemy
+  m_Name: Infantry Soldier
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,33 +106,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
---- !u!114 &440272703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789761186269842912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b89487f3d5d436891afd6267e9b87d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxShield: 0
-  speed: 4
-  attackRange: 5
-  attackDamage: 10
-  health: 0
-  shield: 0
-  isPlayerInCampRange: 0
-  isTaunted: 0
-  hudCanvas: {fileID: 5998041306890683963}
-  targetTrans: {fileID: 0}
-  detectedSnowman: {fileID: 0}
-  detectedPlayer: {fileID: 0}
-  fireRing: {fileID: 6226103546333560817, guid: a9521664d1fa24afc9f2de572eebf65d,
-    type: 3}
 --- !u!195 &440272704
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -168,6 +141,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5623827496699714581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789761186269842912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76af6332ffed4e05be16194eca7cf18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  maxShield: 0
+  speed: 0
+  attackRange: 0
+  attackDamage: 0
+  health: 0
+  shield: 0
+  isPlayerInCampRange: 0
+  isTaunted: 0
+  hudCanvas: {fileID: 5998041306890683963}
+  targetTrans: {fileID: 0}
+  detectedSnowman: {fileID: 0}
+  detectedPlayer: {fileID: 0}
 --- !u!1 &5426970029969473778
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +210,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3713073010793103920
 MonoBehaviour:
@@ -226,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51dc0b78fadf4fdcb28f7ea44b5c1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 440272703}
+  enemy: {fileID: 0}
 --- !u!1001 &313297064855076446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,7 +356,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyAttr
       value: 
-      objectReference: {fileID: 440272703}
+      objectReference: {fileID: 5623827496699714581}
     - target: {fileID: 6297260224819312741, guid: 96c7e14fb335b47e085489f6204ce151,
         type: 3}
       propertyPath: m_Name

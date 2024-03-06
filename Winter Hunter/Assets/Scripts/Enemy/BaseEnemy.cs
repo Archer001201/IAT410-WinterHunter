@@ -1,15 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Enemy.FSM;
-using Player;
-using Snowball;
+using Snowman;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Utilities;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -21,7 +18,6 @@ namespace Enemy
         [Header("Static Attributes")]
         public float maxHealth;
         public float maxShield;
-        // public float resistance;
         public float speed;
         public float attackRange;
         public float attackDamage;
@@ -29,23 +25,23 @@ namespace Enemy
         public float health;
         public float shield;
         public bool isPlayerInCampRange;
+        public bool isTaunted;
+        public bool isChasing;
         [Header("Component Settings")]
         public GameObject hudCanvas;
-        // public GameObject target;
 
         public Transform targetTrans;
-        // public List<Transform> targetTransList;
         public Transform detectedSnowman;
         public Transform detectedPlayer;
         
         private NavMeshAgent _agent;
-        public GameObject player;
+        private GameObject _player;
         private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
 
-        public BaseState CurrentState;
+        private BaseState _currentState;
         protected BaseState IdleState;
-        public BaseState ChaseState;
+        protected BaseState ChaseState;
         protected BaseState RetreatState;
 
         protected virtual void Awake()
@@ -59,27 +55,25 @@ namespace Enemy
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = speed;
             
-            player = GameObject.FindWithTag("Player");
-            // SetTarget(_player.transform);
+            _player = GameObject.FindWithTag("Player");
 
-            CurrentState = IdleState;
+            _currentState = IdleState;
         }
 
         private void OnEnable()
         {
-            CurrentState.OnEnter(this);
+            _currentState.OnEnter(this);
         }
 
         private void OnDisable()
         {
-            CurrentState.OnExist();
+            _currentState.OnExist();
         }
 
         private void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
-            // resistance = Mathf.Clamp(resistance, 0, 1)
 
             if (health <= 0)
             {
@@ -87,48 +81,13 @@ namespace Enemy
                 return;
             }
 
-            // if (targetTrans == null) targetTrans = _player.transform;
-            // var distanceBetweenTarget = Vector3.Distance(TargetTrans.position, transform.position);
-            // var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
-            //
-            // if (distanceBetweenTarget > attackRange || !isChasing) StopAttacking();
-            // else StartAttacking();
-            //
-            // if (isChasing)
-            // {
-            //     StartMoving();
-            //     MoveTowardsTarget();
-            // }
-            // else
-            // {
-            //     if (distanceBetweenOriginalPos > 0.5f) GoBackToCamp();
-            //     else StopMoving();
-            // }
-
-            // if (targetTrans != null)
-            // {
-            //     var distanceBetweenTarget = Vector3.Distance(targetTrans.position, transform.position);
-            //     // var distanceBetweenOriginalPos = Vector3.Distance(_originalPosition, transform.position);
-            //     
-            //     if (distanceBetweenTarget > attackRange) StopAttacking();
-            //     else StartAttacking();
-            //     
-            //     StartMoving();
-            //     MoveTowardsTarget();
-            //     
-            //     // if (isChasing)
-            //     // {
-            //     //     StartMoving();
-            //     //     MoveTowardsTarget();
-            //     // }
-            //     // else
-            //     // {
-            //     //     if (distanceBetweenOriginalPos > 0.5f) GoBackToCamp();
-            //     //     else StopMoving();
-            //     // }
-            // }
+            if (isPlayerInCampRange && targetTrans == null)
+            {
+                isChasing = true;
+                SetChaseTarget();
+            }
             
-            CurrentState.OnUpdate();
+            _currentState.OnUpdate();
         }
 
         private void FixedUpdate()
@@ -145,51 +104,51 @@ namespace Enemy
                 _ => null
             };
             
-            CurrentState.OnExist();
-            CurrentState = newState;
-            CurrentState?.OnEnter(this);
+            _currentState.OnExist();
+            _currentState = newState;
+            _currentState?.OnEnter(this);
         }
-        
-        // private void CheckPlayerInRaycastRange()
-        // {
-        //     var dir = _player.transform.position - transform.position;
-        //
-        //     var layerMask =  1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Player");
-        //
-        //
-        //     
-        //     Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
-        // }
 
-        /*
-         * Assign a target game object to enemy
-         */
-        public virtual void SetTarget(Transform tar)
+        public void SetTauntingTarget(Transform tar)
         {
-            // target = tar;
-            targetTrans = tar;
+            if (tar != null)
+            {
+                targetTrans = tar;
+                isTaunted = true;
+            }
+            else
+            {
+                Debug.Log("set target null");
+                isTaunted = false;
+                targetTrans = null;
+                // SetChaseTarget();
+            }
         }
 
         public void SetChaseTarget()
         {
+            if (isTaunted) return;
             var noDetectedTarget = detectedPlayer == null && detectedSnowman == null;
             if (isPlayerInCampRange && noDetectedTarget)
             {
-                targetTrans = player.transform;
+                targetTrans = _player.transform;
                 Debug.Log("no targets, chase player");
+                // isChasing = true;
             }
             else if (noDetectedTarget)
             {
                 GoBackToCamp();
                 targetTrans = null;
                 Debug.Log("no targets, back to camp");
+                isChasing = false;
             }
-            else
+            else if (isChasing)
             {
                 if (detectedPlayer != null && detectedSnowman != null)
                 {
-                    targetTrans = detectedPlayer;
-                    Debug.Log("2 targets, wait for targeting");
+                    var randNum = Random.Range(0f, 1f);
+                    targetTrans = randNum > detectedSnowman.GetComponent<BaseSnowman>().aggro ? detectedPlayer : detectedSnowman;
+                    Debug.Log("2 targets, wait for targeting" + randNum);
                 }
                 else if (detectedSnowman != null)
                 {
@@ -265,7 +224,7 @@ namespace Enemy
         /*
          * Stop attacking, stop and clear attack coroutine
          */
-        public void StopAttacking()
+        private void StopAttacking()
         {
             if (_attackCoroutine == null) return;
             StopCoroutine(_attackCoroutine);

@@ -17,6 +17,7 @@ namespace Snowman
         public SnowmanType type;
         public float manaCost;
         public SnowmanLevel level;
+        public float aggro;
         [Header("Dynamic Attributes")] 
         public float health;
         public float summonTimer;

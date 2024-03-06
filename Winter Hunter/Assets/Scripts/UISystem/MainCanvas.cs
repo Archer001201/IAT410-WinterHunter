@@ -23,6 +23,7 @@ namespace UISystem
             gameOverPanel.SetActive(false);
             levelClearedPanel.SetActive(false);
             optionsMenu.SetActive(false);
+            snowmanObtainedPrompt.SetActive(false);
             _inputControls = new InputControls();
             _inputControls.Global.OptionButton.performed += _=> HandlePanel(optionsMenu);
             _inputControls.Global.InventoryButton.performed += _ => HandlePanel(inventoryPanel);
@@ -103,6 +104,11 @@ namespace UISystem
 
         private void OpenSnowmanObtainedPrompt(SnowmanTypeAndLevel snowman)
         {
+            if (snowmanObtainedPrompt == null)
+            {
+                Debug.Log("prompt null");
+                return;
+            }
             snowmanObtainedPrompt.SetActive(true);
             EventHandler.ShowSnowmanObtainedPrompt(snowman);
         }
