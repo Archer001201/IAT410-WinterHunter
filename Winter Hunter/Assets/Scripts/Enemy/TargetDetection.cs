@@ -1,4 +1,6 @@
 using System;
+using Player;
+using Snowman;
 using UnityEngine;
 
 namespace Enemy
@@ -11,13 +13,13 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
-                enemy.detectedPlayer = other.transform;
+                enemy.detectedPlayer = other.GetComponent<PlayerAttribute>();
                 enemy.SetChaseTarget();
             }
 
             if (other.CompareTag("Snowman"))
             {
-                enemy.detectedSnowman = other.transform;
+                enemy.detectedSnowman = other.GetComponent<BaseSnowman>();
                 enemy.SetChaseTarget();
             }
         }

@@ -1970,6 +1970,16 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5623827496699714581, guid: dfdf79385ef134ae2ad4c33e739d84b1,
+        type: 3}
+      propertyPath: basicSkillCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623827496699714581, guid: dfdf79385ef134ae2ad4c33e739d84b1,
+        type: 3}
+      propertyPath: basicAttackCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfdf79385ef134ae2ad4c33e739d84b1, type: 3}
 --- !u!1 &831980074

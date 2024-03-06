@@ -15,7 +15,7 @@ namespace Enemy.FSM
             // Debug.Log("Idle");
             if (CurrentEnemy.targetTrans != null)
             {
-                CurrentEnemy.SwitchState(EnemyState.Chase);
+                CurrentEnemy.SwitchMovingState(MovingState.Chase);
             }
             // if (CurrentEnemy.isPlayerInCampRange)
             // {

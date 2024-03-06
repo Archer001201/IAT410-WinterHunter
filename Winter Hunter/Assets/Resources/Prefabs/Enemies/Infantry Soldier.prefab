@@ -169,6 +169,9 @@ MonoBehaviour:
   detectedSnowman: {fileID: 0}
   detectedPlayer: {fileID: 0}
   spearVfx: {fileID: 8023472776322491808}
+  isThrustReady: 1
+  isLungeReady: 1
+  isThrustStopped: 1
 --- !u!1 &5426970029969473778
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +184,7 @@ GameObject:
   - component: {fileID: 7458634182371835416}
   - component: {fileID: 3713073010793103920}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TargetDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +216,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3713073010793103920
 MonoBehaviour:

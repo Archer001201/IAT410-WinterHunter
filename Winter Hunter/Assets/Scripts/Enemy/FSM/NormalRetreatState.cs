@@ -15,7 +15,7 @@ namespace Enemy.FSM
             // Debug.Log("Retreat");
             if (CurrentEnemy.targetTrans != null)
             {
-                CurrentEnemy.SwitchState(EnemyState.Chase);
+                CurrentEnemy.SwitchMovingState(MovingState.Chase);
             }
             CurrentEnemy.GoBackToCamp();
             // throw new System.NotImplementedException();

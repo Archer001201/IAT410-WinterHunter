@@ -12,12 +12,19 @@ namespace Enemy
 
         private void OnEnable()
         {
+            // if (enemy is InfantrySoldier infantrySoldier)
+            //     infantrySoldier.isThrustStopped = false;
             thrustVfx.Play();
         }
 
         private void Update()
         {
-            if (thrustVfx.isStopped) gameObject.SetActive(false);
+            if (thrustVfx.isStopped)
+            {
+                // if (enemy is InfantrySoldier infantrySoldier)
+                //     infantrySoldier.isThrustStopped = true;
+                gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerEnter(Collider other)

@@ -15,7 +15,7 @@ namespace Enemy.FSM
             // Debug.Log("Chase");
             if (CurrentEnemy.targetTrans == null)
             {
-                CurrentEnemy.SwitchState(EnemyState.Retreat);
+                CurrentEnemy.SwitchMovingState(MovingState.Retreat);
             }
             
             CurrentEnemy.StartMoving();

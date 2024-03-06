@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using Enemy.FSM;
+using Player;
 using Snowman;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Utilities;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
@@ -21,28 +23,44 @@ namespace Enemy
         public float speed;
         public float attackRange;
         public float attackDamage;
+        public float basicAttackCooldown;
+        public float basicSkillCooldown;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
         public bool isPlayerInCampRange;
         public bool isTaunted;
         public bool isChasing;
+        public float basicAttackTimer;
+        public float basicSkillTimer;
+        public bool isBasicAttackSatisfied;
+        public bool isBasicSkillSatisfied;
+        public bool isBasicAttackReady;
+        public bool isBasicSkillReady;
         [Header("Component Settings")]
         public GameObject hudCanvas;
 
         public Transform targetTrans;
-        public Transform detectedSnowman;
-        public Transform detectedPlayer;
+        public BaseSnowman detectedSnowman;
+        public PlayerAttribute detectedPlayer;
         
-        protected NavMeshAgent Agent;
+        public NavMeshAgent agent;
         private GameObject _player;
-        private Coroutine _attackCoroutine;
+        // private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
 
-        private BaseState _currentState;
+        private BaseState _currentMovingState;
         protected BaseState IdleState;
         protected BaseState ChaseState;
         protected BaseState RetreatState;
+
+        private BaseState _currentAttackingState;
+        protected BaseState NonAttackState;
+        protected BaseState BasicAttackState;
+        protected BaseState BasicSkillState;
+
+        public Coroutine BasicAttackCoroutine;
+        public Coroutine BasicSkillCoroutine;
 
         protected virtual void Awake()
         {
@@ -52,30 +70,35 @@ namespace Enemy
             _originalPosition = transform.position;
             
             hudCanvas.SetActive(true);
-            Agent = GetComponent<NavMeshAgent>();
-            Agent.speed = speed;
+            agent = GetComponent<NavMeshAgent>();
+            agent.speed = speed;
             
             _player = GameObject.FindWithTag("Player");
 
-            _currentState = IdleState;
+            _currentMovingState = IdleState;
+            _currentAttackingState = NonAttackState;
         }
 
         private void OnEnable()
         {
-            _currentState.OnEnter(this);
+            _currentMovingState.OnEnter(this);
+            _currentAttackingState.OnEnter(this);
             // StartAttacking();
         }
 
         private void OnDisable()
         {
-            _currentState.OnExist();
+            _currentMovingState.OnExist();
+            _currentAttackingState.OnExist();
         }
 
         protected virtual void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxHealth);
-
+            basicAttackTimer = Mathf.Clamp(basicAttackTimer, 0, basicAttackCooldown);
+            basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
+            
             if (health <= 0)
             {
                 Destroy(gameObject);
@@ -87,27 +110,48 @@ namespace Enemy
                 isChasing = true;
                 SetChaseTarget();
             }
+
+            isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied;
+            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied; 
             
-            _currentState.OnUpdate();
+            _currentMovingState.OnUpdate();
+            _currentAttackingState.OnUpdate();
         }
 
         private void FixedUpdate()
         {
             // CurrentState.OnFixedUpdate();
+            if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
+            if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
         }
 
-        public void SwitchState(EnemyState state)
+        public void SwitchMovingState(MovingState state)
         {
             var newState = state switch
             {
-                EnemyState.Chase => ChaseState,
-                EnemyState.Retreat => RetreatState,
+                MovingState.Chase => ChaseState,
+                MovingState.Retreat => RetreatState,
                 _ => null
             };
             
-            _currentState.OnExist();
-            _currentState = newState;
-            _currentState?.OnEnter(this);
+            _currentMovingState.OnExist();
+            _currentMovingState = newState;
+            _currentMovingState?.OnEnter(this);
+        }
+        
+        public void SwitchAttackingState(AttackingState state)
+        {
+            var newState = state switch
+            {
+                AttackingState.NonAttack => NonAttackState,
+                AttackingState.BasicAttack => BasicAttackState,
+                AttackingState.BasicSkill => BasicSkillState,
+                _ => null
+            };
+            
+            _currentAttackingState.OnExist();
+            _currentAttackingState = newState;
+            _currentAttackingState?.OnEnter(this);
         }
 
         public void SetTauntingTarget(Transform tar)
@@ -133,14 +177,14 @@ namespace Enemy
             if (isPlayerInCampRange && noDetectedTarget)
             {
                 targetTrans = _player.transform;
-                Debug.Log("no targets, chase player");
+                // Debug.Log("no targets, chase player");
                 // isChasing = true;
             }
             else if (noDetectedTarget)
             {
                 GoBackToCamp();
                 targetTrans = null;
-                Debug.Log("no targets, back to camp");
+                // Debug.Log("no targets, back to camp");
                 isChasing = false;
             }
             else if (isChasing)
@@ -148,18 +192,18 @@ namespace Enemy
                 if (detectedPlayer != null && detectedSnowman != null)
                 {
                     var randNum = Random.Range(0f, 1f);
-                    targetTrans = randNum > detectedSnowman.GetComponent<BaseSnowman>().aggro ? detectedPlayer : detectedSnowman;
-                    Debug.Log("2 targets, wait for targeting" + randNum);
+                    targetTrans = randNum > detectedSnowman.aggro ? _player.transform : detectedSnowman.transform;
+                    // Debug.Log("2 targets, wait for targeting" + randNum);
                 }
                 else if (detectedSnowman != null)
                 {
-                    targetTrans = detectedSnowman;
-                    Debug.Log("1 target, snowman");
+                    targetTrans = detectedSnowman.transform;
+                    // Debug.Log("1 target, snowman");
                 }
                 else
                 {
-                    targetTrans = detectedPlayer;
-                    Debug.Log("1 target, player");
+                    targetTrans = _player.transform;
+                    // Debug.Log("1 target, player");
                 }
             }
         }
@@ -170,9 +214,9 @@ namespace Enemy
          */
         public void GoBackToCamp()
         {
-            if (Agent != null && Agent.isActiveAndEnabled)
+            if (agent != null && agent.isActiveAndEnabled)
             {
-                Agent.SetDestination(_originalPosition);
+                agent.SetDestination(_originalPosition);
             }
         }
         
@@ -181,9 +225,9 @@ namespace Enemy
          */
         public void MoveTowardsTarget()
         {
-            if (Agent != null && Agent.isActiveAndEnabled && targetTrans != null)
+            if (agent != null && agent.isActiveAndEnabled && targetTrans != null)
             {
-                Agent.SetDestination(targetTrans.position);
+                agent.SetDestination(targetTrans.position);
             }
         }
 
@@ -192,8 +236,8 @@ namespace Enemy
          */
         public void StartMoving()
         {
-            if (!Agent.isActiveAndEnabled) return;
-            if (Agent.isStopped) Agent.isStopped = false;
+            if (!agent.isActiveAndEnabled) return;
+            if (agent.isStopped) agent.isStopped = false;
         }
 
         /*
@@ -201,8 +245,8 @@ namespace Enemy
          */
         public void StopMoving()
         {
-            if (!Agent.isActiveAndEnabled) return;
-            if (!Agent.isStopped) Agent.isStopped = true;
+            if (!agent.isActiveAndEnabled) return;
+            if (!agent.isStopped) agent.isStopped = true;
         }
 
         // public void Attack()
@@ -218,29 +262,29 @@ namespace Enemy
         /*
          * Start attacking, start attack coroutine
          */
-        protected void StartAttacking()
-        {
-            if (targetTrans == null) return;
-            _attackCoroutine ??= StartCoroutine(AttackCoroutine());
-        }
-
-        /*
-         * Stop attacking, stop and clear attack coroutine
-         */
-        protected void StopAttacking()
-        {
-            if (_attackCoroutine == null) return;
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
-
-        /*
-         * Attack coroutine
-         */
-        protected virtual IEnumerator AttackCoroutine()
-        {
-            return null;
-        }
+        // protected void StartAttacking()
+        // {
+        //     if (targetTrans == null) return;
+        //     _attackCoroutine ??= StartCoroutine(AttackCoroutine());
+        // }
+        //
+        // /*
+        //  * Stop attacking, stop and clear attack coroutine
+        //  */
+        // protected void StopAttacking()
+        // {
+        //     if (_attackCoroutine == null) return;
+        //     StopCoroutine(_attackCoroutine);
+        //     _attackCoroutine = null;
+        // }
+        //
+        // /*
+        //  * Attack coroutine
+        //  */
+        // protected virtual IEnumerator AttackCoroutine()
+        // {
+        //     return null;
+        // }
 
         public void TakeDamage(float damage, ShieldBreakEfficiency shieldBreakEfficiency)
         {
@@ -279,9 +323,36 @@ namespace Enemy
 
         private IEnumerator SlowdownCoroutine(float originalSpeed, float slowRate, float duration)
         {
-            Agent.speed = originalSpeed * slowRate;
+            agent.speed = originalSpeed * slowRate;
             yield return new WaitForSeconds(duration);
-            Agent.speed = originalSpeed;
+            agent.speed = originalSpeed;
+        }
+
+        public virtual IEnumerator BasicAttack()
+        {
+            return null;
+        }
+
+        public void StartCurrentCoroutine(Coroutine currentCoroutine, Func<IEnumerator> func)
+        {
+            currentCoroutine ??= StartCoroutine(func());
+        }
+
+        public virtual IEnumerator BasicSkill()
+        {
+            return null;
+        }
+
+        // public void StartBasicSkillCoroutine()
+        // {
+        //     BasicSkillCoroutine ??= StartCoroutine()
+        // }
+
+        public void StopCurrentCoroutine(Coroutine currentCoroutine)
+        {
+            if (currentCoroutine == null) return;
+            StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
         }
     }
 }

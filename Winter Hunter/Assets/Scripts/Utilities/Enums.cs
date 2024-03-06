@@ -21,8 +21,13 @@ namespace Utilities
         Low, Median, High
     }
 
-    public enum EnemyState
+    public enum MovingState
     {
-        Chase, Retreat
+        Chase, Retreat, Idle
+    }
+
+    public enum AttackingState
+    {
+        NonAttack, BasicAttack, BasicSkill
     }
 }

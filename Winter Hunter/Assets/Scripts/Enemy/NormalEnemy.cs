@@ -34,14 +34,14 @@ namespace Enemy
         /*
          * Every 2 seconds create a fire ring if in attacking state
          */
-        protected override IEnumerator AttackCoroutine()
-        {
-            while (Vector3.Distance(targetTrans.position, transform.position) <= attackRange)
-            {
-                yield return new WaitForSeconds(2); 
-                var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);
-                createdFireRing.GetComponent<FireRing>().FollowAt(transform,attackDamage);
-            }
-        }
+        // protected override IEnumerator AttackCoroutine()
+        // {
+        //     while (Vector3.Distance(targetTrans.position, transform.position) <= attackRange)
+        //     {
+        //         yield return new WaitForSeconds(2); 
+        //         var createdFireRing = Instantiate(fireRing, transform.position, Quaternion.identity);
+        //         createdFireRing.GetComponent<FireRing>().FollowAt(transform,attackDamage);
+        //     }
+        // }
     }
 }
