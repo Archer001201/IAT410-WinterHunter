@@ -49,7 +49,7 @@ namespace Snowman.Skills
             // particleShape.radius = radius;
             var particleMain = particle.main;
             particleMain.startLifetime = radius;
-            particleMain.duration = radius;
+            // particleMain.duration = radius;
             _collider.radius = radius + 1;
             _isRollingSnowball = isRollingSnowball;
         }

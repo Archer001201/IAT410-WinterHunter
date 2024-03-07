@@ -114,7 +114,7 @@ namespace Player
             
             RotateTowardsMouse();
 
-            _throwSnowballScript.aimingLineRenderer.enabled = _playerAttr.isInCombat || (isAttacking && !isRollingSnowball);
+            _throwSnowballScript.aimingLineRenderer.enabled = (_playerAttr.isInCombat || isAttacking) && !isRollingSnowball;
             if (!isRollingSnowball)
             {
                 // RotateTowardsMouse();

@@ -12,8 +12,6 @@ namespace Enemy
 
         private void OnEnable()
         {
-            // if (enemy is InfantrySoldier infantrySoldier)
-            //     infantrySoldier.isThrustStopped = false;
             thrustVfx.Play();
         }
 
@@ -21,8 +19,6 @@ namespace Enemy
         {
             if (thrustVfx.isStopped)
             {
-                // if (enemy is InfantrySoldier infantrySoldier)
-                //     infantrySoldier.isThrustStopped = true;
                 gameObject.SetActive(false);
             }
         }

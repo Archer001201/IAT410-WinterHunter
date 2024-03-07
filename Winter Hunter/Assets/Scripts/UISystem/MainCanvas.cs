@@ -53,41 +53,6 @@ namespace UISystem
             gameOverPanel.SetActive(true);
         }
 
-        /*
-         * Handle option menu
-         */
-        // public void HandleOptionsMenu()
-        // {
-        //     if (optionsMenu.activeSelf)
-        //     {
-        //         optionsMenu.SetActive(false);
-        //         _inputControls.Gameplay.Enable();
-        //         _inputControls.UI.Disable();
-        //     }
-        //     else
-        //     {
-        //         optionsMenu.SetActive(true);
-        //         _inputControls.Gameplay.Disable();
-        //         _inputControls.UI.Enable();
-        //     }
-        // }
-        //
-        // private void HandleInventoryPanel()
-        // {
-        //     if (inventoryPanel.activeSelf)
-        //     {
-        //         inventoryPanel.SetActive(false);
-        //         _inputControls.Gameplay.Enable();
-        //         _inputControls.UI.Disable();
-        //     }
-        //     else
-        //     {
-        //         inventoryPanel.SetActive(true);
-        //         _inputControls.Gameplay.Disable();
-        //         _inputControls.UI.Enable();
-        //     }
-        // }
-
         public void HandlePanel(GameObject panel)
         {
             if (panel.activeSelf)

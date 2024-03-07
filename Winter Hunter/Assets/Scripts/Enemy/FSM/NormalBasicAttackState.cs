@@ -4,11 +4,10 @@ using Utilities;
 
 namespace Enemy.FSM
 {
-    public class InfantrySoldierBasicAttackState : BaseState
+    public class NormalBasicAttackState : BaseState
     {
         public override void OnEnter(BaseEnemy enemy)
         {
-            Debug.Log("Basic Attack");
             CurrentEnemy = enemy;
             CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
         }

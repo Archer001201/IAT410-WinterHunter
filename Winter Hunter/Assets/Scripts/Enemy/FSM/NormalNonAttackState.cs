@@ -3,7 +3,7 @@ using Utilities;
 
 namespace Enemy.FSM
 {
-    public class InfantrySoldierNonAttackState : BaseState
+    public class NormalNonAttackState : BaseState
     {
         public override void OnEnter(BaseEnemy enemy)
         {

@@ -78,30 +78,5 @@ namespace Utilities
             asyncSceneLoader.SetActive(true);
             asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
-        
-        // // 用于开始加载新场景的方法
-        // public void LoadSceneAsync(string sceneName)
-        // {
-        //     StartCoroutine(LoadSceneCoroutine(sceneName));
-        // }
-        //
-        // private IEnumerator LoadSceneCoroutine(string sceneName)
-        // {
-        //     // 异步加载场景
-        //     var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        //
-        //     // 等待加载完成
-        //     while (!asyncLoad.isDone)
-        //     {
-        //         // 更新UI进度条
-        //         if (progressBar != null)
-        //         {
-        //             progressBar.value = asyncLoad.progress;
-        //         }
-        //
-        //         // 等待下一帧
-        //         yield return null;
-        //     }
-        // }
     }
 }
