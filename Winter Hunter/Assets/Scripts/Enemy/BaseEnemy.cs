@@ -8,6 +8,7 @@ using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Utilities;
 using Debug = UnityEngine.Debug;
+using EventHandler = Utilities.EventHandler;
 using Random = UnityEngine.Random;
 
 namespace Enemy
@@ -101,6 +102,7 @@ namespace Enemy
             
             if (health <= 0)
             {
+                EventHandler.RemoveEnemyToCombatList(gameObject);
                 Destroy(gameObject);
                 return;
             }
@@ -111,8 +113,13 @@ namespace Enemy
                 SetChaseTarget();
             }
 
-            isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied;
-            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied; 
+            if (targetTrans == null && Vector3.Distance(transform.position, _originalPosition) < 0.5f)
+            {
+                isChasing = false;
+            }
+
+            isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
+            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null; 
             
             _currentMovingState.OnUpdate();
             _currentAttackingState.OnUpdate();
@@ -120,7 +127,7 @@ namespace Enemy
 
         private void FixedUpdate()
         {
-            // CurrentState.OnFixedUpdate();
+            _currentMovingState.OnFixedUpdate();
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
         }
@@ -131,6 +138,7 @@ namespace Enemy
             {
                 MovingState.Chase => ChaseState,
                 MovingState.Retreat => RetreatState,
+                MovingState.Idle => IdleState,
                 _ => null
             };
             
@@ -185,7 +193,7 @@ namespace Enemy
                 GoBackToCamp();
                 targetTrans = null;
                 // Debug.Log("no targets, back to camp");
-                isChasing = false;
+                // isChasing = false;
             }
             else if (isChasing)
             {

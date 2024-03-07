@@ -10,6 +10,7 @@ TagManager:
   - SkillPanel
   - Chest
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX

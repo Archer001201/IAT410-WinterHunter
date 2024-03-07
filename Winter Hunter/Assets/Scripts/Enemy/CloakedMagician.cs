@@ -5,17 +5,19 @@ using Utilities;
 
 namespace Enemy
 {
-    public class InfantrySoldier : BaseEnemy
+    public class CloakedMagician : BaseEnemy
     {
-        public GameObject spearVfx;
-        public GameObject trailVfx;
-        
+        public GameObject fireBallPrefab;
+        public GameObject fireRingPrefab;
+        public Transform fireBallTrans;
+        public Transform fireRingTrans;
+
         protected override void Awake()
         {
             IdleState = new NormalIdleState();
             ChaseState = new NormalChaseState();
             RetreatState = new NormalRetreatState();
-
+            
             NonAttackState = new InfantrySoldierNonAttackState();
             BasicAttackState = new InfantrySoldierBasicAttackState();
             BasicSkillState = new InfantrySoldierBasicSkillState();
@@ -25,35 +27,33 @@ namespace Enemy
         protected override void Update()
         {
             base.Update();
-
+            
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
-            isBasicSkillSatisfied = dist <= attackRange * 2 && shield > 0 && dist > attackRange;
-            isBasicAttackSatisfied = dist <= attackRange;
+            isBasicAttackSatisfied = dist <= attackRange * 2;
+            isBasicSkillSatisfied = dist <= attackRange && shield > 0;
         }
 
         public override IEnumerator BasicAttack()
         {
-            var thrustVfx = spearVfx; 
-            if (!thrustVfx.activeSelf)
-            { 
-                thrustVfx.SetActive(true);
+            var fireBallCount = 0;
+            while (fireBallCount < 3)
+            {
+                var fireBall = Instantiate(fireBallPrefab, fireBallTrans.position, Quaternion.identity);
+                fireBall.GetComponent<FireBall>().SetFireBall(transform.forward, attackDamage);
+                fireBallCount++;
+                yield return new WaitForSeconds(0.5f);
             }
             
-            yield return new WaitForSeconds(2f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
 
         public override IEnumerator BasicSkill()
         {
-            agent.speed = speed * 50f;
-            trailVfx.SetActive(true);
-
-            yield return new WaitForSeconds(2f);
-
-            agent.speed = speed;
-            trailVfx.SetActive(false);
-            
+            Debug.Log("fire ring");
+            var fireRing = Instantiate(fireRingPrefab, fireRingTrans.position, Quaternion.identity, transform);
+            fireRing.GetComponent<FireRing>().SetFireRing(attackDamage);
+            yield return new WaitForSeconds(0.5f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
     }

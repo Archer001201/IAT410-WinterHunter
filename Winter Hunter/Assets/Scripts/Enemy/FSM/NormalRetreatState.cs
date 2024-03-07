@@ -17,6 +17,8 @@ namespace Enemy.FSM
             {
                 CurrentEnemy.SwitchMovingState(MovingState.Chase);
             }
+            
+            if (!CurrentEnemy.isChasing) CurrentEnemy.SwitchMovingState(MovingState.Idle);
             CurrentEnemy.GoBackToCamp();
             // throw new System.NotImplementedException();
         }

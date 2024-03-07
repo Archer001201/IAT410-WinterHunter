@@ -35,6 +35,9 @@ namespace Enemy.FSM
         public override void OnFixedUpdate()
         {
             // throw new System.NotImplementedException();
+            if (CurrentEnemy.isChasing) return;
+            if (CurrentEnemy.health < CurrentEnemy.maxHealth) CurrentEnemy.health += 5 * Time.fixedDeltaTime;
+            if (CurrentEnemy.shield < CurrentEnemy.maxShield) CurrentEnemy.shield += 5 * Time.fixedDeltaTime;
         }
 
         public override void OnExist()

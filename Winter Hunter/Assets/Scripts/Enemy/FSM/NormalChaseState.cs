@@ -8,6 +8,7 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
+            EventHandler.AddEnemyToCombatList(CurrentEnemy.gameObject);
         }
 
         public override void OnUpdate()
@@ -31,6 +32,7 @@ namespace Enemy.FSM
 
         public override void OnExist()
         {
+            EventHandler.RemoveEnemyToCombatList(CurrentEnemy.gameObject);
             // throw new System.NotImplementedException();
         }
     }

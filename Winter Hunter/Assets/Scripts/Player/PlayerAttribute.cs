@@ -25,6 +25,9 @@ namespace Player
 
         public bool isInvincible;
 
+        public List<GameObject> enemiesInCombat;
+        public bool isInCombat;
+
         private void Awake()
         {
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
@@ -40,6 +43,8 @@ namespace Player
         private void OnEnable()
         {
             EventHandler.OnOpenSnowmanChest += AddSnowmanToPlayer;
+            EventHandler.OnAddEnemyToCombatList += enemy => enemiesInCombat.Add(enemy);
+            EventHandler.OnRemoveEnemyToCombatList += enemy => enemiesInCombat.Remove(enemy);
         }
         
         private void OnDisable()
@@ -54,6 +59,8 @@ namespace Player
             mana = Mathf.Clamp(mana, 0, _playerSO.maxMana);
             
             if (health <= 0) EventHandler.PlayerDie();
+
+            isInCombat = enemiesInCombat.Count > 0;
         }
 
         private void FixedUpdate()

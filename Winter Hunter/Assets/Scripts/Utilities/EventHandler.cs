@@ -1,6 +1,7 @@
 using System;
 using Dialogue;
 using Snowman;
+using UnityEngine;
 
 namespace Utilities
 {
@@ -110,6 +111,20 @@ namespace Utilities
         public static void AllowMouseInput(bool allow)
         {
             OnAllowMouseInput?.Invoke(allow);
+        }
+
+        public static event Action<GameObject> OnAddEnemyToCombatList;
+
+        public static void AddEnemyToCombatList(GameObject enemy)
+        {
+            OnAddEnemyToCombatList?.Invoke(enemy);
+        }
+        
+        public static event Action<GameObject> OnRemoveEnemyToCombatList;
+
+        public static void RemoveEnemyToCombatList(GameObject enemy)
+        {
+            OnRemoveEnemyToCombatList?.Invoke(enemy);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Enemy
             _coll = GetComponent<SphereCollider>();
             _particle = GetComponentInChildren<ParticleSystem>();
             _startTime = Time.time;
+            _coll.radius = 0;
         }
 
         private void Update()
@@ -59,6 +60,11 @@ namespace Enemy
             _trans = trans;
             _damage = damage;
             _coll.radius = 0;
+        }
+
+        public void SetFireRing(float damage)
+        {
+            _damage = damage;
         }
     }
 }
