@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   maxMana: 100
-  attack: 30
+  attack: 10
   speed: 5
   staminaRecovery: 20
   manaRecovery: 0.2

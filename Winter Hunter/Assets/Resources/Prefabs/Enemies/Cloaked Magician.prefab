@@ -276,13 +276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bd5df20ff8c4832830ea367ed1ace7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxShield: 50
-  speed: 4
+  maxHealth: 75
+  maxShield: 0
+  speed: 3
   attackRange: 10
-  attackDamage: 10
+  attackDamage: 5
   basicAttackCooldown: 2
-  basicSkillCooldown: 4
+  basicSkillCooldown: 5
   health: 0
   shield: 0
   isPlayerInCampRange: 0

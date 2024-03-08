@@ -13,12 +13,12 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerAttribute>().TakeDamage(enemy.attackDamage);
+                other.GetComponent<PlayerAttribute>().TakeDamage(enemy.attackDamage * 2);
             }
 
             if (other.CompareTag("Snowman"))
             {
-                other.GetComponent<BaseSnowman>().TakeDamage(enemy.attackDamage);
+                other.GetComponent<BaseSnowman>().TakeDamage(enemy.attackDamage * 2);
             }
         }
     }
