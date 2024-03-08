@@ -12,7 +12,6 @@ namespace Enemy.FSM
 
         public override void OnUpdate()
         {
-            // Debug.Log("Retreat");
             if (CurrentEnemy.targetTrans != null)
             {
                 CurrentEnemy.SwitchMovingState(MovingState.Chase);
@@ -20,17 +19,16 @@ namespace Enemy.FSM
             
             if (!CurrentEnemy.isChasing) CurrentEnemy.SwitchMovingState(MovingState.Idle);
             CurrentEnemy.GoBackToCamp();
-            // throw new System.NotImplementedException();
         }
 
         public override void OnFixedUpdate()
         {
-            // throw new System.NotImplementedException();
+
         }
 
         public override void OnExist()
         {
-            // throw new System.NotImplementedException();
+
         }
     }
 }

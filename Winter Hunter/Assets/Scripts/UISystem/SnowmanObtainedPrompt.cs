@@ -41,7 +41,6 @@ namespace UISystem
 
         private void ShowSnowmanObtainedPrompt(SnowmanTypeAndLevel typeAndLevel)
         {
-            Debug.Log("show prompt");
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + typeAndLevel.type + "_SO");
             icon.sprite = _snowmanSO.icon;
@@ -62,8 +61,7 @@ namespace UISystem
         private IEnumerator AdjustHeight()
         {
             _snowmenPlayerHas.Clear();
-            // 首先，从0增长到目标高度
-            const float startHeight = 0; // 开始高度应为0
+            const float startHeight = 0; 
             float time = 0;
 
             while (time < animationDuration)
@@ -75,12 +73,10 @@ namespace UISystem
             }
 
             _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, maxHeight);
-
-            // 停留1秒
+            
             yield return new WaitForSeconds(displayDuration);
-
-            // 然后，从目标高度缩小至0
-            time = 0; // 重置时间
+            
+            time = 0;
             while (time < animationDuration)
             {
                 var currentHeight = Mathf.Lerp(maxHeight, 0, time / animationDuration);
@@ -91,7 +87,6 @@ namespace UISystem
 
             _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, 0);
 
-            // 最后，设置GameObject为不激活
             _trans.gameObject.SetActive(false);
         }
     }

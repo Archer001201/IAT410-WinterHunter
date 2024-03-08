@@ -16,9 +16,9 @@ namespace Enemy
             ChaseState = new NormalChaseState();
             RetreatState = new NormalRetreatState();
 
-            NonAttackState = new InfantrySoldierNonAttackState();
-            BasicAttackState = new InfantrySoldierBasicAttackState();
-            BasicSkillState = new InfantrySoldierBasicSkillState();
+            NonAttackState = new NormalNonAttackState();
+            BasicAttackState = new NormalBasicAttackState();
+            BasicSkillState = new NormalBasicSkillState();
             base.Awake();
         }
 

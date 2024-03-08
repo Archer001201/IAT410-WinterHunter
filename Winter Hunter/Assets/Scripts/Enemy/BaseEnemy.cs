@@ -174,7 +174,6 @@ namespace Enemy
                 Debug.Log("set target null");
                 isTaunted = false;
                 targetTrans = null;
-                // SetChaseTarget();
             }
         }
 
@@ -185,15 +184,11 @@ namespace Enemy
             if (isPlayerInCampRange && noDetectedTarget)
             {
                 targetTrans = _player.transform;
-                // Debug.Log("no targets, chase player");
-                // isChasing = true;
             }
             else if (noDetectedTarget)
             {
                 GoBackToCamp();
                 targetTrans = null;
-                // Debug.Log("no targets, back to camp");
-                // isChasing = false;
             }
             else if (isChasing)
             {
@@ -201,17 +196,14 @@ namespace Enemy
                 {
                     var randNum = Random.Range(0f, 1f);
                     targetTrans = randNum > detectedSnowman.aggro ? _player.transform : detectedSnowman.transform;
-                    // Debug.Log("2 targets, wait for targeting" + randNum);
                 }
                 else if (detectedSnowman != null)
                 {
                     targetTrans = detectedSnowman.transform;
-                    // Debug.Log("1 target, snowman");
                 }
                 else
                 {
                     targetTrans = _player.transform;
-                    // Debug.Log("1 target, player");
                 }
             }
         }
@@ -256,43 +248,6 @@ namespace Enemy
             if (!agent.isActiveAndEnabled) return;
             if (!agent.isStopped) agent.isStopped = true;
         }
-
-        // public void Attack()
-        // {
-        //     if (targetTrans == null) return;
-        //     // var distanceBetweenTarget = Vector3.Distance(targetTrans.position, transform.position);
-        //     //
-        //     // if (distanceBetweenTarget > attackRange) StopAttacking();
-        //     // else 
-        //         StartAttacking();
-        // }
-
-        /*
-         * Start attacking, start attack coroutine
-         */
-        // protected void StartAttacking()
-        // {
-        //     if (targetTrans == null) return;
-        //     _attackCoroutine ??= StartCoroutine(AttackCoroutine());
-        // }
-        //
-        // /*
-        //  * Stop attacking, stop and clear attack coroutine
-        //  */
-        // protected void StopAttacking()
-        // {
-        //     if (_attackCoroutine == null) return;
-        //     StopCoroutine(_attackCoroutine);
-        //     _attackCoroutine = null;
-        // }
-        //
-        // /*
-        //  * Attack coroutine
-        //  */
-        // protected virtual IEnumerator AttackCoroutine()
-        // {
-        //     return null;
-        // }
 
         public void TakeDamage(float damage, ShieldBreakEfficiency shieldBreakEfficiency)
         {
@@ -350,11 +305,6 @@ namespace Enemy
         {
             return null;
         }
-
-        // public void StartBasicSkillCoroutine()
-        // {
-        //     BasicSkillCoroutine ??= StartCoroutine()
-        // }
 
         public void StopCurrentCoroutine(Coroutine currentCoroutine)
         {

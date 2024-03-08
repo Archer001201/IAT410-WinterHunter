@@ -18,9 +18,9 @@ namespace Enemy
             ChaseState = new NormalChaseState();
             RetreatState = new NormalRetreatState();
             
-            NonAttackState = new InfantrySoldierNonAttackState();
-            BasicAttackState = new InfantrySoldierBasicAttackState();
-            BasicSkillState = new InfantrySoldierBasicSkillState();
+            NonAttackState = new NormalNonAttackState();
+            BasicAttackState = new NormalBasicAttackState();
+            BasicSkillState = new NormalBasicSkillState();
             base.Awake();
         }
 
@@ -50,7 +50,6 @@ namespace Enemy
 
         public override IEnumerator BasicSkill()
         {
-            Debug.Log("fire ring");
             var fireRing = Instantiate(fireRingPrefab, fireRingTrans.position, Quaternion.identity, transform);
             fireRing.GetComponent<FireRing>().SetFireRing(attackDamage);
             yield return new WaitForSeconds(0.5f);

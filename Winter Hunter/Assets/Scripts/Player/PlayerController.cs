@@ -113,6 +113,8 @@ namespace Player
             if (!isDashing) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
             
             RotateTowardsMouse();
+
+            _throwSnowballScript.aimingLineRenderer.enabled = (_playerAttr.isInCombat || isAttacking) && !isRollingSnowball;
             if (!isRollingSnowball)
             {
                 // RotateTowardsMouse();
