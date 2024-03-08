@@ -162,6 +162,6 @@ MonoBehaviour:
   damage: 0
   shieldBreakEfficiency: 2
   rollingDistance: 15
-  rollingSize: {x: 1, y: 2}
+  rollingSize: {x: 0.8, y: 2}
   explosionVfx: {fileID: 6226103546333560817, guid: 85eafbd8d7928427891aaf86b23dfa0a,
     type: 3}

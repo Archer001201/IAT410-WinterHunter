@@ -70,11 +70,11 @@ namespace Player
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
-                _attackBonus += (scaleFactor * attackBonusFactor * Time.fixedDeltaTime);
+                _attackBonus += (attackBonusFactor * PlayerAttr.attack * Time.fixedDeltaTime);
 
-                if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease))
+                if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease * Time.fixedDeltaTime))
                 {
-                    PlayerAttr.stamina += staminaIncrease;
+                    PlayerAttr.stamina += staminaIncrease * Time.fixedDeltaTime;
                 }
                 else
                 {
