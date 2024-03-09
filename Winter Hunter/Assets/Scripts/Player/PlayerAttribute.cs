@@ -33,7 +33,7 @@ namespace Player
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             health = _playerSO.maxHealth;
             stamina = _playerSO.maxStamina;
-            mana = 0;
+            // mana = 0;
             attack = _playerSO.attack;
             manaRecovery = _playerSO.manaRecovery;
             

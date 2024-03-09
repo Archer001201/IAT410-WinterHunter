@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2927413850065173649}
   - component: {fileID: -8927566577266703588}
   - component: {fileID: -1268664249093449802}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Proto_ThrowingSnowball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -128,5 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  type: 1
   shieldBreakEfficiency: 0
