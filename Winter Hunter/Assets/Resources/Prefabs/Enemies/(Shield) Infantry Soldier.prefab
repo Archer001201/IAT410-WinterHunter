@@ -417,6 +417,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 2226636597102963928, guid: 33e34a8eb985d4cb4a5912507a5f86f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2226636597102963935, guid: 33e34a8eb985d4cb4a5912507a5f86f3,
         type: 3}
       propertyPath: m_RootOrder
@@ -2311,7 +2316,7 @@ PrefabInstance:
     - target: {fileID: 957807470446580693, guid: 68d772807efd94bff95ca04b6dd4d8e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 957807470446580698, guid: 68d772807efd94bff95ca04b6dd4d8e9,
         type: 3}

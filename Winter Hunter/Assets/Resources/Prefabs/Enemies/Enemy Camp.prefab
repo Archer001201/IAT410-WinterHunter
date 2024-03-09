@@ -96,9 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca45e8e212a4548b93e8a6af72166f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCampCleared:
+    m_PersistentCalls:
+      m_Calls: []
   enemyList: []
   chestList: []
   waveThreshold: 2
   enemiesPerWave: 5
   raycastDistance: 20
   isCleared: 0
+  levelSo: {fileID: 11400000, guid: 82c732ee348014b54897b9e73b263128, type: 2}

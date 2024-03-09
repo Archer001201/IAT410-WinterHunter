@@ -82,6 +82,7 @@ namespace Enemy
 
         private void OnEnable()
         {
+            if (_currentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnEnter(this);
             _currentAttackingState.OnEnter(this);
             // StartAttacking();
@@ -89,6 +90,7 @@ namespace Enemy
 
         private void OnDisable()
         {
+            if (_currentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnExist();
             _currentAttackingState.OnExist();
         }
@@ -121,15 +123,17 @@ namespace Enemy
             isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
             isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null; 
             
+            if (_currentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnUpdate();
             _currentAttackingState.OnUpdate();
         }
 
         private void FixedUpdate()
         {
-            _currentMovingState.OnFixedUpdate();
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
+            if (_currentAttackingState == null || _currentMovingState == null) return;
+            _currentMovingState.OnFixedUpdate();
         }
 
         public void SwitchMovingState(MovingState state)
