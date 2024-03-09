@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DataSO;
 using Props;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,7 @@ namespace Enemy
      */
     public class EnemyCamp : MonoBehaviour
     {
+        public string campID;
         public UnityEvent onCampCleared;
         public List<BaseEnemy> enemyList;
         public List<TreasureChest> chestList;
@@ -18,12 +20,14 @@ namespace Enemy
         public int enemiesPerWave;
         public float raycastDistance;
         public bool isCleared;
+        public LevelSO levelSo;
 
         private GameObject _player;
         private readonly List<GameObject> _enemiesOnStandby = new();
 
         private void Awake()
         {
+            levelSo.enemyCamps.Add(gameObject);
             _player = GameObject.FindWithTag("Player");
 
             foreach (var enemy in enemyList)
