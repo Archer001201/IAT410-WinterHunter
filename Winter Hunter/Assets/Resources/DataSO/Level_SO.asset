@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - campID: 
-    isCleared: 0
   - campID: 001
     isCleared: 1

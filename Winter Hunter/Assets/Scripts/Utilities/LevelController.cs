@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DataSO;
@@ -22,12 +23,15 @@ namespace Utilities
         private PlayerSO _playerCurrentAttr;
         private PlayerSO _playerDefaultAttr;
         private PlayerAttribute _playerAttr;
+        private LevelSO _levelSO;
 
         private void Awake()
         {
             _playerCurrentAttr = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _playerDefaultAttr = Resources.Load<PlayerSO>("DataSO/PlayerDefault_SO");
-            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            if (GameObject.FindWithTag("Player"))
+                _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            _levelSO = Resources.Load<LevelSO>("DataSO/Level_SO");
         }
 
         private void Update()
@@ -68,6 +72,10 @@ namespace Utilities
             _playerCurrentAttr.maxStamina = _playerDefaultAttr.maxStamina;
             _playerCurrentAttr.attack = _playerDefaultAttr.attack;
             _playerCurrentAttr.staminaRecovery = _playerDefaultAttr.staminaRecovery;
+            
+            _levelSO.position = Vector3.zero;
+            _levelSO.sceneName = string.Empty;
+            _levelSO.enemyCamps.Clear();
         }
 
         public void StartAsyncSceneLoader(string sceneName)
@@ -80,6 +88,7 @@ namespace Utilities
         {
             asyncSceneLoader.SetActive(true);
             asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(SceneManager.GetActiveScene().name);
+            _levelSO.respawnAtThisPosition = true;
         }
 
         public void HealPlayer()

@@ -1,3 +1,4 @@
+using System.Collections;
 using Snowman;
 using UnityEngine;
 using EventHandler = Utilities.EventHandler;
@@ -15,8 +16,10 @@ namespace UISystem
         public GameObject inventoryPanel;
         public GameObject snowmanObtainedPrompt;
         public GameObject teleportPanel;
+        public GameObject savingData;
 
         private InputControls _inputControls;
+        private Coroutine _showDataCoroutine;
 
         private void Awake()
         {
@@ -34,6 +37,7 @@ namespace UISystem
             EventHandler.OnPlayerDie += OpenGameOverPanel;
             EventHandler.OnOpenSnowmanObtainedPrompt += OpenSnowmanObtainedPrompt;
             EventHandler.OnOpenTeleportPanel += HandleTeleportPanel;
+            EventHandler.OnShowSavingData += StartShowingData;
             _inputControls.Enable();
         }
 
@@ -42,6 +46,7 @@ namespace UISystem
             EventHandler.OnPlayerDie -= OpenGameOverPanel;
             EventHandler.OnShowSnowmanObtainedPrompt -= OpenSnowmanObtainedPrompt;
             EventHandler.OnOpenTeleportPanel -= HandleTeleportPanel;
+            EventHandler.OnShowSavingData -= StartShowingData;
             _inputControls.Disable();
         }
 
@@ -65,13 +70,18 @@ namespace UISystem
                 panel.SetActive(true);
                 EventHandler.SetGameplayActionMap(false);
             }
+
+            if (panel == inventoryPanel)
+            {
+                inventoryPanel.GetComponent<InventoryPanel>().UpdateSnowmanCells();
+            }
         }
 
         private void OpenSnowmanObtainedPrompt(SnowmanTypeAndLevel snowman)
         {
             if (snowmanObtainedPrompt == null)
             {
-                Debug.Log("prompt null");
+                // Debug.Log("prompt null");
                 return;
             }
             snowmanObtainedPrompt.SetActive(true);
@@ -84,6 +94,32 @@ namespace UISystem
             var teleportScript = teleportPanel.GetComponent<TeleportPanel>();
             teleportScript.nextLevel = nextLevel;
             teleportScript.prompt = prompt;
+        }
+
+        private void StartShowingData()
+        {
+            _showDataCoroutine ??= StartCoroutine(ShowSavingData());
+        }
+
+        private void StopShowingData()
+        {
+            if (_showDataCoroutine == null) return;
+            StopCoroutine(_showDataCoroutine);
+            _showDataCoroutine = null;
+        }
+
+        private IEnumerator ShowSavingData()
+        {
+            if (savingData.activeSelf) yield return null;
+            else
+            {
+                savingData.SetActive(true);
+
+                yield return new WaitForSeconds(2f);
+                
+                savingData.SetActive(false);
+                StopShowingData();
+            }
         }
     }
 }

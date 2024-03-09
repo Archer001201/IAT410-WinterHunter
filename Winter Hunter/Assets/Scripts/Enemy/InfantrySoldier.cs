@@ -46,7 +46,7 @@ namespace Enemy
 
         public override IEnumerator BasicSkill()
         {
-            agent.speed = speed * 50f;
+            agent.speed = speed * 10f;
             trailVfx.SetActive(true);
 
             yield return new WaitForSeconds(2f);

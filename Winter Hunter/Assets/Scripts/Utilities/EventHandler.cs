@@ -126,5 +126,12 @@ namespace Utilities
         {
             OnRemoveEnemyToCombatList?.Invoke(enemy);
         }
+
+        public static event Action OnShowSavingData;
+
+        public static void ShowSavingData()
+        {
+            OnShowSavingData?.Invoke();
+        }
     }
 }
