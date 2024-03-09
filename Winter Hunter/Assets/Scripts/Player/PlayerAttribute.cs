@@ -51,6 +51,15 @@ namespace Player
             speed = _playerSO.speed;
             
             LoadSnowmanList();
+            
+            // _playerSO.SaveData();
+            if (_playerSO.levelSo.respawnAtThisPosition)
+            {
+                transform.position = _playerSO.levelSo.position;
+                _playerSO.levelSo.respawnAtThisPosition = false;
+            }
+            
+            _playerSO.SaveData();
         }
 
         private void OnEnable()
@@ -98,12 +107,13 @@ namespace Player
          */
         private void LoadSnowmanList()
         {
+            snowmanList.Clear();
             for (var i = 0; i < _playerSO.snowmanList.Count; i++)
             {
                 var snowmanTypeAndLevel = _playerSO.snowmanList[i];
                 var snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanTypeAndLevel.type + "_SO");
                 
-                if (snowmanList.Count <= i) snowmanList.Add(new SnowmanInfo());
+                snowmanList.Add(new SnowmanInfo());
                 snowmanList[i].type = snowmanTypeAndLevel.type;
                 snowmanList[i].level = snowmanTypeAndLevel.level;
                 if (snowmanSO == null) continue;

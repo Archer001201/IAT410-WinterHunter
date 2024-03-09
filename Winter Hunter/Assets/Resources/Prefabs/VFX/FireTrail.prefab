@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2226636597098317938}
   - component: {fileID: 2226636597098317936}
   - component: {fileID: 2226636597098317937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4824,7 +4824,7 @@ GameObject:
   - component: {fileID: 2226636597102963935}
   - component: {fileID: 3424591720451919500}
   - component: {fileID: 1091158708255190336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FireTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4855,7 +4855,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2226636597102963928}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
   m_Height: 1

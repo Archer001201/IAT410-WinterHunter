@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Player;
 using Snowman;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utilities;
 
 namespace DataSO
@@ -20,6 +21,7 @@ namespace DataSO
         public float speed;
         public float staminaRecovery;
         public float manaRecovery;
+        public LevelSO levelSo;
 
         [Header("Dynamic Attributes")] 
         public float currentHealth;
@@ -33,6 +35,9 @@ namespace DataSO
             currentHealth = playerAttr.health;
             currentMana = playerAttr.mana;
             currentStamina = playerAttr.stamina;
+            levelSo.position = playerAttr.gameObject.transform.position;
+            levelSo.sceneName = SceneManager.GetActiveScene().name;
+            EventHandler.ShowSavingData();
         }
     }
 }

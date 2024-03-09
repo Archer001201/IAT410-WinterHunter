@@ -175,7 +175,7 @@ namespace Enemy
             }
             else
             {
-                Debug.Log("set target null");
+                // Debug.Log("set target null");
                 isTaunted = false;
                 targetTrans = null;
             }
@@ -187,6 +187,7 @@ namespace Enemy
             var noDetectedTarget = detectedPlayer == null && detectedSnowman == null;
             if (isPlayerInCampRange && noDetectedTarget)
             {
+                if (_player == null) _player = GameObject.FindWithTag("Player");
                 targetTrans = _player.transform;
             }
             else if (noDetectedTarget)

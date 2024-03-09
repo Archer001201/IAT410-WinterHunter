@@ -8,5 +8,8 @@ namespace DataSO
     public class LevelSO : ScriptableObject
     {
         public List<CampData> enemyCamps;
+        public string sceneName;
+        public Vector3 position;
+        public bool respawnAtThisPosition;
     }
 }

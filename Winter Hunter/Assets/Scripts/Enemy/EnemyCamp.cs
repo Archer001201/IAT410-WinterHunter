@@ -21,6 +21,7 @@ namespace Enemy
         public float raycastDistance;
         public bool isCleared;
         public LevelSO levelSo;
+        private PlayerSO _playerSo;
 
         private GameObject _player;
         private readonly List<GameObject> _enemiesOnStandby = new();
@@ -28,38 +29,15 @@ namespace Enemy
         private void Awake()
         {
             // levelSo.enemyCamps.Add(gameObject);
-            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
-            if (camp == null)
-            {
-                levelSo.enemyCamps.Add(new CampData
-                {
-                    campID = this.campID,
-                    isCleared = this.isCleared
-                });
-            }
-            else
-            {
-                transform.parent.gameObject.SetActive(!camp.isCleared);
-            }
+            LoadEnemyCampData();
+            
             _player = GameObject.FindWithTag("Player");
+            _playerSo = Resources.Load<PlayerSO>("DataSO/Player_SO");
 
             foreach (var enemy in enemyList)
             {
                 if (!enemy.gameObject.activeSelf) _enemiesOnStandby.Add(enemy.gameObject);
             }
-        }
-
-        private void SaveData()
-        {
-            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
-            if (camp == null)
-            {
-                Debug.LogError("No camp data");
-                return;
-            }
-            
-            camp.isCleared = isCleared;
-            Debug.Log("Data saved");
         }
 
         private void Update()
@@ -121,6 +99,37 @@ namespace Enemy
                 enemy.SetActive(true);
                 _enemiesOnStandby.RemoveAt(i);
             }
+        }
+        
+        private void LoadEnemyCampData()
+        {
+            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            if (camp == null)
+            {
+                levelSo.enemyCamps.Add(new CampData
+                {
+                    campID = this.campID,
+                    isCleared = this.isCleared
+                });
+            }
+            else
+            {
+                transform.parent.gameObject.SetActive(!camp.isCleared);
+            }
+        }
+
+        private void SaveData()
+        {
+            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            if (camp == null)
+            {
+                // Debug.LogError("No camp data");
+                return;
+            }
+            
+            camp.isCleared = isCleared;
+            _playerSo.SaveData();
+            // Debug.Log("Data saved");
         }
     }
 }

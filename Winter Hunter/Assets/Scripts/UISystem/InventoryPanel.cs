@@ -25,6 +25,8 @@ namespace UISystem
 
             _inputControls.UI.Up.performed += _ => UpPressed();
             _inputControls.UI.Down.performed += _ => DownPressed();
+            
+            // UpdateSnowmanCells();
         }
 
         private void OnEnable()
@@ -77,7 +79,7 @@ namespace UISystem
             }
         }
 
-        private void UpdateSnowmanCells()
+        public void UpdateSnowmanCells()
         {
             for (var i = 0; i < cells.Count; i++)
             {

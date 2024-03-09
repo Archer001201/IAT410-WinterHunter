@@ -9,16 +9,17 @@ namespace Enemy
     {
         public BaseEnemy enemy;
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision other)
         {
-            if (other.CompareTag("Player"))
+            var otherGO = other.gameObject;
+            if (otherGO.CompareTag("Player"))
             {
-                other.GetComponent<PlayerAttribute>().TakeDamage(enemy.attackDamage * 2);
+                otherGO.GetComponent<PlayerAttribute>().TakeDamage(enemy.attackDamage * 2);
             }
 
-            if (other.CompareTag("Snowman"))
+            if (otherGO.CompareTag("Snowman"))
             {
-                other.GetComponent<BaseSnowman>().TakeDamage(enemy.attackDamage * 2);
+                otherGO.GetComponent<BaseSnowman>().TakeDamage(enemy.attackDamage * 2);
             }
         }
     }
