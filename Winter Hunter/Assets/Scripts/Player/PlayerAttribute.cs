@@ -47,6 +47,7 @@ namespace Player
             attack = _playerSO.attack;
             manaRecovery = _playerSO.manaRecovery;
             staminaRecovery = _playerSO.staminaRecovery;
+            speed = _playerSO.speed;
             
             LoadSnowmanList();
         }
@@ -129,6 +130,7 @@ namespace Player
                 _playerSO.snowmanList.Add(snowman);
             }
             // }
+            _playerSO.SaveData();
             LoadSnowmanList();
             EventHandler.UpdateSkillPanel();
         }

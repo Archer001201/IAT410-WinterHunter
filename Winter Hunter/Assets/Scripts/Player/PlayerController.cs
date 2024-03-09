@@ -24,7 +24,7 @@ namespace Player
         public bool isAttacking;
         public bool isDashing;
         
-        private PlayerSO _playerSO;
+        // private PlayerSO _playerSO;
         private InputControls _inputControls;
         private Vector2 _moveInput;
         private Vector2 _mousePosition;
@@ -45,7 +45,7 @@ namespace Player
         
         private void Awake()
         {
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            // _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _inputControls = new InputControls();
             _rb = GetComponent<Rigidbody>();
             _throwSnowballScript = GetComponent<ThrowSnowball>();
@@ -55,7 +55,7 @@ namespace Player
             _skillPanelScript = GameObject.FindWithTag("SkillPanel").GetComponent<SkillPanel>();
             _camera = Camera.main;
 
-            _initMovingSpeed = _playerSO.speed;
+            _initMovingSpeed = _playerAttr.speed;
             _movingSpeed = _initMovingSpeed;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
@@ -129,9 +129,9 @@ namespace Player
                 _rollSnowballScript.UpdateSnowball(moveDirection);
             }
 
-            if (_playerAttr.stamina < _playerSO.maxStamina && !isAttacking)
+            if (_playerAttr.stamina < _playerAttr.maxStamina && !isAttacking)
             {
-                var deltaStamina = Time.deltaTime * _playerSO.staminaRecovery;
+                var deltaStamina = Time.deltaTime * _playerAttr.staminaRecovery;
                 _playerAttr.stamina += deltaStamina;
             }
         }

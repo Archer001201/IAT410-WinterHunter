@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DataSO;
 using Enemy;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,13 +19,15 @@ namespace Utilities
         public GameObject asyncSceneLoader;
         // public Slider progressBar;
 
-        private PlayerSO _playerAttr;
+        private PlayerSO _playerCurrentAttr;
         private PlayerSO _playerDefaultAttr;
+        private PlayerAttribute _playerAttr;
 
         private void Awake()
         {
-            _playerAttr = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _playerCurrentAttr = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _playerDefaultAttr = Resources.Load<PlayerSO>("DataSO/PlayerDefault_SO");
+            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
         }
 
         private void Update()
@@ -59,12 +62,12 @@ namespace Utilities
          */
         public void ResetPlayerAttributes()
         {
-            _playerAttr.snowmanList.Clear();
-            _playerAttr.maxHealth = _playerDefaultAttr.maxHealth;
-            _playerAttr.maxMana = _playerDefaultAttr.maxMana;
-            _playerAttr.maxStamina = _playerDefaultAttr.maxStamina;
-            _playerAttr.attack = _playerDefaultAttr.attack;
-            _playerAttr.staminaRecovery = _playerDefaultAttr.staminaRecovery;
+            _playerCurrentAttr.snowmanList.Clear();
+            _playerCurrentAttr.maxHealth = _playerDefaultAttr.maxHealth;
+            _playerCurrentAttr.maxMana = _playerDefaultAttr.maxMana;
+            _playerCurrentAttr.maxStamina = _playerDefaultAttr.maxStamina;
+            _playerCurrentAttr.attack = _playerDefaultAttr.attack;
+            _playerCurrentAttr.staminaRecovery = _playerDefaultAttr.staminaRecovery;
         }
 
         public void StartAsyncSceneLoader(string sceneName)
@@ -77,6 +80,13 @@ namespace Utilities
         {
             asyncSceneLoader.SetActive(true);
             asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
+
+        public void HealPlayer()
+        {
+            _playerAttr.health = _playerAttr.maxHealth;
+            _playerAttr.stamina = _playerAttr.maxStamina;
+            _playerAttr.mana = _playerAttr.maxMana;
         }
     }
 }

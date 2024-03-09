@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Player;
 using Snowman;
 using UnityEngine;
 using Utilities;
@@ -25,5 +26,13 @@ namespace DataSO
         public float currentStamina;
         public float currentMana;
         public List<SnowmanTypeAndLevel> snowmanList;
+
+        public void SaveData()
+        {
+            var playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            currentHealth = playerAttr.health;
+            currentMana = playerAttr.mana;
+            currentStamina = playerAttr.stamina;
+        }
     }
 }
