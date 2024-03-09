@@ -96,7 +96,7 @@ namespace Enemy
         protected virtual void Update()
         {
             health = Mathf.Clamp(health, 0, maxHealth);
-            shield = Mathf.Clamp(shield, 0, maxHealth);
+            shield = Mathf.Clamp(shield, 0, maxShield);
             basicAttackTimer = Mathf.Clamp(basicAttackTimer, 0, basicAttackCooldown);
             basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
             

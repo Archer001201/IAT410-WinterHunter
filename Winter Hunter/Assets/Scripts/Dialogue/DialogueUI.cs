@@ -50,6 +50,8 @@ namespace Dialogue
 
                 dialogueText.text = string.Empty;
 
+                avatarName.gameObject.SetActive(piece.name != string.Empty);
+                figure.gameObject.SetActive(piece.figureSprite != null);
                 if (piece.name != string.Empty) avatarName.text = piece.name;
                 yield return dialogueText.DOText(piece.dialogueText, 1f).WaitForCompletion();
 
