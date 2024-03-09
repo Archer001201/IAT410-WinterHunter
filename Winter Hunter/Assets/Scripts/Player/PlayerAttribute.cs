@@ -15,6 +15,12 @@ namespace Player
     {
         private PlayerSO _playerSO;
 
+        public float maxHealth;
+        public float maxStamina;
+        public float maxMana;
+        public float speed;
+        public float staminaRecovery;
+        
         public float health;
         public float stamina;
         public float mana;
@@ -31,11 +37,16 @@ namespace Player
         private void Awake()
         {
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
-            health = _playerSO.maxHealth;
-            stamina = _playerSO.maxStamina;
+            maxHealth = _playerSO.maxHealth;
+            maxStamina = _playerSO.maxStamina;
+            
+            health = _playerSO.currentHealth;
+            stamina = _playerSO.currentStamina;
+            mana = _playerSO.currentMana;
             // mana = 0;
             attack = _playerSO.attack;
             manaRecovery = _playerSO.manaRecovery;
+            staminaRecovery = _playerSO.staminaRecovery;
             
             LoadSnowmanList();
         }
@@ -54,9 +65,9 @@ namespace Player
 
         private void Update()
         {
-            stamina = Mathf.Clamp(stamina, 0, _playerSO.maxStamina);
-            health = Mathf.Clamp(health, 0, _playerSO.maxHealth);
-            mana = Mathf.Clamp(mana, 0, _playerSO.maxMana);
+            stamina = Mathf.Clamp(stamina, 0, maxStamina);
+            health = Mathf.Clamp(health, 0, maxHealth);
+            mana = Mathf.Clamp(mana, 0, maxMana);
             
             if (health <= 0) EventHandler.PlayerDie();
 

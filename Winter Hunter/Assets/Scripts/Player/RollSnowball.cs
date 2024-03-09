@@ -49,7 +49,7 @@ namespace Player
                 return;
             }
             
-            _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
+            // _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
             _rollingSnowballScript.SetReleasingState();
             base.Attack();
             _attackBonus = 0;
@@ -71,6 +71,7 @@ namespace Player
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
                 _attackBonus += (attackBonusFactor * PlayerAttr.attack * Time.fixedDeltaTime);
+                _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
 
                 if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease * Time.fixedDeltaTime))
                 {

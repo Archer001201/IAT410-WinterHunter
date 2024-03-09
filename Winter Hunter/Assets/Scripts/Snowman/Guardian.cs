@@ -51,7 +51,7 @@ namespace Snowman
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
-            if (level != SnowmanLevel.Advanced) return;
+            if (level != SnowmanLevel.Advanced || !_playerAttr.isInvincible) return;
             _playerAttr.ReceiveHealing(damage * healingFactor);
         }
     }

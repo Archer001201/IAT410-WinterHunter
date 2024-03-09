@@ -51,7 +51,7 @@ namespace Enemy
         public override IEnumerator BasicSkill()
         {
             var fireRing = Instantiate(fireRingPrefab, fireRingTrans.position, Quaternion.identity, transform);
-            fireRing.GetComponent<FireRing>().SetFireRing(attackDamage * 2);
+            fireRing.GetComponent<FireRing>().SetFireRing(attackDamage);
             yield return new WaitForSeconds(0.5f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
