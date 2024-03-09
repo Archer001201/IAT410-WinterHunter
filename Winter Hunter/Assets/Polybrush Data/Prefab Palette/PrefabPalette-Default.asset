@@ -16,7 +16,7 @@ MonoBehaviour:
   - gameObject: {fileID: 7069110294245956637, guid: 38189c1acd3d343c8b768adb6447f498,
       type: 3}
     settings:
-      m_Strength: 52.57983
+      m_Strength: 60.744778
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -33,7 +33,7 @@ MonoBehaviour:
   - gameObject: {fileID: 4502869427722335753, guid: e1f03690b469d49f786f1b4ccf9ddc7a,
       type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 85.71134
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - gameObject: {fileID: 5258937491266621131, guid: 479e93d7d7e484d3e80d5a23d795af66,
       type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 58.164948
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
