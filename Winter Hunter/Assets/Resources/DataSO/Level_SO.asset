@@ -13,5 +13,18 @@ MonoBehaviour:
   m_Name: Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - campID: 001
+  - campID: L103
     isCleared: 1
+  - campID: L106
+    isCleared: 0
+  - campID: L101
+    isCleared: 1
+  - campID: L105
+    isCleared: 1
+  - campID: L102
+    isCleared: 1
+  - campID: L104
+    isCleared: 1
+  sceneName: Level 1
+  position: {x: -55.940933, y: -0.00021913886, z: 77.91027}
+  respawnAtThisPosition: 0

@@ -31,6 +31,7 @@ namespace Player
         private Rigidbody _rb;
         private Camera _camera;
         private Coroutine _staminaCoroutine;
+        private Coroutine _dashCoroutine;
 
         private ThrowSnowball _throwSnowballScript;
         private RollSnowball _rollSnowballScript;
@@ -102,6 +103,12 @@ namespace Player
             else
             {
                 _movingSpeed = _initMovingSpeed;
+            }
+
+            if (!isDashing)
+            {
+                EndDash();
+                StartStaminaCoroutine();
             }
         }
 
@@ -317,15 +324,28 @@ namespace Player
         private void OnPressDashButton()
         {
             if (isDashing || _playerAttr.stamina < dashCost) return;
-            StartCoroutine(Dash());
             isDashing = true;
+            isAttacking = true;
             _playerAttr.stamina -= dashCost;
+            StartDash();
             StopStaminaCoroutine();
         }
 
         private void OnReleaseDashButton()
         {
-            StartStaminaCoroutine();
+            // StartStaminaCoroutine();
+        }
+
+        private void StartDash()
+        {
+            _dashCoroutine ??= StartCoroutine(Dash());
+        }
+
+        private void EndDash()
+        {
+            if (_dashCoroutine == null) return;
+            StopCoroutine(_dashCoroutine);
+            _dashCoroutine = null;
         }
 
         private IEnumerator Dash()

@@ -17,7 +17,7 @@ MonoBehaviour:
   maxMana: 100
   attack: 100
   speed: 5
-  staminaRecovery: 20
+  staminaRecovery: 50
   manaRecovery: 0.2
   levelSo: {fileID: 0}
   currentHealth: 0

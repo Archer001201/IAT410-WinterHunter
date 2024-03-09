@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   prefab: {fileID: 0}
-  icon: {fileID: 21300000, guid: a500ae8afed2f401286e109b6c2700f5, type: 3}
+  icon: {fileID: 21300000, guid: c66ee1bab42da0143b172eabf9a4602b, type: 3}
   health: 0
   summonDuration: 0
   cooldown: 0
@@ -23,4 +23,5 @@ MonoBehaviour:
   manaCost: 0
   movementMode: 0
   shieldBreakEfficiency: 1
-  description: 
+  basicAbilities: 
+  advancedAbilities: 
