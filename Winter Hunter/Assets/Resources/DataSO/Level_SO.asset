@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCamps:
   - campID: L103
-    isCleared: 1
+    isCleared: 0
   - campID: L106
     isCleared: 0
   - campID: L101
-    isCleared: 1
+    isCleared: 0
   - campID: L105
-    isCleared: 1
+    isCleared: 0
   - campID: L102
-    isCleared: 1
+    isCleared: 0
   - campID: L104
-    isCleared: 1
+    isCleared: 0
   sceneName: Level 1
-  position: {x: -55.940933, y: -0.00021913886, z: 77.91027}
+  position: {x: -23.2, y: 0, z: -124.2}
   respawnAtThisPosition: 0

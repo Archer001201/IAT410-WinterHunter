@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virCamera: {fileID: 538110804947487634}
+  normalFOV: 50
+  combatFOV: 70
 --- !u!1 &538110804947487637
 GameObject:
   m_ObjectHideFlags: 0

@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b181774a54b65491d9e959e292b93608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalBgm: {fileID: 8300000, guid: a763a2cbdd09742d39257705001ca056, type: 3}
-  combatBgm: {fileID: 8300000, guid: 3e6adee38987e46638089fd584573673, type: 3}
+  normalBgm: {fileID: 8300000, guid: 8abbb5554105d41b4b40220c77205c3d, type: 3}
+  combatBgm: {fileID: 8300000, guid: c5198edce999540da9a7f62b75cda964, type: 3}
