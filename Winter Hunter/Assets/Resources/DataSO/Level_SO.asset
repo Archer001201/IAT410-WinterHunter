@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - {fileID: 0}
-  - {fileID: 0}
+  - campID: 
+    isCleared: 0
+  - campID: 001
+    isCleared: 1
