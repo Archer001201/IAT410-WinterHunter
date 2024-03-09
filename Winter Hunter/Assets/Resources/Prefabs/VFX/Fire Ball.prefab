@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6596774872953521795}
   - component: {fileID: 3389384669377546954}
   - component: {fileID: -5075750883189584748}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Ball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2926579201200244582}
   - component: {fileID: 501551116074525788}
   - component: {fileID: 7849539566924922153}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
