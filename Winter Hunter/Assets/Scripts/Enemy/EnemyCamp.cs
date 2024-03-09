@@ -27,7 +27,20 @@ namespace Enemy
 
         private void Awake()
         {
-            levelSo.enemyCamps.Add(gameObject);
+            // levelSo.enemyCamps.Add(gameObject);
+            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            if (camp == null)
+            {
+                levelSo.enemyCamps.Add(new CampData
+                {
+                    campID = this.campID,
+                    isCleared = this.isCleared
+                });
+            }
+            else
+            {
+                transform.parent.gameObject.SetActive(!camp.isCleared);
+            }
             _player = GameObject.FindWithTag("Player");
 
             foreach (var enemy in enemyList)
@@ -36,12 +49,26 @@ namespace Enemy
             }
         }
 
+        private void SaveData()
+        {
+            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            if (camp == null)
+            {
+                Debug.LogError("No camp data");
+                return;
+            }
+            
+            camp.isCleared = isCleared;
+            Debug.Log("Data saved");
+        }
+
         private void Update()
         {
             if (enemyList.Count < 1 && !isCleared)
             {
                 isCleared = true;
                 onCampCleared?.Invoke();
+                SaveData();
             }
             
             for (var i = 0; i < enemyList.Count; i++)
