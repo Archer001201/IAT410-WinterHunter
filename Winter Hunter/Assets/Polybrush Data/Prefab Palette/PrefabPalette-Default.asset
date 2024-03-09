@@ -16,7 +16,7 @@ MonoBehaviour:
   - gameObject: {fileID: 7069110294245956637, guid: 38189c1acd3d343c8b768adb6447f498,
       type: 3}
     settings:
-      m_Strength: 60.744778
+      m_Strength: 37.23196
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -33,7 +33,7 @@ MonoBehaviour:
   - gameObject: {fileID: 4502869427722335753, guid: e1f03690b469d49f786f1b4ccf9ddc7a,
       type: 3}
     settings:
-      m_Strength: 85.71134
+      m_Strength: 40.804123
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - gameObject: {fileID: 5258937491266621131, guid: 479e93d7d7e484d3e80d5a23d795af66,
       type: 3}
     settings:
-      m_Strength: 58.164948
+      m_Strength: 45.917526
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -67,7 +67,7 @@ MonoBehaviour:
   - gameObject: {fileID: 4755502321817253835, guid: 44fd56c9596f34e3f99f8f2a1ab27170,
       type: 3}
     settings:
-      m_Strength: 90.30413
+      m_Strength: 55.603096
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -84,7 +84,7 @@ MonoBehaviour:
   - gameObject: {fileID: 7321022345773321804, guid: e0f406ef5f5614bc9b1315a534f59f83,
       type: 3}
     settings:
-      m_Strength: 84.18041
+      m_Strength: 63.76804
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -101,7 +101,7 @@ MonoBehaviour:
   - gameObject: {fileID: 1186088317443771909, guid: d769775117fc547618f830288ec85e13,
       type: 3}
     settings:
-      m_Strength: 88.26289
+      m_Strength: 57.644337
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
