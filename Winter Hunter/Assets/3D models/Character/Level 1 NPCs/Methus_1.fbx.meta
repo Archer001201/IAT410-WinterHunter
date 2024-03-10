@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bcd13bc56c5dc474285b5c0e05412c3f
+guid: 44e35496f7b9f2e449aad1388a42d09f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,23 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chest Plate_
-    second: {fileID: 2100000, guid: 1a0f44cd0b033ed4187c180ab7b4e5da, type: 2}
+      name: Methus Cloak
+    second: {fileID: 2100000, guid: 70014e9d7b455a64f990d98d9451866c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fur
-    second: {fileID: 2100000, guid: e8642c11854db2a44984930bccc47c9b, type: 2}
+      name: Methus Cloak Hood
+    second: {fileID: 2100000, guid: 70014e9d7b455a64f990d98d9451866c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Metal Epilet
+      name: Methus Epelet
     second: {fileID: 2100000, guid: 2def709bef1931845b923fbeeaed1a2b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Skin
-    second: {fileID: 2100000, guid: e8642c11854db2a44984930bccc47c9b, type: 2}
+      name: Methus Hair
+    second: {fileID: 2100000, guid: 70014e9d7b455a64f990d98d9451866c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Methus Red
+    second: {fileID: 2100000, guid: 70014e9d7b455a64f990d98d9451866c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Methus Skin
+    second: {fileID: 2100000, guid: 70014e9d7b455a64f990d98d9451866c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
