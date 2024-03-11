@@ -28,7 +28,7 @@ namespace Utilities
 
     public enum AttackingState
     {
-        NonAttack, BasicAttack, BasicSkill
+        NonAttack, BasicAttack, BasicSkill, AdvancedSkill
     }
 
     public enum FovType

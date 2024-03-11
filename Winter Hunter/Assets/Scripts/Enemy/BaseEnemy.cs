@@ -26,6 +26,7 @@ namespace Enemy
         public float attackDamage;
         public float basicAttackCooldown;
         public float basicSkillCooldown;
+        public float advancedSkillCooldown;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
@@ -34,10 +35,13 @@ namespace Enemy
         public bool isChasing;
         public float basicAttackTimer;
         public float basicSkillTimer;
+        public float advancedSkillTimer;
         public bool isBasicAttackSatisfied;
         public bool isBasicSkillSatisfied;
+        public bool isAdvancedSkillSatisfied;
         public bool isBasicAttackReady;
         public bool isBasicSkillReady;
+        public bool isAdvancedSkillReady;
         [Header("Component Settings")]
         public GameObject hudCanvas;
 
@@ -59,9 +63,11 @@ namespace Enemy
         protected BaseState NonAttackState;
         protected BaseState BasicAttackState;
         protected BaseState BasicSkillState;
+        protected BaseState AdvancedSkillState;
 
         public Coroutine BasicAttackCoroutine;
         public Coroutine BasicSkillCoroutine;
+        public Coroutine AdvancedSkillCoroutine;
 
         protected virtual void Awake()
         {
@@ -101,6 +107,7 @@ namespace Enemy
             shield = Mathf.Clamp(shield, 0, maxShield);
             basicAttackTimer = Mathf.Clamp(basicAttackTimer, 0, basicAttackCooldown);
             basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
+            advancedSkillTimer = Mathf.Clamp(advancedSkillTimer, 0, advancedSkillCooldown);
             
             if (health <= 0)
             {
@@ -121,7 +128,8 @@ namespace Enemy
             }
 
             isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
-            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null; 
+            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null;
+            isAdvancedSkillReady = advancedSkillTimer <= 0 && isAdvancedSkillSatisfied && targetTrans != null;
             
             if (_currentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnUpdate();
@@ -132,6 +140,7 @@ namespace Enemy
         {
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
+            if (advancedSkillTimer > 0) advancedSkillTimer -= Time.deltaTime;
             if (_currentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnFixedUpdate();
         }
@@ -158,6 +167,7 @@ namespace Enemy
                 AttackingState.NonAttack => NonAttackState,
                 AttackingState.BasicAttack => BasicAttackState,
                 AttackingState.BasicSkill => BasicSkillState,
+                AttackingState.AdvancedSkill => AdvancedSkillState,
                 _ => null
             };
             
@@ -307,6 +317,11 @@ namespace Enemy
         }
 
         public virtual IEnumerator BasicSkill()
+        {
+            return null;
+        }
+
+        public virtual IEnumerator AdvancedSkill()
         {
             return null;
         }

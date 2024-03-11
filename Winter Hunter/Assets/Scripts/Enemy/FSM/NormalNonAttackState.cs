@@ -12,7 +12,8 @@ namespace Enemy.FSM
 
         public override void OnUpdate()
         {
-            if (CurrentEnemy.isBasicAttackReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicAttack);
+            if (CurrentEnemy.isAdvancedSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.AdvancedSkill);
+            else if (CurrentEnemy.isBasicAttackReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicAttack);
             else if (CurrentEnemy.isBasicSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicSkill);
         }
 
