@@ -97,5 +97,14 @@ namespace Utilities
             _playerAttr.stamina = _playerAttr.maxStamina;
             _playerAttr.mana = _playerAttr.maxMana;
         }
+
+        public void EnhancePlayer()
+        {
+            _playerCurrentAttr.maxHealth += 50;
+            _playerCurrentAttr.maxStamina += 50;
+            _playerCurrentAttr.attack += 10;
+            _playerAttr.InitializeAttributes(_playerCurrentAttr);
+            HealPlayer();
+        }
     }
 }

@@ -37,18 +37,19 @@ namespace Player
         private void Awake()
         {
             _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
-            maxHealth = _playerSO.maxHealth;
-            maxStamina = _playerSO.maxStamina;
-            maxMana = _playerSO.maxMana;
-            
-            health = _playerSO.currentHealth;
-            stamina = _playerSO.currentStamina;
-            mana = _playerSO.currentMana;
-            // mana = 0;
-            attack = _playerSO.attack;
-            manaRecovery = _playerSO.manaRecovery;
-            staminaRecovery = _playerSO.staminaRecovery;
-            speed = _playerSO.speed;
+            // maxHealth = _playerSO.maxHealth;
+            // maxStamina = _playerSO.maxStamina;
+            // maxMana = _playerSO.maxMana;
+            //
+            // health = _playerSO.currentHealth;
+            // stamina = _playerSO.currentStamina;
+            // mana = _playerSO.currentMana;
+            // // mana = 0;
+            // attack = _playerSO.attack;
+            // manaRecovery = _playerSO.manaRecovery;
+            // staminaRecovery = _playerSO.staminaRecovery;
+            // speed = _playerSO.speed;
+            InitializeAttributes(_playerSO);
             
             LoadSnowmanList();
             
@@ -60,6 +61,22 @@ namespace Player
             }
             
             _playerSO.SaveData();
+        }
+
+        public void InitializeAttributes(PlayerSO playerSO)
+        {
+            maxHealth = playerSO.maxHealth;
+            maxStamina = playerSO.maxStamina;
+            maxMana = playerSO.maxMana;
+            
+            health = playerSO.currentHealth;
+            stamina = playerSO.currentStamina;
+            mana = playerSO.currentMana;
+            // mana = 0;
+            attack = playerSO.attack;
+            manaRecovery = playerSO.manaRecovery;
+            staminaRecovery = playerSO.staminaRecovery;
+            speed = playerSO.speed;
         }
 
         private void OnEnable()
@@ -82,7 +99,18 @@ namespace Player
             
             if (health <= 0) EventHandler.PlayerDie();
 
-            isInCombat = enemiesInCombat.Count > 0;
+            switch (isInCombat)
+            {
+                case false when enemiesInCombat.Count > 0:
+                    EventHandler.ChangeFOV(FovType.Battle);
+                    isInCombat = true;
+                    break;
+                case true when enemiesInCombat.Count < 1:
+                    EventHandler.ChangeFOV(FovType.Normal);
+                    isInCombat = false;
+                    break;
+            }
+            // isInCombat = enemiesInCombat.Count > 0;
         }
 
         private void FixedUpdate()

@@ -4,6 +4,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 using EventHandler = Utilities.EventHandler;
 
 namespace Dialogue
@@ -43,6 +44,7 @@ namespace Dialogue
             {
                 piece.isDone = false;
                 EventHandler.AllowInputControl(false);
+                EventHandler.ChangeFOV(FovType.Narrative);
                 playerHUD.SetActive(false);
 
                 dialogueBox.SetActive(true);
@@ -63,6 +65,7 @@ namespace Dialogue
             {
                dialogueBox.SetActive(false);
                EventHandler.AllowInputControl(true);
+               EventHandler.ChangeFOV(FovType.Normal);
                playerHUD.SetActive(true);
             }
         }

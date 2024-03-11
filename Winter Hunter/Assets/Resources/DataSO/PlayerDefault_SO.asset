@@ -15,12 +15,12 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   maxMana: 100
-  attack: 100
-  speed: 5
+  attack: 10
+  speed: 6
   staminaRecovery: 50
   manaRecovery: 0.2
   levelSo: {fileID: 0}
-  currentHealth: 0
-  currentStamina: 0
-  currentMana: 0
+  currentHealth: 100
+  currentStamina: 100
+  currentMana: 100
   snowmanList: []

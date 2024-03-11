@@ -133,5 +133,12 @@ namespace Utilities
         {
             OnShowSavingData?.Invoke();
         }
+
+        public static event Action<FovType> OnChangeFOV;
+
+        public static void ChangeFOV(FovType fov)
+        {
+            OnChangeFOV?.Invoke(fov);
+        }
     }
 }

@@ -30,4 +30,9 @@ namespace Utilities
     {
         NonAttack, BasicAttack, BasicSkill
     }
+
+    public enum FovType
+    {
+        Narrative, Normal, Battle
+    }
 }

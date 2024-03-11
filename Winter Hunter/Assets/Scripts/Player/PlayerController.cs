@@ -3,6 +3,7 @@ using DataSO;
 using Props;
 using UISystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace Player
@@ -22,7 +23,8 @@ namespace Player
         [Header("Player State")]
         public bool isRollingSnowball;
         public bool isAttacking;
-        public bool isDashing;
+        [FormerlySerializedAs("isDashing")] public bool isDashPressed;
+        [FormerlySerializedAs("isDashReady")] public bool isDashing;
         
         // private PlayerSO _playerSO;
         private InputControls _inputControls;
@@ -108,7 +110,7 @@ namespace Player
             if (!isDashing)
             {
                 EndDash();
-                StartStaminaCoroutine();
+                // StartStaminaCoroutine();
             }
         }
 
@@ -117,7 +119,7 @@ namespace Player
             var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
             var currentVerticalVelocity = _rb.velocity.y;
 
-            if (!isDashing) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
+            if (!isDashPressed) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
             
             RotateTowardsMouse();
 
@@ -323,17 +325,18 @@ namespace Player
 
         private void OnPressDashButton()
         {
-            if (isDashing || _playerAttr.stamina < dashCost) return;
-            isDashing = true;
-            isAttacking = true;
+            if (isDashPressed || _playerAttr.stamina < dashCost) return;
+            isDashPressed = true;
+            // isAttacking = true;
             _playerAttr.stamina -= dashCost;
             StartDash();
-            StopStaminaCoroutine();
+            // StopStaminaCoroutine();
         }
 
         private void OnReleaseDashButton()
         {
             // StartStaminaCoroutine();
+            isDashPressed = false;
         }
 
         private void StartDash()
@@ -350,6 +353,7 @@ namespace Player
 
         private IEnumerator Dash()
         {
+            isDashing = true;
             var startTime = Time.time;
 
             while (Time.time < startTime + dashTimer)
@@ -361,6 +365,7 @@ namespace Player
             }
             
             _rb.velocity = Vector3.zero;
+            // isDashing = false;
             isDashing = false;
         }
 

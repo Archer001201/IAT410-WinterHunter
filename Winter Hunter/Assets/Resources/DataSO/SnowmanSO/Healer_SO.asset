@@ -16,11 +16,11 @@ MonoBehaviour:
   prefab: {fileID: 584477846658666777, guid: ca458a0817aa6854f98dc41e92160ab9, type: 3}
   icon: {fileID: 21300000, guid: 374d729eb6469f44fa7419ffb651ffa2, type: 3}
   health: 100
-  summonDuration: 40
-  cooldown: 40
+  summonDuration: 20
+  cooldown: 60
   attack: 5
   attackSpeed: 1
-  manaCost: 20
+  manaCost: 60
   movementMode: 1
   shieldBreakEfficiency: 0
   basicAbilities: Follows the player and continuously heals the player within a certain
