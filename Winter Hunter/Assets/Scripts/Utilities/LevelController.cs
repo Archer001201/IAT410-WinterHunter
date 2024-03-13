@@ -106,5 +106,10 @@ namespace Utilities
             _playerAttr.InitializeAttributes(_playerCurrentAttr);
             HealPlayer();
         }
+
+        public void EnhanceAttack()
+        {
+            _playerAttr.attack += 50;
+        }
     }
 }
