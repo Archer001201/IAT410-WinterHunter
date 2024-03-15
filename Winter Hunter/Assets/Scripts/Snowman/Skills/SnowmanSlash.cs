@@ -30,28 +30,28 @@ namespace Snowman.Skills
             _currentTime += Time.deltaTime;
             var rotationThisFrame = _rotationSpeed * Time.deltaTime;
             transform.Rotate(0, rotationThisFrame, 0);
-            if (_currentTime > attackDuration)
-            {
-                _collider.enabled = false;
-            }
-            if (slashTrails.isStopped)
-            {
-                Destroy(gameObject);
-            }
+            // if (_currentTime > attackDuration)
+            // {
+            //     _collider.enabled = false;
+            // }
+            // if (slashTrails.isStopped)
+            // {
+            //     Destroy(gameObject);
+            // }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Enemy")) return;
-            other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
-
-            if (_isAdvanced)
-            {
-                foreach (var snowman in _playerAttr.snowmanList)
-                {
-                    snowman.cooldownTimer -= 1;
-                }
-            }
+            // if (!other.CompareTag("Enemy")) return;
+            // other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
+            //
+            // if (_isAdvanced)
+            // {
+            //     foreach (var snowman in _playerAttr.snowmanList)
+            //     {
+            //         snowman.cooldownTimer -= 1;
+            //     }
+            // }
         }
 
         public void SetAttack(float attack, bool isAdvanced, ShieldBreakEfficiency shieldBreakEfficiency)
