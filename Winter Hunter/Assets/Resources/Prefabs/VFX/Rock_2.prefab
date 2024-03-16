@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4652335289154021490}
   - component: {fileID: -8656465768566363092}
   - component: {fileID: -6024787277100904757}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Rock_2
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687da5ff7173d41fe98f47bbeb9c8ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLanded: 0
 --- !u!1 &7531441301139922909
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +105,7 @@ GameObject:
   - component: {fileID: 1599660275944426726}
   - component: {fileID: 4531762346268997036}
   - component: {fileID: 1135390852046754104}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

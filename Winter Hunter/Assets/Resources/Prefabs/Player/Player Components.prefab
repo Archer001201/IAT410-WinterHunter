@@ -805,6 +805,7 @@ Transform:
   - {fileID: 5491273881132748628}
   - {fileID: 3820334404654800207}
   - {fileID: 7296700131756586838}
+  - {fileID: 1228139312867184507}
   m_Father: {fileID: 5491273880411766385}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -844,6 +845,7 @@ MonoBehaviour:
   dashCost: 20
   isRollingSnowball: 0
   isAttacking: 0
+  isDashPressed: 0
   isDashing: 0
 --- !u!114 &1564137759834253144
 MonoBehaviour:
@@ -1323,6 +1325,90 @@ Transform:
   m_Father: {fileID: 5491273880411766385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8730985023556159488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228139312867184507}
+  - component: {fileID: 1884465491399994925}
+  m_Layer: 14
+  m_Name: Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228139312867184507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730985023556159488}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5491273880646760889}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &1884465491399994925
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730985023556159488}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6d2eed2c7555942b98aa0a09a4ef3b81, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &5760201797522131474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1568,22 +1654,22 @@ PrefabInstance:
     - target: {fileID: -7554595931624632544, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -3.3117996e+13
+      value: 4.964025e+28
       objectReference: {fileID: 0}
     - target: {fileID: -7554595931624632544, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.765741e+22
+      value: 1.7857633e+31
       objectReference: {fileID: 0}
     - target: {fileID: -7554595931624632544, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 5.21649e-11
+      value: 2.112699e-19
       objectReference: {fileID: 0}
     - target: {fileID: -7554595931624632544, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.1482605e+27
+      value: 2.6453418e+20
       objectReference: {fileID: 0}
     - target: {fileID: -7467639776722512091, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
@@ -1973,22 +2059,22 @@ PrefabInstance:
     - target: {fileID: -4361956075005525512, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.5462651
+      value: 1.6489878e+28
       objectReference: {fileID: 0}
     - target: {fileID: -4361956075005525512, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.05e-43
+      value: 2.0706461e-19
       objectReference: {fileID: 0}
     - target: {fileID: -4361956075005525512, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.5462651
+      value: 7.716012e+31
       objectReference: {fileID: 0}
     - target: {fileID: -4361956075005525512, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4e-45
+      value: 1.2121546e+25
       objectReference: {fileID: 0}
     - target: {fileID: -4323756074451093983, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
@@ -2348,7 +2434,7 @@ PrefabInstance:
     - target: {fileID: -1582814862805862177, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.0000000056663723
+      value: 4.1037e-41
       objectReference: {fileID: 0}
     - target: {fileID: -1582814862805862177, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
@@ -2358,12 +2444,12 @@ PrefabInstance:
     - target: {fileID: -1582814862805862177, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 5.21649e-11
+      value: 1.1042545e+21
       objectReference: {fileID: 0}
     - target: {fileID: -1582814862805862177, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.1482605e+27
+      value: 1.7444122e+22
       objectReference: {fileID: 0}
     - target: {fileID: -1529390775025134384, guid: 89ebe8fe5673c994fac006bfe48e83ea,
         type: 3}
