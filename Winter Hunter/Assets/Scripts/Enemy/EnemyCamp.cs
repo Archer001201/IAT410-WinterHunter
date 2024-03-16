@@ -3,6 +3,7 @@ using DataSO;
 using Props;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace Enemy
@@ -12,7 +13,7 @@ namespace Enemy
      */
     public class EnemyCamp : MonoBehaviour
     {
-        public string campID;
+        public string id;
         public UnityEvent onCampCleared;
         public List<BaseEnemy> enemyList;
         public List<TreasureChest> chestList;
@@ -20,8 +21,9 @@ namespace Enemy
         public int enemiesPerWave;
         public float raycastDistance;
         public bool isCleared;
-        public LevelSO levelSo;
+        private LevelSO _levelSo;
         private PlayerSO _playerSo;
+        private GameSO _gameSo;
 
         private GameObject _player;
         private readonly List<GameObject> _enemiesOnStandby = new();
@@ -29,10 +31,13 @@ namespace Enemy
         private void Awake()
         {
             // levelSo.enemyCamps.Add(gameObject);
-            LoadEnemyCampData();
+            
             
             _player = GameObject.FindWithTag("Player");
-            _playerSo = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _gameSo = Resources.Load<GameSO>("DataSO/Game_SO");
+            _playerSo = _gameSo.currentGameData.playerSo;
+            _levelSo = _gameSo.currentGameData.levelSo;
+            LoadEnemyCampData();
 
             foreach (var enemy in enemyList)
             {
@@ -46,17 +51,16 @@ namespace Enemy
             {
                 isCleared = true;
                 onCampCleared?.Invoke();
+                foreach (var t in chestList)
+                {
+                    t.canOpen = isCleared;
+                }
                 SaveData();
             }
             
             for (var i = 0; i < enemyList.Count; i++)
             {
                 if (enemyList[i] == null) enemyList.Remove(enemyList[i]);
-            }
-            
-            foreach (var t in chestList)
-            {
-                t.canOpen = isCleared;
             }
             
             CheckPlayerInRaycastRange();
@@ -103,12 +107,12 @@ namespace Enemy
         
         private void LoadEnemyCampData()
         {
-            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            var camp = _levelSo.enemyCamps.Find(camp => camp.id == id);
             if (camp == null)
             {
-                levelSo.enemyCamps.Add(new CampData
+                _levelSo.enemyCamps.Add(new CampData
                 {
-                    campID = this.campID,
+                    id = this.id,
                     isCleared = this.isCleared
                 });
             }
@@ -120,7 +124,7 @@ namespace Enemy
 
         private void SaveData()
         {
-            var camp = levelSo.enemyCamps.Find(camp => camp.campID == campID);
+            var camp = _levelSo.enemyCamps.Find(camp => camp.id == id);
             if (camp == null)
             {
                 // Debug.LogError("No camp data");
@@ -128,7 +132,12 @@ namespace Enemy
             }
             
             camp.isCleared = isCleared;
-            _playerSo.SaveData();
+            _gameSo.SaveData();
+            foreach (var chest in chestList)
+            {
+                chest.SaveCanOpenState();
+            }
+            transform.parent.gameObject.SetActive(false);
             // Debug.Log("Data saved");
         }
     }

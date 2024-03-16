@@ -1,6 +1,8 @@
+using System;
+using DataSO;
 using Snowman;
 using UnityEngine;
-using Utilities;
+using EventHandler = Utilities.EventHandler;
 
 namespace Props
 {
@@ -9,9 +11,19 @@ namespace Props
      */
     public class TreasureChest : MonoBehaviour
     {
+        public string id;
         public bool canOpen;
         public GameObject unlockingVFX;
         public SnowmanTypeAndLevel snowman;
+        private GameSO _gameSO;
+        private LevelSO _levelSO;
+
+        private void Awake()
+        {
+            _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
+            _levelSO = _gameSO.currentGameData.levelSo;
+            LoadData();
+        }
 
         private void Update()
         {
@@ -35,7 +47,44 @@ namespace Props
         {
             EventHandler.OpenSnowmanChest(snowman);
             EventHandler.ShowInteractableSign(false, "Open");
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            // gameObject.SetActive(false);
+            SaveDataAfterOpened();
+        }
+
+        public void SaveCanOpenState()
+        {
+            var chest = _levelSO.treasureChests.Find(chest => chest.id == id);
+            if (chest == null) return;
+            chest.canOpen = canOpen;
+        }
+
+        private void SaveDataAfterOpened()
+        {
+            var chest = _levelSO.treasureChests.Find(chest => chest.id == id);
+            if (chest == null) return;
+            chest.isOpened = true;
+            // _gameSO.SaveData();
+            gameObject.SetActive(false);
+        }
+
+        private void LoadData()
+        {
+            var chest = _levelSO.treasureChests.Find(chest => chest.id == id);
+            if (chest == null)
+            {
+                _levelSO.treasureChests.Add(new TreasureChestData
+                {
+                    id = this.id,
+                    isOpened = false,
+                    canOpen = false
+                });
+            }
+            else
+            {
+                canOpen = chest.canOpen;
+                gameObject.SetActive(!chest.isOpened);
+            }
         }
     }
 }

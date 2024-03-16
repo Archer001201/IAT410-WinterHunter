@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Enemy;
+using Props;
 using UnityEngine;
 
 namespace DataSO
@@ -8,6 +9,7 @@ namespace DataSO
     public class LevelSO : ScriptableObject
     {
         public List<CampData> enemyCamps;
+        public List<TreasureChestData> treasureChests;
         public string sceneName;
         public Vector3 position;
         public bool respawnAtThisPosition;

@@ -20,18 +20,20 @@ namespace Utilities
         public GameObject asyncSceneLoader;
         // public Slider progressBar;
 
-        private PlayerSO _playerCurrentAttr;
-        private PlayerSO _playerDefaultAttr;
+        private PlayerSO _playerSO;
+        private PlayerSO _playerDefaultSO;
         private PlayerAttribute _playerAttr;
         private LevelSO _levelSO;
+        private GameSO _gameSO;
 
         private void Awake()
         {
-            _playerCurrentAttr = Resources.Load<PlayerSO>("DataSO/Player_SO");
-            _playerDefaultAttr = Resources.Load<PlayerSO>("DataSO/PlayerDefault_SO");
+            _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
+            _playerSO = _gameSO.currentGameData.playerSo;
+            _playerDefaultSO = Resources.Load<PlayerSO>("DataSO/PlayerDefault_SO");
             if (GameObject.FindWithTag("Player"))
                 _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            _levelSO = Resources.Load<LevelSO>("DataSO/Level_SO");
+            _levelSO = _gameSO.currentGameData.levelSo;
         }
 
         private void Update()
@@ -66,12 +68,16 @@ namespace Utilities
          */
         public void ResetPlayerAttributes()
         {
-            _playerCurrentAttr.snowmanList.Clear();
-            _playerCurrentAttr.maxHealth = _playerDefaultAttr.maxHealth;
-            _playerCurrentAttr.maxMana = _playerDefaultAttr.maxMana;
-            _playerCurrentAttr.maxStamina = _playerDefaultAttr.maxStamina;
-            _playerCurrentAttr.attack = _playerDefaultAttr.attack;
-            _playerCurrentAttr.staminaRecovery = _playerDefaultAttr.staminaRecovery;
+            _playerSO.snowmanList.Clear();
+            _playerSO.maxHealth = _playerDefaultSO.maxHealth;
+            _playerSO.maxMana = _playerDefaultSO.maxMana;
+            _playerSO.maxStamina = _playerDefaultSO.maxStamina;
+            _playerSO.attack = _playerDefaultSO.attack;
+            _playerSO.staminaRecovery = _playerDefaultSO.staminaRecovery;
+
+            _playerSO.currentHealth = _playerSO.maxHealth;
+            _playerSO.currentMana = _playerSO.maxMana / 2;
+            _playerSO.currentStamina = _playerSO.maxStamina;
             
             _levelSO.position = Vector3.zero;
             _levelSO.sceneName = string.Empty;
@@ -100,10 +106,10 @@ namespace Utilities
 
         public void EnhancePlayer()
         {
-            _playerCurrentAttr.maxHealth += 50;
-            _playerCurrentAttr.maxStamina += 50;
-            _playerCurrentAttr.attack += 10;
-            _playerAttr.InitializeAttributes(_playerCurrentAttr);
+            _playerSO.maxHealth += 50;
+            _playerSO.maxStamina += 50;
+            _playerSO.attack += 10;
+            _playerAttr.InitializeAttributes(_playerSO);
             HealPlayer();
         }
 

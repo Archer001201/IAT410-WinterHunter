@@ -27,7 +27,7 @@ namespace Snowman
         private Transform _playerTransform;
         private Coroutine _healCoroutine;
         private PlayerAttribute _playerAttr;
-        private PlayerSO _playerSO;
+        // private PlayerSO _playerSO;
         private SphereCollider _healRangeCollider;
 
         protected override void Awake()
@@ -35,7 +35,7 @@ namespace Snowman
             base.Awake();
             overflowHealing = 0;
             _playerTransform = GameObject.FindWithTag("Player").transform;
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            // _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
             _playerAttr = _playerTransform.gameObject.GetComponent<PlayerAttribute>();
             _healRangeCollider = GetComponent<SphereCollider>();
             _healRangeCollider.radius = healRange;
@@ -85,7 +85,7 @@ namespace Snowman
         {
             while (_playerAttr != null)
             {
-                if (_playerAttr.health < _playerSO.maxHealth) _playerAttr.ReceiveHealing(MySnowmanSO.attack);
+                if (_playerAttr.health < _playerAttr.maxHealth) _playerAttr.ReceiveHealing(MySnowmanSO.attack);
                 else overflowHealing += MySnowmanSO.attack;
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
             }

@@ -15,7 +15,7 @@ namespace UISystem
         public Image energyBar;
         public float lerpSpeed = 5f;
         
-        private PlayerSO _playerSO;
+        // private PlayerSO _playerSO;
         private PlayerAttribute _playerAttr;
         private float _targetHealthFill;
         private float _targetStaminaFill;
@@ -24,14 +24,14 @@ namespace UISystem
         private void Start()
         {
             _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            // _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
         }
 
         private void Update()
         {
-            _targetHealthFill = _playerAttr.health / _playerSO.maxHealth;
-            _targetStaminaFill = _playerAttr.stamina / _playerSO.maxStamina;
-            _targetEnergyFill = _playerAttr.mana / _playerSO.maxMana;
+            _targetHealthFill = _playerAttr.health / _playerAttr.maxHealth;
+            _targetStaminaFill = _playerAttr.stamina / _playerAttr.maxStamina;
+            _targetEnergyFill = _playerAttr.mana / _playerAttr.maxMana;
             
             healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, _targetHealthFill, lerpSpeed * Time.deltaTime);
             staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, _targetStaminaFill, lerpSpeed * Time.deltaTime);

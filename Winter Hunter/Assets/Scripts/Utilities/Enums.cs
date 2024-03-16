@@ -35,4 +35,9 @@ namespace Utilities
     {
         Narrative, Normal, Battle
     }
+
+    public enum GameDataSet
+    {
+        Data1, Data2, Data3
+    }
 }

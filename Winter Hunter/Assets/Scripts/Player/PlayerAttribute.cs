@@ -14,6 +14,7 @@ namespace Player
     public class PlayerAttribute : MonoBehaviour
     {
         private PlayerSO _playerSO;
+        private GameSO _gameSO;
 
         public float maxHealth;
         public float maxStamina;
@@ -36,7 +37,8 @@ namespace Player
 
         private void Awake()
         {
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
+            _playerSO = _gameSO.currentGameData.playerSo;
             // maxHealth = _playerSO.maxHealth;
             // maxStamina = _playerSO.maxStamina;
             // maxMana = _playerSO.maxMana;
@@ -54,13 +56,13 @@ namespace Player
             LoadSnowmanList();
             
             // _playerSO.SaveData();
-            if (_playerSO.levelSo.respawnAtThisPosition)
+            if (_gameSO.currentGameData.levelSo.respawnAtThisPosition)
             {
-                transform.position = _playerSO.levelSo.position;
-                _playerSO.levelSo.respawnAtThisPosition = false;
+                transform.position = _gameSO.currentGameData.levelSo.position;
+                _gameSO.currentGameData.levelSo.respawnAtThisPosition = false;
             }
             
-            _playerSO.SaveData();
+            _gameSO.SaveData();
         }
 
         public void InitializeAttributes(PlayerSO playerSO)
@@ -169,7 +171,7 @@ namespace Player
                 _playerSO.snowmanList.Add(snowman);
             }
             // }
-            _playerSO.SaveData();
+            _gameSO.SaveData();
             LoadSnowmanList();
             EventHandler.UpdateSkillPanel();
         }

@@ -21,7 +21,7 @@ namespace DataSO
         public float speed;
         public float staminaRecovery;
         public float manaRecovery;
-        public LevelSO levelSo;
+        // public LevelSO levelSo;
 
         [Header("Dynamic Attributes")] 
         public float currentHealth;
@@ -29,15 +29,15 @@ namespace DataSO
         public float currentMana;
         public List<SnowmanTypeAndLevel> snowmanList;
 
-        public void SaveData()
-        {
-            var playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            currentHealth = playerAttr.health;
-            currentMana = playerAttr.mana;
-            currentStamina = playerAttr.stamina;
-            levelSo.position = playerAttr.gameObject.transform.position;
-            levelSo.sceneName = SceneManager.GetActiveScene().name;
-            EventHandler.ShowSavingData();
-        }
+        // public void SaveData()
+        // {
+        //     var playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+        //     currentHealth = playerAttr.health;
+        //     currentMana = playerAttr.mana;
+        //     currentStamina = playerAttr.stamina;
+        //     levelSo.position = playerAttr.gameObject.transform.position;
+        //     levelSo.sceneName = SceneManager.GetActiveScene().name;
+        //     EventHandler.ShowSavingData();
+        // }
     }
 }

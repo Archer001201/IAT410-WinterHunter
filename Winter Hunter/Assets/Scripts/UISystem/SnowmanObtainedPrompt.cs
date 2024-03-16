@@ -17,6 +17,7 @@ namespace UISystem
         public TextMeshProUGUI type;
         public TextMeshProUGUI prompt;
         private PlayerSO _playerSO;
+        private GameSO _gameSO;
         private SnowmanSO _snowmanSO;
         private readonly Dictionary<SnowmanType, SnowmanLevel> _snowmenPlayerHas = new();
         private RectTransform _trans;
@@ -41,7 +42,8 @@ namespace UISystem
 
         private void ShowSnowmanObtainedPrompt(SnowmanTypeAndLevel typeAndLevel)
         {
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
+            _playerSO = _gameSO.currentGameData.playerSo;
             _snowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + typeAndLevel.type + "_SO");
             icon.sprite = _snowmanSO.icon;
             type.text = _snowmanSO.type.ToString();

@@ -13,7 +13,8 @@ namespace UISystem
     {
         public List<SnowmanCell> cells;
         public int currentIndex;
-        
+
+        private GameSO _gameSO;
         private PlayerSO _playerSO;
         private readonly Dictionary<SnowmanType, SnowmanLevel> _snowmenPlayerHas = new();
         private InputControls _inputControls;
@@ -21,7 +22,8 @@ namespace UISystem
         private void Awake()
         {
             _inputControls = new InputControls();
-            _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
+            _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
+            _playerSO = _gameSO.currentGameData.playerSo;
 
             _inputControls.UI.Up.performed += _ => UpPressed();
             _inputControls.UI.Down.performed += _ => DownPressed();
