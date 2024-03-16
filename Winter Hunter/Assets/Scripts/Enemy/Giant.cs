@@ -50,7 +50,8 @@ namespace Enemy
             var i = 0;
             while (i < smashTransList.Count)
             {
-                Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
+                var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
+                shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
                 i++;
                 yield return new WaitForSeconds(0.2f);
             }
@@ -72,6 +73,7 @@ namespace Enemy
         {
             // Debug.Log("Giant Advanced Skill");
             var rockGO = Instantiate(rock, throwPoint.position, Quaternion.identity);
+            rockGO.GetComponent<ThrowingRock>().SetAttack(attackDamage);
             LaunchStone(rockGO);
             yield return new WaitForSeconds(1f);
             SwitchAttackingState(AttackingState.NonAttack);
