@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca45e8e212a4548b93e8a6af72166f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  campID: 
+  id: 
   onCampCleared:
     m_PersistentCalls:
       m_Calls: []
@@ -107,7 +107,6 @@ MonoBehaviour:
   enemiesPerWave: 5
   raycastDistance: 20
   isCleared: 0
-  levelSo: {fileID: 11400000, guid: 82c732ee348014b54897b9e73b263128, type: 2}
 --- !u!1 &4530234998369777387
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4530234998369777387}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
