@@ -13,19 +13,12 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: B103
+  - id: 
     isCleared: 0
-  - id: B106
-    isCleared: 0
-  - id: B101
-    isCleared: 0
-  - id: B105
-    isCleared: 0
-  - id: B102
-    isCleared: 0
-  - id: B104
-    isCleared: 0
-  treasureChests: []
-  sceneName: Level 1
-  position: {x: -21.1, y: 0, z: -124.5}
+  treasureChests:
+  - id: 
+    canOpen: 1
+    isOpened: 0
+  sceneName: Tutorial
+  position: {x: 0.6, y: 0, z: 4.4}
   respawnAtThisPosition: 0
