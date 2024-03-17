@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6490427212143963217}
   - component: {fileID: 8270172924963231003}
   - component: {fileID: 4890966731408781711}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5936471205561474313}
   - component: {fileID: 6708536008664741899}
   - component: {fileID: 4708694058442440413}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: House_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
