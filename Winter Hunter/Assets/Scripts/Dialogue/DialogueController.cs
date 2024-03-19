@@ -23,6 +23,7 @@ namespace Dialogue
             FillDialogueStack();
             _inputControls = new InputControls();
             _inputControls.Gameplay.Interact.performed += _ => { if (canTalk && !isTalking) StartCoroutine(DialogueRoutine()); };
+            _inputControls.Gameplay.Skip.performed += _ => EndDialogue();
         }
 
         private void OnEnable()
@@ -75,13 +76,27 @@ namespace Dialogue
                 }
                 else
                 {
-                    EventHandler.ShowDialoguePiece(null);
-                    FillDialogueStack();
-                    isTalking = false;
-
-                    onFinishEvent?.Invoke();
+                    EndDialogue();
+                    // EventHandler.ShowDialoguePiece(null);
+                    // FillDialogueStack();
+                    // isTalking = false;
+                    //
+                    // onFinishEvent?.Invoke();
+                    canTalk = false;
+                    yield return new WaitForSeconds(1f);
+                    canTalk = true;
                 }
             // }
+        }
+
+        private void EndDialogue()
+        {
+            if (!canTalk) return;
+            EventHandler.ShowDialoguePiece(null);
+            FillDialogueStack();
+            isTalking = false;
+
+            onFinishEvent?.Invoke();
         }
 
         public void DestroyMe()
