@@ -47,14 +47,16 @@ namespace Enemy
             agent.speed = 0f;
             
             yield return new WaitForSeconds(1f);
-            var i = 0;
-            while (i < smashTransList.Count)
-            {
-                var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
-                shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
-                i++;
-                yield return new WaitForSeconds(0.2f);
-            }
+            // var i = 0;
+            // while (i < smashTransList.Count)
+            // {
+            //     var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
+            //     shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
+            //     i++;
+            //     yield return new WaitForSeconds(0.2f);
+            // }
+            var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
+            smash.GetComponent<Smash>().SetAttack(attackDamage);
             agent.speed = speed;
             // agent.isStopped = false;
             SwitchAttackingState(AttackingState.NonAttack);

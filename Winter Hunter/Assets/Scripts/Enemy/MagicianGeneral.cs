@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Enemy.FSM;
 using UnityEngine;
 using Utilities;
@@ -10,6 +11,9 @@ namespace Enemy
         public GameObject flameRays;
         public GameObject fireBallLarge;
         public GameObject fireBallSmall;
+        public Transform throwPoint;
+        public GameObject smashVfx;
+        public List<Transform> smashTransList;
         
         protected override void Awake()
         {
@@ -38,6 +42,8 @@ namespace Enemy
         public override IEnumerator BasicAttack()
         {
             Debug.Log("basic attack");
+            var fireball = Instantiate(fireBallLarge, throwPoint.position, Quaternion.identity);
+            fireball.GetComponent<FireBall>().SetFireBall(transform.forward, attackDamage);
             yield return new WaitForSeconds(1f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
@@ -56,8 +62,20 @@ namespace Enemy
 
         public override IEnumerator AdvancedSkill()
         {
-            Debug.Log("advanced skill");
+            agent.speed = 0f;
+            
             yield return new WaitForSeconds(1f);
+            var i = 0;
+            while (i < smashTransList.Count)
+            {
+                var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
+                shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
+                i++;
+                yield return new WaitForSeconds(0.2f);
+            }
+            // var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
+            // smash.GetComponent<Smash>().SetAttack(attackDamage);
+            agent.speed = speed;
             SwitchAttackingState(AttackingState.NonAttack);
         }
     }

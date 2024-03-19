@@ -9,6 +9,7 @@ namespace Dialogue
 {
     public class DialogueController : MonoBehaviour
     {
+        public string id;
         public UnityEvent onFinishEvent;
         public List<DialoguePiece> dialogueList;
         public bool isTalking;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Player;
 using Snowman;
 using UnityEngine;
@@ -11,10 +12,22 @@ namespace Enemy
 
         private Vector3 _direction;
         private float _attack;
+
+        public bool isAdvanced;
+        public List<Transform> transList;
+        public GameObject fireball;
         
-        private void Update()
+        private void FixedUpdate()
         {
-            transform.Translate(_direction * (speed * Time.deltaTime));
+            transform.Translate(_direction * (speed * Time.fixedDeltaTime), Space.World);
+            
+            if (_direction != Vector3.zero)
+            {
+                // 创建一个旋转，使得物体的前方向朝向_direction
+                Quaternion toRotation = Quaternion.LookRotation(_direction);
+                // 可以直接设置旋转，或者使用Quaternion.Lerp或Quaternion.Slerp来平滑过渡
+                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 2f * Time.fixedDeltaTime);
+            }
         }
 
         private void OnCollisionEnter(Collision other)
@@ -30,6 +43,15 @@ namespace Enemy
             if (otherGO.CompareTag("Snowman"))
             {
                 otherGO.GetComponent<BaseSnowman>().TakeDamage(_attack);
+            }
+
+            if (isAdvanced)
+            {
+                foreach (var t in transList)
+                {
+                    var smallFireBall = Instantiate(fireball, t.position, Quaternion.identity);
+                    smallFireBall.GetComponent<FireBall>().SetFireBall(t.forward, _attack*0.2f);
+                }
             }
             
             Destroy(gameObject);

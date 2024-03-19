@@ -21,6 +21,10 @@ namespace Enemy
         public int enemiesPerWave;
         public float raycastDistance;
         public bool isCleared;
+
+        public bool isBossCamp;
+        public GameObject bossCampDoor;
+        
         private LevelSO _levelSo;
         private PlayerSO _playerSo;
         private GameSO _gameSo;
@@ -31,8 +35,6 @@ namespace Enemy
         private void Awake()
         {
             // levelSo.enemyCamps.Add(gameObject);
-            
-            
             _player = GameObject.FindWithTag("Player");
             _gameSo = Resources.Load<GameSO>("DataSO/Game_SO");
             _playerSo = _gameSo.currentGameData.playerSo;
@@ -89,6 +91,11 @@ namespace Enemy
                 enemy.SetChaseTarget();
                 // if (isChasing && enemy.CurrentState != enemy.ChaseState)
                 //     enemy.SwitchState(EnemyState.Chase);
+            }
+
+            if (isBossCamp)
+            {
+                bossCampDoor.SetActive(true);
             }
         }
 

@@ -432,8 +432,7 @@ MonoBehaviour:
   detectedSnowman: {fileID: 0}
   detectedPlayer: {fileID: 0}
   agent: {fileID: 0}
-  smashVfx: {fileID: 4008178340778643444, guid: 93b41b5aaaec04df3bc35ea9d6c2ebd4,
-    type: 3}
+  smashVfx: {fileID: 255406955855798459, guid: 54d4e98b2d74a4ac4bb334fdcd27bab0, type: 3}
   smashTransList:
   - {fileID: 5574139403893540971}
   - {fileID: 446881879465718677}
