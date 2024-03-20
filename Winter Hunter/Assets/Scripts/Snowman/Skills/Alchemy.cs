@@ -11,6 +11,13 @@ namespace Snowman.Skills
         private bool _isAdvanced;
         private float _attack;
         private ShieldBreakEfficiency _efficiency;
+        public float timer = 20f;
+
+        private void FixedUpdate()
+        {
+            if (timer > 0) timer -= Time.fixedDeltaTime;
+            else Destroy(gameObject);
+        }
 
         private void OnTriggerEnter(Collider other)
         {

@@ -30,7 +30,9 @@ namespace Snowman.Skills
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Enemy")) return;
-            other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_attack, _shieldBreakEfficiency);
+            var enemy = other.GetComponent<BaseEnemy>();
+            if (enemy.isMarked) _attack += 30;
+            enemy.TakeDamage(_attack, _shieldBreakEfficiency);
             if (_isRollingSnowball)
             {
                 _playerAttr.mana += _attack * _playerAttr.manaRecovery;

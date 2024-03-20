@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCamps:
   - id: 
-    isCleared: 0
+    isCleared: 1
   treasureChests:
   - id: 
-    canOpen: 1
+    canOpen: 0
     isOpened: 0
-  sceneName: Tutorial
-  position: {x: 0.6, y: 0, z: 4.4}
+  sceneName: Training Ground
+  position: {x: 5.28, y: 0, z: -56.31}
   respawnAtThisPosition: 0

@@ -24,7 +24,7 @@ namespace Snowman
                 var posX = Random.Range(-maxDistance, maxDistance) + transform.position.x;
                 var posZ = Random.Range(-maxDistance, maxDistance) + transform.position.z;
                 var position = new Vector3(posX, 1, posZ);
-                var alchemy = Instantiate(alchemyVfx, position, Quaternion.identity, transform);
+                var alchemy = Instantiate(alchemyVfx, position, Quaternion.identity);
                 alchemy.GetComponent<Alchemy>().SetAlchemy(level == SnowmanLevel.Advanced, MySnowmanSO.attack, MySnowmanSO.shieldBreakEfficiency);
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
             }

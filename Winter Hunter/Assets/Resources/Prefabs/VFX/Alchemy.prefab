@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikeVfx: {fileID: 413932865293761859, guid: f1f5d3fb092ad4cd78904b56c7eb7326, type: 3}
-  placePoint: {fileID: 0}
+  timer: 20
 --- !u!135 &940041337955784439
 SphereCollider:
   m_ObjectHideFlags: 0

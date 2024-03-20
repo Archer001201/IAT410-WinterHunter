@@ -3,6 +3,7 @@ using System.Collections;
 using Enemy.FSM;
 using Player;
 using Snowman;
+using UISystem;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -42,6 +43,7 @@ namespace Enemy
         public bool isBasicAttackReady;
         public bool isBasicSkillReady;
         public bool isAdvancedSkillReady;
+        public bool isMarked;
         [Header("Component Settings")]
         public GameObject hudCanvas;
 
@@ -292,6 +294,8 @@ namespace Enemy
             {
                 health -= damage;
             }
+
+            if (isMarked) SetTargetSign(false);
         }
 
         public void Slowdown(float originalSpeed, float slowRate, float duration)
@@ -331,6 +335,12 @@ namespace Enemy
             if (currentCoroutine == null) return;
             StopCoroutine(currentCoroutine);
             currentCoroutine = null;
+        }
+
+        public void SetTargetSign(bool isTargeted)
+        {
+            hudCanvas.GetComponent<EnemyHUD>().SetTargetSign(isTargeted);
+            isMarked = isTargeted;
         }
     }
 }

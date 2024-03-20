@@ -21,7 +21,7 @@ MonoBehaviour:
   attack: 20
   attackSpeed: 2
   manaCost: 60
-  movementMode: 2
+  movementMode: 1
   shieldBreakEfficiency: 2
   basicAbilities: 
   advancedAbilities: 

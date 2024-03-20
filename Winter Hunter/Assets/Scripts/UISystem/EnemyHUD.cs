@@ -1,4 +1,5 @@
 using Enemy;
+using UnityEngine;
 
 namespace UISystem
 {
@@ -8,6 +9,7 @@ namespace UISystem
     public class EnemyHUD : NpcHUD
     {
         public BaseEnemy enemyAttr;
+        public GameObject targetSign;
 
         protected override void Update()
         {
@@ -15,6 +17,11 @@ namespace UISystem
             FillPercentage2 = enemyAttr.shield / enemyAttr.maxShield;
             
             base.Update();
+        }
+
+        public void SetTargetSign(bool isTargeted)
+        {
+            targetSign.SetActive(isTargeted);
         }
     }
 }

@@ -14,7 +14,9 @@ namespace Snowball
             if (otherGO.CompareTag("Player")) return;
             if (otherGO.CompareTag("Enemy"))
             {
-                otherGO.GetComponent<BaseEnemy>().TakeDamage(damage, shieldBreakEfficiency);
+                var enemy = otherGO.GetComponent<BaseEnemy>();
+                if (enemy.isMarked) damage += 30;
+                enemy.TakeDamage(damage, shieldBreakEfficiency);
                 PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
             }
             Destroy(gameObject);

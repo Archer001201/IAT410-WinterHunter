@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Marksman_SO
   m_EditorClassIdentifier: 
   type: 4
-  prefab: {fileID: 0}
+  prefab: {fileID: 584477846658666777, guid: 7f96c4517322340c1ad265654d924b0d, type: 3}
   icon: {fileID: 21300000, guid: c66ee1bab42da0143b172eabf9a4602b, type: 3}
-  health: 0
-  summonDuration: 0
-  cooldown: 0
-  attack: 0
-  attackSpeed: 0
-  manaCost: 0
-  movementMode: 0
+  health: 100
+  summonDuration: 20
+  cooldown: 30
+  attack: 10
+  attackSpeed: 0.5
+  manaCost: 50
+  movementMode: 2
   shieldBreakEfficiency: 1
   basicAbilities: 
   advancedAbilities: 
