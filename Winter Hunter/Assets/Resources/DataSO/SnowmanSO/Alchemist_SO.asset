@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Alchemist_SO
   m_EditorClassIdentifier: 
   type: 5
-  prefab: {fileID: 0}
+  prefab: {fileID: 584477846658666777, guid: 32d87056a8adb44a8ae62a7c37a87805, type: 3}
   icon: {fileID: 21300000, guid: 829f5a3f1dc61064ebb3979caa243acb, type: 3}
-  health: 0
-  summonDuration: 0
-  cooldown: 0
-  attack: 0
-  attackSpeed: 0
-  manaCost: 0
-  movementMode: 0
-  shieldBreakEfficiency: 0
+  health: 100
+  summonDuration: 20
+  cooldown: 40
+  attack: 20
+  attackSpeed: 2
+  manaCost: 60
+  movementMode: 2
+  shieldBreakEfficiency: 2
   basicAbilities: 
   advancedAbilities: 
