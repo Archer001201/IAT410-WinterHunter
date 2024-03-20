@@ -24,7 +24,7 @@ namespace Enemy
             if (_direction != Vector3.zero)
             {
                 // 创建一个旋转，使得物体的前方向朝向_direction
-                Quaternion toRotation = Quaternion.LookRotation(_direction);
+                var toRotation = Quaternion.LookRotation(_direction);
                 // 可以直接设置旋转，或者使用Quaternion.Lerp或Quaternion.Slerp来平滑过渡
                 transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 2f * Time.fixedDeltaTime);
             }
