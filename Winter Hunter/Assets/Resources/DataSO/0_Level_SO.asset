@@ -13,12 +13,39 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: 
-    isCleared: 1
+  - id: B107
+    isCleared: 0
+  - id: B101
+    isCleared: 0
+  - id: B102
+    isCleared: 0
+  - id: B104
+    isCleared: 0
+  - id: B106
+    isCleared: 0
+  - id: B105
+    isCleared: 0
+  - id: B103
+    isCleared: 0
   treasureChests:
-  - id: 
+  - id: C105
     canOpen: 0
     isOpened: 0
-  sceneName: Training Ground
-  position: {x: 5.28, y: 0, z: -56.31}
+  - id: C103
+    canOpen: 0
+    isOpened: 0
+  - id: C104
+    canOpen: 0
+    isOpened: 0
+  - id: C101
+    canOpen: 0
+    isOpened: 0
+  - id: C106
+    canOpen: 0
+    isOpened: 0
+  - id: C102
+    canOpen: 0
+    isOpened: 0
+  sceneName: Spark Village
+  position: {x: 40.55, y: 0, z: -93.11}
   respawnAtThisPosition: 0

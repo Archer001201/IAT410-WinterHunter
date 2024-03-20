@@ -65,6 +65,8 @@ namespace Props
             if (chest == null) return;
             chest.isOpened = true;
             // _gameSO.SaveData();
+            canOpen = false;
+            chest.canOpen = false;
             gameObject.SetActive(false);
         }
 

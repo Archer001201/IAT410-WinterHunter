@@ -19,15 +19,9 @@ MonoBehaviour:
   speed: 5
   staminaRecovery: 50
   manaRecovery: 0.2
-  currentHealth: 34
-  currentStamina: 89
-  currentMana: 22
+  currentHealth: 100
+  currentStamina: 100
+  currentMana: 50
   snowmanList:
   - type: 0
     level: 0
-  - type: 4
-    level: 1
-  - type: 2
-    level: 0
-  - type: 5
-    level: 1

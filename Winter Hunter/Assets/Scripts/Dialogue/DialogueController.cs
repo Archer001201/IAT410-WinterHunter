@@ -83,9 +83,10 @@ namespace Dialogue
                     // isTalking = false;
                     //
                     // onFinishEvent?.Invoke();
-                    canTalk = false;
+                    _inputControls.Disable();
                     yield return new WaitForSeconds(1f);
-                    canTalk = true;
+                    _inputControls.Enable();
+                    // canTalk = true;
                 }
             // }
         }
