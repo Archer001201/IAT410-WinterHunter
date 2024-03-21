@@ -1,3 +1,5 @@
+using Utilities;
+
 namespace Enemy.FSM
 {
     public class NormalAdvancedSkillState : BaseState
@@ -5,7 +7,9 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
-            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.AdvancedSkillCoroutine, CurrentEnemy.AdvancedSkill);
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAdvancedSkill.ToString(), true);
         }
 
         public override void OnUpdate()
@@ -23,6 +27,14 @@ namespace Enemy.FSM
             // throw new System.NotImplementedException();
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.AdvancedSkillCoroutine);
             CurrentEnemy.advancedSkillTimer = CurrentEnemy.advancedSkillCooldown;
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAdvancedSkill.ToString(), false);
+        }
+
+        public override void OnCall()
+        {
+            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.AdvancedSkillCoroutine, CurrentEnemy.AdvancedSkill);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Enemy
             // agent.isStopped = true;
             agent.speed = 0f;
             
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
             // var i = 0;
             // while (i < smashTransList.Count)
             // {

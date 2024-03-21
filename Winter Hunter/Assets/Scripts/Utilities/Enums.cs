@@ -48,6 +48,6 @@ namespace Utilities
 
     public enum EnemyAnimatorPara
     {
-        IsMoving, IsBasicAttack, IsBasicSkill, IsAttacking, IsDead, Possibility
+        IsMoving, IsBasicAttack, IsBasicSkill, IsAttacking, IsAdvancedSkill, IsDead, Possibility
     }
 }

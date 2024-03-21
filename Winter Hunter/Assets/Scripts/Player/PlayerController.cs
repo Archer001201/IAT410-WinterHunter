@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DataSO;
 using Props;
@@ -5,6 +6,7 @@ using UISystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utilities;
+using EventHandler = Utilities.EventHandler;
 
 namespace Player
 {
@@ -63,8 +65,8 @@ namespace Player
             _skillPanelScript = GameObject.FindWithTag("SkillPanel").GetComponent<SkillPanel>();
             _camera = Camera.main;
 
-            _initMovingSpeed = _playerAttr.speed;
-            _movingSpeed = _initMovingSpeed;
+            // _initMovingSpeed = _playerAttr.speed;
+            // _movingSpeed = _initMovingSpeed;
 
             _inputControls.Gameplay.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
             _inputControls.Gameplay.Move.canceled += _ => _moveInput = Vector2.zero;
@@ -90,6 +92,8 @@ namespace Player
             EventHandler.OnSetGameplayActionMap += SetGameplayActionMode;
             EventHandler.OnAllowInputControl += AllowInputControl;
             EventHandler.OnAllowMouseInput += AllowMouseInput;
+            
+           
         }
 
         private void OnDisable()
@@ -98,6 +102,13 @@ namespace Player
             EventHandler.OnSetGameplayActionMap -= SetGameplayActionMode;
             EventHandler.OnAllowInputControl -= AllowInputControl;
             EventHandler.OnAllowMouseInput -= AllowMouseInput;
+        }
+
+        private void Start()
+        {
+            _initMovingSpeed = _playerAttr.speed;
+            _movingSpeed = _initMovingSpeed;
+            Debug.Log(_initMovingSpeed);
         }
 
         private void Update()
@@ -137,7 +148,7 @@ namespace Player
             _moveDir = moveDirection;
 
             if (!isDashPressed) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
-            
+            // Debug.Log(_rb.velocity + " speed " + _movingSpeed);
             RotateTowardsMouse();
 
             _throwSnowballScript.aimingLineRenderer.enabled = (_playerAttr.isInCombat || isAttacking) && !isRollingSnowball;
