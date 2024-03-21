@@ -848,7 +848,7 @@ MonoBehaviour:
   canAttack: 0
   isDashPressed: 0
   isDashing: 0
-  animator: {fileID: 0}
+  animator: {fileID: 6854536014035669624}
 --- !u!114 &1564137759834253144
 MonoBehaviour:
   m_ObjectHideFlags: 0
