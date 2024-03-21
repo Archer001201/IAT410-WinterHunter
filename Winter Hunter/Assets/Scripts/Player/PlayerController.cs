@@ -23,6 +23,7 @@ namespace Player
         [Header("Player State")]
         public bool isRollingSnowball;
         public bool isAttacking;
+        public bool canAttack;
         [FormerlySerializedAs("isDashing")] public bool isDashPressed;
         [FormerlySerializedAs("isDashReady")] public bool isDashing;
         
@@ -45,6 +46,10 @@ namespace Player
         private float _initMovingSpeed;
         private float _movingSpeed;
         private int _panelAmount;
+
+        public Animator animator;
+        private Vector3 _moveDir, _faceDir;
+        private bool _isDead;
         
         private void Awake()
         {
@@ -76,6 +81,7 @@ namespace Player
             _inputControls.Gameplay.Rush.canceled += _ => OnReleaseDashButton();
 
             _rollSnowballScript.enabled = false;
+            canAttack = true;
         }
 
         private void OnEnable()
@@ -112,12 +118,23 @@ namespace Player
                 EndDash();
                 // StartStaminaCoroutine();
             }
+
+            var angle = Vector3.Angle(_moveDir, _faceDir);
+            // animator.SetFloat("Speed", _moveDir);
+            animator.SetFloat(PlayerAnimationPara.Angle.ToString(), angle);
+
+            if (_playerAttr.health <= 0 && !_isDead)
+            {
+                animator.SetTrigger(PlayerAnimationPara.IsDead.ToString());
+                _isDead = true;
+            }
         }
 
         private void FixedUpdate()
         {
             var moveDirection = new Vector3(_moveInput.x, 0, _moveInput.y).normalized;
             var currentVerticalVelocity = _rb.velocity.y;
+            _moveDir = moveDirection;
 
             if (!isDashPressed) _rb.velocity = new Vector3(moveDirection.x * _movingSpeed, currentVerticalVelocity, moveDirection.z * _movingSpeed);
             
@@ -161,6 +178,11 @@ namespace Player
             }
         }
 
+        public void PlayerDies()
+        {
+            EventHandler.PlayerDie();
+        }
+
         /*
          * Rotate player towards mouse direction
          */
@@ -174,6 +196,7 @@ namespace Player
             var trans = transform.position;
             target.y = trans.y;
             var direction = (target - trans).normalized;
+            _faceDir = direction;
             var lookRotation = Quaternion.LookRotation(direction);
             _rb.rotation = Quaternion.Slerp(_rb.rotation, lookRotation, Time.fixedDeltaTime * rotationSpeed);
         }
@@ -192,10 +215,13 @@ namespace Player
          */
         private void OnThrowingSnowballStart()
         {
+            if (!canAttack) return;
             if (_playerAttr.stamina < Mathf.Abs(_throwSnowballScript.stamina)) return;
             StopStaminaCoroutine();
-            _throwSnowballScript.Attack();
+            // _throwSnowballScript.Attack();
             isAttacking = true;
+            animator.SetTrigger(PlayerAnimationPara.IsThrowing.ToString());
+            canAttack = false;
         }
 
         /*
@@ -204,6 +230,12 @@ namespace Player
         private void OnThrowingSnowballEnd()
         {
             StartStaminaCoroutine();
+            // animator.SetBool(PlayerAnimationPara.IsThrowing.ToString(), false);
+        }
+
+        public void ThrowingSnowballAttack()
+        {
+            _throwSnowballScript.Attack();
         }
 
         /*
@@ -211,16 +243,19 @@ namespace Player
          */
         private void OnRollingSnowballStart()
         {
+            if (!canAttack) return;
             if (_playerAttr.stamina < Mathf.Abs(_rollSnowballScript.stamina)) return;
             StopStaminaCoroutine();
             
             _rollSnowballScript.enabled = true;
             _throwSnowballScript.enabled = false;
             
-            isRollingSnowball = true;
-            _rollSnowballScript.CreateSnowball();
+            // isRollingSnowball = true;
+            // _rollSnowballScript.CreateSnowball();
 
             isAttacking = true;
+            
+            animator.SetBool(PlayerAnimationPara.IsRolling.ToString(), true);
         }
 
         /*
@@ -235,6 +270,15 @@ namespace Player
             _rollSnowballScript.enabled = false;
             
             StartStaminaCoroutine();
+            
+            animator.SetBool(PlayerAnimationPara.IsRolling.ToString(), false);
+        }
+
+        public void CreateRollingSnowball()
+        {
+            if (isRollingSnowball) return;
+            _rollSnowballScript.CreateSnowball();
+            isRollingSnowball = true;
         }
 
         /*

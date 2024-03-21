@@ -99,7 +99,7 @@ namespace Player
             health = Mathf.Clamp(health, 0, maxHealth);
             mana = Mathf.Clamp(mana, 0, maxMana);
             
-            if (health <= 0) EventHandler.PlayerDie();
+            // if (health <= 0) EventHandler.PlayerDie();
 
             switch (isInCombat)
             {

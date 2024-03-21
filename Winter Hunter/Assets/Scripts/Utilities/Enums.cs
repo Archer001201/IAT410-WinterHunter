@@ -40,4 +40,9 @@ namespace Utilities
     {
         Data1, Data2, Data3
     }
+
+    public enum PlayerAnimationPara
+    {
+        Angle, IsThrowing, IsRolling, IsDead
+    }
 }
