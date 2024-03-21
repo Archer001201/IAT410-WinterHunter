@@ -149,6 +149,7 @@ namespace Enemy
             if (advancedSkillTimer > 0) advancedSkillTimer -= Time.deltaTime;
             if (CurrentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnFixedUpdate();
+            CurrentAttackingState.OnFixedUpdate();
         }
 
         public void Death()

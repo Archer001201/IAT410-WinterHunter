@@ -52,6 +52,7 @@ namespace Enemy
             
             yield return new WaitForSeconds(2f);
             agent.speed = speed;
+            
             SwitchAttackingState(AttackingState.NonAttack);
         }
 

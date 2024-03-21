@@ -14,6 +14,7 @@ namespace Enemy.FSM
             
             if (CurrentEnemy.animator == null) return; 
             CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), true);
+            // CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), true);
         }
 
         public override void OnUpdate()
@@ -33,6 +34,7 @@ namespace Enemy.FSM
             
             if (CurrentEnemy.animator == null) return; 
             CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), false);
+            // CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), false);
         }
 
         public override void OnCall()
