@@ -8,10 +8,18 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), false);
         }
 
         public override void OnUpdate()
         {
+            if (CurrentEnemy == null)
+            {
+                Debug.Log("null");
+                return;
+            }
             if (CurrentEnemy.isAdvancedSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.AdvancedSkill);
             else if (CurrentEnemy.isBasicAttackReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicAttack);
             else if (CurrentEnemy.isBasicSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicSkill);
@@ -24,7 +32,8 @@ namespace Enemy.FSM
 
         public override void OnExist()
         {
-
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), true);
         }
     }
 }

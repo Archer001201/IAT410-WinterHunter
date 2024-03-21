@@ -7,5 +7,6 @@ namespace Enemy.FSM
         public abstract void OnUpdate();
         public abstract void OnFixedUpdate();
         public abstract void OnExist();
+        public virtual void OnCall(){}
     }
 }

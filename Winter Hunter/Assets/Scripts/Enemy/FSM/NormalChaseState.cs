@@ -9,6 +9,9 @@ namespace Enemy.FSM
         {
             CurrentEnemy = enemy;
             EventHandler.AddEnemyToCombatList(CurrentEnemy.gameObject);
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsMoving.ToString(), true);
         }
 
         public override void OnUpdate()

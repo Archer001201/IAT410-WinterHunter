@@ -1,4 +1,5 @@
 using System.Collections;
+using Utilities;
 
 namespace Enemy.FSM
 {
@@ -9,7 +10,10 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
-            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine, CurrentEnemy.BasicSkill);
+            // CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine, CurrentEnemy.BasicSkill);
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), true);
         }
 
         public override void OnUpdate()
@@ -26,6 +30,14 @@ namespace Enemy.FSM
         {
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine);
             CurrentEnemy.basicSkillTimer = CurrentEnemy.basicSkillCooldown;
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), false);
+        }
+
+        public override void OnCall()
+        {
+            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine, CurrentEnemy.BasicSkill);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Enemy
         protected BaseState ChaseState;
         protected BaseState RetreatState;
 
-        private BaseState _currentAttackingState;
+        public BaseState CurrentAttackingState;
         protected BaseState NonAttackState;
         protected BaseState BasicAttackState;
         protected BaseState BasicSkillState;
@@ -70,6 +70,9 @@ namespace Enemy
         public Coroutine BasicAttackCoroutine;
         public Coroutine BasicSkillCoroutine;
         public Coroutine AdvancedSkillCoroutine;
+
+        public Animator animator;
+        private bool _isDead;
 
         protected virtual void Awake()
         {
@@ -85,22 +88,22 @@ namespace Enemy
             _player = GameObject.FindWithTag("Player");
 
             _currentMovingState = IdleState;
-            _currentAttackingState = NonAttackState;
+            CurrentAttackingState = NonAttackState;
         }
 
         private void OnEnable()
         {
-            if (_currentAttackingState == null || _currentMovingState == null) return;
+            if (CurrentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnEnter(this);
-            _currentAttackingState.OnEnter(this);
+            CurrentAttackingState.OnEnter(this);
             // StartAttacking();
         }
 
         private void OnDisable()
         {
-            if (_currentAttackingState == null || _currentMovingState == null) return;
+            if (CurrentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnExist();
-            _currentAttackingState.OnExist();
+            CurrentAttackingState.OnExist();
         }
 
         protected virtual void Update()
@@ -111,11 +114,12 @@ namespace Enemy
             basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
             advancedSkillTimer = Mathf.Clamp(advancedSkillTimer, 0, advancedSkillCooldown);
             
-            if (health <= 0)
+            if (health <= 0 && !_isDead)
             {
+                _isDead = true;
+                agent.speed = 0;
+                animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
-                Destroy(gameObject);
-                return;
             }
 
             if (isPlayerInCampRange && targetTrans == null)
@@ -133,9 +137,9 @@ namespace Enemy
             isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null;
             isAdvancedSkillReady = advancedSkillTimer <= 0 && isAdvancedSkillSatisfied && targetTrans != null;
             
-            if (_currentAttackingState == null || _currentMovingState == null) return;
+            if (CurrentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnUpdate();
-            _currentAttackingState.OnUpdate();
+            CurrentAttackingState.OnUpdate();
         }
 
         private void FixedUpdate()
@@ -143,8 +147,13 @@ namespace Enemy
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
             if (advancedSkillTimer > 0) advancedSkillTimer -= Time.deltaTime;
-            if (_currentAttackingState == null || _currentMovingState == null) return;
+            if (CurrentAttackingState == null || _currentMovingState == null) return;
             _currentMovingState.OnFixedUpdate();
+        }
+
+        public void Death()
+        {
+            Destroy(gameObject);
         }
 
         public void SwitchMovingState(MovingState state)
@@ -154,7 +163,7 @@ namespace Enemy
                 MovingState.Chase => ChaseState,
                 MovingState.Retreat => RetreatState,
                 MovingState.Idle => IdleState,
-                _ => null
+                _ => IdleState
             };
             
             _currentMovingState.OnExist();
@@ -170,12 +179,12 @@ namespace Enemy
                 AttackingState.BasicAttack => BasicAttackState,
                 AttackingState.BasicSkill => BasicSkillState,
                 AttackingState.AdvancedSkill => AdvancedSkillState,
-                _ => null
+                _ => NonAttackState
             };
             
-            _currentAttackingState.OnExist();
-            _currentAttackingState = newState;
-            _currentAttackingState?.OnEnter(this);
+            CurrentAttackingState.OnExist();
+            CurrentAttackingState = newState;
+            CurrentAttackingState?.OnEnter(this);
         }
 
         public void SetTauntingTarget(Transform tar)

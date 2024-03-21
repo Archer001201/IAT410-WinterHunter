@@ -9,7 +9,10 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
-            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
+            // CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicAttack.ToString(), true);
         }
 
         public override void OnUpdate()
@@ -26,6 +29,14 @@ namespace Enemy.FSM
         {
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine);
             CurrentEnemy.basicAttackTimer = CurrentEnemy.basicAttackCooldown;
+            
+            if (CurrentEnemy.animator == null) return; 
+            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicAttack.ToString(), false);
+        }
+
+        public override void OnCall()
+        {
+            CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
         }
     }
 }

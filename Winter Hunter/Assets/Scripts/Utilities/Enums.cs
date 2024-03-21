@@ -45,4 +45,9 @@ namespace Utilities
     {
         Angle, IsThrowing, IsRolling, IsDead
     }
+
+    public enum EnemyAnimatorPara
+    {
+        IsMoving, IsBasicAttack, IsBasicSkill, IsAttacking, IsDead, Possibility
+    }
 }

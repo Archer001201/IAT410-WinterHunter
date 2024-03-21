@@ -9,6 +9,8 @@ namespace Enemy
     {
         public GameObject spearVfx;
         public GameObject trailVfx;
+
+        private float _randNum;
         
         protected override void Awake()
         {
@@ -19,11 +21,17 @@ namespace Enemy
             NonAttackState = new NormalNonAttackState();
             BasicAttackState = new NormalBasicAttackState();
             BasicSkillState = new NormalBasicSkillState();
+
+            _randNum = Random.Range(0f, 1f);
             base.Awake();
         }
 
         protected override void Update()
         {
+            if (health <= 0)
+            {
+                animator.SetFloat(EnemyAnimatorPara.Possibility.ToString(), _randNum);
+            }
             base.Update();
 
             if (targetTrans == null) return;
@@ -39,8 +47,11 @@ namespace Enemy
             { 
                 thrustVfx.SetActive(true);
             }
+
+            agent.speed = 0;
             
             yield return new WaitForSeconds(2f);
+            agent.speed = speed;
             SwitchAttackingState(AttackingState.NonAttack);
         }
 
