@@ -151,7 +151,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 35
+  field of view: 34.607998
   orthographic: 0
   orthographic size: 15
   m_Depth: -1
@@ -257,9 +257,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virCamera: {fileID: 538110804947487634}
-  normalFOV: 35
-  combatFOV: 65
-  narrativeFOV: 5
+  normalFOV: 30
+  combatFOV: 50
+  narrativeFOV: 10
 --- !u!1 &538110804947487637
 GameObject:
   m_ObjectHideFlags: 0
