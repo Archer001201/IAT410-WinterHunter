@@ -7,10 +7,12 @@ namespace Player
     {
         public PlayerController playerController;
         private bool _canThrow;
+        private bool _canPrint;
 
         private void Awake()
         {
             _canThrow = true;
+            _canPrint = true;
         }
 
         public void EnableAttack()
@@ -34,6 +36,18 @@ namespace Player
         public void PlayerDies()
         {
             playerController.PlayerDies();
+        }
+
+        public void CreateFootprint(GameObject footprint)
+        {
+            if (!_canPrint) return;
+            Instantiate(footprint, transform.position, transform.rotation);
+            _canPrint = false;
+        }
+
+        public void CanPrint()
+        {
+            _canPrint = true;
         }
     }
 }

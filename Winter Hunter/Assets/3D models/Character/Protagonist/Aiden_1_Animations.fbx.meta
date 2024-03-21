@@ -140,7 +140,39 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.035545025
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.48341233
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.11848341
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.57109004
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -206,7 +238,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.7511848
+      - time: 0.6648809
         functionName: RollSnowball
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -241,7 +273,39 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.06872038
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5189573
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.14691941
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5781991
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -350,6 +414,70 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.19905213
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4407583
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.27251184
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.521327
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7014218
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7606635
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8957346
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9407583
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -379,10 +507,74 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.72985786
+      - time: 0.082938395
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.1563981
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.43601894
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.52843606
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6022781
         functionName: RollSnowball
         data: 
         objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7085308
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.76540285
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 7263271808311414115, guid: b69c0a4155c8e43f29934cbb2f2315c8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9218009
+        functionName: CreateFootprint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9620853
+        functionName: CanPrint
+        data: 
+        objectReferenceParameter: {fileID: 5961975430058505255, guid: abca3cafb7a4c4d1a9dc03a14eae1e1f,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
