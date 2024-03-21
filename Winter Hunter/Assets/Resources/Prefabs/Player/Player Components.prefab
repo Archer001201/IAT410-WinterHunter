@@ -899,7 +899,7 @@ MonoBehaviour:
   aimingLineRenderer: {fileID: 5491273880936710446}
   lineSegmentCount: 20
   force: 25
-  stamina: -5
+  stamina: -15
 --- !u!114 &1502783118
 MonoBehaviour:
   m_ObjectHideFlags: 0
