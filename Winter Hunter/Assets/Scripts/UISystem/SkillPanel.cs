@@ -47,104 +47,118 @@ namespace UISystem
 
         private void Update()
         {
-            if (!isMoving)
-            {
-                foreach (var icon in skillIcons)
-                {
-                    var rectTransform = icon.GetComponent<RectTransform>();
-                    UpdateIconScale(rectTransform);
-                }
-            }
+            // if (!isMoving)
+            // {
+            //     foreach (var icon in skillIcons)
+            //     {
+            //         var rectTransform = icon.GetComponent<RectTransform>();
+            //         UpdateIconScale(rectTransform);
+            //     }
+            // }
         }
 
         /*
          * Update skill icons and information
          */
-        private void UpdateSkill()
+        public void UpdateSkill()
         {
-            var snowmanListCount = _playerAttr.snowmanList.Count;
-            for (var i = 0; i < 5; i++)
+            var currentIndex = _summonSnowmanScript.currentIndex;
+            for (var i = 0; i < 3; i++)
             {
-                skillIcons[i].GetComponent<Skill>().snowmanInfo = UpdateSnowmanBuffers(i-2, snowmanListCount);
-                skillIcons[i].GetComponent<Skill>().UpdateSkillIcon();
+                var index = currentIndex + i - 1;
+                if (index < 0) index = _playerAttr.snowmanList.Count-1;
+                if (index > _playerAttr.snowmanList.Count - 1) index = 0;
+                skillIcons[i].GetComponent<Skill>().snowmanInfo = _playerAttr.snowmanList[index];
+                // skillIcons[i].GetComponent<Skill>().UpdateSkillIcon();
+                StartCoroutine(SwitchSkillCooldown());
+                StartCoroutine(skillIcons[i].GetComponent<Skill>().UpdateIcon());
+                Debug.Log(skillIcons[i].GetComponent<Skill>().snowmanInfo.type);
             }
         }
+
+        private IEnumerator SwitchSkillCooldown()
+        {
+            isMoving = true;
+            yield return new WaitForSeconds(0.5f);
+            isMoving = false;
+        }
+        
 
         /*
          * Move icon objects left
          */
-        public void MoveIconsLeft()
-        {
-            if (isMoving) return;
-            
-            _targetPositions.Clear();
-
-            foreach (var icon in skillIcons)
-            {
-                var rectTransform = icon.GetComponent<RectTransform>();
-                var currentPos = rectTransform.anchoredPosition;
-                var targetPos = new Vector2(currentPos.x - 150, currentPos.y);
-                if (targetPos.x < -400) targetPos.x = 300;
-                else if (targetPos.x > 400) targetPos.x = -300;
-                _targetPositions.Add(targetPos);
-            }
-
-            StartCoroutine(MoveIcons());
-
-            isMoving = true;
-        }
-        
+        // public void MoveIconsLeft()
+        // {
+        //     if (isMoving) return;
+        //     
+        //     _targetPositions.Clear();
+        //
+        //     foreach (var icon in skillIcons)
+        //     {
+        //         var rectTransform = icon.GetComponent<RectTransform>();
+        //         var currentPos = rectTransform.anchoredPosition;
+        //         var targetPos = new Vector2(currentPos.x - 150, currentPos.y);
+        //         if (targetPos.x < -400) targetPos.x = 300;
+        //         else if (targetPos.x > 400) targetPos.x = -300;
+        //         _targetPositions.Add(targetPos);
+        //     }
+        //
+        //     StartCoroutine(MoveIcons());
+        //
+        //     isMoving = true;
+        // }
+        //
         /*
          * Move icon objects right
          */
-        public void MoveIconsRight()
-        {
-            if (isMoving) return;
-            
-            _targetPositions.Clear();
-
-            foreach (var icon in skillIcons)
-            {
-                var rectTransform = icon.GetComponent<RectTransform>();
-                var currentPos = rectTransform.anchoredPosition;
-                var targetPos = new Vector2(currentPos.x + 150, currentPos.y);
-                if (targetPos.x < -400) targetPos.x = 300;
-                else if (targetPos.x > 400) targetPos.x = -300;
-                _targetPositions.Add(targetPos);
-            }
-
-            StartCoroutine(MoveIcons());
-            
-            isMoving = true;
-        }
+        // public void MoveIconsRight()
+        // {
+        //     if (isMoving) return;
+        //     
+        //     _targetPositions.Clear();
+        //
+        //     foreach (var icon in skillIcons)
+        //     {
+        //         var rectTransform = icon.GetComponent<RectTransform>();
+        //         var currentPos = rectTransform.anchoredPosition;
+        //         var targetPos = new Vector2(currentPos.x + 150, currentPos.y);
+        //         if (targetPos.x < -400) targetPos.x = 300;
+        //         else if (targetPos.x > 400) targetPos.x = -300;
+        //         _targetPositions.Add(targetPos);
+        //     }
+        //
+        //     StartCoroutine(MoveIcons());
+        //     
+        //     isMoving = true;
+        // }
         
         /*
          * Make the action of switching snowman has a short cooldown, and also make the transition smooth
          */
-        private IEnumerator MoveIcons()
-        {
-            float elapsedTime = 0;
-
-            while (elapsedTime < MoveTime)
-            {
-                elapsedTime += Time.deltaTime;
-                var t = elapsedTime / MoveTime;
-
-                for (var i = 0; i < skillIcons.Count; i++)
-                {
-                    var rectTransform = skillIcons[i].GetComponent<RectTransform>();
-                    
-                    rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, _targetPositions[i], t);
-                
-                    UpdateIconScale(rectTransform);
-                }
-                
-                yield return null;
-            }
-
-            isMoving = false;
-            UpdateSideIcons();
-        }
+        // private IEnumerator MoveIcons()
+        // {
+        //     float elapsedTime = 0;
+        //
+        //     while (elapsedTime < MoveTime)
+        //     {
+        //         elapsedTime += Time.deltaTime;
+        //         var t = elapsedTime / MoveTime;
+        //
+        //         for (var i = 0; i < skillIcons.Count; i++)
+        //         {
+        //             var rectTransform = skillIcons[i].GetComponent<RectTransform>();
+        //             
+        //             rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, _targetPositions[i], t);
+        //         
+        //             UpdateIconScale(rectTransform);
+        //         }
+        //         
+        //         yield return null;
+        //     }
+        //
+        //     isMoving = false;
+        //     UpdateSideIcons();
+        // }
         
         /*
          * Scale snowman icon
@@ -222,15 +236,15 @@ namespace UISystem
         /*
          * Reset position of all icon objects
          */
-        public void ResetIconsPosition()
-        {
-            for (var i = 0; i < skillIcons.Count; i++)
-            {
-                var xPos = -300 + 150*i;
-                var icon = skillIcons[i];
-                var iconPos = icon.GetComponent<RectTransform>().anchoredPosition;
-                icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos,iconPos.y);
-            }
-        }
+        // public void ResetIconsPosition()
+        // {
+        //     for (var i = 0; i < skillIcons.Count; i++)
+        //     {
+        //         var xPos = -300 + 150*i;
+        //         var icon = skillIcons[i];
+        //         var iconPos = icon.GetComponent<RectTransform>().anchoredPosition;
+        //         icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos,iconPos.y);
+        //     }
+        // }
     }
 }

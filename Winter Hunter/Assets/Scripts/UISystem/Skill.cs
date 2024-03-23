@@ -1,3 +1,4 @@
+using System.Collections;
 using DataSO;
 using Player;
 using Snowman;
@@ -38,6 +39,25 @@ namespace UISystem
             // iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
             iconSprite = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanInfo.type + "_SO").icon;
             _skillIcon.sprite = iconSprite;
+        }
+
+        public IEnumerator UpdateIcon()
+        {
+            while (transform.localScale.x > 0.1f)
+            {
+                var scale = transform.localScale.x - Time.fixedDeltaTime * 5;
+                transform.localScale = new Vector3(scale, scale, scale);
+                yield return null;
+            }
+            
+            UpdateSkillIcon();
+            
+            while (transform.localScale.x < 1f)
+            {
+                var scale = transform.localScale.x + Time.fixedDeltaTime * 5;
+                transform.localScale = new Vector3(scale, scale, scale);
+                yield return null;
+            }
         }
     }
 }

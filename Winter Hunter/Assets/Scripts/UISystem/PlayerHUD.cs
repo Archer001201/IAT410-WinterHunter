@@ -17,13 +17,16 @@ namespace UISystem
         
         // private PlayerSO _playerSO;
         private PlayerAttribute _playerAttr;
+        private SummonSnowman _summonSnowman;
         private float _targetHealthFill;
         private float _targetStaminaFill;
         private float _targetEnergyFill;
 
         private void Start()
         {
-            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            var player = GameObject.FindWithTag("Player");
+            _playerAttr = player.GetComponent<PlayerAttribute>();
+            _summonSnowman = player.GetComponent<SummonSnowman>();
             // _playerSO = Resources.Load<PlayerSO>("DataSO/Player_SO");
         }
 
@@ -31,7 +34,7 @@ namespace UISystem
         {
             _targetHealthFill = _playerAttr.health / _playerAttr.maxHealth;
             _targetStaminaFill = _playerAttr.stamina / _playerAttr.maxStamina;
-            _targetEnergyFill = _playerAttr.mana / _playerAttr.maxMana;
+            _targetEnergyFill = _playerAttr.mana / _playerAttr.snowmanList[_summonSnowman.currentIndex].summoningCost;
             
             healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, _targetHealthFill, lerpSpeed * Time.deltaTime);
             staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, _targetStaminaFill, lerpSpeed * Time.deltaTime);

@@ -343,8 +343,10 @@ namespace Player
             //moving direction is reverse to switch direction
             if (_skillPanelScript.isMoving) return;
             
-            _skillPanelScript.MoveIconsRight();
+            // _skillPanelScript.MoveIconsRight();
+            
             _summonSnowmanScript.SwitchSnowmanRight();
+            _skillPanelScript.UpdateSkill();
         }
         
         /*
@@ -355,8 +357,10 @@ namespace Player
             //moving direction is reverse to switch direction
             if (_skillPanelScript.isMoving) return;
             
-            _skillPanelScript.MoveIconsLeft();
+            // _skillPanelScript.MoveIconsLeft();
+            
             _summonSnowmanScript.SwitchSnowmanLeft();
+            _skillPanelScript.UpdateSkill();
         }
 
         /*
@@ -370,7 +374,7 @@ namespace Player
             {
                 var chestScript = _currentInteractableObject.GetComponent<TreasureChest>();
                 if (!chestScript.canOpen) return;
-                _skillPanelScript.ResetIconsPosition();
+                // _skillPanelScript.ResetIconsPosition();
                 chestScript.OpenChest();
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
