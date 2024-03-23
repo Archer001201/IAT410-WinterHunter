@@ -11,9 +11,15 @@ namespace Enemy.FSM
         {
             CurrentEnemy = enemy;
             // CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine, CurrentEnemy.BasicSkill);
-            
-            if (CurrentEnemy.animator == null) return; 
-            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), true);
+
+            if (CurrentEnemy.animator == null)
+            {
+                CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine, CurrentEnemy.BasicSkill);
+            }
+            else
+            {
+                CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), true);
+            }
             // CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), true);
         }
 

@@ -10,9 +10,16 @@ namespace Enemy.FSM
         {
             CurrentEnemy = enemy;
             // CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
+
+            if (CurrentEnemy.animator == null)
+            {
+                CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine, CurrentEnemy.BasicAttack);
+            }
+            else
+            {
+                CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicAttack.ToString(), true);
+            }
             
-            if (CurrentEnemy.animator == null) return; 
-            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicAttack.ToString(), true);
             // CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAttacking.ToString(), true);
         }
 

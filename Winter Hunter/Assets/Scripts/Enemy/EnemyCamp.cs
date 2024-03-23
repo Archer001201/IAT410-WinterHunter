@@ -34,6 +34,7 @@ namespace Enemy
 
         private void Awake()
         {
+            id = gameObject.name;
             // levelSo.enemyCamps.Add(gameObject);
             _player = GameObject.FindWithTag("Player");
             _gameSo = Resources.Load<GameSO>("DataSO/Game_SO");

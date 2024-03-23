@@ -20,6 +20,7 @@ namespace Props
 
         private void Awake()
         {
+            id = gameObject.name;
             _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
             _levelSO = _gameSO.currentGameData.levelSo;
             LoadData();

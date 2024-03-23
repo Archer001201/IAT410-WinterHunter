@@ -28,6 +28,16 @@ namespace DataSO
         //     };
         // }
 
+        private void OnEnable()
+        {
+            EventHandler.OnSavingDataAfterDialogue += SaveData;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.OnSavingDataAfterDialogue -= SaveData;
+        }
+
         public void SwitchData(GameDataSet selectedData)
         {
             currentGameData = selectedData switch

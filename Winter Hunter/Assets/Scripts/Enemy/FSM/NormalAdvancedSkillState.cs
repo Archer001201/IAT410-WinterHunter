@@ -7,9 +7,15 @@ namespace Enemy.FSM
         public override void OnEnter(BaseEnemy enemy)
         {
             CurrentEnemy = enemy;
-            
-            if (CurrentEnemy.animator == null) return; 
-            CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAdvancedSkill.ToString(), true);
+
+            if (CurrentEnemy.animator == null)
+            {
+                CurrentEnemy.StartCurrentCoroutine(CurrentEnemy.AdvancedSkillCoroutine, CurrentEnemy.AdvancedSkill);
+            }
+            else
+            {
+                CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAdvancedSkill.ToString(), true);
+            }
         }
 
         public override void OnUpdate()
