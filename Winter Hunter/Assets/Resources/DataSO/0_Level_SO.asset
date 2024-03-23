@@ -27,6 +27,8 @@ MonoBehaviour:
     isCleared: 0
   - id: B103
     isCleared: 0
+  - id: 
+    isCleared: 0
   treasureChests:
   - id: C105
     canOpen: 0
@@ -46,6 +48,18 @@ MonoBehaviour:
   - id: C102
     canOpen: 0
     isOpened: 0
-  sceneName: Spark Village
-  position: {x: 40.55, y: 0, z: -93.11}
+  - id: 
+    canOpen: 0
+    isOpened: 0
+  - id: C2
+    canOpen: 0
+    isOpened: 1
+  - id: C1
+    canOpen: 0
+    isOpened: 0
+  - id: C3
+    canOpen: 0
+    isOpened: 0
+  sceneName: Training Ground
+  position: {x: 25.834887, y: -0.0000054836273, z: -60.130356}
   respawnAtThisPosition: 0

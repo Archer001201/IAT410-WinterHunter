@@ -25,3 +25,5 @@ MonoBehaviour:
   snowmanList:
   - type: 0
     level: 0
+  - type: 2
+    level: 0
