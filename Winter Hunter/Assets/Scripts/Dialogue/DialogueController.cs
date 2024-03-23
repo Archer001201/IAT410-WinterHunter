@@ -134,6 +134,7 @@ namespace Dialogue
         public void ChangeDialogueIndex(int index)
         {
             dialogueIndex = index;
+            FillDialogueStack();
         }
 
         private void LoadData()

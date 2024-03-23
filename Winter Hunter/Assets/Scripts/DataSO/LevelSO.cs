@@ -12,6 +12,7 @@ namespace DataSO
         public List<CampData> enemyCamps;
         public List<TreasureChestData> treasureChests;
         public List<DialogueEventData> dialogueEvents;
+        public List<BlockWallData> blockWalls;
         public string sceneName;
         public Vector3 position;
         public bool respawnAtThisPosition;

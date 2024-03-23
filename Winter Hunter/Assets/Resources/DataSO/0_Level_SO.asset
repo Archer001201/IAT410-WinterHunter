@@ -16,58 +16,48 @@ MonoBehaviour:
   - id: Enemy Camp
     isCleared: 0
   treasureChests:
-  - id: Chest (1)
+  - id: C105
     canOpen: 0
     isOpened: 0
-  - id: Chest (3)
+  - id: C103
     canOpen: 0
     isOpened: 0
-  - id: Chest
+  - id: C104
     canOpen: 0
     isOpened: 0
-  - id: Chest (7)
+  - id: C101
     canOpen: 0
     isOpened: 0
-  - id: Chest (5)
+  - id: C106
     canOpen: 0
     isOpened: 0
-  - id: Chest (2)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (4)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (6)
+  - id: C102
     canOpen: 0
     isOpened: 0
   dialogueEvents:
-  - id: Flame Servant (3)
+  - id: Healing point (1)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Methus_001
     isAppeared: 1
-    dialogueIndex: 1
-  - id: Methus (1)
+    dialogueIndex: 0
+  - id: Healing point
     isAppeared: 0
     dialogueIndex: 0
-  - id: Check Point
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Methus
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Flame Servant
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Flame Servant (2)
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Flame Servant (1)
-    isAppeared: 1
-    dialogueIndex: 1
-  - id: Guide
+  - id: Healing point (2)
     isAppeared: 0
     dialogueIndex: 0
   - id: Prisoner
-    isAppeared: 0
+    isAppeared: 1
     dialogueIndex: 0
-  sceneName: Training Ground
-  position: {x: 15.072894, y: -0.0000019073486, z: -67.34864}
+  - id: Prisoner_000
+    isAppeared: 1
+    dialogueIndex: 0
+  blockWalls:
+  - id: Block Wall
+    isVisible: 0
+  - id: Warning Line
+    isVisible: 0
+  sceneName: Spark Village
+  position: {x: 40.55, y: 0, z: -93.11}
   respawnAtThisPosition: 0
