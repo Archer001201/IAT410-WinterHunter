@@ -13,53 +13,61 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: B107
-    isCleared: 0
-  - id: B101
-    isCleared: 0
-  - id: B102
-    isCleared: 0
-  - id: B104
-    isCleared: 0
-  - id: B106
-    isCleared: 0
-  - id: B105
-    isCleared: 0
-  - id: B103
-    isCleared: 0
-  - id: 
+  - id: Enemy Camp
     isCleared: 0
   treasureChests:
-  - id: C105
+  - id: Chest (1)
     canOpen: 0
     isOpened: 0
-  - id: C103
+  - id: Chest (3)
     canOpen: 0
     isOpened: 0
-  - id: C104
+  - id: Chest
     canOpen: 0
     isOpened: 0
-  - id: C101
+  - id: Chest (7)
     canOpen: 0
     isOpened: 0
-  - id: C106
+  - id: Chest (5)
     canOpen: 0
     isOpened: 0
-  - id: C102
+  - id: Chest (2)
     canOpen: 0
     isOpened: 0
-  - id: 
+  - id: Chest (4)
     canOpen: 0
     isOpened: 0
-  - id: C2
-    canOpen: 0
-    isOpened: 1
-  - id: C1
+  - id: Chest (6)
     canOpen: 0
     isOpened: 0
-  - id: C3
-    canOpen: 0
-    isOpened: 0
+  dialogueEvents:
+  - id: Flame Servant (3)
+    isAppeared: 1
+    dialogueIndex: 1
+  - id: Methus (1)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Check Point
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Methus
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Flame Servant
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Flame Servant (2)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Flame Servant (1)
+    isAppeared: 1
+    dialogueIndex: 1
+  - id: Guide
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Prisoner
+    isAppeared: 0
+    dialogueIndex: 0
   sceneName: Training Ground
-  position: {x: 25.834887, y: -0.0000054836273, z: -60.130356}
+  position: {x: 15.072894, y: -0.0000019073486, z: -67.34864}
   respawnAtThisPosition: 0

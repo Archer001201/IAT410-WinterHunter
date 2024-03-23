@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Dialogue;
 using Enemy;
 using Props;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace DataSO
     {
         public List<CampData> enemyCamps;
         public List<TreasureChestData> treasureChests;
+        public List<DialogueEventData> dialogueEvents;
         public string sceneName;
         public Vector3 position;
         public bool respawnAtThisPosition;

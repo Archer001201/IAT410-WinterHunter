@@ -140,5 +140,12 @@ namespace Utilities
         {
             OnChangeFOV?.Invoke(fov);
         }
+
+        public static event Action OnSavingDataAfterDialogue;
+
+        public static void SaveDataAfterDialogue()
+        {
+            OnSavingDataAfterDialogue?.Invoke();
+        }
     }
 }
