@@ -7,6 +7,7 @@ namespace Dialogue
     [Serializable]
     public class DialoguePiece
     {
+        public UnityEvent beforeTalkEvent;
         public Sprite figureSprite;
         public string name;
         [TextArea]

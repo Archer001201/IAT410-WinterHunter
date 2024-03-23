@@ -93,8 +93,10 @@ namespace Dialogue
             // {
                 if (_dialogueStack.TryPop(out var result))
                 {
+                    result.beforeTalkEvent?.Invoke();
                     EventHandler.ShowDialoguePiece(result);
                     yield return new WaitUntil(() => result.isDone);
+                    result.afterTalkEvent?.Invoke();
                     isTalking = false;
                 }
                 else

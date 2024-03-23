@@ -17,6 +17,7 @@ namespace UISystem
         public GameObject snowmanObtainedPrompt;
         public GameObject teleportPanel;
         public GameObject savingData;
+        public GameObject videoDisplay;
 
         private InputControls _inputControls;
         private Coroutine _showDataCoroutine;
@@ -38,6 +39,7 @@ namespace UISystem
             EventHandler.OnOpenSnowmanObtainedPrompt += OpenSnowmanObtainedPrompt;
             EventHandler.OnOpenTeleportPanel += HandleTeleportPanel;
             EventHandler.OnShowSavingData += StartShowingData;
+            EventHandler.OnPlayVideo += play => videoDisplay.SetActive(play);
             _inputControls.Enable();
         }
 
@@ -121,5 +123,35 @@ namespace UISystem
                 StopShowingData();
             }
         }
+
+        // private void HandleVideoDisplay(bool play)
+        // {
+        //     if (play) videoDisplay.SetActive(play);
+        // }
+
+        // private IEnumerator VideoDisplayAnim(bool turnOn)
+        // {
+        //     var displayHeight = videoDisplay.sizeDelta.y;
+        //     Debug.Log("video display");
+        //     if (turnOn)
+        //     {
+        //         Debug.Log("turn on");
+        //         videoDisplay.gameObject.SetActive(true);
+        //         while (displayHeight < 720f)
+        //         {
+        //             displayHeight += Time.fixedDeltaTime * 10;
+        //             yield return null;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         while (displayHeight > 0f)
+        //         {
+        //             displayHeight -= Time.fixedDeltaTime * 10;
+        //             yield return null;
+        //         }
+        //         videoDisplay.gameObject.SetActive(false);
+        //     }
+        // }
     }
 }

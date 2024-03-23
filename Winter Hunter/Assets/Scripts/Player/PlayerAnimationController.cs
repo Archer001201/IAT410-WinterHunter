@@ -35,7 +35,7 @@ namespace Player
 
         public void PlayerDies()
         {
-            playerController.PlayerDies();
+            PlayerController.PlayerDies();
         }
 
         public void CreateFootprint(GameObject footprint)

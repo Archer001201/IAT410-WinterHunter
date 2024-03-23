@@ -15,19 +15,25 @@ namespace UISystem
         public SnowmanInfo snowmanInfo;
         public Sprite iconSprite;
         public Image cooldownMask;
+        public Image mana;
         
         private Image _skillIcon;
+        private PlayerAttribute _playerAttr;
         
 
         private void Awake()
         {
             _skillIcon = GetComponent<Image>();
+            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
         }
 
         private void Update()
         {
             if (snowmanInfo == null) return;
             cooldownMask.fillAmount = snowmanInfo.cooldownTimer / snowmanInfo.cooldown;
+            
+            var manaFillAmount = _playerAttr.mana / snowmanInfo.summoningCost;
+            mana.fillAmount = Mathf.Lerp(mana.fillAmount, manaFillAmount, 5f * Time.deltaTime);
         }
 
         /*

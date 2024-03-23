@@ -920,7 +920,7 @@ MonoBehaviour:
   force: 10
   stamina: -20
   rollingLine: {fileID: 3032048333869984960}
-  attackBonusFactor: 1
+  attackBonusFactor: 0.5
   scaleFactor: 0.4
   staminaIncrease: -10
 --- !u!114 &1521437837

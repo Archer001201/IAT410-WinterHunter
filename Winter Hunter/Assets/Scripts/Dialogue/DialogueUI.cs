@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,10 +18,12 @@ namespace Dialogue
         public GameObject dialogueBox;
         public GameObject continueSign;
         public GameObject playerHUD;
+        private PlayerAttribute _playerAttr;
 
         private void Awake()
         {
             continueSign.SetActive(false);
+            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
         }
 
         private void OnEnable()
@@ -35,6 +38,7 @@ namespace Dialogue
 
         private void ShowDialogueEvent(DialoguePiece piece)
         {
+            if (_playerAttr.isInCombat) return;
             StartCoroutine(ShowDialogue(piece));
         }
 

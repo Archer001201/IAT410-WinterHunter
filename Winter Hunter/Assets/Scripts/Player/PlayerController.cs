@@ -189,7 +189,7 @@ namespace Player
             }
         }
 
-        public void PlayerDies()
+        public static void PlayerDies()
         {
             EventHandler.PlayerDie();
         }
@@ -368,7 +368,7 @@ namespace Player
          */
         private void OnPressInteractButton()
         {
-            if (_currentInteractableObject == null) return;
+            if (_currentInteractableObject == null || _playerAttr.isInCombat) return;
             
             if (_currentInteractableObject.CompareTag("Chest"))
             {

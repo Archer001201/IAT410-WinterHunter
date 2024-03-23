@@ -147,5 +147,12 @@ namespace Utilities
         {
             OnSavingDataAfterDialogue?.Invoke();
         }
+
+        public static event Action<bool> OnPlayVideo;
+
+        public static void PlayVideo(bool play)
+        {
+            OnPlayVideo?.Invoke(play);
+        }
     }
 }
