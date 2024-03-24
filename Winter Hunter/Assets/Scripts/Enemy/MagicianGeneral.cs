@@ -50,18 +50,6 @@ namespace Enemy
 
         public override IEnumerator BasicSkill()
         {
-            // Debug.Log("Giant Basic Skill");
-            var raysGO = Instantiate(flameRays, transform.position, Quaternion.identity);
-            var raysScript = raysGO.GetComponent<FlameRays>();
-            raysScript.Follow(transform);
-            yield return new WaitForSeconds(10f);
-            // flameRays.SetActive(false);
-            raysScript.DestroyMe();
-            SwitchAttackingState(AttackingState.NonAttack);
-        }
-
-        public override IEnumerator AdvancedSkill()
-        {
             agent.speed = 0f;
             
             yield return new WaitForSeconds(1f);
@@ -76,6 +64,18 @@ namespace Enemy
             // var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
             // smash.GetComponent<Smash>().SetAttack(attackDamage);
             agent.speed = speed;
+            SwitchAttackingState(AttackingState.NonAttack);
+        }
+
+        public override IEnumerator AdvancedSkill()
+        {
+            // Debug.Log("Giant Basic Skill");
+            var raysGO = Instantiate(flameRays, transform.position, Quaternion.identity);
+            var raysScript = raysGO.GetComponent<FlameRays>();
+            raysScript.SetFlameRays(transform, attackDamage);
+            yield return new WaitForSeconds(10f);
+            // flameRays.SetActive(false);
+            raysScript.DestroyMe();
             SwitchAttackingState(AttackingState.NonAttack);
         }
     }

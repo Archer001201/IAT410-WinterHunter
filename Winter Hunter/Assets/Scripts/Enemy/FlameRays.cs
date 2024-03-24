@@ -9,6 +9,7 @@ namespace Enemy
         // public BaseEnemy enemyAttr;
         private Transform _enemyTrans;
         private float _rotateAngle;
+        private float _attack;
 
         private void Awake()
         {
@@ -24,14 +25,20 @@ namespace Enemy
             transform.Rotate(0f, _rotateAngle * Time.fixedDeltaTime, 0f);
         }
 
-        public void Follow(Transform followedTrans)
+        public void SetFlameRays(Transform followedTrans, float attack)
         {
             _enemyTrans = followedTrans;
+            _attack = attack;
         }
 
         public void DestroyMe()
         {
             Destroy(gameObject);
+        }
+
+        public float GetAttack()
+        {
+            return _attack;
         }
     }
 }
