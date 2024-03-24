@@ -60,7 +60,7 @@ namespace Dialogue
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && dialogueLists.Count > 0)
             {
                 canTalk = true;
                 EventHandler.ShowInteractableSign(true, "Talk");
@@ -78,8 +78,8 @@ namespace Dialogue
 
         private void FillDialogueStack()
         {
-            if (dialogueLists.Count < 1) return;
             _dialogueStack = new Stack<DialoguePiece>();
+            if (dialogueLists.Count < 1) return;
             var list = dialogueLists[dialogueIndex].dialogueList;
             for (var i = list.Count - 1; i > -1; i--)
             {
@@ -118,7 +118,7 @@ namespace Dialogue
 
         private void EndDialogue()
         {
-            if (!canTalk) return;
+            if (!canTalk || dialogueLists.Count < 1) return;
             dialogueLists[dialogueIndex].onFinishEvent?.Invoke();
             
             EventHandler.ShowDialoguePiece(null);

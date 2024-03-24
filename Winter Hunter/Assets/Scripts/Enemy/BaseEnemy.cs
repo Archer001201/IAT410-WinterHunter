@@ -282,7 +282,7 @@ namespace Enemy
             {
                 damage *= shieldBreakEfficiency switch
                 {
-                    ShieldBreakEfficiency.Low => 0.1f,
+                    ShieldBreakEfficiency.Low => 0.05f,
                     ShieldBreakEfficiency.Median => 0.5f,
                     ShieldBreakEfficiency.High => 1f,
                     _ => throw new ArgumentOutOfRangeException(nameof(shieldBreakEfficiency), shieldBreakEfficiency,

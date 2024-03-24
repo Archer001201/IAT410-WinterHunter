@@ -74,7 +74,7 @@ MonoBehaviour:
   summonTimer: 0
   hudCanvas: {fileID: 7888768729661789891}
   detectedEnemies: []
-  visualEffect: {fileID: 4074062188426286203}
+  visualEffect: {fileID: 3647415699138952381}
   vfxLengthDivisor: 6
   healRange: 12
   overflowHealing: 0
@@ -371,7 +371,7 @@ PrefabInstance:
     - target: {fileID: 727261767265543752, guid: c3e6d882078ba472b9023cac45a65489,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 727261767265543752, guid: c3e6d882078ba472b9023cac45a65489,
         type: 3}
@@ -425,9 +425,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e6d882078ba472b9023cac45a65489, type: 3}
---- !u!2083052967 &4074062188426286203 stripped
+--- !u!2083052967 &3647415699138952381 stripped
 VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 727261766388917208, guid: c3e6d882078ba472b9023cac45a65489,
+  m_CorrespondingSourceObject: {fileID: 1458981662, guid: c3e6d882078ba472b9023cac45a65489,
     type: 3}
   m_PrefabInstance: {fileID: 3647415698238109603}
   m_PrefabAsset: {fileID: 0}

@@ -62,21 +62,7 @@ MonoBehaviour:
   - id: Prisoner
     isAppeared: 1
     dialogueIndex: 0
-  blockWalls:
-  - id: BW EC202 02
-    isVisible: 0
-  - id: BW EC202 01
-    isVisible: 0
-  - id: BW EC206 01
-    isVisible: 0
-  - id: BW EC205 02
-    isVisible: 0
-  - id: BW EC205 01
-    isVisible: 0
-  - id: BW EC205 03
-    isVisible: 0
-  - id: Warning Line
-    isVisible: 0
+  blockWalls: []
   sceneName: Training Ground
-  position: {x: 5.28, y: 0, z: -56.31}
+  position: {x: 6.26, y: 0, z: -102.57}
   respawnAtThisPosition: 0
