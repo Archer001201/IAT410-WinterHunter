@@ -43,13 +43,14 @@ namespace Dialogue
             _inputControls.Enable();
             EventHandler.OnSavingDataAfterDialogue += SaveDialogueData;
             isAppeared = true;
+            SaveDialogueData();
         }
 
         private void OnDisable()
         {
             _inputControls.Disable();
             EventHandler.OnSavingDataAfterDialogue -= SaveDialogueData;
-            isAppeared = false;
+            // isAppeared = false;
         }
 
         private void Update()
@@ -165,6 +166,13 @@ namespace Dialogue
 
             dialogue.dialogueIndex = dialogueIndex;
             dialogue.isAppeared = isAppeared;
+        }
+
+        public void OnDisableGameObject()
+        {
+            isAppeared = false;
+            SaveDialogueData();
+            gameObject.SetActive(false);
         }
     }
 }

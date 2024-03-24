@@ -82,6 +82,9 @@ namespace Utilities
             _levelSO.position = Vector3.zero;
             _levelSO.sceneName = string.Empty;
             _levelSO.enemyCamps.Clear();
+            _levelSO.blockWalls.Clear();
+            _levelSO.dialogueEvents.Clear();
+            _levelSO.treasureChests.Clear();
         }
 
         public void StartAsyncSceneLoader(string sceneName)

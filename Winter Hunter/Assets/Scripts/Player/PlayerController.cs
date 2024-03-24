@@ -278,6 +278,7 @@ namespace Player
             
             _throwSnowballScript.enabled = true;
             _rollSnowballScript.enabled = false;
+            canAttack = true;
             
             StartStaminaCoroutine();
             

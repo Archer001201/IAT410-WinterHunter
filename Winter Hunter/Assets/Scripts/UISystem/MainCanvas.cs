@@ -39,7 +39,7 @@ namespace UISystem
             EventHandler.OnOpenSnowmanObtainedPrompt += OpenSnowmanObtainedPrompt;
             EventHandler.OnOpenTeleportPanel += HandleTeleportPanel;
             EventHandler.OnShowSavingData += StartShowingData;
-            EventHandler.OnPlayVideo += play => videoDisplay.SetActive(play);
+            EventHandler.OnPlayVideo += HandleVideoPlayer;
             _inputControls.Enable();
         }
 
@@ -49,6 +49,7 @@ namespace UISystem
             EventHandler.OnShowSnowmanObtainedPrompt -= OpenSnowmanObtainedPrompt;
             EventHandler.OnOpenTeleportPanel -= HandleTeleportPanel;
             EventHandler.OnShowSavingData -= StartShowingData;
+            EventHandler.OnPlayVideo -= HandleVideoPlayer;
             _inputControls.Disable();
         }
 
@@ -122,6 +123,11 @@ namespace UISystem
                 savingData.SetActive(false);
                 StopShowingData();
             }
+        }
+
+        private void HandleVideoPlayer(bool play)
+        {
+            videoDisplay.SetActive(play);
         }
 
         // private void HandleVideoDisplay(bool play)

@@ -62,6 +62,7 @@ namespace UISystem
          */
         public void UpdateSkill()
         {
+            if (_playerAttr.snowmanList.Count < 1) return;
             var currentIndex = _summonSnowmanScript.currentIndex;
             for (var i = 0; i < 3; i++)
             {

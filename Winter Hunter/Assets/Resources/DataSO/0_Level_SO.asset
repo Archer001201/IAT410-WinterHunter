@@ -13,39 +13,53 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: EC204
-    isCleared: 0
-  - id: EC203
-    isCleared: 0
-  - id: EC205
-    isCleared: 0
-  - id: EC206
-    isCleared: 0
-  - id: EC201
-    isCleared: 0
-  - id: EC202
+  - id: EC T001
     isCleared: 0
   treasureChests:
-  - id: TC202
+  - id: Chest (1)
     canOpen: 0
     isOpened: 0
-  - id: TC201
+  - id: Chest (3)
     canOpen: 0
     isOpened: 0
-  - id: TC205
+  - id: Chest
     canOpen: 0
     isOpened: 0
-  - id: TC203
+  - id: Chest (7)
     canOpen: 0
     isOpened: 0
-  - id: TC204
+  - id: Chest (5)
+    canOpen: 0
+    isOpened: 0
+  - id: Chest (2)
+    canOpen: 0
+    isOpened: 0
+  - id: Chest (4)
+    canOpen: 0
+    isOpened: 0
+  - id: Chest (6)
     canOpen: 0
     isOpened: 0
   dialogueEvents:
-  - id: HP 202
+  - id: Check Point
     isAppeared: 1
     dialogueIndex: 0
-  - id: HP 201
+  - id: Methus
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Flame Servant
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Flame Servant (2)
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Flame Servant (1)
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Guide
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Prisoner
     isAppeared: 1
     dialogueIndex: 0
   blockWalls:
@@ -61,6 +75,8 @@ MonoBehaviour:
     isVisible: 0
   - id: BW EC205 03
     isVisible: 0
-  sceneName: The Furnace City
-  position: {x: 3.2495942, y: -0.000010073185, z: -19.036165}
+  - id: Warning Line
+    isVisible: 0
+  sceneName: Training Ground
+  position: {x: 5.28, y: 0, z: -56.31}
   respawnAtThisPosition: 0

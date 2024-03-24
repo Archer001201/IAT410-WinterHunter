@@ -15,11 +15,10 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   maxMana: 100
-  attack: 10
+  attack: 30
   speed: 6
   staminaRecovery: 50
   manaRecovery: 0.2
-  levelSo: {fileID: 0}
   currentHealth: 100
   currentStamina: 100
   currentMana: 100

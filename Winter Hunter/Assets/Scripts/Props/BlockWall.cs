@@ -29,7 +29,7 @@ namespace Props
 
         private void OnDisable()
         {
-            isVisible = false;
+            // isVisible = false;
             SaveData();
         }
 
@@ -55,6 +55,13 @@ namespace Props
             var wall = _levelSO.blockWalls.Find(blockWall => blockWall.id == id);
             if (wall == null) return;
             wall.isVisible = isVisible;
+        }
+
+        public void OnDisableGameObject()
+        {
+            isVisible = false;
+            SaveData();
+            gameObject.SetActive(false);
         }
     }
 }
