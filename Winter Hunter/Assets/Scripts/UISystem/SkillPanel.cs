@@ -72,7 +72,6 @@ namespace UISystem
                 // skillIcons[i].GetComponent<Skill>().UpdateSkillIcon();
                 StartCoroutine(SwitchSkillCooldown());
                 StartCoroutine(skillIcons[i].GetComponent<Skill>().UpdateIcon());
-                Debug.Log(skillIcons[i].GetComponent<Skill>().snowmanInfo.type);
             }
         }
 
