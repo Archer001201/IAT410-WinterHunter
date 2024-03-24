@@ -173,7 +173,7 @@ namespace Player
             // }
             _gameSO.SaveData();
             LoadSnowmanList();
-            EventHandler.UpdateSkillPanel();
+            // EventHandler.UpdateSkillPanel();
         }
 
         public void TakeDamage(float damage)

@@ -69,7 +69,7 @@ MonoBehaviour:
   type: 3
   manaCost: 0
   level: 0
-  aggro: 0
+  aggro: 1
   health: 100
   summonTimer: 0
   hudCanvas: {fileID: 3417969559084012272}
