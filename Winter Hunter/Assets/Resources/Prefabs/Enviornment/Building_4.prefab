@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9079250219498635254}
   - component: {fileID: 595866438159744326}
   - component: {fileID: 7425835013086905709}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Snow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1850125593922943640}
   - component: {fileID: 4650313427555275852}
   - component: {fileID: 4329669393816708080}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Frame_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2482944992427493531}
   - component: {fileID: 284765862899789674}
   - component: {fileID: 5621166270365249094}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: windows_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 6226938407080784433}
   - component: {fileID: 4940334815078237028}
   - component: {fileID: 5057937198140031916}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Building Walls_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 7406317056260160607}
   - component: {fileID: 6797485125027567956}
   - component: {fileID: 4114599007140379371}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 8789477844151961594}
   - component: {fileID: 8417536737122348819}
   - component: {fileID: 4746398937665739086}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Roof_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 8090852136896717757}
   - component: {fileID: 3210851408006991461}
   - component: {fileID: 4783857183382961482}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Building_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

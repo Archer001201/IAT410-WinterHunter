@@ -108,7 +108,6 @@ namespace Player
         {
             _initMovingSpeed = _playerAttr.speed;
             _movingSpeed = _initMovingSpeed;
-            Debug.Log(_initMovingSpeed);
         }
 
         private void Update()
