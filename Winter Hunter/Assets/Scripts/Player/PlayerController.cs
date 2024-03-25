@@ -378,8 +378,6 @@ namespace Player
                 chestScript.OpenChest();
                 _summonSnowmanScript.currentIndex = 0;
                 _summonSnowmanScript.LoadSnowmanPrefab();
-                // _skillPanelScript.UpdateSkill();
-                EventHandler.UpdateSkillPanel();
                 EventHandler.OpenSnowmanObtainedPrompt(chestScript.snowman);
             }
         }
