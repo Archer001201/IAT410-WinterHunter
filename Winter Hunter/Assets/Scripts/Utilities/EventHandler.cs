@@ -154,12 +154,5 @@ namespace Utilities
         {
             OnPlayVideo?.Invoke(play);
         }
-
-        // public static event Action OnUpdateSkillIcon;
-        //
-        // public static void UpdateSkillIcon()
-        // {
-        //     OnUpdateSkillIcon?.Invoke();
-        // }
     }
 }

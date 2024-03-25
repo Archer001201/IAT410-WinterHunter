@@ -81,7 +81,7 @@ MonoBehaviour:
   type: 5
   manaCost: 0
   level: 0
-  aggro: 0.3
+  aggro: 0
   health: 0
   summonTimer: 0
   hudCanvas: {fileID: 7888768729661789891}
