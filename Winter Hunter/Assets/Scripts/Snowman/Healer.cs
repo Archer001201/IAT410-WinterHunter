@@ -44,13 +44,26 @@ namespace Snowman
         protected override void Update()
         {
             base.Update();
-            visualEffect.transform.LookAt(_playerTransform);
+            // var targetTrans = _playerTransform;
+            // targetTrans.position = new Vector3(targetTrans.position.x, 0.5f, targetTrans.position.z);
+            // visualEffect.transform.LookAt(targetTrans);
+            var targetTrans = new Vector3(_playerTransform.position.x, 0.5f, _playerTransform.position.z);
+            // targetTrans.position = new Vector3(targetTrans.position.x, 0.5f, targetTrans.position.z);
+            visualEffect.transform.LookAt(targetTrans);
+        }
+
+        private void FixedUpdate()
+        {
+            // var targetTrans = new Vector3(_playerTransform.position.x, 0.5f, _playerTransform.position.z);
+            // // targetTrans.position = new Vector3(targetTrans.position.x, 0.5f, targetTrans.position.z);
+            // visualEffect.transform.LookAt(targetTrans);
         }
 
         protected override void OnTriggerEnter(Collider other)
         {
             base.OnTriggerEnter(other);
             if (!other.CompareTag("Player")) return;
+            visualEffect.SetFloat("Duration", MySnowmanSO.summonDuration - summonTimer);
             visualEffect.Play();
             _healCoroutine ??= StartCoroutine(Heal());
         }
