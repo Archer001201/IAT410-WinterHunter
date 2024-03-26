@@ -24,6 +24,7 @@ namespace UISystem
         protected virtual void Awake()
         {
             _mainCamera = Camera.main;
+            SetPosition();
         }
 
         protected virtual void Update()
@@ -34,6 +35,11 @@ namespace UISystem
         }
 
         private void FixedUpdate()
+        {
+            SetPosition();
+        }
+
+        private void SetPosition()
         {
             var worldPosition = trans.position + offset;
             var screenPosition = _mainCamera.WorldToScreenPoint(worldPosition);

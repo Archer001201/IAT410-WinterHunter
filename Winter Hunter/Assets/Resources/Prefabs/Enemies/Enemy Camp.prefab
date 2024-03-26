@@ -101,12 +101,18 @@ MonoBehaviour:
   onCampCleared:
     m_PersistentCalls:
       m_Calls: []
-  enemyList: []
+  enemyWaves: []
   chestList: []
   waveThreshold: 2
-  enemiesPerWave: 5
-  raycastDistance: 20
+  waveIndex: 0
   isCleared: 0
+  isPlayerInCamp: 0
+  respawnVfx: {fileID: 6351259694995923438, guid: af797c1bffbb342c1a492184e076f1a7,
+    type: 3}
+  isBossCamp: 0
+  campDoors: []
+  respawnedEnemy: []
+  enemyAmount: 0
 --- !u!1 &4530234998369777387
 GameObject:
   m_ObjectHideFlags: 0

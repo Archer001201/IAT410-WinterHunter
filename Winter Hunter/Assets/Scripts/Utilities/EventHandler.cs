@@ -155,6 +155,13 @@ namespace Utilities
             OnPlayVideo?.Invoke(play);
         }
 
+        public static event Action<bool> OnChangePlayerBattleState;
+
+        public static void ChangePlayerBattleState(bool isInBattle)
+        {
+            OnChangePlayerBattleState?.Invoke(isInBattle);
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

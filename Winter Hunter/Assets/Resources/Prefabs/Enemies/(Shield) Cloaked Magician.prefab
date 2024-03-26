@@ -288,9 +288,8 @@ MonoBehaviour:
   advancedSkillCooldown: 0
   health: 0
   shield: 0
-  isPlayerInCampRange: 0
-  isTaunted: 0
   isChasing: 0
+  isTaunted: 0
   basicAttackTimer: 0
   basicSkillTimer: 0
   advancedSkillTimer: 0
@@ -302,9 +301,10 @@ MonoBehaviour:
   isAdvancedSkillReady: 0
   isMarked: 0
   hudCanvas: {fileID: 2457972267503376069}
+  deathVfx: {fileID: 6351259694995923438, guid: af797c1bffbb342c1a492184e076f1a7,
+    type: 3}
   targetTrans: {fileID: 0}
   detectedSnowman: {fileID: 0}
-  detectedPlayer: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 5589078747889544776}
   fireBallPrefab: {fileID: 1203452207493669655, guid: cdc3782e4284e418c91bc29408ebc1bd,

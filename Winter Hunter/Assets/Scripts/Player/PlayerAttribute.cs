@@ -86,11 +86,13 @@ namespace Player
             EventHandler.OnOpenSnowmanChest += AddSnowmanToPlayer;
             EventHandler.OnAddEnemyToCombatList += enemy => enemiesInCombat.Add(enemy);
             EventHandler.OnRemoveEnemyToCombatList += enemy => enemiesInCombat.Remove(enemy);
+            EventHandler.OnChangePlayerBattleState += HandleBattleState;
         }
         
         private void OnDisable()
         {
             EventHandler.OnOpenSnowmanChest -= AddSnowmanToPlayer;
+            EventHandler.OnChangePlayerBattleState -= HandleBattleState;
         }
 
         private void Update()
@@ -101,18 +103,32 @@ namespace Player
             
             // if (health <= 0) EventHandler.PlayerDie();
 
-            switch (isInCombat)
-            {
-                case false when enemiesInCombat.Count > 0:
-                    EventHandler.ChangeFOV(FovType.Battle);
-                    isInCombat = true;
-                    break;
-                case true when enemiesInCombat.Count < 1:
-                    EventHandler.ChangeFOV(FovType.Normal);
-                    isInCombat = false;
-                    break;
-            }
+            // switch (isInCombat)
+            // {
+            //     case false when enemiesInCombat.Count > 0:
+            //         EventHandler.ChangeFOV(FovType.Battle);
+            //         isInCombat = true;
+            //         break;
+            //     case true when enemiesInCombat.Count < 1:
+            //         EventHandler.ChangeFOV(FovType.Normal);
+            //         isInCombat = false;
+            //         break;
+            // }
             // isInCombat = enemiesInCombat.Count > 0;
+        }
+
+        private void HandleBattleState(bool isInBattle)
+        {
+            if (isInBattle)
+            {
+                EventHandler.ChangeFOV(FovType.Battle);
+                isInCombat = true;
+            }
+            else
+            {
+                EventHandler.ChangeFOV(FovType.Normal);
+                isInCombat = false;
+            }
         }
 
         private void FixedUpdate()

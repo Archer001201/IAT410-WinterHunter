@@ -45,6 +45,7 @@ namespace Enemy
         public bool isMarked;
         [Header("Component Settings")]
         public GameObject hudCanvas;
+        // public GameObject deathVfx;
 
         public Transform targetTrans;
         public BaseSnowman detectedSnowman;
@@ -103,6 +104,7 @@ namespace Enemy
                 agent.speed = 0;
                 animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
+                // Instantiate(deathVfx, transform.position, Quaternion.identity);
             }
             
             if (agent != null && agent.isActiveAndEnabled && targetTrans != null && isChasing)

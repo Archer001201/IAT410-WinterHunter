@@ -212,6 +212,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.5904469
+        functionName: DeathVfx
+        data: 
+        objectReferenceParameter: {fileID: 6351259694995923438, guid: af797c1bffbb342c1a492184e076f1a7,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.978673
         functionName: Death
         data: 
