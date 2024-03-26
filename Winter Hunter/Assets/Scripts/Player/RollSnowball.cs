@@ -1,3 +1,4 @@
+using System;
 using Snowball;
 using UnityEngine;
 
@@ -14,11 +15,16 @@ namespace Player
         [Header("RollSnowball Parameters")]
         public float scaleFactor;
         public float staminaIncrease;
+        public bool showRollingLine;
         private float _attackBonus;
         
         private RollingSnowball _rollingSnowballScript;
-        
-        
+
+        private void Update()
+        {
+            if (showRollingLine) UpdateRollingLine();
+        }
+
 
         private void OnDisable()
         {
@@ -45,6 +51,7 @@ namespace Player
         {
             if (SnowballInstance == null)
             {
+                // Debug.Log("snowball null");
                 enabled = false;
                 return;
             }
@@ -62,10 +69,10 @@ namespace Player
         {
             if (SnowballInstance == null)
             {
-                enabled = false;
+                // enabled = false;
                 return;
             }
-            UpdateRollingLine();
+            // UpdateRollingLine();
             if (moveDir != Vector3.zero)
             {
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
@@ -92,10 +99,11 @@ namespace Player
         private void UpdateRollingLine()
         {
             if (!rollingLine.activeInHierarchy) rollingLine.SetActive(true);
-            var distance = _rollingSnowballScript.rollingDistance - 5f;
-            rollingLine.transform.localScale = new Vector3(SnowballInstance.transform.localScale.x,1,distance);
+            // const float distance = RollingSnowball.RollingDistance - 5f;
+            rollingLine.transform.localScale = new Vector3(PlayerAttr.transform.localScale.x,1,10f);
             rollingLine.transform.position = startPosition.position;
             rollingLine.transform.rotation = startPosition.rotation;
+            // Debug.Log("line");
         }
     }
 }

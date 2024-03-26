@@ -32,7 +32,7 @@ namespace Player
          */
         public override void Attack()
         {
-            if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
+            // if (PlayerAttr.stamina < Mathf.Abs(stamina)) return;
             CreateSnowball();
             
             _throwingSnowballScript.SetAttack(PlayerAttr.attack);
@@ -45,7 +45,6 @@ namespace Player
          */
         public override void UpdateAimingLine()
         {
-            base.UpdateAimingLine();
             var points = new Vector3[lineSegmentCount];
             var startingPosition = startPosition.position;
             var startingVelocity = startPosition.forward * force;
