@@ -11,11 +11,10 @@ namespace Enemy
 
         private void OnTriggerEnter(Collider other)
         {
-            // if (other.CompareTag("Player"))
-            // {
-            //     enemy.detectedPlayer = other.GetComponent<PlayerAttribute>();
-            //     enemy.SetChaseTarget();
-            // }
+            if (other.CompareTag("Player"))
+            {
+                enemy.SetTarget();
+            }
 
             if (other.CompareTag("Snowman"))
             {
@@ -26,11 +25,10 @@ namespace Enemy
 
         private void OnTriggerExit(Collider other)
         {
-            // if (other.CompareTag("Player"))
-            // {
-            //     enemy.detectedPlayer = null;
-            //     enemy.SetChaseTarget();
-            // }
+            if (other.CompareTag("Player"))
+            {
+                enemy.SetTarget();
+            }
 
             if (other.CompareTag("Snowman"))
             {

@@ -17,14 +17,8 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
-                enemyCamp.isPlayerInTheCamp = true;
                 enemyCamp.NotifyEnemiesToChangeChasingState();
             }
         }
-
-        // public void CloseTheDoor()
-        // {
-        //     vfx.SetActive(true);
-        // }
     }
 }

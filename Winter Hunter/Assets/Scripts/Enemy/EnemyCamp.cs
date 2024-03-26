@@ -19,28 +19,21 @@ namespace Enemy
         public List<TreasureChest> chestList;
         public int waveThreshold;
         public int enemiesPerWave;
-        public float raycastDistance;
         public bool isCleared;
-        public bool isPlayerInTheCamp;
 
         public bool isBossCamp;
         public GameObject bossCampDoor;
         public List<CampDoor> campDoors;
         
         private LevelSO _levelSo;
-        private PlayerSO _playerSo;
         private GameSO _gameSo;
-
-        private GameObject _player;
+        
         private readonly List<GameObject> _enemiesOnStandby = new();
 
         private void Awake()
         {
             id = gameObject.name;
-            // levelSo.enemyCamps.Add(gameObject);
-            _player = GameObject.FindWithTag("Player");
             _gameSo = Resources.Load<GameSO>("DataSO/Game_SO");
-            _playerSo = _gameSo.currentGameData.playerSo;
             _levelSo = _gameSo.currentGameData.levelSo;
             LoadEnemyCampData();
 
@@ -73,41 +66,14 @@ namespace Enemy
                 if (enemyList[i] == null) enemyList.Remove(enemyList[i]);
             }
             
-            // CheckPlayerInRaycastRange();
             UpdateEnemyWave();
         }
-
-        // private void CheckPlayerInRaycastRange()
-        // {
-        //     if (isPlayerInTheCamp) return;
-        //     var dir = _player.transform.position - transform.position;
-        //
-        //     var layerMask =  1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Player");
-        //
-        //     isPlayerInTheCamp =
-        //         Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
-        //         hit.collider.CompareTag("Player");
-        //     
-        //     if (isPlayerInTheCamp)
-        //     {
-        //         // NotifyEnemiesToChangeChasingState(true);
-        //     }
-        //     // NotifyEnemiesToChangeChasingState(
-        //     //     Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
-        //     //     hit.collider.CompareTag("Player"));
-        //     
-        //     Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
-        // }
 
         public void NotifyEnemiesToChangeChasingState()
         {
             foreach (var enemy in enemyList)
             {
-                // if (enemy.isPlayerInCampRange == isPlayerInCampRange) return;
-                // enemy.isPlayerInCampRange = isPlayerInCampRange;
-                // enemy.SetChaseTarget();
-                // if (isChasing && enemy.CurrentState != enemy.ChaseState)
-                //     enemy.SwitchState(EnemyState.Chase);
+                enemy.isChasing = true;
                 enemy.SetTarget();
             }
 
@@ -157,7 +123,6 @@ namespace Enemy
             var camp = _levelSo.enemyCamps.Find(camp => camp.id == id);
             if (camp == null)
             {
-                // Debug.LogError("No camp data");
                 return;
             }
             
@@ -168,7 +133,6 @@ namespace Enemy
                 chest.SaveCanOpenState();
             }
             transform.parent.gameObject.SetActive(false);
-            // Debug.Log("Data saved");
         }
     }
 }
