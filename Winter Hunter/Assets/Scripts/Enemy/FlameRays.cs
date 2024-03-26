@@ -21,7 +21,7 @@ namespace Enemy
         {
             // var yRotation = -enemyAttr.transform.rotation.y;
             // // transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-            if (transform == null) Destroy(gameObject);
+            if (_enemyTrans == null) Destroy(gameObject);
             transform.position = _enemyTrans.position;
             transform.Rotate(0f, _rotateAngle * Time.fixedDeltaTime, 0f);
         }

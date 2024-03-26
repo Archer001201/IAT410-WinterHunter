@@ -91,12 +91,12 @@ namespace Enemy
                 var zPos = Random.Range(campPos.z - 10f, campPos.z + 10f);
                 var enemyPos = new Vector3(xPos, 0, zPos);
                 Instantiate(respawnVfx, enemyPos, Quaternion.identity);
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1f);
                 var currentEnemy = Instantiate(enemy, enemyPos, Quaternion.identity);
                 var enemyScript = currentEnemy.GetComponent<BaseEnemy>();
                 respawnedEnemy.Add(enemyScript);
-                yield return new WaitForSeconds(1.5f);
-                if (index > 0) InitializeEnemy(enemyScript);
+                yield return new WaitForSeconds(1f);
+                if (isPlayerInCamp) InitializeEnemy(enemyScript);
             }
 
             waveIndex++;
