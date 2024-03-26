@@ -17,7 +17,9 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
+                if (enemyCamp.isPlayerInCamp) return;
                 enemyCamp.NotifyEnemiesToChangeChasingState();
+                enemyCamp.isPlayerInCamp = true;
             }
         }
     }

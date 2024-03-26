@@ -20,9 +20,10 @@ namespace Enemy
         public int waveThreshold;
         public int enemiesPerWave;
         public bool isCleared;
+        public bool isPlayerInCamp;
 
         public bool isBossCamp;
-        public GameObject bossCampDoor;
+        // public GameObject bossCampDoor;
         public List<CampDoor> campDoors;
         
         private LevelSO _levelSo;
@@ -75,16 +76,12 @@ namespace Enemy
             {
                 enemy.isChasing = true;
                 enemy.SetTarget();
+                EventHandler.AddEnemyToCombatList(enemy.gameObject);
             }
 
             foreach (var door in campDoors)
             {
                 door.vfx.SetActive(true);
-            }
-
-            if (isBossCamp)
-            {
-                bossCampDoor.SetActive(true);
             }
         }
 

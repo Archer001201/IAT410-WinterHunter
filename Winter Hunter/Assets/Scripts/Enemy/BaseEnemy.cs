@@ -108,6 +108,7 @@ namespace Enemy
             if (agent != null && agent.isActiveAndEnabled && targetTrans != null && isChasing)
             {
                 agent.SetDestination(targetTrans.position);
+                animator.SetBool(EnemyAnimatorPara.IsMoving.ToString(), true);
             }
             
             if (targetTrans == null) SetTarget();
