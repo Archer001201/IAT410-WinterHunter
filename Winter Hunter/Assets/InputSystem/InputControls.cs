@@ -116,6 +116,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowSnowballPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""03ddd4e5-8337-4738-aaa3-91d406787be6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9fe8db2-ebb5-4318-a5a6-b2d76e0c9696"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowSnowballPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -386,6 +406,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Rush = m_Gameplay.FindAction("Rush", throwIfNotFound: true);
         m_Gameplay_Skip = m_Gameplay.FindAction("Skip", throwIfNotFound: true);
+        m_Gameplay_ThrowSnowballPress = m_Gameplay.FindAction("ThrowSnowballPress", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
@@ -465,6 +486,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Rush;
     private readonly InputAction m_Gameplay_Skip;
+    private readonly InputAction m_Gameplay_ThrowSnowballPress;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -479,6 +501,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Rush => m_Wrapper.m_Gameplay_Rush;
         public InputAction @Skip => m_Wrapper.m_Gameplay_Skip;
+        public InputAction @ThrowSnowballPress => m_Wrapper.m_Gameplay_ThrowSnowballPress;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -518,6 +541,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
+            @ThrowSnowballPress.started += instance.OnThrowSnowballPress;
+            @ThrowSnowballPress.performed += instance.OnThrowSnowballPress;
+            @ThrowSnowballPress.canceled += instance.OnThrowSnowballPress;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -552,6 +578,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
+            @ThrowSnowballPress.started -= instance.OnThrowSnowballPress;
+            @ThrowSnowballPress.performed -= instance.OnThrowSnowballPress;
+            @ThrowSnowballPress.canceled -= instance.OnThrowSnowballPress;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -689,6 +718,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnRush(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+        void OnThrowSnowballPress(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

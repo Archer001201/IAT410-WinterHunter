@@ -43,7 +43,7 @@ namespace Utilities
 
     public enum PlayerAnimationPara
     {
-        Angle, IsThrowing, IsRolling, IsDead
+        Angle, IsThrowing, IsRolling, IsDead, IsPressing
     }
 
     public enum EnemyAnimatorPara

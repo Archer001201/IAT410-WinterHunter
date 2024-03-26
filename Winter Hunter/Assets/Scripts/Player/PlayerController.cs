@@ -26,6 +26,7 @@ namespace Player
         public bool isRollingSnowball;
         public bool isAttacking;
         public bool canAttack;
+        public bool hasRollingSnowball;
         [FormerlySerializedAs("isDashing")] public bool isDashPressed;
         [FormerlySerializedAs("isDashReady")] public bool isDashing;
         
@@ -81,6 +82,8 @@ namespace Player
             _inputControls.Gameplay.Interact.performed += _ => OnPressInteractButton();
             _inputControls.Gameplay.Rush.performed += _ => OnPressDashButton();
             _inputControls.Gameplay.Rush.canceled += _ => OnReleaseDashButton();
+            _inputControls.Gameplay.ThrowSnowballPress.performed += _=> OnPressingThrow();
+            _inputControls.Gameplay.ThrowSnowballPress.canceled += _=> OnReleasingThrow();
 
             _rollSnowballScript.enabled = false;
             canAttack = true;
@@ -137,6 +140,11 @@ namespace Player
             {
                 animator.SetTrigger(PlayerAnimationPara.IsDead.ToString());
                 _isDead = true;
+            }
+
+            if (_playerAttr.stamina < Mathf.Abs(_throwSnowballScript.stamina) && animator.GetBool(PlayerAnimationPara.IsPressing.ToString()))
+            {
+                OnReleasingThrow();
             }
         }
 
@@ -240,7 +248,26 @@ namespace Player
         private void OnThrowingSnowballEnd()
         {
             StartStaminaCoroutine();
+            // canAttack = true;
             // animator.SetBool(PlayerAnimationPara.IsThrowing.ToString(), false);
+        }
+
+        private void OnPressingThrow()
+        {
+            // if (!canAttack) return;
+            if (_playerAttr.stamina < Mathf.Abs(_throwSnowballScript.stamina)) return;
+            StopStaminaCoroutine();
+            // _throwSnowballScript.Attack();
+            isAttacking = true;
+            animator.SetBool(PlayerAnimationPara.IsPressing.ToString(), true);
+            canAttack = false;
+        }
+
+        private void OnReleasingThrow()
+        {
+            StartStaminaCoroutine();
+            animator.SetBool(PlayerAnimationPara.IsPressing.ToString(), false);
+            // canAttack = true;
         }
 
         public void ThrowingSnowballAttack()
@@ -253,12 +280,15 @@ namespace Player
          */
         private void OnRollingSnowballStart()
         {
+            _throwSnowballScript.enabled = false;
+            _rollSnowballScript.enabled = true;
             if (!canAttack) return;
             if (_playerAttr.stamina < Mathf.Abs(_rollSnowballScript.stamina)) return;
             StopStaminaCoroutine();
             
-            _rollSnowballScript.enabled = true;
-            _throwSnowballScript.enabled = false;
+            _rollSnowballScript.showRollingLine = true;
+            isRollingSnowball = true;
+            
             
             // isRollingSnowball = true;
             // _rollSnowballScript.CreateSnowball();
@@ -273,12 +303,15 @@ namespace Player
          */
         public void OnRollingSnowballEnd()
         {
-            isRollingSnowball = false;
+            
             _rollSnowballScript.Attack();
+            _rollSnowballScript.showRollingLine = false;
             
             _throwSnowballScript.enabled = true;
             _rollSnowballScript.enabled = false;
             canAttack = true;
+            hasRollingSnowball = false;
+            isRollingSnowball = false;
             
             StartStaminaCoroutine();
             
@@ -287,9 +320,9 @@ namespace Player
 
         public void CreateRollingSnowball()
         {
-            if (isRollingSnowball) return;
+            if (hasRollingSnowball) return;
             _rollSnowballScript.CreateSnowball();
-            isRollingSnowball = true;
+            hasRollingSnowball = true;
         }
 
         /*

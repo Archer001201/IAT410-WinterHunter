@@ -3,6 +3,7 @@ using Enemy;
 using Player;
 using Snowman.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Snowball
 {
@@ -11,7 +12,7 @@ namespace Snowball
      */
     public class RollingSnowball : BaseSnowball
     {
-        public float rollingDistance;
+        public float rollingDistance = 15f;
         public Vector2 rollingSize;
         public GameObject explosionVfx;
         private Vector3 _lastPosition;
