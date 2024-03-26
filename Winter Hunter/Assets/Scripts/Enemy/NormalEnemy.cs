@@ -14,12 +14,12 @@ namespace Enemy
         [Header("Normal Enemy Settings")]
         public GameObject fireRing;
 
-        protected override void Awake()
-        {
-            IdleState = new NormalIdleState();
-            ChaseState = new NormalChaseState();
-            RetreatState = new NormalRetreatState();
-            base.Awake();
-        }
+        // protected override void Awake()
+        // {
+        //     IdleState = new NormalIdleState();
+        //     ChaseState = new NormalChaseState();
+        //     RetreatState = new NormalRetreatState();
+        //     base.Awake();
+        // }
     }
 }

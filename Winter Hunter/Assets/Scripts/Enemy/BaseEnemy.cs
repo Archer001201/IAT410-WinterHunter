@@ -31,7 +31,7 @@ namespace Enemy
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
-        public bool isPlayerInCampRange;
+        // public bool isPlayerInCampRange;
         public bool isTaunted;
         public bool isChasing;
         public float basicAttackTimer;
@@ -49,17 +49,17 @@ namespace Enemy
 
         public Transform targetTrans;
         public BaseSnowman detectedSnowman;
-        public PlayerAttribute detectedPlayer;
+        // public PlayerAttribute detectedPlayer;
         
         public NavMeshAgent agent;
         private GameObject _player;
         // private Coroutine _attackCoroutine;
         private Vector3 _originalPosition;
 
-        private BaseState _currentMovingState;
-        protected BaseState IdleState;
-        protected BaseState ChaseState;
-        protected BaseState RetreatState;
+        // private BaseState _currentMovingState;
+        // protected BaseState IdleState;
+        // protected BaseState ChaseState;
+        // protected BaseState RetreatState;
 
         public BaseState CurrentAttackingState;
         protected BaseState NonAttackState;
@@ -87,23 +87,21 @@ namespace Enemy
             
             _player = GameObject.FindWithTag("Player");
 
-            _currentMovingState = IdleState;
+            // _currentMovingState = IdleState;
             CurrentAttackingState = NonAttackState;
         }
 
         private void OnEnable()
         {
-            if (CurrentAttackingState == null || _currentMovingState == null) return;
-            _currentMovingState.OnEnter(this);
-            CurrentAttackingState.OnEnter(this);
+            // _currentMovingState.OnEnter(this);
+            CurrentAttackingState?.OnEnter(this);
             // StartAttacking();
         }
 
         private void OnDisable()
         {
-            if (CurrentAttackingState == null || _currentMovingState == null) return;
-            _currentMovingState.OnExist();
-            CurrentAttackingState.OnExist();
+            // _currentMovingState.OnExist();
+            CurrentAttackingState?.OnExist();
         }
 
         protected virtual void Update()
@@ -121,25 +119,29 @@ namespace Enemy
                 animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
             }
-
-            if (isPlayerInCampRange && targetTrans == null)
+            
+            if (agent != null && agent.isActiveAndEnabled && targetTrans != null)
             {
-                isChasing = true;
-                SetChaseTarget();
+                agent.SetDestination(targetTrans.position);
             }
 
-            if (targetTrans == null && Vector3.Distance(transform.position, _originalPosition) < 0.5f)
-            {
-                isChasing = false;
-            }
+            // if (isPlayerInCampRange && targetTrans == null)
+            // {
+            //     isChasing = true;
+            //     SetChaseTarget();
+            // }
+            //
+            // if (targetTrans == null && Vector3.Distance(transform.position, _originalPosition) < 0.5f)
+            // {
+            //     isChasing = false;
+            // }
 
             isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
             isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null;
             isAdvancedSkillReady = advancedSkillTimer <= 0 && isAdvancedSkillSatisfied && targetTrans != null;
-            
-            if (CurrentAttackingState == null || _currentMovingState == null) return;
-            _currentMovingState.OnUpdate();
-            CurrentAttackingState.OnUpdate();
+
+            // _currentMovingState.OnUpdate();
+            CurrentAttackingState?.OnUpdate();
         }
 
         private void FixedUpdate()
@@ -147,9 +149,8 @@ namespace Enemy
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;
             if (advancedSkillTimer > 0) advancedSkillTimer -= Time.deltaTime;
-            if (CurrentAttackingState == null || _currentMovingState == null) return;
-            _currentMovingState.OnFixedUpdate();
-            CurrentAttackingState.OnFixedUpdate();
+            // _currentMovingState.OnFixedUpdate();
+            CurrentAttackingState?.OnFixedUpdate();
         }
 
         public void Death()
@@ -157,20 +158,20 @@ namespace Enemy
             Destroy(gameObject);
         }
 
-        public void SwitchMovingState(MovingState state)
-        {
-            var newState = state switch
-            {
-                MovingState.Chase => ChaseState,
-                MovingState.Retreat => RetreatState,
-                MovingState.Idle => IdleState,
-                _ => IdleState
-            };
-            
-            _currentMovingState.OnExist();
-            _currentMovingState = newState;
-            _currentMovingState?.OnEnter(this);
-        }
+        // public void SwitchMovingState(MovingState state)
+        // {
+        //     var newState = state switch
+        //     {
+        //         MovingState.Chase => ChaseState,
+        //         MovingState.Retreat => RetreatState,
+        //         MovingState.Idle => IdleState,
+        //         _ => IdleState
+        //     };
+        //     
+        //     _currentMovingState.OnExist();
+        //     _currentMovingState = newState;
+        //     _currentMovingState?.OnEnter(this);
+        // }
         
         public void SwitchAttackingState(AttackingState state)
         {
@@ -199,41 +200,64 @@ namespace Enemy
             {
                 // Debug.Log("set target null");
                 isTaunted = false;
-                targetTrans = null;
+                // SetChaseTarget();
             }
         }
 
-        public void SetChaseTarget()
+        // public void ChasingTarget()
+        // {
+        //     
+        // }
+
+        public void SetTarget()
         {
-            if (isTaunted) return;
-            var noDetectedTarget = detectedPlayer == null && detectedSnowman == null;
-            if (isPlayerInCampRange && noDetectedTarget)
+            if (detectedSnowman != null)
             {
-                if (_player == null) _player = GameObject.FindWithTag("Player");
-                targetTrans = _player.transform;
-            }
-            else if (noDetectedTarget)
-            {
-                GoBackToCamp();
-                targetTrans = null;
-            }
-            else if (isChasing)
-            {
-                if (detectedPlayer != null && detectedSnowman != null)
-                {
-                    var randNum = Random.Range(0f, 1f);
-                    targetTrans = randNum > detectedSnowman.aggro ? _player.transform : detectedSnowman.transform;
-                }
-                else if (detectedSnowman != null)
+                if (Random.Range(0f, 1f) < detectedSnowman.aggro)
                 {
                     targetTrans = detectedSnowman.transform;
-                }
-                else
-                {
-                    targetTrans = _player.transform;
+                    return;
                 }
             }
+            if (_player == null) _player = GameObject.FindWithTag("Player");
+            targetTrans = _player.transform;
         }
+
+        // public void SetChaseTarget()
+        // {
+        //     if (isTaunted) return;
+        //     // var noDetectedTarget = detectedPlayer == null && detectedSnowman == null;
+        //     // if (isPlayerInCampRange && noDetectedTarget)
+        //     // {
+        //     //     if (_player == null) _player = GameObject.FindWithTag("Player");
+        //     //     targetTrans = _player.transform;
+        //     // }
+        //     // else if (noDetectedTarget)
+        //     // {
+        //     //     GoBackToCamp();
+        //     //     targetTrans = null;
+        //     // }
+        //     // else 
+        //     if (isPlayerInCampRange)
+        //     {
+        //         // detectedPlayer = _player;
+        //         _player = GameObject.FindWithTag("Player");
+        //         if (detectedSnowman != null)
+        //         {
+        //             var randNum = Random.Range(0f, 1f);
+        //             targetTrans = randNum > detectedSnowman.aggro ? _player.transform : detectedSnowman.transform;
+        //         }
+        //         // else if (detectedSnowman != null)
+        //         // {
+        //         //     targetTrans = detectedSnowman.transform;
+        //         // }
+        //         else
+        //         {
+        //             // if (_player == null) _player = GameObject.FindWithTag("Player");
+        //             targetTrans = _player.transform;
+        //         }
+        //     }
+        // }
 
 
         /*
@@ -252,6 +276,7 @@ namespace Enemy
          */
         public void MoveTowardsTarget()
         {
+            targetTrans = _player.transform;
             if (agent != null && agent.isActiveAndEnabled && targetTrans != null)
             {
                 agent.SetDestination(targetTrans.position);

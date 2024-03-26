@@ -11,31 +11,31 @@ namespace Enemy
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                enemy.detectedPlayer = other.GetComponent<PlayerAttribute>();
-                enemy.SetChaseTarget();
-            }
+            // if (other.CompareTag("Player"))
+            // {
+            //     enemy.detectedPlayer = other.GetComponent<PlayerAttribute>();
+            //     enemy.SetChaseTarget();
+            // }
 
             if (other.CompareTag("Snowman"))
             {
                 enemy.detectedSnowman = other.GetComponent<BaseSnowman>();
-                enemy.SetChaseTarget();
+                enemy.SetTarget();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                enemy.detectedPlayer = null;
-                enemy.SetChaseTarget();
-            }
+            // if (other.CompareTag("Player"))
+            // {
+            //     enemy.detectedPlayer = null;
+            //     enemy.SetChaseTarget();
+            // }
 
             if (other.CompareTag("Snowman"))
             {
                 enemy.detectedSnowman = null;
-                enemy.SetChaseTarget();
+                enemy.SetTarget();
             }
         }
     }

@@ -14,9 +14,9 @@ namespace Enemy
         
         protected override void Awake()
         {
-            IdleState = new NormalIdleState();
-            ChaseState = new NormalChaseState();
-            RetreatState = new NormalRetreatState();
+            // IdleState = new NormalIdleState();
+            // ChaseState = new NormalChaseState();
+            // RetreatState = new NormalRetreatState();
 
             NonAttackState = new NormalNonAttackState();
             BasicAttackState = new NormalBasicAttackState();

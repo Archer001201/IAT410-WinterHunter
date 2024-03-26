@@ -21,9 +21,11 @@ namespace Enemy
         public int enemiesPerWave;
         public float raycastDistance;
         public bool isCleared;
+        public bool isPlayerInTheCamp;
 
         public bool isBossCamp;
         public GameObject bossCampDoor;
+        public List<CampDoor> campDoors;
         
         private LevelSO _levelSo;
         private PlayerSO _playerSo;
@@ -46,6 +48,11 @@ namespace Enemy
             {
                 if (!enemy.gameObject.activeSelf) _enemiesOnStandby.Add(enemy.gameObject);
             }
+
+            foreach (var door in campDoors)
+            {
+                door.enemyCamp = this;
+            }
         }
 
         private void Update()
@@ -66,32 +73,47 @@ namespace Enemy
                 if (enemyList[i] == null) enemyList.Remove(enemyList[i]);
             }
             
-            CheckPlayerInRaycastRange();
+            // CheckPlayerInRaycastRange();
             UpdateEnemyWave();
         }
 
-        private void CheckPlayerInRaycastRange()
-        {
-            var dir = _player.transform.position - transform.position;
+        // private void CheckPlayerInRaycastRange()
+        // {
+        //     if (isPlayerInTheCamp) return;
+        //     var dir = _player.transform.position - transform.position;
+        //
+        //     var layerMask =  1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Player");
+        //
+        //     isPlayerInTheCamp =
+        //         Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
+        //         hit.collider.CompareTag("Player");
+        //     
+        //     if (isPlayerInTheCamp)
+        //     {
+        //         // NotifyEnemiesToChangeChasingState(true);
+        //     }
+        //     // NotifyEnemiesToChangeChasingState(
+        //     //     Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
+        //     //     hit.collider.CompareTag("Player"));
+        //     
+        //     Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
+        // }
 
-            var layerMask =  1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Player");
-
-            NotifyEnemiesToChangeChasingState(
-                Physics.Raycast(transform.position, dir.normalized, out var hit, raycastDistance, layerMask) &&
-                hit.collider.CompareTag("Player"));
-            
-            Debug.DrawLine(transform.position, _player.transform.position, Color.blue);
-        }
-
-        private void NotifyEnemiesToChangeChasingState(bool isPlayerInCampRange)
+        public void NotifyEnemiesToChangeChasingState()
         {
             foreach (var enemy in enemyList)
             {
-                if (enemy.isPlayerInCampRange == isPlayerInCampRange) return;
-                enemy.isPlayerInCampRange = isPlayerInCampRange;
-                enemy.SetChaseTarget();
+                // if (enemy.isPlayerInCampRange == isPlayerInCampRange) return;
+                // enemy.isPlayerInCampRange = isPlayerInCampRange;
+                // enemy.SetChaseTarget();
                 // if (isChasing && enemy.CurrentState != enemy.ChaseState)
                 //     enemy.SwitchState(EnemyState.Chase);
+                enemy.SetTarget();
+            }
+
+            foreach (var door in campDoors)
+            {
+                door.vfx.SetActive(true);
             }
 
             if (isBossCamp)
