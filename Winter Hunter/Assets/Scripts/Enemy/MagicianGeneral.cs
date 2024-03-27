@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Enemy.FSM;
 using UnityEngine;
 using Utilities;
@@ -10,10 +11,11 @@ namespace Enemy
     {
         public GameObject flameRays;
         public GameObject fireBallLarge;
-        public GameObject fireBallSmall;
         public Transform throwPoint;
         public GameObject smashVfx;
         public List<Transform> smashTransList;
+        public CinemachineImpulseSource fireRayImpulse;
+        public CinemachineImpulseSource fireRingImpulse;
         
         protected override void Awake()
         {
@@ -59,6 +61,7 @@ namespace Enemy
                 var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
                 shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
                 i++;
+                fireRingImpulse.GenerateImpulseWithForce(0.5f);
                 yield return new WaitForSeconds(0.2f);
             }
             // var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
@@ -72,8 +75,9 @@ namespace Enemy
             // Debug.Log("Giant Basic Skill");
             var raysGO = Instantiate(flameRays, transform.position, Quaternion.identity);
             var raysScript = raysGO.GetComponent<FlameRays>();
-            raysScript.SetFlameRays(transform, attackDamage);
-            yield return new WaitForSeconds(10f);
+            raysScript.SetFlameRays(transform, attackDamage, 5f);
+            fireRayImpulse.GenerateImpulseWithForce(0.5f);
+            yield return new WaitForSeconds(5f);
             // flameRays.SetActive(false);
             raysScript.DestroyMe();
             SwitchAttackingState(AttackingState.NonAttack);

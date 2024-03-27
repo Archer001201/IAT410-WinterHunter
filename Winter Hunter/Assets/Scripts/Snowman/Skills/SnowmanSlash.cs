@@ -20,8 +20,8 @@ namespace Snowman.Skills
 
         private void Update()
         {
-            var rotationThisFrame = _rotationSpeed * Time.deltaTime;
-            transform.Rotate(0, rotationThisFrame, 0);
+            // var rotationThisFrame = _rotationSpeed * Time.deltaTime;
+            // transform.Rotate(0, rotationThisFrame, 0);
         }
 
         private void OnTriggerEnter(Collider other)

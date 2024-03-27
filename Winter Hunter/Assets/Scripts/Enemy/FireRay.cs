@@ -2,6 +2,8 @@ using System;
 using Player;
 using Snowman;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 namespace Enemy
 {
@@ -9,15 +11,21 @@ namespace Enemy
     {
         public FlameRays rays;
         private float _attack;
+        private float _duration;
+        [FormerlySerializedAs("_vfx")] public VisualEffect vfx;
 
         // private void Awake()
         // {
-        //     _attack = rays.GetAttack();
+        //     _attack = rays.attack;
+        //     _duration = rays.duration;
+        //     vfx.SetFloat("Duration", _duration);
         // }
 
         private void Start()
         {
-            _attack = rays.GetAttack();
+            _attack = rays.attack;
+            _duration = rays.duration;
+            vfx.SetFloat("Duration", _duration);
         }
 
         private void OnTriggerEnter(Collider other)

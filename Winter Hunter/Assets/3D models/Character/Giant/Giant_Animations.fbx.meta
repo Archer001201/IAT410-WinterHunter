@@ -57,7 +57,7 @@ ModelImporter:
       takeName: Giant_Swing
       internalID: 462343751963863163
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -77,7 +77,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.45260665
+      - time: 0.8390982
         functionName: Attack
         data: 
         objectReferenceParameter: {instanceID: 0}

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Enemy
@@ -9,7 +10,8 @@ namespace Enemy
         // public BaseEnemy enemyAttr;
         private Transform _enemyTrans;
         private float _rotateAngle;
-        private float _attack;
+        public float attack;
+        public float duration;
 
         private void Awake()
         {
@@ -26,20 +28,16 @@ namespace Enemy
             transform.Rotate(0f, _rotateAngle * Time.fixedDeltaTime, 0f);
         }
 
-        public void SetFlameRays(Transform followedTrans, float attack)
+        public void SetFlameRays(Transform followedTrans, float rayAttack, float rayDuration)
         {
             _enemyTrans = followedTrans;
-            _attack = attack;
+            attack = rayAttack;
+            duration = rayDuration;
         }
 
         public void DestroyMe()
         {
             Destroy(gameObject);
-        }
-
-        public float GetAttack()
-        {
-            return _attack;
         }
     }
 }

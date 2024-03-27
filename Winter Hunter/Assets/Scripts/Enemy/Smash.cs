@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using Player;
 using Snowball;
 using Snowman;
@@ -10,6 +11,13 @@ namespace Enemy
     {
         public ParticleSystem smashVfx;
         private float _attack;
+        private CinemachineImpulseSource _impulseSource;
+
+        private void Awake()
+        {
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
+            _impulseSource.GenerateImpulseWithForce(1f);
+        }
 
         private void Update()
         {

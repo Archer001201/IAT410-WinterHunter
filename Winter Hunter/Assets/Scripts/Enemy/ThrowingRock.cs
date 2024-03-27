@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using Player;
 using Snowman;
 using UnityEngine;
@@ -9,6 +10,12 @@ namespace Enemy
     {
         private float _attack;
         public bool isLanded;
+        private CinemachineImpulseSource _impulseSource;
+
+        private void Awake()
+        {
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
+        }
 
         private void OnCollisionEnter(Collision other)
         {
@@ -17,6 +24,7 @@ namespace Enemy
             if (other.gameObject.CompareTag("Ground"))
             {
                 isLanded = true;
+                _impulseSource.GenerateImpulseWithForce(1f);
             }
 
             if (other.gameObject.CompareTag("Player"))

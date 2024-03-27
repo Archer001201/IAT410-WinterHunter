@@ -15,6 +15,7 @@ namespace Enemy
         public Transform throwPoint; // 扔石头的起始位置
         public float throwAngle = 45.0f; // 扔出的角度，45度可以获得最远的距离
         public float gravity = -Physics.gravity.y; // 使用重力加速度
+        public GameObject giantModel;
         
         protected override void Awake()
         {
@@ -65,8 +66,25 @@ namespace Enemy
         public override IEnumerator BasicSkill()
         {
             // Debug.Log("Giant Basic Skill");
+            // swingVfx.SetActive(true);
+            // giantModel.transform.Rotate(0f,10f,0f);
+            // yield return new WaitForSeconds(5f);
+            // swingVfx.SetActive(false);
+            // SwitchAttackingState(AttackingState.NonAttack);
+            // Debug.Log("Giant Basic Skill");
             swingVfx.SetActive(true);
-            yield return new WaitForSeconds(5f);
+    
+            // 记录旋转开始的时间
+            var startTime = Time.time;
+    
+            // 持续旋转直到达到5秒
+            while (Time.time - startTime <= 5f)
+            {
+                // 每帧旋转一点，这里以每秒60度为例，可以根据需要调整
+                giantModel.transform.Rotate(0f, -360f * Time.deltaTime, 0f);
+                yield return null;
+            }
+    
             swingVfx.SetActive(false);
             SwitchAttackingState(AttackingState.NonAttack);
         }
