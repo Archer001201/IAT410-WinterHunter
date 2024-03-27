@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   shieldBreakEfficiency: 0
+  vfx: {fileID: 6226103546333560817, guid: 6f3f487e8039b4aa1be41a29733e77f0, type: 3}
 --- !u!114 &-32450824846328524
 MonoBehaviour:
   m_ObjectHideFlags: 0
