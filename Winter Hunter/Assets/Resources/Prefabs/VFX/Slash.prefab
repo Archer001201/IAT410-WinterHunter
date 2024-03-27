@@ -4762,7 +4762,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
-  - {fileID: 2100000, guid: 4ea904c6d0fbf4ff4a7d0dccf5edcd60, type: 2}
+  - {fileID: 2100000, guid: e9baf911d62de534f8697c07345ceb26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4944,7 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDuration: 1
-  slashTrails: {fileID: 5210909590799890867}
+  enemyAttr: {fileID: 0}
 --- !u!65 &6632410446214514916
 BoxCollider:
   m_ObjectHideFlags: 0
