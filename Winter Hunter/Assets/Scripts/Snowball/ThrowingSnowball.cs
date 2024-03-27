@@ -10,6 +10,7 @@ namespace Snowball
     public class ThrowingSnowball : BaseSnowball
     {
         private CinemachineImpulseSource _impulseSource;
+        public GameObject vfx;
         
         protected override void Awake()
         {
@@ -29,6 +30,8 @@ namespace Snowball
                 enemy.TakeDamage(damage, shieldBreakEfficiency);
                 PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
             }
+
+            Instantiate(vfx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
