@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Globalization;
 using TMPro;
@@ -10,8 +11,15 @@ namespace Utilities
     public class AsyncSceneLoader : MonoBehaviour
     {
         public Image progressBar;
-        public TextMeshProUGUI progressText;
-        
+        public bool showProgressBar;
+        public GameObject progressDisplay;
+        // public TextMeshProUGUI progressText;
+
+        private void Awake()
+        {
+            progressDisplay.SetActive(showProgressBar); 
+        }
+
         public void LoadSceneAsync(string sceneName)
         {
             StartCoroutine(LoadSceneCoroutine(sceneName));
@@ -26,15 +34,18 @@ namespace Utilities
             while (!asyncLoad.isDone)
             {
                 // 更新UI进度条
-                if (progressBar != null)
+                if (progressBar != null && showProgressBar)
                 {
                     progressBar.fillAmount = asyncLoad.progress;
-                    progressText.text = (asyncLoad.progress * 100).ToString("F0", CultureInfo.InvariantCulture) + "%";
+                    // progressText.text = (asyncLoad.progress * 100).ToString("F0", CultureInfo.InvariantCulture) + "%";
                 }
 
                 // 等待下一帧
                 yield return null;
+                // yield return new WaitForSeconds(10f);
             }
+
+            // yield return new WaitForSeconds(10f);
             
             gameObject.SetActive(false);
         }

@@ -132,6 +132,7 @@ namespace Enemy
                 onCampCleared?.Invoke();
                 foreach (var t in chestList)
                 {
+                    if (t == null) continue;
                     t.canOpen = isCleared;
                 }
                 EventHandler.ChangePlayerBattleState(false);

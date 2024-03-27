@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  type: 2
   isAppeared: 1
   dialogueIndex: 0
   dialogueLists:

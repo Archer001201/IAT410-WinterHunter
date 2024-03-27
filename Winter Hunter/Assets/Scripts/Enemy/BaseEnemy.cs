@@ -101,7 +101,7 @@ namespace Enemy
             if (health <= 0 && !_isDead)
             {
                 _isDead = true;
-                agent.speed = 0;
+                agent.isStopped = true;
                 animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
                 // Instantiate(deathVfx, transform.position, Quaternion.identity);

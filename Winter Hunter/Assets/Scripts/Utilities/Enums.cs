@@ -50,4 +50,9 @@ namespace Utilities
     {
         IsMoving, IsBasicAttack, IsBasicSkill, IsAttacking, IsAdvancedSkill, IsDead, Possibility
     }
+
+    public enum DialogueType
+    {
+        Npc, TreasureChest, EmberFire
+    }
 }

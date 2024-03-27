@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DataSO;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
 using EventHandler = Utilities.EventHandler;
 
 namespace Dialogue
@@ -12,6 +13,7 @@ namespace Dialogue
     {
         public string id;
         // public UnityEvent onFinishEvent;
+        public DialogueType type;
         public bool isAppeared = true;
         public int dialogueIndex;
         public List<DialogueList> dialogueLists;
@@ -23,6 +25,7 @@ namespace Dialogue
         private LevelSO _levelSO;
 
         private Stack<DialoguePiece> _dialogueStack;
+        private string _signText;
 
         private void Awake()
         {
@@ -36,6 +39,14 @@ namespace Dialogue
             LoadData();
             FillDialogueStack();
             gameObject.SetActive(isAppeared);
+
+            _signText = type switch
+            {
+                DialogueType.Npc => "Talk",
+                DialogueType.EmberFire => "Reignite",
+                DialogueType.TreasureChest => "Open",
+                _ => "Interact"
+            };
         }
 
         private void OnEnable()
@@ -63,7 +74,7 @@ namespace Dialogue
             if (other.CompareTag("Player") && dialogueLists.Count > 0)
             {
                 canTalk = true;
-                EventHandler.ShowInteractableSign(true, "Talk");
+                EventHandler.ShowInteractableSign(true, _signText);
             }
         }
         
@@ -72,7 +83,7 @@ namespace Dialogue
             if (other.CompareTag("Player"))
             {
                 canTalk = false;
-                EventHandler.ShowInteractableSign(false, "Talk");
+                EventHandler.ShowInteractableSign(false, _signText);
             }
         }
 
@@ -130,7 +141,7 @@ namespace Dialogue
 
         public void DestroyMe()
         {
-            EventHandler.ShowInteractableSign(false, "Talk");
+            EventHandler.ShowInteractableSign(false, _signText);
             Destroy(gameObject);
         }
 
