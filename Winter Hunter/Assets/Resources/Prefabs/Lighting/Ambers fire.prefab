@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3275181742470548909}
   - component: {fileID: 1032683443839102067}
   m_Layer: 0
-  m_Name: "Amber\u2019s fire"
+  m_Name: Ambers fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
