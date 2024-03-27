@@ -105,7 +105,19 @@ MonoBehaviour:
     dialogueList:
     - beforeTalkEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 7868784479924421786}
+            m_TargetAssemblyTypeName: Utilities.FireController, Assembly-CSharp
+            m_MethodName: LightFire
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       figureSprite: {fileID: 0}
       name: 
       dialogueText: The firewood has been ignited by the Great Ember
@@ -155,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd06cec14275e64fb4ea1f160bdf5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfx: {fileID: 7136632858777337689}
+  fireLight: {fileID: 6156313516419973924}
 --- !u!1 &6703193081148190133
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,18 +423,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3539783021050078043}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9183280437856142636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156313516419973924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bd06cec14275e64fb4ea1f160bdf5ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7795589371419419471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6715054907048968212, guid: 23c8c9f0333c2eb4585a0a343d7c73ae,
@@ -534,6 +536,12 @@ PrefabInstance:
 --- !u!4 &7136632858777337686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4097728940607243400, guid: f7a171040482dde448f685108d3601dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6617027022704491486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7136632858777337689 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4097728940607243399, guid: f7a171040482dde448f685108d3601dc,
     type: 3}
   m_PrefabInstance: {fileID: 6617027022704491486}
   m_PrefabAsset: {fileID: 0}
