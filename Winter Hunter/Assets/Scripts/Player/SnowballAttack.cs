@@ -21,7 +21,7 @@ namespace Player
         
         private Rigidbody _snowballRb;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             PlayerAttr = GetComponent<PlayerAttribute>();    
         }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using Enemy;
 using UnityEngine;
 
@@ -8,6 +9,15 @@ namespace Snowball
      */
     public class ThrowingSnowball : BaseSnowball
     {
+        private CinemachineImpulseSource _impulseSource;
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
+            _impulseSource.GenerateImpulseWithForce(0.25f);
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             var otherGO = other.gameObject;

@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using Enemy;
 using Player;
 using Snowman.Skills;
@@ -19,6 +20,7 @@ namespace Snowball
         private float _accumulatedDistance;
         private PlayerController _playerController;
         private bool _isReleasing;
+        private CinemachineImpulseSource _impulseSource;
 
         protected override void Awake()
         {
@@ -26,6 +28,7 @@ namespace Snowball
             _accumulatedDistance = 0f;
             transform.localScale = new Vector3(rollingSize.x, rollingSize.x, rollingSize.x);
             _playerController = PlayerAttr.gameObject.GetComponent<PlayerController>();
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
 
         private void Update()
@@ -59,6 +62,7 @@ namespace Snowball
                 var explosionScript = explosion.GetComponent<SnowmanExplosion>();
                 explosionScript.SetRadius(transform.localScale.x, true);
                 explosionScript.SetAttack(damage, shieldBreakEfficiency);
+                _impulseSource.GenerateImpulseWithForce(0.5f);
                 Destroy(gameObject);
             }
         }
