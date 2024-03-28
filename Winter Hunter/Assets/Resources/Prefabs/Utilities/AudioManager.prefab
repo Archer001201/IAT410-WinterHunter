@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 27164d2ab95894e648a53f6bc2752427, type: 2}
-  transitionTime: 3
+  transitionTime: 2
   sceneSnapshot: {fileID: 24500006, guid: 27164d2ab95894e648a53f6bc2752427, type: 2}
   battleSnapshot: {fileID: -7012880335816100498, guid: 27164d2ab95894e648a53f6bc2752427,
     type: 2}
