@@ -26,6 +26,7 @@ namespace Enemy
         public bool isCleared;
         public bool isPlayerInCamp;
         public GameObject respawnVfx;
+        public float respawnDistance = 5f;
 
         public bool isBossCamp;
         // public GameObject bossCampDoor;
@@ -34,7 +35,7 @@ namespace Enemy
         private LevelSO _levelSo;
         private GameSO _gameSo;
         
-        private readonly List<GameObject> _enemiesOnStandby = new();
+        // private readonly List<GameObject> _enemiesOnStandby = new();
         public List<BaseEnemy> respawnedEnemy = new ();
         public int enemyAmount;
         private Coroutine _respawnCoroutine;
@@ -88,8 +89,8 @@ namespace Enemy
             foreach (var enemy in enemyWaves[index].enemyWave)
             {
                 var campPos = transform.position;
-                var xPos = Random.Range(campPos.x - 10f, campPos.x + 10f);
-                var zPos = Random.Range(campPos.z - 10f, campPos.z + 10f);
+                var xPos = Random.Range(campPos.x - respawnDistance, campPos.x + respawnDistance);
+                var zPos = Random.Range(campPos.z - respawnDistance, campPos.z + respawnDistance);
                 var enemyPos = new Vector3(xPos, 0, zPos);
                 Instantiate(respawnVfx, enemyPos, Quaternion.identity);
                 yield return new WaitForSeconds(1f);

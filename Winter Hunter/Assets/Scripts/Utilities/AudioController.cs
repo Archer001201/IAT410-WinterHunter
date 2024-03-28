@@ -19,13 +19,13 @@ namespace Utilities
         public AudioSource sceneBGM;
         public AudioSource battleBGM;
         public AudioSource bossBGM;
-        private PlayerAttribute _playerAttr;
+        // private PlayerAttribute _playerAttr;
 
         private Coroutine _bgmCoroutine;
 
         private void Awake()
         {
-            _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
+            // _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
             SwitchBgm(BgmType.SceneBGM);
         }
 
