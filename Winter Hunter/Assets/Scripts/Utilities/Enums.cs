@@ -55,4 +55,9 @@ namespace Utilities
     {
         Npc, TreasureChest, EmberFire
     }
+
+    public enum BgmType
+    {
+        SceneBGM, BattleBGM, BossBGM
+    }
 }

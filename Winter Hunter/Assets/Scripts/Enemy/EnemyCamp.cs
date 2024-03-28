@@ -6,6 +6,7 @@ using Props;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Utilities;
 using EventHandler = Utilities.EventHandler;
 using Random = UnityEngine.Random;
 
@@ -136,6 +137,7 @@ namespace Enemy
                     t.canOpen = isCleared;
                 }
                 EventHandler.ChangePlayerBattleState(false);
+                EventHandler.SwitchBgm(BgmType.SceneBGM);
                 SaveData();
             }
             //

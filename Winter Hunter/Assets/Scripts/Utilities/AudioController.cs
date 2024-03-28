@@ -1,42 +1,114 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Utilities
 {
     public class AudioController : MonoBehaviour
     {
-        public AudioClip normalBgm;
-        public AudioClip combatBgm;
+        public AudioMixer audioMixer;
+        public float transitionTime = 1.0f;
+        [Header("Snapshot")]
+        public AudioMixerSnapshot sceneSnapshot;
+        public AudioMixerSnapshot battleSnapshot;
+        public AudioMixerSnapshot bossSnapshot;
+        [Header("Audio Source")]
+        public AudioSource sceneBGM;
+        public AudioSource battleBGM;
+        public AudioSource bossBGM;
         private PlayerAttribute _playerAttr;
-        private AudioSource _audioSource;
+
+        private Coroutine _bgmCoroutine;
 
         private void Awake()
         {
             _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            _audioSource = GetComponent<AudioSource>();
+            SwitchBgm(BgmType.SceneBGM);
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            if (_playerAttr.isInCombat)
+            EventHandler.OnSwitchBgm += SwitchBgm;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.OnSwitchBgm -= SwitchBgm;
+        }
+
+        private void SwitchBgm(BgmType type)
+        {
+            StopBgmCoroutine();
+            _bgmCoroutine = type switch
             {
-                if (_audioSource.clip != combatBgm)
-                {
-                    _audioSource.clip = combatBgm;
-                    _audioSource.Play();
-                }
-                    
-            }
-            else
+                // _bgmCoroutine = StartCoroutine(enumerator());
+                BgmType.SceneBGM => StartCoroutine(SwitchToSceneBGM()),
+                BgmType.BattleBGM => StartCoroutine(SwitchToBattleBGM()),
+                BgmType.BossBGM => StartCoroutine(SwitchToBossBGM()),
+                _ => _bgmCoroutine
+            };
+        }
+
+        // private void Update()
+        // {
+        //     if (_playerAttr.isInCombat)
+        //     {
+        //         if (battleBGM.isPlaying == false) battleBGM.Play();
+        //         battleSnapshot.TransitionTo(transitionTime);
+        //         bossBGM.Stop();
+        //         sceneBGM.Stop();
+        //     }
+        //     else
+        //     {
+        //         if (sceneBGM.isPlaying == false) sceneBGM.Play();
+        //         sceneSnapshot.TransitionTo(transitionTime);
+        //         bossBGM.Stop();
+        //         battleBGM.Stop();
+        //     }
+        // }
+        private void StopBgmCoroutine()
+        {
+            if (_bgmCoroutine != null)
             {
-                if (_audioSource.clip != normalBgm)
-                {
-                    _audioSource.clip = normalBgm;
-                    _audioSource.Play();
-                }
+                StopCoroutine(_bgmCoroutine);
+                _bgmCoroutine = null;
             }
+        }
+
+        private IEnumerator SwitchToSceneBGM()
+        {
+            sceneBGM.Play();
+            sceneSnapshot.TransitionTo(transitionTime);
+            yield return new WaitForSeconds(transitionTime);
+            bossBGM.Stop();
+            battleBGM.Stop();
+            
+            StopBgmCoroutine();
+        }
+        
+        private IEnumerator SwitchToBattleBGM()
+        {
+            battleBGM.Play();
+            battleSnapshot.TransitionTo(transitionTime);
+            yield return new WaitForSeconds(transitionTime);
+            bossBGM.Stop();
+            sceneBGM.Stop();
+            
+            StopBgmCoroutine();
+        }
+        
+        private IEnumerator SwitchToBossBGM()
+        {
+            bossBGM.Play();
+            bossSnapshot.TransitionTo(transitionTime);
+            yield return new WaitForSeconds(transitionTime);
+            battleBGM.Stop();
+            sceneBGM.Stop();
+            
+            StopBgmCoroutine();
         }
     }
 }

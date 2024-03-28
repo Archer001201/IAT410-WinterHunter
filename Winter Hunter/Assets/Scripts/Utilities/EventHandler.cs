@@ -162,6 +162,13 @@ namespace Utilities
             OnChangePlayerBattleState?.Invoke(isInBattle);
         }
 
+        public static event Action<BgmType> OnSwitchBgm;
+
+        public static void SwitchBgm(BgmType type)
+        {
+            OnSwitchBgm?.Invoke(type);
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

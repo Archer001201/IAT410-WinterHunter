@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utilities;
 using EventHandler = Utilities.EventHandler;
 
 namespace Enemy
@@ -22,6 +23,7 @@ namespace Enemy
                 enemyCamp.NotifyEnemiesToChangeChasingState();
                 enemyCamp.isPlayerInCamp = true;
                 EventHandler.ChangePlayerBattleState(true);
+                EventHandler.SwitchBgm(enemyCamp.isBossCamp ? BgmType.BossBGM : BgmType.BattleBGM);
             }
         }
     }
