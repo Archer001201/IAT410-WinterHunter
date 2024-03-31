@@ -169,6 +169,13 @@ namespace Utilities
             OnSwitchBgm?.Invoke(type);
         }
 
+        public static event Action<SnowmanTypeAndLevel> OnAddSnowman;
+
+        public static void AddSnowman(SnowmanTypeAndLevel snowman)
+        {
+            OnAddSnowman?.Invoke(snowman);
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

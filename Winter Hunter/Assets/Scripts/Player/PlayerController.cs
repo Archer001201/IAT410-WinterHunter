@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DataSO;
 using Props;
+using Snowman;
 using UISystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -95,8 +96,7 @@ namespace Player
             EventHandler.OnSetGameplayActionMap += SetGameplayActionMode;
             EventHandler.OnAllowInputControl += AllowInputControl;
             EventHandler.OnAllowMouseInput += AllowMouseInput;
-            
-           
+            EventHandler.OnAddSnowman += AddSnowman;
         }
 
         private void OnDisable()
@@ -105,6 +105,7 @@ namespace Player
             EventHandler.OnSetGameplayActionMap -= SetGameplayActionMode;
             EventHandler.OnAllowInputControl -= AllowInputControl;
             EventHandler.OnAllowMouseInput -= AllowMouseInput;
+            EventHandler.OnAddSnowman -= AddSnowman;
         }
 
         private void Start()
@@ -409,12 +410,21 @@ namespace Player
                 if (!chestScript.canOpen) return;
                 // _skillPanelScript.ResetIconsPosition();
                 chestScript.OpenChest();
-                _summonSnowmanScript.currentIndex = 0;
-                _summonSnowmanScript.LoadSnowmanPrefab();
-                // _skillPanelScript.UpdateSkill();
-                EventHandler.UpdateSkillPanel();
-                EventHandler.OpenSnowmanObtainedPrompt(chestScript.snowman);
+                // _summonSnowmanScript.currentIndex = 0;
+                // _summonSnowmanScript.LoadSnowmanPrefab();
+                // // _skillPanelScript.UpdateSkill();
+                // EventHandler.UpdateSkillPanel();
+                // EventHandler.OpenSnowmanObtainedPrompt(chestScript.snowman);
             }
+        }
+
+        private void AddSnowman(SnowmanTypeAndLevel snowman)
+        {
+            _summonSnowmanScript.currentIndex = 0;
+            _summonSnowmanScript.LoadSnowmanPrefab();
+            // _skillPanelScript.UpdateSkill();
+            EventHandler.UpdateSkillPanel();
+            EventHandler.OpenSnowmanObtainedPrompt(snowman);
         }
 
         private void OnPressDashButton()

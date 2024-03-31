@@ -28,6 +28,7 @@ namespace Props
 
         private void Update()
         {
+            if (unlockingVFX == null) return;
             unlockingVFX.SetActive(!canOpen);
         }
         
@@ -48,6 +49,7 @@ namespace Props
         {
             EventHandler.OpenSnowmanChest(snowman);
             EventHandler.ShowInteractableSign(false, "Open");
+            EventHandler.AddSnowman(snowman);
             // Destroy(gameObject);
             // gameObject.SetActive(false);
             SaveDataAfterOpened();
