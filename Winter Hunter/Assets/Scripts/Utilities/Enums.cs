@@ -60,4 +60,8 @@ namespace Utilities
     {
         SceneBGM, BattleBGM, BossBGM
     }
+
+    public enum PlayerSfxType{
+        Throw, Dash
+    }
 }

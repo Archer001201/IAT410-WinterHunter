@@ -52,6 +52,7 @@ namespace Player
         private int _panelAmount;
 
         public Animator animator;
+        public PlayerSfxController sfxController;
         private Vector3 _moveDir, _faceDir;
         private bool _isDead;
         
@@ -274,6 +275,7 @@ namespace Player
         public void ThrowingSnowballAttack()
         {
             _throwSnowballScript.Attack();
+            sfxController.PlayAudio(PlayerSfxType.Throw);
         }
 
         /*
@@ -433,6 +435,7 @@ namespace Player
             isDashPressed = true;
             // isAttacking = true;
             _playerAttr.stamina -= dashCost;
+            sfxController.PlayAudio(PlayerSfxType.Dash);
             StartDash();
             // StopStaminaCoroutine();
         }
