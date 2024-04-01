@@ -23,7 +23,5 @@ MonoBehaviour:
   currentStamina: 100
   currentMana: 100
   snowmanList:
-  - type: 4
-    level: 0
   - type: 5
-    level: 0
+    level: 1

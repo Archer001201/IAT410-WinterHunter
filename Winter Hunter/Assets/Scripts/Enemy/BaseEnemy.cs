@@ -121,7 +121,7 @@ namespace Enemy
             CurrentAttackingState?.OnUpdate();
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             if (basicAttackTimer > 0) basicAttackTimer -= Time.fixedDeltaTime;
             if (basicSkillTimer > 0) basicSkillTimer -= Time.fixedDeltaTime;

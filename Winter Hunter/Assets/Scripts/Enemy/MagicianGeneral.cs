@@ -43,7 +43,6 @@ namespace Enemy
 
         public override IEnumerator BasicAttack()
         {
-            Debug.Log("basic attack");
             var fireball = Instantiate(fireBallLarge, throwPoint.position, Quaternion.identity);
             fireball.GetComponent<FireBall>().SetFireBall(transform.forward, attackDamage);
             yield return new WaitForSeconds(1f);
