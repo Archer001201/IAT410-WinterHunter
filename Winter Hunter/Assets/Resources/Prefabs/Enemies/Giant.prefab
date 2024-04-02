@@ -445,6 +445,7 @@ MonoBehaviour:
   throwAngle: 45
   gravity: 9.81
   giantModel: {fileID: 8006186912469030497}
+  isBoss: 1
 --- !u!1001 &2313135143997068962
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ namespace Enemy
         public float throwAngle = 45.0f; // 扔出的角度，45度可以获得最远的距离
         public float gravity = -Physics.gravity.y; // 使用重力加速度
         public GameObject giantModel;
+        public bool isBoss;
         
         protected override void Awake()
         {
@@ -26,7 +27,7 @@ namespace Enemy
             NonAttackState = new NormalNonAttackState();
             BasicAttackState = new NormalBasicAttackState();
             BasicSkillState = new NormalBasicSkillState();
-            AdvancedSkillState = new NormalAdvancedSkillState();
+            if (isBoss) AdvancedSkillState = new NormalAdvancedSkillState();
             base.Awake();
         }
         
@@ -38,7 +39,7 @@ namespace Enemy
             var dist = Vector3.Distance(targetTrans.position, transform.position);
             isBasicSkillSatisfied = dist <= attackRange && shield > 0;
             isBasicAttackSatisfied = dist <= attackRange;
-            isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            if (isBoss) isAdvancedSkillSatisfied = dist <= attackRange * 2;
         }
 
         public override IEnumerator BasicAttack()

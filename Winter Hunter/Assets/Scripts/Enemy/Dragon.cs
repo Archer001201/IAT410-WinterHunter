@@ -9,6 +9,8 @@ namespace Enemy
     public class Dragon : BaseEnemy
     {
         public float rotationSpeed = 1f;
+        public GameObject arcFireVfx;
+        private Rigidbody _rb;
         
         protected override void Awake()
         {
@@ -16,6 +18,7 @@ namespace Enemy
             BasicAttackState = new NormalBasicAttackState();
             BasicSkillState = new NormalBasicSkillState();
             AdvancedSkillState = new NormalAdvancedSkillState();
+            _rb = GetComponent<Rigidbody>();
             base.Awake();
         }
         
@@ -33,18 +36,26 @@ namespace Enemy
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (targetTrans == null) return;
+            if (targetTrans == null || animator.GetBool(EnemyAnimatorPara.IsAttacking.ToString())) return;
             var targetDirection = targetTrans.position - transform.position;
             // 创建代表这个方向的旋转
             var targetRotation = Quaternion.LookRotation(targetDirection);
             // 使用Slerp平滑地插值从当前旋转到目标旋转
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            var angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+            animator.SetFloat("Rotation", angleDifference);
         }
         
         public override IEnumerator BasicAttack()
         {
             Debug.Log("low flight");
-            yield return new WaitForSeconds(1f);
+            // _rb.AddForce(transform.forward,ForceMode.Impulse);
+            // transform.Translate(targetTrans.position);
+            agent.speed = 20f;
+            yield return new WaitForSeconds(3f);
+            agent.speed = 0f;
+            agent.isStopped = true;
+            yield return new WaitForSeconds(3f); 
             SwitchAttackingState(AttackingState.NonAttack);
         }
         
@@ -58,7 +69,9 @@ namespace Enemy
         public override IEnumerator AdvancedSkill()
         {
             Debug.Log("fire attack");
-            yield return new WaitForSeconds(1f);
+            arcFireVfx.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            arcFireVfx.SetActive(false);
             SwitchAttackingState(AttackingState.NonAttack);
         }
     }

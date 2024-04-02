@@ -125,6 +125,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcb58ac5-03c1-4e89-9ecc-1190811968fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -292,6 +301,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""ThrowSnowballPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c41f27e-5e67-4c7c-b35b-b0de145399d8"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -407,6 +427,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_Rush = m_Gameplay.FindAction("Rush", throwIfNotFound: true);
         m_Gameplay_Skip = m_Gameplay.FindAction("Skip", throwIfNotFound: true);
         m_Gameplay_ThrowSnowballPress = m_Gameplay.FindAction("ThrowSnowballPress", throwIfNotFound: true);
+        m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
@@ -487,6 +508,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Rush;
     private readonly InputAction m_Gameplay_Skip;
     private readonly InputAction m_Gameplay_ThrowSnowballPress;
+    private readonly InputAction m_Gameplay_Map;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -502,6 +524,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Rush => m_Wrapper.m_Gameplay_Rush;
         public InputAction @Skip => m_Wrapper.m_Gameplay_Skip;
         public InputAction @ThrowSnowballPress => m_Wrapper.m_Gameplay_ThrowSnowballPress;
+        public InputAction @Map => m_Wrapper.m_Gameplay_Map;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -544,6 +567,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @ThrowSnowballPress.started += instance.OnThrowSnowballPress;
             @ThrowSnowballPress.performed += instance.OnThrowSnowballPress;
             @ThrowSnowballPress.canceled += instance.OnThrowSnowballPress;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -581,6 +607,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @ThrowSnowballPress.started -= instance.OnThrowSnowballPress;
             @ThrowSnowballPress.performed -= instance.OnThrowSnowballPress;
             @ThrowSnowballPress.canceled -= instance.OnThrowSnowballPress;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -719,6 +748,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnRush(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnThrowSnowballPress(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
