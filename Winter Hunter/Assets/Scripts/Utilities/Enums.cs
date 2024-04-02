@@ -64,4 +64,9 @@ namespace Utilities
     public enum PlayerSfxType{
         Throw, Dash
     }
+
+    public enum AudioGroup
+    {
+        MasterVolume, BgmVolume, SfxVolume, DialogueVolume
+    }
 }
