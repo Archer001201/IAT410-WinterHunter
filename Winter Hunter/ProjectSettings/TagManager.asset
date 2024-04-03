@@ -11,6 +11,7 @@ TagManager:
   - Chest
   - Ground
   - Wall
+  - Canvas
   layers:
   - Default
   - TransparentFX

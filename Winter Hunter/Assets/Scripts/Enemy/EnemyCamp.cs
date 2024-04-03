@@ -19,6 +19,7 @@ namespace Enemy
     {
         public string id;
         public UnityEvent onCampCleared;
+        public UnityEvent onPlayerEnter;
         public List<EnemyWave> enemyWaves;
         public List<TreasureChest> chestList;
         public int waveThreshold;
@@ -162,6 +163,8 @@ namespace Enemy
             {
                 door.vfx.SetActive(true);
             }
+            
+            onPlayerEnter?.Invoke();
         }
 
         private static void InitializeEnemy(BaseEnemy enemy)

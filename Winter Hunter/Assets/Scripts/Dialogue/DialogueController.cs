@@ -130,12 +130,12 @@ namespace Dialogue
         private void EndDialogue()
         {
             if (!canTalk || dialogueLists.Count < 1) return;
-            dialogueLists[dialogueIndex].onFinishEvent?.Invoke();
+            var index = dialogueIndex;
             
             EventHandler.ShowDialoguePiece(null);
             FillDialogueStack();
             isTalking = false;
-            
+            dialogueLists[index].onFinishEvent?.Invoke();
             EventHandler.SaveDataAfterDialogue();
         }
 
