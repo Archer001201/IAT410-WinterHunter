@@ -162,12 +162,13 @@ MonoBehaviour:
   speed: 5
   attackRange: 5
   attackDamage: 5
-  basicAttackCooldown: 2
-  basicSkillCooldown: 5
-  advancedSkillCooldown: 0
+  basicAttackCooldown: {x: 2, y: 5}
+  basicSkillCooldown: {x: 0, y: 0}
+  advancedSkillCooldown: {x: 0, y: 0}
+  shieldChangeSpeed: 5
   health: 0
   shield: 0
-  isPlayerInCampRange: 0
+  isChasing: 0
   isTaunted: 0
   basicAttackTimer: 0
   basicSkillTimer: 0
@@ -179,12 +180,15 @@ MonoBehaviour:
   isBasicSkillReady: 0
   isAdvancedSkillReady: 0
   isMarked: 0
+  isBoss: 0
+  isInvincible: 0
   hudCanvas: {fileID: 5998041306890683963}
   targetTrans: {fileID: 0}
   detectedSnowman: {fileID: 0}
-  detectedPlayer: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 85380128292435425}
+  shieldChargingVfx: {fileID: 0}
+  currentStage: 0
   spearVfx: {fileID: 8023472776322491808}
   trailVfx: {fileID: 375458557}
 --- !u!1 &5426970029969473778

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Utilities;
+using Random = UnityEngine.Random;
 
 namespace Enemy.FSM
 {
@@ -36,7 +38,8 @@ namespace Enemy.FSM
         public override void OnExist()
         {
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.BasicSkillCoroutine);
-            CurrentEnemy.basicSkillTimer = CurrentEnemy.basicSkillCooldown;
+            var randRange = CurrentEnemy.basicSkillCooldown;
+            CurrentEnemy.basicSkillTimer = Random.Range(randRange.x, randRange.y);
             
             if (CurrentEnemy.animator == null) return; 
             CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicSkill.ToString(), false);

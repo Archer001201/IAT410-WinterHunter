@@ -36,7 +36,8 @@ namespace Enemy.FSM
         public override void OnExist()
         {
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.BasicAttackCoroutine);
-            CurrentEnemy.basicAttackTimer = CurrentEnemy.basicAttackCooldown;
+            var randRange = CurrentEnemy.basicAttackCooldown;
+            CurrentEnemy.basicAttackTimer = Random.Range(randRange.x, randRange.y);
             
             if (CurrentEnemy.animator == null) return; 
             CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsBasicAttack.ToString(), false);

@@ -25,9 +25,9 @@ namespace Enemy
         public float speed;
         public float attackRange;
         public float attackDamage;
-        public float basicAttackCooldown;
-        public float basicSkillCooldown;
-        public float advancedSkillCooldown;
+        public Vector2 basicAttackCooldown;
+        public Vector2 basicSkillCooldown;
+        public Vector2 advancedSkillCooldown;
         public float shieldChangeSpeed = 5f;
         [Header("Dynamic Attributes")]
         public float health;
@@ -69,6 +69,7 @@ namespace Enemy
         public Animator animator;
         private bool _isDead;
         private Coroutine _shieldCoroutine;
+        public GameObject shieldChargingVfx;
 
         public int currentStage;
         protected const int StageOne = 1;
@@ -104,9 +105,9 @@ namespace Enemy
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             shield = Mathf.Clamp(shield, 0, maxShield);
-            basicAttackTimer = Mathf.Clamp(basicAttackTimer, 0, basicAttackCooldown);
-            basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
-            advancedSkillTimer = Mathf.Clamp(advancedSkillTimer, 0, advancedSkillCooldown);
+            // basicAttackTimer = Mathf.Clamp(basicAttackTimer, 0, basicAttackCooldown);
+            // basicSkillTimer = Mathf.Clamp(basicSkillTimer, 0, basicSkillCooldown);
+            // advancedSkillTimer = Mathf.Clamp(advancedSkillTimer, 0, advancedSkillCooldown);
             
             if (health <= 0 && !_isDead)
             {
@@ -281,6 +282,7 @@ namespace Enemy
             yield return new WaitForSeconds(shieldChangeSpeed);
 
             isInvincible = true;
+            Instantiate(shieldChargingVfx, transform.position, Quaternion.identity);
             while (shield < maxShield)
             {
                 shield += 5f;

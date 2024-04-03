@@ -410,9 +410,9 @@ MonoBehaviour:
   speed: 4
   attackRange: 10
   attackDamage: 20
-  basicAttackCooldown: 5
-  basicSkillCooldown: 10
-  advancedSkillCooldown: 20
+  basicAttackCooldown: {x: 4, y: 8}
+  basicSkillCooldown: {x: 6, y: 8}
+  advancedSkillCooldown: {x: 3, y: 5}
   shieldChangeSpeed: 5
   health: 0
   shield: 0
@@ -435,6 +435,8 @@ MonoBehaviour:
   detectedSnowman: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 323018789820895179}
+  shieldChargingVfx: {fileID: 6351259694995923438, guid: 123ee4bc6e1c94fb1919e50d1934f425,
+    type: 3}
   currentStage: 0
   smashVfx: {fileID: 255406955855798459, guid: 54d4e98b2d74a4ac4bb334fdcd27bab0, type: 3}
   swingVfx: {fileID: 2191013687129815656}

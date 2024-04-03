@@ -1,3 +1,4 @@
+using UnityEngine;
 using Utilities;
 
 namespace Enemy.FSM
@@ -32,7 +33,8 @@ namespace Enemy.FSM
         {
             // throw new System.NotImplementedException();
             CurrentEnemy.StopCurrentCoroutine(CurrentEnemy.AdvancedSkillCoroutine);
-            CurrentEnemy.advancedSkillTimer = CurrentEnemy.advancedSkillCooldown;
+            var randRange = CurrentEnemy.advancedSkillCooldown;
+            CurrentEnemy.advancedSkillTimer = Random.Range(randRange.x, randRange.y);
             
             if (CurrentEnemy.animator == null) return; 
             CurrentEnemy.animator.SetBool(EnemyAnimatorPara.IsAdvancedSkill.ToString(), false);

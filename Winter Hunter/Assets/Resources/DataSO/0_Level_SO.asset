@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCamps:
   - id: EC105
-    isCleared: 1
+    isCleared: 0
   - id: EC101
     isCleared: 1
   - id: EC104
@@ -25,11 +25,11 @@ MonoBehaviour:
     isCleared: 1
   treasureChests:
   - id: TC105
-    canOpen: 1
-    isOpened: 0
+    canOpen: 0
+    isOpened: 1
   - id: TC101
-    canOpen: 1
-    isOpened: 0
+    canOpen: 0
+    isOpened: 1
   dialogueEvents:
   - id: HP102
     isAppeared: 1
@@ -49,13 +49,10 @@ MonoBehaviour:
   - id: Methus
     isAppeared: 1
     dialogueIndex: 0
-  - id: BC 101
-    isAppeared: 1
-    dialogueIndex: 0
   blockWalls:
   - id: TP001
-    isVisible: 1
+    isVisible: 0
   cutScenes: []
   sceneName: Spark Village
-  position: {x: 42.300297, y: -0.00012811682, z: 67.07645}
+  position: {x: 12.5612545, y: -0.0000786141, z: 74.36807}
   respawnAtThisPosition: 0
