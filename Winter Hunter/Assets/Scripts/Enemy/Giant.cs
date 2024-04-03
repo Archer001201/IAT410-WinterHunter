@@ -36,9 +36,19 @@ namespace Enemy
 
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
-            isBasicSkillSatisfied = dist <= attackRange && shield > 0;
+            
             isBasicAttackSatisfied = dist <= attackRange;
-            if (isBoss) isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            if (isBoss)
+            {
+                if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange && shield > 0;
+                if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            }
+            else
+            {
+                isBasicSkillSatisfied = dist <= attackRange && shield > 0;
+            }
+            
+            if (shield <= 0) AfterShieldBreaking();
         }
 
         public override IEnumerator BasicAttack()

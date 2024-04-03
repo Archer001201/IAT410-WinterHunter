@@ -44,6 +44,7 @@ namespace Enemy
         public bool isAdvancedSkillReady;
         public bool isMarked;
         public bool isBoss;
+        public bool isInvincible;
         [Header("Component Settings")]
         public GameObject hudCanvas;
         // public GameObject deathVfx;
@@ -66,6 +67,12 @@ namespace Enemy
 
         public Animator animator;
         private bool _isDead;
+        private Coroutine _shieldCoroutine;
+
+        public int currentStage;
+        protected const int StageOne = 1;
+        protected const int StageTwo = 2;
+        protected const int StageThree = 3;
 
         protected virtual void Awake()
         {
@@ -79,6 +86,7 @@ namespace Enemy
             _player = GameObject.FindWithTag("Player");
 
             CurrentAttackingState = NonAttackState;
+            currentStage = StageOne;
         }
 
         private void OnEnable()
@@ -184,6 +192,8 @@ namespace Enemy
 
         public void TakeDamage(float damage, ShieldBreakEfficiency shieldBreakEfficiency)
         {
+            if (isMarked) SetTargetSign(false);
+            if (isInvincible) return;
             if (shield > 0)
             {
                 damage *= shieldBreakEfficiency switch
@@ -210,8 +220,6 @@ namespace Enemy
             {
                 health -= damage;
             }
-
-            if (isMarked) SetTargetSign(false);
         }
 
         public void Slowdown(float originalSpeed, float slowRate, float duration)
@@ -257,6 +265,36 @@ namespace Enemy
         {
             hudCanvas.GetComponent<EnemyHUD>().SetTargetSign(isTargeted);
             isMarked = isTargeted;
+        }
+
+        protected void AfterShieldBreaking()
+        {
+            SwitchAttackingState(AttackingState.NonAttack);
+            animator.SetBool(EnemyAnimatorPara.IsMoving.ToString(), false);
+            isChasing = false;
+            _shieldCoroutine ??= StartCoroutine(RechargeShield());
+        }
+
+        private IEnumerator RechargeShield()
+        {
+            yield return new WaitForSeconds(3f);
+
+            isInvincible = true;
+            while (shield < maxShield)
+            {
+                shield += 5f;
+                yield return new WaitForSeconds(0.2f);
+            }
+            
+            isChasing = true;
+            currentStage++;
+            isInvincible = false;
+            
+            if (_shieldCoroutine != null)
+            {
+                StopCoroutine(_shieldCoroutine);
+                _shieldCoroutine = null;
+            }
         }
     }
 }

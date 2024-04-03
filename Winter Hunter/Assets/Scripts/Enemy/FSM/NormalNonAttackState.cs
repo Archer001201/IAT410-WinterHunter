@@ -19,7 +19,7 @@ namespace Enemy.FSM
 
         public override void OnUpdate()
         {
-            if (_timer > 0) return;
+            if (_timer > 0 || (CurrentEnemy.isBoss && CurrentEnemy.shield <= 0)) return;
             if (CurrentEnemy.isAdvancedSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.AdvancedSkill);
             else if (CurrentEnemy.isBasicAttackReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicAttack);
             else if (CurrentEnemy.isBasicSkillReady) CurrentEnemy.SwitchAttackingState(AttackingState.BasicSkill);

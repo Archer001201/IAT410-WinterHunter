@@ -13,56 +13,45 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: EC T001
+  - id: EC105
+    isCleared: 0
+  - id: EC101
+    isCleared: 0
+  - id: EC104
+    isCleared: 0
+  - id: EC103
+    isCleared: 0
+  - id: EC102
     isCleared: 0
   treasureChests:
-  - id: Chest (1)
+  - id: TC105
     canOpen: 0
     isOpened: 0
-  - id: Chest (3)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (7)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (5)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (2)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (4)
-    canOpen: 0
-    isOpened: 0
-  - id: Chest (6)
+  - id: TC101
     canOpen: 0
     isOpened: 0
   dialogueEvents:
-  - id: Check Point
+  - id: HP102
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Methus (1)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Flame Servant
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: HP103
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Prisoner (1)
     isAppeared: 1
     dialogueIndex: 0
   - id: Methus
     isAppeared: 1
     dialogueIndex: 0
-  - id: Flame Servant
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Flame Servant (2)
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Flame Servant (1)
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Guide
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Prisoner
-    isAppeared: 1
-    dialogueIndex: 0
-  blockWalls: []
-  sceneName: Training Ground
-  position: {x: 6.26, y: 0, z: -102.57}
+  blockWalls:
+  - id: TP001
+    isVisible: 1
+  sceneName: Spark Village
+  position: {x: 17.9, y: 0, z: 64.5}
   respawnAtThisPosition: 0
