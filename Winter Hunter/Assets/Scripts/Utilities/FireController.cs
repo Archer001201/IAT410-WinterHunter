@@ -9,6 +9,8 @@ namespace Utilities
         public ParticleSystem vfx;
         public GameObject fireLight;
         private PlayerAttribute _playerAttr;
+        public AudioSource lightSfx;
+        public AudioSource fireSfx;
 
         private void Awake() {
             vfx.Stop();
@@ -28,6 +30,7 @@ namespace Utilities
             if (_playerAttr.isInCombat)
             {
                 vfx.Stop();
+                fireSfx.Stop();
                 fireLight.SetActive(false); 
             }
         }
@@ -42,10 +45,13 @@ namespace Utilities
 
         public void LightFire()
         {
-            vfx.Play();
-            fireLight.SetActive(true);
+            if (vfx.isStopped)
+            {
+                vfx.Play();
+                fireLight.SetActive(true);
+                lightSfx.Play();
+                fireSfx.PlayDelayed(1f);
+            }
         }
-        
-        
     }
 }

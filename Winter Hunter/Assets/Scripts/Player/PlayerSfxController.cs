@@ -8,6 +8,8 @@ namespace Player
     {
         public AudioSource throwSfx;
         public AudioSource dashSfx;
+        public AudioSource summonSfx;
+        public AudioSource switchSfx;
 
         public void PlayAudio(PlayerSfxType type)
         {
@@ -18,6 +20,12 @@ namespace Player
                     break;
                 case PlayerSfxType.Dash:
                     dashSfx.Play();
+                    break;
+                case PlayerSfxType.Summon:
+                    summonSfx.Play();
+                    break;
+                case PlayerSfxType.Switch:
+                    switchSfx.Play();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

@@ -369,6 +369,7 @@ namespace Player
         private void OnSummonSnowman()
         {
             _summonSnowmanScript.SummonCurrentSnowman();
+            sfxController.PlayAudio(PlayerSfxType.Summon);
         }
 
         /*
@@ -380,7 +381,7 @@ namespace Player
             if (_skillPanelScript.isMoving) return;
             
             // _skillPanelScript.MoveIconsRight();
-            
+            sfxController.PlayAudio(PlayerSfxType.Switch);
             _summonSnowmanScript.SwitchSnowmanRight();
             _skillPanelScript.UpdateSkill();
         }
@@ -394,7 +395,7 @@ namespace Player
             if (_skillPanelScript.isMoving) return;
             
             // _skillPanelScript.MoveIconsLeft();
-            
+            sfxController.PlayAudio(PlayerSfxType.Switch);
             _summonSnowmanScript.SwitchSnowmanLeft();
             _skillPanelScript.UpdateSkill();
         }

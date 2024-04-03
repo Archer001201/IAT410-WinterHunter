@@ -24,6 +24,7 @@ namespace UISystem
         public float maxHeight = 200f;
         public float animationDuration = 1f;
         public float displayDuration = 2f;
+        public AudioSource promptSfx;
 
         private void Awake()
         {
@@ -33,6 +34,7 @@ namespace UISystem
         private void OnEnable()
         {
             EventHandler.OnShowSnowmanObtainedPrompt += ShowSnowmanObtainedPrompt;
+            promptSfx.Play();
         }
 
         private void OnDisable()
