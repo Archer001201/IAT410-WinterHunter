@@ -43,6 +43,7 @@ namespace Enemy
         public bool isBasicSkillReady;
         public bool isAdvancedSkillReady;
         public bool isMarked;
+        public bool isBoss;
         [Header("Component Settings")]
         public GameObject hudCanvas;
         // public GameObject deathVfx;
@@ -104,6 +105,7 @@ namespace Enemy
                 agent.isStopped = true;
                 animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
+                EventHandler.ShowBossHud(this, false);
                 // Instantiate(deathVfx, transform.position, Quaternion.identity);
             }
             

@@ -155,6 +155,7 @@ namespace Enemy
             foreach (var enemy in respawnedEnemy)
             {
                 InitializeEnemy(enemy);
+                if (enemy.isBoss) EventHandler.ShowBossHud(enemy, true);
             }
 
             foreach (var door in campDoors)
@@ -163,7 +164,7 @@ namespace Enemy
             }
         }
 
-        private void InitializeEnemy(BaseEnemy enemy)
+        private static void InitializeEnemy(BaseEnemy enemy)
         {
             enemy.isChasing = true;
             enemy.SetTarget();

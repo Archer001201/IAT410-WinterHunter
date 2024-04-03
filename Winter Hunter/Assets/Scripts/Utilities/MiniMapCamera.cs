@@ -8,8 +8,8 @@ namespace Utilities
         // private Transform _playerTrans;
         public Transform tarTrans;
         private Camera _myCamera;
-        private float targetOrthographicSize;
-        private float transitionSpeed = 2f; 
+        private float _targetOrthographicSize;
+        private const float TransitionSpeed = 2f;
 
         private void Awake()
         {
@@ -26,7 +26,7 @@ namespace Utilities
             if (tarTrans != null)
             {
                 // 使用Lerp逐渐改变位置
-                transform.position = Vector3.Lerp(transform.position, tarTrans.position, transitionSpeed * Time.fixedDeltaTime);
+                transform.position = Vector3.Lerp(transform.position, tarTrans.position, TransitionSpeed * Time.fixedDeltaTime);
             }
         }
 
@@ -35,7 +35,7 @@ namespace Utilities
             if (_myCamera != null)
             {
                 // 使用Lerp逐渐改变相机的orthographicSize
-                _myCamera.orthographicSize = Mathf.Lerp(_myCamera.orthographicSize, targetOrthographicSize, transitionSpeed * Time.deltaTime);
+                _myCamera.orthographicSize = Mathf.Lerp(_myCamera.orthographicSize, _targetOrthographicSize, TransitionSpeed * Time.deltaTime);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Utilities
             // _myCamera.orthographicSize = distance;
             
             tarTrans = tar;
-            targetOrthographicSize = distance;
+            _targetOrthographicSize = distance;
         }
     }
 }

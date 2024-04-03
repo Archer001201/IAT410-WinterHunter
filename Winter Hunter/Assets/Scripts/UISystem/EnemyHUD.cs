@@ -10,6 +10,16 @@ namespace UISystem
     {
         public BaseEnemy enemyAttr;
         public GameObject targetSign;
+        public GameObject bar;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (enemyAttr.isBoss)
+            {
+                bar.gameObject.SetActive(false);
+            }
+        }
 
         protected override void Update()
         {

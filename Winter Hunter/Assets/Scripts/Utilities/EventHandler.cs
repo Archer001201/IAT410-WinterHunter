@@ -1,5 +1,6 @@
 using System;
 using Dialogue;
+using Enemy;
 using Snowman;
 using UnityEngine;
 
@@ -174,6 +175,13 @@ namespace Utilities
         public static void AddSnowman(SnowmanTypeAndLevel snowman)
         {
             OnAddSnowman?.Invoke(snowman);
+        }
+
+        public static event Action<BaseEnemy, bool> OnShowBossHud;
+
+        public static void ShowBossHud(BaseEnemy enemy, bool result)
+        {
+            OnShowBossHud?.Invoke(enemy, result);
         }
 
         // public static event Action OnUpdateSkillIcon;

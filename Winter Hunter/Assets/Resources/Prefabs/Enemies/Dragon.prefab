@@ -79,6 +79,12 @@ MonoBehaviour:
   animator: {fileID: 3188568466443706447}
   rotationSpeed: 1
   arcFireVfx: {fileID: 2465940429010922368}
+  moveSpeed: 10
+  moveDuration: 3
+  flameVfx: {fileID: 6592516768157124107, guid: 2cbdff91532d64cbbbe807f6dd98f7eb,
+    type: 3}
+  fireBall: {fileID: 1203452207493669655, guid: f64010abbe8534ea2a90d54c8321f809,
+    type: 3}
 --- !u!195 &179554591956584948
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -116,7 +122,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!65 &1045411456291207067
 BoxCollider:
   m_ObjectHideFlags: 0

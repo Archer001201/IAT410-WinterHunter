@@ -16,7 +16,6 @@ namespace Enemy
         public float throwAngle = 45.0f; // 扔出的角度，45度可以获得最远的距离
         public float gravity = -Physics.gravity.y; // 使用重力加速度
         public GameObject giantModel;
-        public bool isBoss;
         
         protected override void Awake()
         {
