@@ -58,6 +58,7 @@ namespace Snowball
             var otherGO = other.gameObject;
             if (!otherGO.CompareTag("Ground") && !otherGO.CompareTag("Projectile"))
             {
+                // Debug.Log(damage);
                 var explosion = Instantiate(explosionVfx, transform.position, Quaternion.identity);
                 var explosionScript = explosion.GetComponent<SnowmanExplosion>();
                 explosionScript.SetRadius(transform.localScale.x, true);

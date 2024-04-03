@@ -28,6 +28,7 @@ namespace Enemy
         public float basicAttackCooldown;
         public float basicSkillCooldown;
         public float advancedSkillCooldown;
+        public float shieldChangeSpeed = 5f;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
@@ -277,7 +278,7 @@ namespace Enemy
 
         private IEnumerator RechargeShield()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(shieldChangeSpeed);
 
             isInvincible = true;
             while (shield < maxShield)

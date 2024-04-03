@@ -405,14 +405,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02fa6659ea64a42b5063052d46175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
-  maxShield: 100
-  speed: 5
+  maxHealth: 600
+  maxShield: 150
+  speed: 4
   attackRange: 10
   attackDamage: 20
   basicAttackCooldown: 5
   basicSkillCooldown: 10
   advancedSkillCooldown: 20
+  shieldChangeSpeed: 5
   health: 0
   shield: 0
   isChasing: 0
@@ -427,25 +428,21 @@ MonoBehaviour:
   isBasicSkillReady: 0
   isAdvancedSkillReady: 0
   isMarked: 0
+  isBoss: 1
+  isInvincible: 0
   hudCanvas: {fileID: 2457972267503376069}
   targetTrans: {fileID: 0}
   detectedSnowman: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 323018789820895179}
+  currentStage: 0
   smashVfx: {fileID: 255406955855798459, guid: 54d4e98b2d74a4ac4bb334fdcd27bab0, type: 3}
-  smashTransList:
-  - {fileID: 5574139403893540971}
-  - {fileID: 446881879465718677}
-  - {fileID: 2742317290354344857}
-  - {fileID: 7164344596518826661}
-  - {fileID: 7644508785422489841}
   swingVfx: {fileID: 2191013687129815656}
   rock: {fileID: 1515679070267238148, guid: 834dc30f919b246259ffa4b2e85651a5, type: 3}
   throwPoint: {fileID: 7983666768994900832}
   throwAngle: 45
   gravity: 9.81
   giantModel: {fileID: 8006186912469030497}
-  isBoss: 1
 --- !u!1001 &2313135143997068962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -726,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 6632410446214514916, guid: 1ac50cf5b127c4b12b9c264bff2f74a0,
         type: 3}
       propertyPath: m_Size.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6632410446214514916, guid: 1ac50cf5b127c4b12b9c264bff2f74a0,
         type: 3}

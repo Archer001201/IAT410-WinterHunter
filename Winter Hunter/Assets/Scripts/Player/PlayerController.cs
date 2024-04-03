@@ -250,7 +250,7 @@ namespace Player
         private void OnThrowingSnowballEnd()
         {
             StartStaminaCoroutine();
-            // canAttack = true;
+            canAttack = true;
             // animator.SetBool(PlayerAnimationPara.IsThrowing.ToString(), false);
         }
 

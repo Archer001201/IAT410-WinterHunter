@@ -13,40 +13,49 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: EC002
-    isCleared: 0
-  - id: EC001
+  - id: EC105
+    isCleared: 1
+  - id: EC101
+    isCleared: 1
+  - id: EC104
+    isCleared: 1
+  - id: EC103
+    isCleared: 1
+  - id: EC102
     isCleared: 1
   treasureChests:
-  - id: TC001
-    canOpen: 0
-    isOpened: 1
+  - id: TC105
+    canOpen: 1
+    isOpened: 0
+  - id: TC101
+    canOpen: 1
+    isOpened: 0
   dialogueEvents:
-  - id: Guide1
+  - id: HP102
     isAppeared: 1
     dialogueIndex: 0
-  - id: Guide3
-    isAppeared: 0
+  - id: Methus (1)
+    isAppeared: 1
     dialogueIndex: 0
-  - id: Guide2
+  - id: Flame Servant
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: HP103
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Prisoner (1)
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Methus
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: BC 101
     isAppeared: 1
     dialogueIndex: 0
   blockWalls:
-  - id: TP000
+  - id: TP001
     isVisible: 1
-  - id: BW Guide 2
-    isVisible: 0
-  - id: BW Guide 3
-    isVisible: 1
-  - id: BW Guide 1
-    isVisible: 0
-  cutScenes:
-  - id: Timeline
-    isVisible: 1
-  - id: Timeline 01
-    isVisible: 1
-  - id: Timeline 01 (1)
-    isVisible: 1
-  sceneName: Tutorial
-  position: {x: 0.6, y: 0, z: 4.4}
+  cutScenes: []
+  sceneName: Spark Village
+  position: {x: 42.300297, y: -0.00012811682, z: 67.07645}
   respawnAtThisPosition: 0

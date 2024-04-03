@@ -9,20 +9,15 @@ namespace Enemy
     public class Giant : BaseEnemy
     {
         public GameObject smashVfx;
-        public List<Transform> smashTransList;
         public GameObject swingVfx;
         public GameObject rock;
-        public Transform throwPoint; // 扔石头的起始位置
-        public float throwAngle = 45.0f; // 扔出的角度，45度可以获得最远的距离
-        public float gravity = -Physics.gravity.y; // 使用重力加速度
+        public Transform throwPoint;
+        public float throwAngle = 45.0f;
+        public float gravity = -Physics.gravity.y;
         public GameObject giantModel;
         
         protected override void Awake()
         {
-            // IdleState = new NormalIdleState();
-            // ChaseState = new NormalChaseState();
-            // RetreatState = new NormalRetreatState();
-            
             NonAttackState = new NormalNonAttackState();
             BasicAttackState = new NormalBasicAttackState();
             BasicSkillState = new NormalBasicSkillState();
@@ -37,15 +32,18 @@ namespace Enemy
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
             
+            //swing
             isBasicAttackSatisfied = dist <= attackRange;
             if (isBoss)
             {
-                if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange && shield > 0;
+                //throw rock
+                if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange*3;
+                //smash
                 if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange * 2;
             }
             else
             {
-                isBasicSkillSatisfied = dist <= attackRange && shield > 0;
+                isAdvancedSkillSatisfied = dist <= attackRange * 2 && shield > 0;
             }
             
             if (shield <= 0) AfterShieldBreaking();
@@ -53,59 +51,41 @@ namespace Enemy
 
         public override IEnumerator BasicAttack()
         {
-            // Debug.Log("Giant Basic Attack");
-            // agent.isStopped = true;
-            agent.speed = 0f;
-            
-            yield return new WaitForSeconds(0.3f);
-            // var i = 0;
-            // while (i < smashTransList.Count)
-            // {
-            //     var shockwave = Instantiate(smashVfx, smashTransList[i].position, Quaternion.identity);
-            //     shockwave.GetComponent<FireRing>().SetFireRing(attackDamage);
-            //     i++;
-            //     yield return new WaitForSeconds(0.2f);
-            // }
-            var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
-            smash.GetComponent<Smash>().SetAttack(attackDamage);
-            agent.speed = speed;
-            // agent.isStopped = false;
-            SwitchAttackingState(AttackingState.NonAttack);
-        }
-
-        public override IEnumerator BasicSkill()
-        {
-            // Debug.Log("Giant Basic Skill");
-            // swingVfx.SetActive(true);
-            // giantModel.transform.Rotate(0f,10f,0f);
-            // yield return new WaitForSeconds(5f);
-            // swingVfx.SetActive(false);
-            // SwitchAttackingState(AttackingState.NonAttack);
-            // Debug.Log("Giant Basic Skill");
+            //Swing Trunk
             swingVfx.SetActive(true);
-    
-            // 记录旋转开始的时间
             var startTime = Time.time;
-    
-            // 持续旋转直到达到5秒
             while (Time.time - startTime <= 5f)
             {
-                // 每帧旋转一点，这里以每秒60度为例，可以根据需要调整
                 giantModel.transform.Rotate(0f, -360f * Time.deltaTime, 0f);
                 yield return null;
             }
     
             swingVfx.SetActive(false);
+            
+            SwitchAttackingState(AttackingState.NonAttack);
+        }
+
+        public override IEnumerator BasicSkill()
+        {
+            //Throw Rock
+            var rockGO = Instantiate(rock, throwPoint.position, Quaternion.identity);
+            rockGO.GetComponent<ThrowingRock>().SetAttack(attackDamage);
+            LaunchStone(rockGO);
+            yield return new WaitForSeconds(1f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
 
         public override IEnumerator AdvancedSkill()
         {
-            // Debug.Log("Giant Advanced Skill");
-            var rockGO = Instantiate(rock, throwPoint.position, Quaternion.identity);
-            rockGO.GetComponent<ThrowingRock>().SetAttack(attackDamage);
-            LaunchStone(rockGO);
-            yield return new WaitForSeconds(1f);
+            //Giant Smash
+            agent.speed = 0f;
+            
+            yield return new WaitForSeconds(0.3f);
+            
+            var smash = Instantiate(smashVfx, transform.position, Quaternion.identity);
+            smash.GetComponent<Smash>().SetAttack(attackDamage);
+            agent.speed = speed;
+            
             SwitchAttackingState(AttackingState.NonAttack);
         }
         
@@ -113,11 +93,10 @@ namespace Enemy
         {
             var rb = stone.GetComponent<Rigidbody>();
 
-            var targetDir = targetTrans.position - throwPoint.position; // 获取朝向玩家的方向
-            var distance = targetDir.magnitude; // 获取到玩家的距离
-            var throwAngleRad = throwAngle * Mathf.Deg2Rad; // 将扔出角度转换为弧度
-
-            // 计算初始速度
+            var targetDir = targetTrans.position - throwPoint.position; 
+            var distance = targetDir.magnitude;
+            var throwAngleRad = throwAngle * Mathf.Deg2Rad;
+            
             var velocity = Mathf.Sqrt(distance * gravity / Mathf.Sin(2 * throwAngleRad));
 
             var velocityXZ = targetDir.normalized * velocity * Mathf.Cos(throwAngleRad);
@@ -125,7 +104,7 @@ namespace Enemy
 
             var finalVelocity = new Vector3(velocityXZ.x, velocityY, velocityXZ.z);
 
-            rb.velocity = finalVelocity; // 应用初始速度到石头
+            rb.velocity = finalVelocity;
         }
     }
 }

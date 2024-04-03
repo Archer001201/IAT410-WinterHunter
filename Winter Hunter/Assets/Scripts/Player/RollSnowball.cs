@@ -60,6 +60,7 @@ namespace Player
             _rollingSnowballScript.SetReleasingState();
             base.Attack();
             _attackBonus = 0;
+            // Debug.Log(PlayerAttr.stamina);
         }
 
         /*
