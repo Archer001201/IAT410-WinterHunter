@@ -23,15 +23,22 @@ namespace Snowball
         {
             var otherGO = other.gameObject;
             if (otherGO.CompareTag("Player")) return;
+           
+            var throwingVfx = Instantiate(vfx, transform.position, Quaternion.identity);
+            
             if (otherGO.CompareTag("Enemy"))
             {
                 var enemy = otherGO.GetComponent<BaseEnemy>();
                 if (enemy.isMarked) damage += 30;
                 enemy.TakeDamage(damage, shieldBreakEfficiency);
                 PlayerAttr.mana += damage * PlayerAttr.manaRecovery;
+                throwingVfx.GetComponent<ThrowingVfx>().PlaySfx(true);
+            }
+            else
+            {
+                throwingVfx.GetComponent<ThrowingVfx>().PlaySfx(false);
             }
 
-            Instantiate(vfx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
