@@ -4,6 +4,7 @@ using Player;
 using Snowman;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace UISystem
 {
@@ -16,6 +17,7 @@ namespace UISystem
         public Sprite iconSprite;
         public Image cooldownMask;
         public Image mana;
+        public GameObject advancedSign;
         
         private Image _skillIcon;
         private PlayerAttribute _playerAttr;
@@ -45,6 +47,7 @@ namespace UISystem
             // iconSprite = Resources.Load<Sprite>("Images/" + snowmanInfor.type);
             iconSprite = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + snowmanInfo.type + "_SO").icon;
             _skillIcon.sprite = iconSprite;
+            advancedSign.SetActive(snowmanInfo.level == SnowmanLevel.Advanced);
         }
 
         public IEnumerator UpdateIcon()
