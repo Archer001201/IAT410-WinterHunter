@@ -26,6 +26,7 @@ namespace Dialogue
 
         private Stack<DialoguePiece> _dialogueStack;
         private string _signText;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
@@ -47,6 +48,8 @@ namespace Dialogue
                 DialogueType.TreasureChest => "Open",
                 _ => "Interact"
             };
+
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -184,6 +187,12 @@ namespace Dialogue
             isAppeared = false;
             SaveDialogueData();
             gameObject.SetActive(false);
+        }
+
+        public void PlayDialogueVoice(AudioClip clip)
+        {
+            _audioSource.clip = clip;
+            _audioSource.Play();
         }
     }
 }
