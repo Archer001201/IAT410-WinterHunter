@@ -225,6 +225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bonefire
       objectReference: {fileID: 0}
+    - target: {fileID: 4097728940607243399, guid: f7a171040482dde448f685108d3601dc,
+        type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4097728940607243400, guid: f7a171040482dde448f685108d3601dc,
         type: 3}
       propertyPath: m_RootOrder

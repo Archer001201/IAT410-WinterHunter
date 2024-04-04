@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_TrackProperties:
-    volume: 1
+    volume: 0.19825047
     stereoPan: 0
     spatialBlend: 0
 --- !u!114 &-1547441257755428463
