@@ -85,6 +85,7 @@ namespace Utilities
             _levelSO.blockWalls.Clear();
             _levelSO.dialogueEvents.Clear();
             _levelSO.treasureChests.Clear();
+            _levelSO.cutScenes.Clear();
         }
 
         public void StartAsyncSceneLoader(string sceneName)
