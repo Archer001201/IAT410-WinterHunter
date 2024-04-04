@@ -13,55 +13,48 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: EC204
+  - id: EC105
     isCleared: 0
-  - id: EC203
-    isCleared: 1
-  - id: EC205
+  - id: EC101
     isCleared: 0
-  - id: EC207
+  - id: EC104
     isCleared: 0
-  - id: EC206
+  - id: EC103
     isCleared: 0
-  - id: EC201
-    isCleared: 1
-  - id: EC202
-    isCleared: 1
+  - id: EC102
+    isCleared: 0
   treasureChests:
-  - id: TC202
-    canOpen: 1
-    isOpened: 0
-  - id: TC201
-    canOpen: 1
-    isOpened: 0
-  - id: TC205
+  - id: TC105
     canOpen: 0
     isOpened: 0
-  - id: TC203
-    canOpen: 1
-    isOpened: 0
-  - id: TC204
+  - id: TC101
     canOpen: 0
     isOpened: 0
   dialogueEvents:
-  - id: HP 201
+  - id: HP102
     isAppeared: 1
     dialogueIndex: 0
-  - id: HP 202
+  - id: Methus (1)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Flame Servant
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: HP103
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Prisoner (1)
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Methus
     isAppeared: 1
     dialogueIndex: 0
   blockWalls:
-  - id: BW EC205 03
-    isVisible: 1
-  - id: BW EC205 01
-    isVisible: 1
-  - id: BW EC205 02
-    isVisible: 1
-  - id: BW EC202 01
+  - id: TP001
     isVisible: 0
-  - id: BW EC202 02
-    isVisible: 0
-  cutScenes: []
-  sceneName: The Furnace City
-  position: {x: -32.312057, y: -0.00004786253, z: -40.249287}
+  cutScenes:
+  - id: CS1_Timeline
+    isVisible: 1
+  sceneName: Spark Village
+  position: {x: 40.83, y: 0, z: -95.847}
   respawnAtThisPosition: 0

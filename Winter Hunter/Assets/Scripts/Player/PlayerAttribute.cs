@@ -36,12 +36,14 @@ namespace Player
         public List<GameObject> enemiesInCombat;
         public bool isInCombat;
         private CinemachineImpulseSource _hurtImpulseSource;
+        private PlayerController _playerController;
 
         private void Awake()
         {
             _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
             _playerSO = _gameSO.currentGameData.playerSo;
             _hurtImpulseSource = GetComponent<CinemachineImpulseSource>();
+            _playerController = GetComponent<PlayerController>();
             // maxHealth = _playerSO.maxHealth;
             // maxStamina = _playerSO.maxStamina;
             // maxMana = _playerSO.maxMana;
@@ -200,6 +202,7 @@ namespace Player
             if (isInvincible) return;
             health -= damage;
             _hurtImpulseSource.GenerateImpulseWithForce(0.5f);
+            _playerController.sfxController.PlayAudio(PlayerSfxType.Hurt);
         }
 
         public void ReceiveHealing(float healing)

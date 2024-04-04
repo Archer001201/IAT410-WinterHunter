@@ -10,7 +10,7 @@ namespace Utilities
     {
         public string id;
         public bool hasWatched;
-        private GameObject[] _canvas;
+        private GameObject[] _canvas = new GameObject[]{};
         private PlayableDirector _director;
         private GameSO _gameSO;
         private LevelSO _levelSO;

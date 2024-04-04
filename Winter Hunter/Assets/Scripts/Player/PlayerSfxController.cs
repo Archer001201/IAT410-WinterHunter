@@ -11,7 +11,9 @@ namespace Player
         public AudioSource summonSfx;
         public AudioSource switchSfx;
         public AudioSource rollSfx;
-
+        public AudioSource stepSfx;
+        public AudioSource hurtSfx;
+        
         public void PlayAudio(PlayerSfxType type)
         {
             switch (type)
@@ -30,6 +32,12 @@ namespace Player
                     break;
                 case PlayerSfxType.Roll:
                     rollSfx.Play();
+                    break;
+                case PlayerSfxType.Step:
+                    stepSfx.Play();
+                    break;
+                case PlayerSfxType.Hurt:
+                    hurtSfx.Play();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

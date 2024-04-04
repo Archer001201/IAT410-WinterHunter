@@ -80,6 +80,7 @@ namespace Player
             if (SnowballInstance == null)
             {
                 // enabled = false;
+                _playerController.sfxController.StopAudio(PlayerSfxType.Roll);
                 return;
             }
             // UpdateRollingLine();

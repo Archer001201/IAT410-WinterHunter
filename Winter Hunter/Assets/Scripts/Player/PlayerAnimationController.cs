@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -42,6 +43,7 @@ namespace Player
         {
             if (!_canPrint) return;
             Instantiate(footprint, transform.position, transform.rotation);
+            playerController.sfxController.PlayAudio(PlayerSfxType.Step);
             _canPrint = false;
         }
 
