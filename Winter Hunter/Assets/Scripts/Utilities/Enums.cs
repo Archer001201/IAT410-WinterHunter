@@ -62,7 +62,7 @@ namespace Utilities
     }
 
     public enum PlayerSfxType{
-        Throw, Dash, Summon, Switch
+        Throw, Dash, Summon, Switch, Roll
     }
 
     public enum AudioGroup

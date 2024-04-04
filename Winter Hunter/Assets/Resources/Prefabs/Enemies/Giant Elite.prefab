@@ -409,9 +409,10 @@ MonoBehaviour:
   speed: 5
   attackRange: 10
   attackDamage: 20
-  basicAttackCooldown: 5
-  basicSkillCooldown: 10
-  advancedSkillCooldown: 20
+  basicAttackCooldown: {x: 2, y: 4}
+  basicSkillCooldown: {x: 0, y: 0}
+  advancedSkillCooldown: {x: 3, y: 6}
+  shieldChangeSpeed: 5
   health: 0
   shield: 0
   isChasing: 0
@@ -426,25 +427,22 @@ MonoBehaviour:
   isBasicSkillReady: 0
   isAdvancedSkillReady: 0
   isMarked: 0
+  isBoss: 0
+  isInvincible: 0
   hudCanvas: {fileID: 2457972267503376069}
   targetTrans: {fileID: 0}
   detectedSnowman: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 8292943914661435392}
+  shieldChargingVfx: {fileID: 0}
+  currentStage: 0
   smashVfx: {fileID: 255406955855798459, guid: 70543c0fd143b430db668c982e15e870, type: 3}
-  smashTransList:
-  - {fileID: 5574139403893540971}
-  - {fileID: 446881879465718677}
-  - {fileID: 2742317290354344857}
-  - {fileID: 7164344596518826661}
-  - {fileID: 7644508785422489841}
   swingVfx: {fileID: 1132135353079364431}
   rock: {fileID: 1515679070267238148, guid: 834dc30f919b246259ffa4b2e85651a5, type: 3}
   throwPoint: {fileID: 7983666768994900832}
   throwAngle: 45
   gravity: 9.81
   giantModel: {fileID: 3895920550129624949}
-  isBoss: 0
 --- !u!1001 &4238026649692789284
 PrefabInstance:
   m_ObjectHideFlags: 0

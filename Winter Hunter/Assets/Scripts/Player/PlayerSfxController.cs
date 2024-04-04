@@ -10,6 +10,7 @@ namespace Player
         public AudioSource dashSfx;
         public AudioSource summonSfx;
         public AudioSource switchSfx;
+        public AudioSource rollSfx;
 
         public void PlayAudio(PlayerSfxType type)
         {
@@ -27,9 +28,46 @@ namespace Player
                 case PlayerSfxType.Switch:
                     switchSfx.Play();
                     break;
+                case PlayerSfxType.Roll:
+                    rollSfx.Play();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+        }
+
+        public void PauseAudio(PlayerSfxType type)
+        {
+            switch (type)
+            {
+                case PlayerSfxType.Roll:
+                    rollSfx.Pause();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
+        
+        public void StopAudio(PlayerSfxType type)
+        {
+            switch (type)
+            {
+                case PlayerSfxType.Roll:
+                    rollSfx.Stop();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
+
+        public bool GetAudioState(PlayerSfxType type)
+        {
+            if (type == PlayerSfxType.Roll)
+            {
+                return rollSfx.isPlaying;
+            }
+
+            return false;
         }
     }
 }

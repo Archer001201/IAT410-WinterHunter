@@ -1,6 +1,7 @@
 using System;
 using Snowball;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -17,8 +18,15 @@ namespace Player
         public float staminaIncrease;
         public bool showRollingLine;
         private float _attackBonus;
+        private PlayerController _playerController;
         
         private RollingSnowball _rollingSnowballScript;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _playerController = GetComponent<PlayerController>();
+        }
 
         private void Update()
         {
@@ -60,6 +68,7 @@ namespace Player
             _rollingSnowballScript.SetReleasingState();
             base.Attack();
             _attackBonus = 0;
+            _playerController.sfxController.StopAudio(PlayerSfxType.Roll);
             // Debug.Log(PlayerAttr.stamina);
         }
 
@@ -80,6 +89,8 @@ namespace Player
                 SnowballInstance.transform.localScale += scaleIncrease;
                 _attackBonus += (attackBonusFactor * PlayerAttr.attack * Time.fixedDeltaTime);
                 _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
+                if (!_playerController.sfxController.GetAudioState(PlayerSfxType.Roll)) 
+                    _playerController.sfxController.PlayAudio(PlayerSfxType.Roll);
 
                 if (PlayerAttr.stamina >= Mathf.Abs(staminaIncrease * Time.fixedDeltaTime))
                 {
@@ -89,6 +100,11 @@ namespace Player
                 {
                     Attack();
                 }
+            }
+            else
+            {
+                if (_playerController.sfxController.GetAudioState(PlayerSfxType.Roll)) 
+                    _playerController.sfxController.PauseAudio(PlayerSfxType.Roll);
             }
 
             if (SnowballInstance == null) return;
