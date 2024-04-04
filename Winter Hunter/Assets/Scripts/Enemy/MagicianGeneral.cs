@@ -11,7 +11,7 @@ namespace Enemy
     {
         public GameObject flameRays;
         public GameObject fireBallLarge;
-        public Transform throwPoint;
+        public List<Transform> throwPoints;
         public GameObject smashVfx;
         public List<Transform> smashTransList;
         public CinemachineImpulseSource fireRayImpulse;
@@ -36,21 +36,32 @@ namespace Enemy
 
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
-            isBasicSkillSatisfied = dist <= attackRange * 2 && shield > 0;
-            isBasicAttackSatisfied = dist <= attackRange;
-            isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            isBasicAttackSatisfied = dist <= attackRange * 2f;
+            if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange;
+            if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange;
+            
+            if (shield <= 0) AfterShieldBreaking();
         }
 
         public override IEnumerator BasicAttack()
         {
-            var fireball = Instantiate(fireBallLarge, throwPoint.position, Quaternion.identity);
-            fireball.GetComponent<FireBall>().SetFireBall(transform.forward, attackDamage);
+            //Fire Ball
+            var i = 0;
+            while (i < throwPoints.Count)
+            {
+                var fireball = Instantiate(fireBallLarge, throwPoints[i].position, Quaternion.identity);
+                fireball.GetComponent<FireBall>().SetFireBall(transform.forward, attackDamage);
+                i++;
+                yield return null;
+            }
+            
             yield return new WaitForSeconds(1f);
             SwitchAttackingState(AttackingState.NonAttack);
         }
 
         public override IEnumerator BasicSkill()
         {
+            //Fire Ring
             agent.speed = 0f;
             
             yield return new WaitForSeconds(1f);
@@ -71,7 +82,7 @@ namespace Enemy
 
         public override IEnumerator AdvancedSkill()
         {
-            // Debug.Log("Giant Basic Skill");
+            //Fire Rays
             var raysGO = Instantiate(flameRays, transform.position, Quaternion.identity);
             var raysScript = raysGO.GetComponent<FlameRays>();
             raysScript.SetFlameRays(transform, attackDamage, 5f);

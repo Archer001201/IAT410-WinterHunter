@@ -4919,7 +4919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vfx: {fileID: 3846533286662601959}
   hit: {fileID: 8300000, guid: d475e1c79799446729133ff91c465f16, type: 3}
-  miss: {fileID: 8300000, guid: caa6c8ce9846a4e04ab0248f7c3178c8, type: 3}
+  miss: {fileID: 8300000, guid: 4d5d9c35247da49f6b8e4dd634a31d2c, type: 3}
 --- !u!82 &1901732105605691633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4932,8 +4932,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d475e1c79799446729133ff91c465f16, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
-  m_Pitch: 0.75
+  m_Volume: 0.3
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0

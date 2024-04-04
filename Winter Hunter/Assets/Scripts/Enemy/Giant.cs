@@ -20,8 +20,8 @@ namespace Enemy
         {
             NonAttackState = new NormalNonAttackState();
             BasicAttackState = new NormalBasicAttackState();
-            BasicSkillState = new NormalBasicSkillState();
-            if (isBoss) AdvancedSkillState = new NormalAdvancedSkillState();
+            if (isBoss) BasicSkillState = new NormalBasicSkillState();
+            AdvancedSkillState = new NormalAdvancedSkillState();
             base.Awake();
         }
         
@@ -36,6 +36,7 @@ namespace Enemy
             isBasicAttackSatisfied = dist <= attackRange;
             if (isBoss)
             {
+                if (shield <= 0) AfterShieldBreaking();
                 //throw rock
                 if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange*3;
                 //smash
@@ -45,8 +46,6 @@ namespace Enemy
             {
                 isAdvancedSkillSatisfied = dist <= attackRange * 2 && shield > 0;
             }
-            
-            if (shield <= 0) AfterShieldBreaking();
         }
 
         public override IEnumerator BasicAttack()

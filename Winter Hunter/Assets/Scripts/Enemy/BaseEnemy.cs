@@ -127,9 +127,9 @@ namespace Enemy
             
             if (targetTrans == null) SetTarget();
 
-            isBasicAttackReady = basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
-            isBasicSkillReady = basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null;
-            isAdvancedSkillReady = advancedSkillTimer <= 0 && isAdvancedSkillSatisfied && targetTrans != null;
+            isBasicAttackReady = isChasing && basicAttackTimer <= 0 && isBasicAttackSatisfied && targetTrans != null;
+            isBasicSkillReady = isChasing && basicSkillTimer <= 0 && isBasicSkillSatisfied && targetTrans != null;
+            isAdvancedSkillReady = isChasing &&  advancedSkillTimer <= 0 && isAdvancedSkillSatisfied && targetTrans != null;
             CurrentAttackingState?.OnUpdate();
         }
 
