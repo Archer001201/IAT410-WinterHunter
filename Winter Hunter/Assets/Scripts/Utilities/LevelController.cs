@@ -101,6 +101,13 @@ namespace Utilities
             _levelSO.respawnAtThisPosition = true;
         }
 
+        public void LoadCurrentData()
+        {
+            asyncSceneLoader.SetActive(true);
+            asyncSceneLoader.GetComponent<AsyncSceneLoader>().LoadSceneAsync(_levelSO.sceneName);
+            _levelSO.respawnAtThisPosition = true; 
+        }
+
         public void HealPlayer()
         {
             _playerAttr.health = _playerAttr.maxHealth;
