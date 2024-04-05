@@ -18,7 +18,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Methus Epelet
-    second: {fileID: 2100000, guid: 2def709bef1931845b923fbeeaed1a2b, type: 2}
+    second: {fileID: 2100000, guid: a98bd32111fefb249ba3ae0341cc59a8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
