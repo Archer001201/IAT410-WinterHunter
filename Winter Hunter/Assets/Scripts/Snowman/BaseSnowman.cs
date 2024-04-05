@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DataSO;
+using Player;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
@@ -29,6 +30,7 @@ namespace Snowman
         protected Transform TargetTrans;
         private NavMeshAgent _agent;
         private float _startTime;
+        private PlayerAttribute _playerAttr;
         
 
         protected virtual void Awake()
@@ -40,18 +42,22 @@ namespace Snowman
             _startTime = Time.time;
             
             hudCanvas.SetActive(true);
-            TargetTrans = GameObject.FindWithTag("Player").transform;
+            var playerGO = GameObject.FindWithTag("Player");
+            TargetTrans = playerGO.transform;
+            _playerAttr = playerGO.GetComponent<PlayerAttribute>();
             _agent = GetComponent<NavMeshAgent>();
         }
 
         private void OnEnable()
         {
             EventHandler.OnDestroyExistedSnowman += DestroyMe;
+            EventHandler.OnRetreatSnowman += RetreatMe;
         }
 
         private void OnDisable()
         {
             EventHandler.OnDestroyExistedSnowman -= DestroyMe;
+            EventHandler.OnRetreatSnowman -= RetreatMe;
         }
 
         protected virtual void Update()
@@ -144,6 +150,12 @@ namespace Snowman
         public virtual void TakeDamage(float damage)
         {
             health -= damage;
+        }
+
+        private void RetreatMe()
+        {
+            _playerAttr.mana += ((MySnowmanSO.summonDuration - summonTimer) / MySnowmanSO.summonDuration) * manaCost;
+            DestroyMe();
         }
     }
 }

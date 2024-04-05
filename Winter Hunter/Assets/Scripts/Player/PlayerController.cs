@@ -86,6 +86,7 @@ namespace Player
             _inputControls.Gameplay.Rush.canceled += _ => OnReleaseDashButton();
             _inputControls.Gameplay.ThrowSnowballPress.performed += _=> OnPressingThrow();
             _inputControls.Gameplay.ThrowSnowballPress.canceled += _=> OnReleasingThrow();
+            _inputControls.Gameplay.Retreat.performed += _ => EventHandler.RetreatSnowman();
 
             _rollSnowballScript.enabled = false;
             canAttack = true;

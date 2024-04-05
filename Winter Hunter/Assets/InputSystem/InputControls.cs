@@ -134,6 +134,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Retreat"",
+                    ""type"": ""Button"",
+                    ""id"": ""47bb27e6-eaf4-42d2-9d74-4d4acc2cefea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -312,6 +321,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a329ec-2490-44e5-a10a-66b75aa46a81"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Retreat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -428,6 +448,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay_Skip = m_Gameplay.FindAction("Skip", throwIfNotFound: true);
         m_Gameplay_ThrowSnowballPress = m_Gameplay.FindAction("ThrowSnowballPress", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
+        m_Gameplay_Retreat = m_Gameplay.FindAction("Retreat", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
@@ -509,6 +530,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Skip;
     private readonly InputAction m_Gameplay_ThrowSnowballPress;
     private readonly InputAction m_Gameplay_Map;
+    private readonly InputAction m_Gameplay_Retreat;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
@@ -525,6 +547,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Skip => m_Wrapper.m_Gameplay_Skip;
         public InputAction @ThrowSnowballPress => m_Wrapper.m_Gameplay_ThrowSnowballPress;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
+        public InputAction @Retreat => m_Wrapper.m_Gameplay_Retreat;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -570,6 +593,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Map.started += instance.OnMap;
             @Map.performed += instance.OnMap;
             @Map.canceled += instance.OnMap;
+            @Retreat.started += instance.OnRetreat;
+            @Retreat.performed += instance.OnRetreat;
+            @Retreat.canceled += instance.OnRetreat;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -610,6 +636,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Map.started -= instance.OnMap;
             @Map.performed -= instance.OnMap;
             @Map.canceled -= instance.OnMap;
+            @Retreat.started -= instance.OnRetreat;
+            @Retreat.performed -= instance.OnRetreat;
+            @Retreat.canceled -= instance.OnRetreat;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -749,6 +778,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnSkip(InputAction.CallbackContext context);
         void OnThrowSnowballPress(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnRetreat(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -184,6 +184,13 @@ namespace Utilities
             OnShowBossHud?.Invoke(enemy, result);
         }
 
+        public static event Action OnRetreatSnowman;
+
+        public static void RetreatSnowman()
+        {
+            OnRetreatSnowman?.Invoke();
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

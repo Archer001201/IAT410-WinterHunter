@@ -104,6 +104,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.9195251
+        functionName: DeathVfx
+        data: 
+        objectReferenceParameter: {fileID: 7294820519370286524, guid: 76328a4dcba1247aa8b6ac3681953e30,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -137,6 +145,14 @@ ModelImporter:
         functionName: Death
         data: 
         objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.91688657
+        functionName: DeathVfx
+        data: 
+        objectReferenceParameter: {fileID: 7294820519370286524, guid: 76328a4dcba1247aa8b6ac3681953e30,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
