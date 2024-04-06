@@ -17,6 +17,7 @@ namespace Player
         public float summoningCost;
 
         public int currentIndex;
+        public GameObject summonVfx;
 
         // private PlayerSO _playerSO;
         private PlayerAttribute _playerAttr;
@@ -64,6 +65,7 @@ namespace Player
             var snowman = _playerAttr.snowmanList[currentIndex];
             if (!snowman.canBeSummoned || _playerAttr.mana < snowman.summoningCost) return;
             EventHandler.DestroyExistedSnowman();
+            Instantiate(summonVfx, startPosition.position, startPosition.rotation);
             var snowmanGO = Instantiate(currentSnowman, startPosition.position, startPosition.rotation);
             snowmanGO.GetComponent<BaseSnowman>().SetLevel(snowman.level);
             snowman.canBeSummoned = false;

@@ -31,10 +31,12 @@ namespace Snowman
         private NavMeshAgent _agent;
         private float _startTime;
         private PlayerAttribute _playerAttr;
+        private SkinnedMeshRenderer _skinnedMeshRenderer;
         
 
         protected virtual void Awake()
         {
+            _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
             MySnowmanSO = Resources.Load<SnowmanSO>("DataSO/SnowmanSO/" + type + "_SO");
             manaCost = MySnowmanSO.manaCost;
 
@@ -64,6 +66,7 @@ namespace Snowman
         {
             health = Mathf.Clamp(health, 0, MySnowmanSO.health);
             summonTimer = Time.time - _startTime;
+            _skinnedMeshRenderer.SetBlendShapeWeight(0, (MySnowmanSO.health - health) / MySnowmanSO.health * 100f);
 
             if (health <= 0 || summonTimer >= MySnowmanSO.summonDuration)
             {

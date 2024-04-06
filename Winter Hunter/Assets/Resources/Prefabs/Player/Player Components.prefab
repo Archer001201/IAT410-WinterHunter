@@ -1461,6 +1461,8 @@ MonoBehaviour:
   startPosition: {fileID: 7296700131756586838}
   summoningCost: 0
   currentIndex: 0
+  summonVfx: {fileID: 7876965779437291906, guid: 6d38d5b9626b84c2384c9cbf18fa52d4,
+    type: 3}
 --- !u!136 &1545501160135523972
 CapsuleCollider:
   m_ObjectHideFlags: 0
