@@ -55,9 +55,9 @@ MonoBehaviour:
   speed: 0
   attackRange: 10
   attackDamage: 20
-  basicAttackCooldown: {x: 0, y: 0}
-  basicSkillCooldown: {x: 0, y: 0}
-  advancedSkillCooldown: {x: 0, y: 0}
+  basicAttackCooldown: {x: 3, y: 5}
+  basicSkillCooldown: {x: 4, y: 6}
+  advancedSkillCooldown: {x: 5, y: 8}
   shieldChangeSpeed: 5
   health: 0
   shield: 0
@@ -73,14 +73,15 @@ MonoBehaviour:
   isBasicSkillReady: 0
   isAdvancedSkillReady: 0
   isMarked: 0
-  isBoss: 0
+  isBoss: 1
   isInvincible: 0
   hudCanvas: {fileID: 8010383220377834642}
   targetTrans: {fileID: 0}
   detectedSnowman: {fileID: 0}
   agent: {fileID: 179554591956584948}
   animator: {fileID: 3188568466443706447}
-  shieldChargingVfx: {fileID: 0}
+  shieldChargingVfx: {fileID: 6351259694995923438, guid: 123ee4bc6e1c94fb1919e50d1934f425,
+    type: 3}
   currentStage: 0
   rotationSpeed: 1
   arcFireVfx: {fileID: 2465940429010922368}
