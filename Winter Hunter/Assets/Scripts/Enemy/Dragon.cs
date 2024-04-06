@@ -32,9 +32,14 @@ namespace Enemy
 
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
-            isBasicSkillSatisfied = dist <= attackRange * 2 && shield > 0;
-            isBasicAttackSatisfied = dist >= attackRange;
-            isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            // isBasicSkillSatisfied = dist <= attackRange * 2 && shield > 0;
+            // isBasicAttackSatisfied = dist >= attackRange;
+            // isAdvancedSkillSatisfied = dist <= attackRange * 2;
+            isBasicAttackSatisfied = dist <= attackRange * 2f;
+            if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange;
+            if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange;
+            
+            if (shield <= 0) AfterShieldBreaking();
         }
 
         protected override void FixedUpdate()
@@ -42,9 +47,7 @@ namespace Enemy
             base.FixedUpdate();
             if (targetTrans == null || animator.GetBool(EnemyAnimatorPara.IsAttacking.ToString())) return;
             var targetDirection = targetTrans.position - transform.position;
-            // 创建代表这个方向的旋转
             var targetRotation = Quaternion.LookRotation(targetDirection);
-            // 使用Slerp平滑地插值从当前旋转到目标旋转
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             var angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
             animator.SetFloat("Rotation", angleDifference);
@@ -53,24 +56,12 @@ namespace Enemy
         public override IEnumerator BasicAttack()
         {
             Debug.Log("low flight");
-            // _rb.AddForce(direction * (_rb.mass * 100000f));
-            // _rb.AddForce(transform.forward,ForceMode.Impulse);
-            // transform.Translate(targetTrans.position);
-            // agent.speed = 20f;
             _direction = (targetTrans.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(_direction);
             _flyCoroutine ??= StartCoroutine(MoveTowardsTargetOverTime());
-            // while (_flyCoroutine != null)
-            // {
-            //     Instantiate(flameVfx, transform.position, Quaternion.identity);
-            //     yield return new WaitForSeconds(1f);
-            // }
+
             yield return new WaitForSeconds(moveDuration);
-            // agent.speed = 0f;
-            // agent.velocity = Vector3.zero;
-            // agent.isStopped = true;
-            // yield return new WaitForSeconds(3f); 
-            // _rb.velocity = Vector3.zero;
+
             if (_flyCoroutine != null)
             {
                 StopCoroutine(_flyCoroutine);
@@ -89,9 +80,9 @@ namespace Enemy
             var count = 0;
             while (count < 30)
             {
-                var randX = Random.Range(initX - 15, initX + 15);
+                var randX = Random.Range(initX - 10, initX + 10);
                 var randY = Random.Range(initY + 20, initY + 30);
-                var randZ = Random.Range(initZ - 15, initZ + 15);
+                var randZ = Random.Range(initZ - 10, initZ + 10);
                 Instantiate(fireBall, new Vector3(randX, randY, randZ), Quaternion.identity);
                 count++;
                 yield return new WaitForSeconds(0.1f);
