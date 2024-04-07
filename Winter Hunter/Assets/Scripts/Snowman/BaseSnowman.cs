@@ -25,6 +25,7 @@ namespace Snowman
         [Header("Component Settings")] 
         public GameObject hudCanvas;
         public List<Transform> detectedEnemies;
+        public GameObject deathVfx;
 
         protected SnowmanSO MySnowmanSO;
         protected Transform TargetTrans;
@@ -142,6 +143,7 @@ namespace Snowman
          */
         protected virtual void DestroyMe()
         {
+            Instantiate(deathVfx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

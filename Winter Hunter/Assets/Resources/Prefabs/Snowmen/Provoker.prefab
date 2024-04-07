@@ -74,6 +74,8 @@ MonoBehaviour:
   summonTimer: 0
   hudCanvas: {fileID: 3417969559084012272}
   detectedEnemies: []
+  deathVfx: {fileID: 7294820519370286524, guid: 6c57fd31bd6e94e70b241d54d3ed8b7a,
+    type: 3}
   tauntRange: 5
   chaseRange: 15
   attackBonusFactor: 0.5
