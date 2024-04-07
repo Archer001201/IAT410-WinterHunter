@@ -87,6 +87,8 @@ MonoBehaviour:
   summonTimer: 0
   hudCanvas: {fileID: 7888768729661789891}
   detectedEnemies: []
+  deathVfx: {fileID: 7294820519370286524, guid: 6c57fd31bd6e94e70b241d54d3ed8b7a,
+    type: 3}
   slashPrefab: {fileID: 2837503766415810004, guid: 7f82f71416c3545a6b03a466c417fad2,
     type: 3}
   attackRange: 5
@@ -105,7 +107,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
