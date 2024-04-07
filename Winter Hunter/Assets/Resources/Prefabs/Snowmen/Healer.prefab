@@ -74,6 +74,8 @@ MonoBehaviour:
   summonTimer: 0
   hudCanvas: {fileID: 7888768729661789891}
   detectedEnemies: []
+  deathVfx: {fileID: 7294820519370286524, guid: 6c57fd31bd6e94e70b241d54d3ed8b7a,
+    type: 3}
   visualEffect: {fileID: 3647415699138952381}
   vfxLengthDivisor: 6
   healRange: 12
