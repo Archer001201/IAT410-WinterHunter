@@ -16,6 +16,7 @@ namespace Enemy
         public List<Transform> smashTransList;
         public CinemachineImpulseSource fireRayImpulse;
         public CinemachineImpulseSource fireRingImpulse;
+        public AudioSource audioSource;
         
         protected override void Awake()
         {
@@ -46,6 +47,7 @@ namespace Enemy
         public override IEnumerator BasicAttack()
         {
             //Fire Ball
+            audioSource.Play();
             var i = 0;
             while (i < throwPoints.Count)
             {
