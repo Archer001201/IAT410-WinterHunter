@@ -9,10 +9,17 @@ namespace Enemy
     {
         public ParticleSystem thrustVfx;
         public BaseEnemy enemy;
+        private AudioSource _audioSource;
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
         private void OnEnable()
         {
             thrustVfx.Play();
+            _audioSource.Play();
         }
 
         private void Update()

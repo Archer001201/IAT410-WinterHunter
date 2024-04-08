@@ -8,15 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title Screen.unity
     guid: b7354f83119054904847a7859c2a0916
-  - enabled: 0
-    path: Assets/Scenes/Tutorial.unity
-    guid: f2be50c2cc5f9457b8618fd1cf025b6e
   - enabled: 1
     path: Assets/Scenes/Spark Village.unity
     guid: 4f672362fcb48473c9859c19f8b828de
   - enabled: 1
     path: Assets/Scenes/The Furnace City.unity
     guid: d8118bd55011f4bfb823109665f02cf1
+  - enabled: 1
+    path: Assets/Scenes/Initial Furnace.unity
+    guid: 7306a011fe6d04251ad58e57753f7ccb
+  - enabled: 0
+    path: Assets/Scenes/Tutorial.unity
+    guid: f2be50c2cc5f9457b8618fd1cf025b6e
   - enabled: 0
     path: Assets/Scenes/Training Ground.unity
     guid: d148de7088fc0452497183aeee6854cf

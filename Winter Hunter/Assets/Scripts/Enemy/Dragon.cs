@@ -41,9 +41,9 @@ namespace Enemy
             // isBasicSkillSatisfied = dist <= attackRange * 2 && shield > 0;
             // isBasicAttackSatisfied = dist >= attackRange;
             // isAdvancedSkillSatisfied = dist <= attackRange * 2;
-            isBasicAttackSatisfied = dist <= attackRange * 2f;
-            if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange;
-            if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange;
+            isBasicAttackSatisfied = dist > attackRange;
+            if (currentStage >= StageTwo) isBasicSkillSatisfied = dist > 0;
+            if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange*2;
             
             if (shield <= 0 && isChasing) AfterShieldBreaking();
         }

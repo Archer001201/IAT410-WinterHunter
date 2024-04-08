@@ -2,12 +2,24 @@ using System;
 using Player;
 using Snowman;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
     public class SpearLunge : MonoBehaviour
     {
         public BaseEnemy enemy;
+        private AudioSource _audioSource;
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void OnEnable()
+        {
+            _audioSource.Play();
+        }
 
         private void OnCollisionEnter(Collision other)
         {

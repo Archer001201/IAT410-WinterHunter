@@ -180,12 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb72bff008f0a4fbca94ef1511fb5c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  maxShield: 200
+  maxHealth: 1000
+  maxShield: 300
   speed: 0
   attackRange: 10
   attackDamage: 20
-  basicAttackCooldown: {x: 3, y: 5}
+  basicAttackCooldown: {x: 5, y: 8}
   basicSkillCooldown: {x: 4, y: 6}
   advancedSkillCooldown: {x: 5, y: 8}
   shieldChangeSpeed: 5
@@ -2498,7 +2498,8 @@ AudioSource:
   m_GameObject: {fileID: 2465940429010922368}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 181024666926596521, guid: 27164d2ab95894e648a53f6bc2752427,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 92e31c4af77eb467c8bdd568d088f52e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
