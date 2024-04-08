@@ -70,6 +70,7 @@ namespace Dialogue
             EventHandler.OnSavingDataAfterDialogue -= SaveDialogueData;
             EventHandler.OnEnbaleInteract -= EnableInteract;
             EventHandler.OnEnableDialogueInputControls -= AllowInputControls;
+            EventHandler.ShowInteractableSign(false, "talk");
             // isAppeared = false;
         }
 

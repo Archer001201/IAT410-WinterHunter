@@ -11,9 +11,11 @@ namespace Enemy
         private float _attack;
         public bool isLanded;
         private CinemachineImpulseSource _impulseSource;
-
+        private AudioSource _audioSource;
+        
         private void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
 
@@ -23,6 +25,7 @@ namespace Enemy
             
             if (other.gameObject.CompareTag("Ground"))
             {
+                _audioSource.Play();
                 isLanded = true;
                 _impulseSource.GenerateImpulseWithForce(1f);
             }
