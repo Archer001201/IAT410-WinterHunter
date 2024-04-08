@@ -16,6 +16,8 @@ namespace Enemy
         private Coroutine _flyCoroutine;
         public GameObject flameVfx;
         public GameObject fireBall;
+        public GameObject soldier;
+        public GameObject magician;
         
         protected override void Awake()
         {
@@ -24,6 +26,8 @@ namespace Enemy
             BasicSkillState = new NormalBasicSkillState();
             AdvancedSkillState = new NormalAdvancedSkillState();
             base.Awake();
+            
+            arcFireVfx.GetComponent<DragonFire>().SetAttack(attackDamage);
         }
         
         protected override void Update()
@@ -39,7 +43,7 @@ namespace Enemy
             if (currentStage >= StageTwo) isBasicSkillSatisfied = dist <= attackRange;
             if (currentStage >= StageThree) isAdvancedSkillSatisfied = dist <= attackRange;
             
-            if (shield <= 0) AfterShieldBreaking();
+            if (shield <= 0 && isChasing) AfterShieldBreaking();
         }
 
         protected override void FixedUpdate()
@@ -83,7 +87,8 @@ namespace Enemy
                 var randX = Random.Range(initX - 10, initX + 10);
                 var randY = Random.Range(initY + 20, initY + 30);
                 var randZ = Random.Range(initZ - 10, initZ + 10);
-                Instantiate(fireBall, new Vector3(randX, randY, randZ), Quaternion.identity);
+                var fireBallGO = Instantiate(fireBall, new Vector3(randX, randY, randZ), Quaternion.identity);
+                fireBallGO.GetComponent<FireBall>().SetFireBall(Vector3.zero, attackDamage);
                 count++;
                 yield return new WaitForSeconds(0.1f);
             }
@@ -108,11 +113,25 @@ namespace Enemy
                 transform.position += _direction * (moveSpeed * Time.deltaTime); // 根据速度和时间移动物体
                 
                 if (Time.time >= nextSpawnTime) {
-                    Instantiate(flameVfx, transform.position, Quaternion.identity); // 在当前位置实例化Prefab
+                    var flameGO = Instantiate(flameVfx, transform.position, Quaternion.identity); // 在当前位置实例化Prefab
+                    flameGO.GetComponent<DragonFire>().SetAttack(attackDamage);
                     nextSpawnTime += 1.2f; // 更新下一次实例化Prefab的时间
                 }
                 
                 yield return null; // 等待下一帧
+            }
+        }
+
+        protected override void AfterShieldBreaking()
+        {
+            base.AfterShieldBreaking();
+            var prefab = currentStage % 2 == 0 ? magician : soldier;
+            var pos = transform.position;
+            for (var i = 0; i < 2; i++)
+            {
+                var randX = Random.Range(pos.x - 5, pos.x + 5);
+                var randZ = Random.Range(pos.z - 5, pos.z + 5);
+                Instantiate(prefab, new Vector3(randX, 0, randZ), Quaternion.identity);
             }
         }
     }

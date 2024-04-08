@@ -22,6 +22,7 @@ namespace Snowball
 
         public void PlaySfx(bool isHit)
         {
+            if (_audioSource == null) return;
             _audioSource.clip = isHit ? hit : miss;
             _audioSource.Play();
         }

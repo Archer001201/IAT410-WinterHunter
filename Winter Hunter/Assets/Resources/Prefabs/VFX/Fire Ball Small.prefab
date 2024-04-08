@@ -65,6 +65,7 @@ MonoBehaviour:
   isAdvanced: 0
   transList: []
   fireball: {fileID: 0}
+  vfx: {fileID: 6226103546333560817, guid: 7d83fe27d976f4d9bbe05e80c4b68ba5, type: 3}
 --- !u!54 &-5075750883189584748
 Rigidbody:
   m_ObjectHideFlags: 0

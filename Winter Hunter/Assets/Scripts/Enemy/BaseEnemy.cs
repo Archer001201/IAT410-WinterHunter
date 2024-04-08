@@ -269,8 +269,9 @@ namespace Enemy
             isMarked = isTargeted;
         }
 
-        protected void AfterShieldBreaking()
+        protected virtual void AfterShieldBreaking()
         {
+            // if (!isChasing) return;
             SwitchAttackingState(AttackingState.NonAttack);
             animator.SetBool(EnemyAnimatorPara.IsMoving.ToString(), false);
             isChasing = false;

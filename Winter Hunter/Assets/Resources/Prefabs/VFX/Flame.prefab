@@ -4823,6 +4823,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6843562299008121438}
   - component: {fileID: 6678132323954573566}
+  - component: {fileID: 3519720189144301307}
+  - component: {fileID: 5438519673864882438}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
@@ -4859,3 +4861,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flameVfx: {fileID: 6002588797605972167}
+--- !u!114 &3519720189144301307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592516768157124107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde519e75fb20406bbdb075802abc18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5438519673864882438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592516768157124107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 6, z: 10}
+  m_Center: {x: 0, y: 3, z: 0}

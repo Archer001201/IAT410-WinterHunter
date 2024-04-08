@@ -16,6 +16,7 @@ namespace Enemy
         public bool isAdvanced;
         public List<Transform> transList;
         public GameObject fireball;
+        public GameObject vfx;
         
         private void FixedUpdate()
         {
@@ -33,7 +34,7 @@ namespace Enemy
         private void OnCollisionEnter(Collision other)
         {
             var otherGO = other.gameObject;
-            if (otherGO.CompareTag("Enemy") || otherGO.CompareTag("Projectile")) return;
+            if (otherGO.CompareTag("Projectile")) return;
             
             if (otherGO.CompareTag("Player"))
             {
@@ -53,7 +54,8 @@ namespace Enemy
                     smallFireBall.GetComponent<FireBall>().SetFireBall(t.forward, _attack*0.2f);
                 }
             }
-            
+
+            Instantiate(vfx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
