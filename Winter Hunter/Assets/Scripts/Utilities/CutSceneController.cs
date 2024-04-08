@@ -23,15 +23,16 @@ namespace Utilities
             _gameSO = Resources.Load<GameSO>("DataSO/Game_SO");
             _levelSO = _gameSO.currentGameData.levelSo;
             
+            LoadData();
+            gameObject.SetActive(!hasWatched);
+            
+            if (_director.playOnAwake && !hasWatched) OnPlay(_director);
             // LoadData();
             // gameObject.SetActive(!hasWatched);
         }
 
         private void OnEnable()
         {
-            LoadData();
-            gameObject.SetActive(!hasWatched);
-            
             _director.played += OnPlay;
             _director.stopped += OnStop;
         }
@@ -44,11 +45,15 @@ namespace Utilities
 
         private void OnPlay(PlayableDirector director)
         {
+            Debug.Log("play cutscene");
             _canvas = GameObject.FindGameObjectsWithTag("Canvas");
             foreach (var canvas in _canvas)
             {
                 canvas.SetActive(false);
             }
+            EventHandler.ShowInteractableSign(false, "talk");
+            EventHandler.AllowInputControl(false);
+            EventHandler.EnableDialogueInputControls(false);
             Time.timeScale = 0;  
         }
 
@@ -62,6 +67,8 @@ namespace Utilities
             hasWatched = true;
             SaveData();
             _director.gameObject.SetActive(false);
+            EventHandler.AllowInputControl(true);
+            EventHandler.EnableDialogueInputControls(true);
         }
         
         private void LoadData()

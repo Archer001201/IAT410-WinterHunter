@@ -286,8 +286,8 @@ namespace Enemy
             Instantiate(shieldChargingVfx, transform.position, Quaternion.identity);
             while (shield < maxShield)
             {
-                shield += 5f;
-                yield return new WaitForSeconds(0.2f);
+                shield += maxShield*Time.deltaTime;
+                yield return null;
             }
             
             isChasing = true;

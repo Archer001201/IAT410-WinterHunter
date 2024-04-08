@@ -191,6 +191,20 @@ namespace Utilities
             OnRetreatSnowman?.Invoke();
         }
 
+        public static event Action<bool> OnEnbaleInteract;
+
+        public static void EnableInteract(bool result)
+        {
+            OnEnbaleInteract?.Invoke(result);
+        }
+
+        public static event Action<bool> OnEnableDialogueInputControls;
+
+        public static void EnableDialogueInputControls(bool result)
+        {
+            OnEnableDialogueInputControls?.Invoke(result);
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

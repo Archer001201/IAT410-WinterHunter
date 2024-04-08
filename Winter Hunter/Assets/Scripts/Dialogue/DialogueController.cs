@@ -27,6 +27,7 @@ namespace Dialogue
         private Stack<DialoguePiece> _dialogueStack;
         private string _signText;
         private AudioSource _audioSource;
+        private SphereCollider _sphereCollider;
 
         private void Awake()
         {
@@ -50,12 +51,15 @@ namespace Dialogue
             };
 
             _audioSource = GetComponent<AudioSource>();
+            _sphereCollider = GetComponent<SphereCollider>();
         }
 
         private void OnEnable()
         {
             _inputControls.Enable();
             EventHandler.OnSavingDataAfterDialogue += SaveDialogueData;
+            EventHandler.OnEnbaleInteract += EnableInteract;
+            EventHandler.OnEnableDialogueInputControls += AllowInputControls;
             isAppeared = true;
             SaveDialogueData();
         }
@@ -64,6 +68,8 @@ namespace Dialogue
         {
             _inputControls.Disable();
             EventHandler.OnSavingDataAfterDialogue -= SaveDialogueData;
+            EventHandler.OnEnbaleInteract -= EnableInteract;
+            EventHandler.OnEnableDialogueInputControls -= AllowInputControls;
             // isAppeared = false;
         }
 
@@ -193,6 +199,17 @@ namespace Dialogue
         {
             _audioSource.clip = clip;
             _audioSource.Play();
+        }
+
+        private void EnableInteract(bool result)
+        {
+            _sphereCollider.enabled = result;
+        }
+
+        private void AllowInputControls(bool result)
+        {
+            if (result) _inputControls.Enable();
+            else _inputControls.Disable();
         }
     }
 }

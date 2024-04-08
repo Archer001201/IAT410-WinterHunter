@@ -14,47 +14,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCamps:
   - id: EC105
-    isCleared: 0
+    isCleared: 1
   - id: EC101
-    isCleared: 0
+    isCleared: 1
   - id: EC104
-    isCleared: 0
+    isCleared: 1
   - id: EC103
-    isCleared: 0
+    isCleared: 1
   - id: EC102
+    isCleared: 1
+  - id: EC204
+    isCleared: 0
+  - id: EC203
+    isCleared: 0
+  - id: EC205
+    isCleared: 0
+  - id: EC207
+    isCleared: 0
+  - id: EC206
+    isCleared: 0
+  - id: EC201
+    isCleared: 0
+  - id: EC202
     isCleared: 0
   treasureChests:
   - id: TC105
     canOpen: 0
-    isOpened: 0
+    isOpened: 1
   - id: TC101
+    canOpen: 0
+    isOpened: 1
+  - id: TC202
+    canOpen: 0
+    isOpened: 0
+  - id: TC201
+    canOpen: 0
+    isOpened: 0
+  - id: TC206
+    canOpen: 0
+    isOpened: 0
+  - id: TC203
+    canOpen: 0
+    isOpened: 0
+  - id: TC204
     canOpen: 0
     isOpened: 0
   dialogueEvents:
   - id: HP102
     isAppeared: 1
     dialogueIndex: 0
-  - id: Methus (1)
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Flame Servant
-    isAppeared: 0
-    dialogueIndex: 0
   - id: HP103
     isAppeared: 1
     dialogueIndex: 0
   - id: Prisoner (1)
-    isAppeared: 0
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Methus_real_103
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Flame Servant
+    isAppeared: 1
     dialogueIndex: 0
   - id: Methus
     isAppeared: 1
     dialogueIndex: 0
+  - id: Methus (1)
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: BC 101
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: HP 201
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: HP 202
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Scholoar
+    isAppeared: 1
+    dialogueIndex: 0
   blockWalls:
   - id: TP001
-    isVisible: 0
-  cutScenes:
-  - id: CS1_Timeline
     isVisible: 1
-  sceneName: Spark Village
-  position: {x: 40.83, y: 0, z: -95.847}
+  - id: BW EC205 03
+    isVisible: 1
+  - id: BW EC205 01
+    isVisible: 1
+  - id: BW EC205 02
+    isVisible: 1
+  - id: BW EC202 01
+    isVisible: 1
+  - id: BW EC202 02
+    isVisible: 1
+  cutScenes:
+  - id: 102_CS2_Timeline
+    isVisible: 0
+  - id: 101_CS1_Timeline
+    isVisible: 1
+  - id: 201_Timeline
+    isVisible: 0
+  sceneName: The Furnace City
+  position: {x: -14.39, y: 0, z: -93.97}
   respawnAtThisPosition: 0

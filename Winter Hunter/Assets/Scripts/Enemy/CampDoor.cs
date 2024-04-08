@@ -24,6 +24,7 @@ namespace Enemy
                 enemyCamp.isPlayerInCamp = true;
                 EventHandler.ChangePlayerBattleState(true);
                 EventHandler.SwitchBgm(enemyCamp.isBossCamp ? BgmType.BossBGM : BgmType.BattleBGM);
+                EventHandler.EnableInteract(false);
             }
         }
     }

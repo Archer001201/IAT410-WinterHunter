@@ -406,11 +406,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 600
   maxShield: 150
-  speed: 4
+  speed: 3
   attackRange: 10
   attackDamage: 20
   basicAttackCooldown: {x: 4, y: 8}
-  basicSkillCooldown: {x: 6, y: 8}
+  basicSkillCooldown: {x: 6, y: 10}
   advancedSkillCooldown: {x: 3, y: 5}
   shieldChangeSpeed: 5
   health: 0

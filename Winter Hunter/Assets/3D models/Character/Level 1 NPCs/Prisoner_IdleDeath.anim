@@ -7435,8 +7435,16 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.6666667
-    functionName: Death
+  - time: 0.7083333
+    functionName: DeathVfx
+    data: 
+    objectReferenceParameter: {fileID: 7294820519370286524, guid: 76328a4dcba1247aa8b6ac3681953e30,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: DestroyParent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

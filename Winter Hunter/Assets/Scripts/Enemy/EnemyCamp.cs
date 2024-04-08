@@ -140,6 +140,7 @@ namespace Enemy
                 }
                 EventHandler.ChangePlayerBattleState(false);
                 EventHandler.SwitchBgm(BgmType.SceneBGM);
+                EventHandler.EnableInteract(true);
                 SaveData();
             }
             //
