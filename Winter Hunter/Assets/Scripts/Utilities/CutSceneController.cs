@@ -2,6 +2,7 @@ using System;
 using DataSO;
 using Props;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Playables;
 
 namespace Utilities
@@ -14,6 +15,7 @@ namespace Utilities
         private PlayableDirector _director;
         private GameSO _gameSO;
         private LevelSO _levelSO;
+        public BgmType nextBgmType;
 
         private void Awake()
         {
@@ -27,8 +29,6 @@ namespace Utilities
             gameObject.SetActive(!hasWatched);
             
             if (_director.playOnAwake && !hasWatched) OnPlay(_director);
-            // LoadData();
-            // gameObject.SetActive(!hasWatched);
         }
 
         private void OnEnable()
@@ -45,12 +45,13 @@ namespace Utilities
 
         private void OnPlay(PlayableDirector director)
         {
-            Debug.Log("play cutscene");
             _canvas = GameObject.FindGameObjectsWithTag("Canvas");
             foreach (var canvas in _canvas)
             {
                 canvas.SetActive(false);
             }
+            
+            EventHandler.SwitchBgm(BgmType.Cutscene);
             EventHandler.ShowInteractableSign(false, "talk");
             EventHandler.AllowInputControl(false);
             EventHandler.EnableDialogueInputControls(false);
@@ -67,6 +68,7 @@ namespace Utilities
             hasWatched = true;
             SaveData();
             _director.gameObject.SetActive(false);
+            EventHandler.SwitchBgm(nextBgmType);
             EventHandler.AllowInputControl(true);
             EventHandler.EnableDialogueInputControls(true);
         }

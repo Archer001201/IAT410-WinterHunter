@@ -15,6 +15,7 @@ namespace Utilities
         public AudioMixerSnapshot sceneSnapshot;
         public AudioMixerSnapshot battleSnapshot;
         public AudioMixerSnapshot bossSnapshot;
+        public AudioMixerSnapshot cutsceneSnapshot;
         [Header("Audio Source")]
         public AudioSource sceneBGM;
         public AudioSource battleBGM;
@@ -48,6 +49,7 @@ namespace Utilities
                 BgmType.SceneBGM => StartCoroutine(SwitchToSceneBGM()),
                 BgmType.BattleBGM => StartCoroutine(SwitchToBattleBGM()),
                 BgmType.BossBGM => StartCoroutine(SwitchToBossBGM()),
+                BgmType.Cutscene => StartCoroutine(SwitchToCutscene()),
                 _ => _bgmCoroutine
             };
         }
@@ -107,6 +109,15 @@ namespace Utilities
             yield return new WaitForSeconds(transitionTime);
             battleBGM.Stop();
             sceneBGM.Stop();
+            
+            StopBgmCoroutine();
+        }
+        
+        private IEnumerator SwitchToCutscene()
+        {
+            // bossBGM.Play();
+            cutsceneSnapshot.TransitionTo(transitionTime);
+            yield return new WaitForSeconds(transitionTime);
             
             StopBgmCoroutine();
         }

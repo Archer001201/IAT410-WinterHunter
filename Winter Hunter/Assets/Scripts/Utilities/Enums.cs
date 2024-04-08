@@ -58,7 +58,7 @@ namespace Utilities
 
     public enum BgmType
     {
-        SceneBGM, BattleBGM, BossBGM
+        SceneBGM, BattleBGM, BossBGM, Cutscene
     }
 
     public enum PlayerSfxType{
