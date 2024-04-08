@@ -82,7 +82,7 @@ namespace Enemy
             shield = maxShield;
             
             hudCanvas.SetActive(true);
-            agent = GetComponent<NavMeshAgent>();
+            if (agent == null) agent = GetComponent<NavMeshAgent>();
             agent.speed = speed;
             
             _player = GameObject.FindWithTag("Player");
@@ -115,7 +115,7 @@ namespace Enemy
                 agent.isStopped = true;
                 animator.SetTrigger(EnemyAnimatorPara.IsDead.ToString());
                 EventHandler.RemoveEnemyToCombatList(gameObject);
-                EventHandler.ShowBossHud(this, false);
+                if(isBoss) EventHandler.ShowBossHud(this, false);
                 // Instantiate(deathVfx, transform.position, Quaternion.identity);
             }
             

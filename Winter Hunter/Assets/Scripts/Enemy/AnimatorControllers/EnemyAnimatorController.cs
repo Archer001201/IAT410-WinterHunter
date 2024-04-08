@@ -17,6 +17,11 @@ namespace Enemy.AnimatorControllers
             enemy.Death();
         }
 
+        public void DestroyParent()
+        {
+            Destroy(transform.parent.gameObject);
+        }
+
         public void DeathVfx(GameObject vfx)
         {
             Instantiate(vfx, transform.position, Quaternion.identity);

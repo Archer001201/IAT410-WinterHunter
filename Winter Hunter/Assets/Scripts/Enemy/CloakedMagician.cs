@@ -27,7 +27,6 @@ namespace Enemy
         protected override void Update()
         {
             base.Update();
-            
             if (targetTrans == null) return;
             var dist = Vector3.Distance(targetTrans.position, transform.position);
             isBasicAttackSatisfied = dist <= attackRange * 2;

@@ -115,7 +115,7 @@ namespace Enemy
                 
                 if (Time.time >= nextSpawnTime) {
                     var flameGO = Instantiate(flameVfx, transform.position, Quaternion.identity); // 在当前位置实例化Prefab
-                    flameGO.GetComponent<DragonFire>().SetAttack(attackDamage);
+                    flameGO.GetComponent<DragonFire>().SetAttack(attackDamage * 0.25f);
                     nextSpawnTime += 1.2f; // 更新下一次实例化Prefab的时间
                 }
                 
