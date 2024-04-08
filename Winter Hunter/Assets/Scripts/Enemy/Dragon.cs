@@ -19,6 +19,7 @@ namespace Enemy
         public GameObject soldier;
         public GameObject magician;
         public Vector3 summonPosition;
+        public AudioSource flySource;
         
         protected override void Awake()
         {
@@ -60,7 +61,7 @@ namespace Enemy
         
         public override IEnumerator BasicAttack()
         {
-            Debug.Log("low flight");
+            flySource.Play();
             _direction = (targetTrans.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(_direction);
             _flyCoroutine ??= StartCoroutine(MoveTowardsTargetOverTime());
