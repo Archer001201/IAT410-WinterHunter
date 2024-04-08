@@ -91,6 +91,8 @@ MonoBehaviour:
   dialogueLists: []
   isTalking: 0
   canTalk: 0
+  respawnVfx: {fileID: 6351259694995923438, guid: 123ee4bc6e1c94fb1919e50d1934f425,
+    type: 3}
 --- !u!82 &2348103726530296014
 AudioSource:
   m_ObjectHideFlags: 0

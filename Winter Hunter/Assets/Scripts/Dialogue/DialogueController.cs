@@ -19,6 +19,7 @@ namespace Dialogue
         public List<DialogueList> dialogueLists;
         public bool isTalking;
         public bool canTalk;
+        public GameObject respawnVfx;
 
         private InputControls _inputControls;
         private GameSO _gameSO;
@@ -61,6 +62,7 @@ namespace Dialogue
             EventHandler.OnEnbaleInteract += EnableInteract;
             EventHandler.OnEnableDialogueInputControls += AllowInputControls;
             isAppeared = true;
+            if (respawnVfx != null) Instantiate(respawnVfx, transform.position, Quaternion.identity);
             SaveDialogueData();
         }
 

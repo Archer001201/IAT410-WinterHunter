@@ -68,6 +68,8 @@ MonoBehaviour:
   dialogueLists: []
   isTalking: 0
   canTalk: 0
+  respawnVfx: {fileID: 6351259694995923438, guid: 123ee4bc6e1c94fb1919e50d1934f425,
+    type: 3}
 --- !u!195 &1965993863926627421
 NavMeshAgent:
   m_ObjectHideFlags: 0
