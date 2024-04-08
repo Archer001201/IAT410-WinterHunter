@@ -11,6 +11,13 @@ namespace Snowman
         public float attackRange;
         public Transform slashStartTrans;
         private Coroutine _attackCoroutine;
+        private AudioSource _audioSource;
+
+        protected override void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            base.Awake();
+        }
 
         protected override void Update()
         {
@@ -28,6 +35,7 @@ namespace Snowman
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
                 var slashGO = Instantiate(slashPrefab, slashStartTrans.position, Quaternion.identity);
                 slashGO.GetComponent<DimensionalSlash>().SetAttack(MySnowmanSO.attack, level == SnowmanLevel.Advanced, MySnowmanSO.shieldBreakEfficiency);
+                _audioSource.Play();
             }
         }
         

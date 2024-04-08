@@ -13,9 +13,11 @@ namespace Snowman
         public Transform firePoint;
         private Transform _target;
         private Rigidbody _rb;
+        private AudioSource _audioSource;
 
         protected override void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             base.Awake();
             StartCoroutine(Fire());
             _rb = GetComponent<Rigidbody>();
@@ -42,7 +44,8 @@ namespace Snowman
                 
                 var projectileGo = Instantiate(projectile, firePoint.position, Quaternion.identity);
                 projectileGo.GetComponent<IceProjectile>().SetProjectile(level == SnowmanLevel.Advanced,transform.forward, MySnowmanSO.attack, MySnowmanSO.shieldBreakEfficiency);
-                yield return new WaitForSeconds(0.5f);
+                _audioSource.Play();
+                yield return new WaitForSeconds(1f);
             }
 
             yield return null;
