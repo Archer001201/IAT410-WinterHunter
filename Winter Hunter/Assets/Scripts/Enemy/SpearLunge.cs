@@ -19,7 +19,7 @@ namespace Enemy
 
             if (otherGO.CompareTag("Snowman"))
             {
-                otherGO.GetComponent<BaseSnowman>().TakeDamage(enemy.attackDamage * 2);
+                otherGO.GetComponent<SnowmanTakeDamage>().TakeDamage(enemy.attackDamage * 2);
             }
         }
     }

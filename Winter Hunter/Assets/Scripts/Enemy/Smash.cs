@@ -31,12 +31,12 @@ namespace Enemy
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerAttribute>().health -= _attack;
+                other.GetComponent<PlayerAttribute>().TakeDamage(_attack);
             }
 
             if (other.CompareTag("Snowman"))
             {
-                other.GetComponent<BaseSnowman>().health -= _attack;
+                other.GetComponent<SnowmanTakeDamage>().TakeDamage(_attack);
             }
         }
 

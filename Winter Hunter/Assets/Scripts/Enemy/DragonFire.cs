@@ -22,7 +22,8 @@ namespace Enemy
             
             if (other.CompareTag("Snowman"))
             {
-                var snowman = other.GetComponent<BaseSnowman>();
+                var snowman = other.GetComponent<SnowmanTakeDamage>();
+                Debug.Log(snowman.gameObject.name);
                 _dealDamageToSnowmanCoroutine ??= StartCoroutine(DealDamageToSnowman(snowman));
             }
         }
@@ -53,7 +54,7 @@ namespace Enemy
             }
         }
         
-        private IEnumerator DealDamageToSnowman(BaseSnowman snowman)
+        private IEnumerator DealDamageToSnowman(SnowmanTakeDamage snowman)
         {
             while (true)
             {

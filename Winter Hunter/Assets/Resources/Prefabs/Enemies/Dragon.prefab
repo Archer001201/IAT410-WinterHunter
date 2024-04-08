@@ -94,6 +94,7 @@ MonoBehaviour:
   soldier: {fileID: 789761186269842912, guid: a0f7df3b9db594828bf5f93923103ab4, type: 3}
   magician: {fileID: 8923004797433109790, guid: f81f45061ca184030bc650023bd17e7f,
     type: 3}
+  summonPosition: {x: 0, y: 0, z: -24}
 --- !u!195 &179554591956584948
 NavMeshAgent:
   m_ObjectHideFlags: 0

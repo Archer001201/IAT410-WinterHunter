@@ -34,7 +34,7 @@ namespace Snowman.Skills
 
             if (other.CompareTag("Snowman"))
             {
-                other.gameObject.GetComponent<BaseSnowman>().TakeDamage(enemyAttr.attackDamage * attackFactor);
+                other.gameObject.GetComponent<SnowmanTakeDamage>().TakeDamage(enemyAttr.attackDamage * attackFactor);
             }
         }
     }

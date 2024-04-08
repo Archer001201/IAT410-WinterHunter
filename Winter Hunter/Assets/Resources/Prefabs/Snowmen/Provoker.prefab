@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6147542901882371406}
   m_Layer: 10
   m_Name: Provoker
-  m_TagString: Snowman
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,6 +328,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7faee5f66cf8d924d883fb7210bdc219,
+        type: 3}
+      propertyPath: m_TagString
+      value: Snowman
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7faee5f66cf8d924d883fb7210bdc219, type: 3}
 --- !u!4 &5880826140976659981 stripped
@@ -355,6 +360,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &108662715015561001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545758423798965431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb21e33ba6c5e4a9e94ac2aa787983d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8650093249874111125
 PrefabInstance:
   m_ObjectHideFlags: 0

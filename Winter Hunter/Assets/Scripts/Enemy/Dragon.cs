@@ -18,6 +18,7 @@ namespace Enemy
         public GameObject fireBall;
         public GameObject soldier;
         public GameObject magician;
+        public Vector3 summonPosition;
         
         protected override void Awake()
         {
@@ -125,13 +126,14 @@ namespace Enemy
         protected override void AfterShieldBreaking()
         {
             base.AfterShieldBreaking();
+            if (summonPosition == Vector3.zero) return;
             var prefab = currentStage % 2 == 0 ? magician : soldier;
-            var pos = transform.position;
             for (var i = 0; i < 2; i++)
             {
-                var randX = Random.Range(pos.x - 5, pos.x + 5);
-                var randZ = Random.Range(pos.z - 5, pos.z + 5);
-                Instantiate(prefab, new Vector3(randX, 0, randZ), Quaternion.identity);
+                var randX = Random.Range(summonPosition.x - 5, summonPosition.x + 5);
+                var randZ = Random.Range(summonPosition.z - 5, summonPosition.z + 5);
+                var prefabGO = Instantiate(prefab, new Vector3(randX, 0, randZ), Quaternion.identity);
+                prefabGO.GetComponent<BaseEnemy>().isChasing = true;
             }
         }
     }

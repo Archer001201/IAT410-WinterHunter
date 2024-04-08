@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9073501244567470941}
   m_Layer: 10
   m_Name: Alchemist
-  m_TagString: Snowman
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,6 +408,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5abdd1312a422484abb2667adb97e94f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Snowman
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5abdd1312a422484abb2667adb97e94f, type: 3}
 --- !u!4 &8096030238589690415 stripped
@@ -435,3 +440,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7902790326431078477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867922157930674325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb21e33ba6c5e4a9e94ac2aa787983d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

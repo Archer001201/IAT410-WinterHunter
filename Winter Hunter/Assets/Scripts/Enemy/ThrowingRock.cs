@@ -34,7 +34,7 @@ namespace Enemy
 
             if (other.gameObject.CompareTag("Snowman"))
             {
-                other.gameObject.GetComponent<BaseSnowman>().TakeDamage(_attack);
+                other.gameObject.GetComponent<SnowmanTakeDamage>().TakeDamage(_attack);
             }
         }
 

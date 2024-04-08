@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6707920288308352843}
   m_Layer: 10
   m_Name: Guardian
-  m_TagString: Snowman
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,6 +389,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eab48a850432bb64aab37b53e3347e22,
+        type: 3}
+      propertyPath: m_TagString
+      value: Snowman
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eab48a850432bb64aab37b53e3347e22, type: 3}
 --- !u!1 &8361888739716723635 stripped
@@ -410,6 +415,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5067476
   m_Center: {x: 0.00063328445, y: 0.50011146, z: -0.000045493245}
+--- !u!114 &5539745802526761434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8361888739716723635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb21e33ba6c5e4a9e94ac2aa787983d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9169528050308032777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eab48a850432bb64aab37b53e3347e22,
