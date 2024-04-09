@@ -898,7 +898,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -6827562413631730501}
-    m_Duration: 24.116666666666667
+    m_Duration: 21.683333333333334
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2200575462472781747}
     m_EaseInDuration: 0
@@ -970,6 +970,22 @@ MonoBehaviour:
     volume: 0.19825047
     stereoPan: 0
     spatialBlend: 0
+--- !u!114 &-2083640140349448458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 18.68333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: dd31ee29d46934540aae8df77826abf8, type: 2}
 --- !u!114 &-1547441257755428463
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1175,7 +1191,8 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Recorded (1)
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -2083640140349448458}
   m_InfiniteClipPreExtrapolation: 1
   m_InfiniteClipPostExtrapolation: 1
   m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: 0}
@@ -1219,7 +1236,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -6138977483569285518}
-    m_Duration: 24.116666666666667
+    m_Duration: 21.683333333333334
     m_TimeScale: 0.1
     m_ParentTrack: {fileID: 7034070543744619064}
     m_EaseInDuration: 0
