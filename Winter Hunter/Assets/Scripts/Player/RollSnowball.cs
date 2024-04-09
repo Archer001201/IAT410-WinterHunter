@@ -50,6 +50,7 @@ namespace Player
             
             _rollingSnowballScript = SnowballInstance.GetComponent<RollingSnowball>();
             PlayerAttr.stamina += stamina;
+            _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
         }
 
         /*
@@ -60,11 +61,13 @@ namespace Player
             if (SnowballInstance == null)
             {
                 // Debug.Log("snowball null");
+                // _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
                 enabled = false;
                 return;
             }
             
             // _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
+            _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
             _rollingSnowballScript.SetReleasingState();
             base.Attack();
             _attackBonus = 0;
@@ -89,7 +92,7 @@ namespace Player
                 var scaleIncrease = new Vector3(scaleFactor, scaleFactor, scaleFactor) * Time.fixedDeltaTime;
                 SnowballInstance.transform.localScale += scaleIncrease;
                 _attackBonus += (attackBonusFactor * PlayerAttr.attack * Time.fixedDeltaTime);
-                _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
+                // _rollingSnowballScript.SetAttack(PlayerAttr.attack + _attackBonus);
                 if (!_playerController.sfxController.GetAudioState(PlayerSfxType.Roll)) 
                     _playerController.sfxController.PlayAudio(PlayerSfxType.Roll);
 

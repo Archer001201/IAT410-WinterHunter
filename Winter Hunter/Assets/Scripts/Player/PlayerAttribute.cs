@@ -28,6 +28,7 @@ namespace Player
         public float mana;
         public float attack;
         public float manaRecovery;
+        public bool isLowHealth;
 
         public List<SnowmanInfo> snowmanList;
 
@@ -105,7 +106,18 @@ namespace Player
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
             health = Mathf.Clamp(health, 0, maxHealth);
             mana = Mathf.Clamp(mana, 0, maxMana);
-            
+
+            if (!isLowHealth && health <= maxHealth * 0.3f)
+            {
+                isLowHealth = true;
+                EventHandler.HandleLowHealth(true);
+            }
+
+            if (isLowHealth && health > maxHealth * 0.3f)
+            {
+                isLowHealth = false;
+                EventHandler.HandleLowHealth(false);
+            }
             // if (health <= 0) EventHandler.PlayerDie();
 
             // switch (isInCombat)
