@@ -16,8 +16,8 @@ namespace UISystem
 
         private void Update()
         {
-            var alpha = (Mathf.Sin(Time.time * blinkSpeed) * 0.3f);
-            _image.color = new Color(1, 0, 0, alpha+0.7f);
+            var alpha = (Mathf.Sin(Time.time * blinkSpeed) * 0.4f);
+            _image.color = new Color(1, 0, 0, alpha+0.6f);
         }
     }
 }

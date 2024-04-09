@@ -28,7 +28,7 @@ namespace Enemy
         public Vector2 basicAttackCooldown;
         public Vector2 basicSkillCooldown;
         public Vector2 advancedSkillCooldown;
-        public float shieldChangeSpeed = 5f;
+        public float shieldChangeSpeed = 8f;
         [Header("Dynamic Attributes")]
         public float health;
         public float shield;
