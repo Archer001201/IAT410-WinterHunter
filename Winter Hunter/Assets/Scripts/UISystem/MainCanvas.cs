@@ -18,6 +18,7 @@ namespace UISystem
         public GameObject teleportPanel;
         public GameObject savingData;
         public GameObject videoDisplay;
+        public GameObject lowHealthOverlay;
 
         private InputControls _inputControls;
         private Coroutine _showDataCoroutine;
@@ -40,6 +41,7 @@ namespace UISystem
             EventHandler.OnOpenTeleportPanel += HandleTeleportPanel;
             EventHandler.OnShowSavingData += StartShowingData;
             EventHandler.OnPlayVideo += HandleVideoPlayer;
+            EventHandler.OnHandleLowHeath += HandleLowHealthOverlay;
             _inputControls.Enable();
         }
 
@@ -50,6 +52,7 @@ namespace UISystem
             EventHandler.OnOpenTeleportPanel -= HandleTeleportPanel;
             EventHandler.OnShowSavingData -= StartShowingData;
             EventHandler.OnPlayVideo -= HandleVideoPlayer;
+            EventHandler.OnHandleLowHeath -= HandleLowHealthOverlay;
             _inputControls.Disable();
         }
 
@@ -128,6 +131,11 @@ namespace UISystem
         private void HandleVideoPlayer(bool play)
         {
             videoDisplay.SetActive(play);
+        }
+
+        private void HandleLowHealthOverlay(bool lowHealth)
+        {
+            lowHealthOverlay.SetActive(lowHealth);
         }
 
         // private void HandleVideoDisplay(bool play)

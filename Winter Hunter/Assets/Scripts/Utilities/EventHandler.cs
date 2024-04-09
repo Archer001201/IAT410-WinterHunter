@@ -205,6 +205,13 @@ namespace Utilities
             OnEnableDialogueInputControls?.Invoke(result);
         }
 
+        public static event Action<bool> OnHandleLowHeath;
+
+        public static void HandleLowHealth(bool lowHealth)
+        {
+            OnHandleLowHeath?.Invoke(lowHealth);
+        }
+
         // public static event Action OnUpdateSkillIcon;
         //
         // public static void UpdateSkillIcon()

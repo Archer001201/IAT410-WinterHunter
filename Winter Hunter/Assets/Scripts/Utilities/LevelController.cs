@@ -76,7 +76,7 @@ namespace Utilities
             _playerSO.staminaRecovery = _playerDefaultSO.staminaRecovery;
 
             _playerSO.currentHealth = _playerSO.maxHealth;
-            _playerSO.currentMana = _playerSO.maxMana / 2;
+            _playerSO.currentMana = _playerSO.maxMana;
             _playerSO.currentStamina = _playerSO.maxStamina;
             
             _levelSO.position = Vector3.zero;
@@ -113,6 +113,13 @@ namespace Utilities
             _playerAttr.health = _playerAttr.maxHealth;
             _playerAttr.stamina = _playerAttr.maxStamina;
             _playerAttr.mana = _playerAttr.maxMana;
+        }
+
+        public void HealPlayerWithSavingData()
+        {
+            _playerSO.currentHealth = _playerSO.maxHealth;
+            _playerSO.currentStamina = _playerSO.maxStamina;
+            _playerSO.currentMana = _playerSO.maxMana;
         }
 
         public void EnhancePlayer()

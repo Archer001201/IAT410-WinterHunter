@@ -27,7 +27,7 @@ namespace Utilities
         private void Awake()
         {
             // _playerAttr = GameObject.FindWithTag("Player").GetComponent<PlayerAttribute>();
-            SwitchBgm(BgmType.SceneBGM);
+            // SwitchBgm(BgmType.SceneBGM);
         }
 
         private void OnEnable()
@@ -84,7 +84,7 @@ namespace Utilities
         {
             sceneBGM.Play();
             sceneSnapshot.TransitionTo(transitionTime);
-            yield return new WaitForSeconds(transitionTime);
+            yield return new WaitForSecondsRealtime(transitionTime);
             bossBGM.Stop();
             battleBGM.Stop();
             
@@ -95,7 +95,7 @@ namespace Utilities
         {
             battleBGM.Play();
             battleSnapshot.TransitionTo(transitionTime);
-            yield return new WaitForSeconds(transitionTime);
+            yield return new WaitForSecondsRealtime(transitionTime);
             bossBGM.Stop();
             sceneBGM.Stop();
             
@@ -106,7 +106,7 @@ namespace Utilities
         {
             bossBGM.Play();
             bossSnapshot.TransitionTo(transitionTime);
-            yield return new WaitForSeconds(transitionTime);
+            yield return new WaitForSecondsRealtime(transitionTime);
             battleBGM.Stop();
             sceneBGM.Stop();
             
@@ -116,9 +116,9 @@ namespace Utilities
         private IEnumerator SwitchToCutscene()
         {
             // bossBGM.Play();
+            Debug.Log("cut scene audio");
             cutsceneSnapshot.TransitionTo(transitionTime);
-            yield return new WaitForSeconds(transitionTime);
-            
+            yield return new WaitForSecondsRealtime(transitionTime);
             StopBgmCoroutine();
         }
     }

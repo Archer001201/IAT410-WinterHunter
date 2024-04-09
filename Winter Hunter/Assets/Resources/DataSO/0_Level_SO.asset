@@ -38,7 +38,11 @@ MonoBehaviour:
   - id: EC202
     isCleared: 1
   - id: Enemy Camp
-    isCleared: 1
+    isCleared: 0
+  - id: EC002
+    isCleared: 0
+  - id: EC003
+    isCleared: 0
   treasureChests:
   - id: TC105
     canOpen: 0
@@ -62,6 +66,9 @@ MonoBehaviour:
     canOpen: 0
     isOpened: 0
   - id: Provoker Reward
+    canOpen: 0
+    isOpened: 0
+  - id: TC001
     canOpen: 0
     isOpened: 0
   dialogueEvents:
@@ -98,6 +105,15 @@ MonoBehaviour:
   - id: Healing point
     isAppeared: 1
     dialogueIndex: 0
+  - id: Guide1
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Guide3
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: Guide2
+    isAppeared: 0
+    dialogueIndex: 0
   blockWalls:
   - id: TP001
     isVisible: 0
@@ -113,9 +129,17 @@ MonoBehaviour:
     isVisible: 1
   - id: BW EC202 02
     isVisible: 1
+  - id: TP000
+    isVisible: 1
+  - id: BW Guide 2
+    isVisible: 1
+  - id: BW Guide 3
+    isVisible: 1
+  - id: BW Guide 1
+    isVisible: 1
   cutScenes:
   - id: 201_Timeline
     isVisible: 1
-  sceneName: Initial Furnace
-  position: {x: 3.999999, y: 0, z: -61}
+  sceneName: Spark Village
+  position: {x: 40.83, y: 0, z: -95.847}
   respawnAtThisPosition: 0

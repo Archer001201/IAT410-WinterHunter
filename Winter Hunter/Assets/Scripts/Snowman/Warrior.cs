@@ -22,7 +22,7 @@ namespace Snowman
         protected override void Update()
         {
             base.Update();
-            if (TargetTrans != null && Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
+            if (TargetTrans != null && Vector3.Distance(TargetTrans.position, transform.position) <= attackRange*2)
                 StartAttacking();
             else
                 StopAttacking();
@@ -30,7 +30,7 @@ namespace Snowman
 
         private IEnumerator AttackCoroutine()
         {
-            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange)
+            while (Vector3.Distance(TargetTrans.position, transform.position) <= attackRange*2)
             {
                 yield return new WaitForSeconds(MySnowmanSO.attackSpeed);
                 var slashGO = Instantiate(slashPrefab, slashStartTrans.position, Quaternion.identity);
