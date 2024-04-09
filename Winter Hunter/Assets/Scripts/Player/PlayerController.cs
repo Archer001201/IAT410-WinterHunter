@@ -28,6 +28,7 @@ namespace Player
         public bool isAttacking;
         public bool canAttack;
         public bool hasRollingSnowball;
+        public bool enableDash;
         [FormerlySerializedAs("isDashing")] public bool isDashPressed;
         [FormerlySerializedAs("isDashReady")] public bool isDashing;
         
@@ -90,6 +91,7 @@ namespace Player
 
             _rollSnowballScript.enabled = false;
             canAttack = true;
+            enableDash = true;
         }
 
         private void OnEnable()
@@ -433,6 +435,7 @@ namespace Player
 
         private void OnPressDashButton()
         {
+            if (!enableDash) return;
             if (isDashPressed || _playerAttr.stamina < dashCost) return;
             isDashPressed = true;
             // isAttacking = true;
