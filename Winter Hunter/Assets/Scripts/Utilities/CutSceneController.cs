@@ -1,6 +1,7 @@
 using System;
 using DataSO;
 using Props;
+using UISystem;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Playables;
@@ -16,6 +17,7 @@ namespace Utilities
         private GameSO _gameSO;
         private LevelSO _levelSO;
         public BgmType nextBgmType;
+        public CutsceneTransition transition;
 
         private void Awake()
         {
@@ -51,6 +53,8 @@ namespace Utilities
                 canvas.SetActive(false);
             }
             
+            transition.gameObject.SetActive(true);
+            transition.StartTransition(true);
             EventHandler.SwitchBgm(BgmType.Cutscene);
             EventHandler.ShowInteractableSign(false, "talk");
             EventHandler.AllowInputControl(false);
