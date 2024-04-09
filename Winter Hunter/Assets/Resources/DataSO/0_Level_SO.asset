@@ -13,133 +13,62 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
+  - id: EC104
+    isCleared: 1
+  - id: EC103
+    isCleared: 1
+  - id: EC102
+    isCleared: 1
   - id: EC105
     isCleared: 0
   - id: EC101
-    isCleared: 0
-  - id: EC104
-    isCleared: 0
-  - id: EC103
-    isCleared: 0
-  - id: EC102
-    isCleared: 0
-  - id: EC204
     isCleared: 1
-  - id: EC203
-    isCleared: 1
-  - id: EC205
-    isCleared: 1
-  - id: EC207
-    isCleared: 1
-  - id: EC206
-    isCleared: 1
-  - id: EC201
-    isCleared: 1
-  - id: EC202
-    isCleared: 1
-  - id: Enemy Camp
-    isCleared: 0
-  - id: EC002
-    isCleared: 0
-  - id: EC003
-    isCleared: 0
   treasureChests:
   - id: TC105
     canOpen: 0
-    isOpened: 0
+    isOpened: 1
+  - id: Healer Reward
+    canOpen: 0
+    isOpened: 1
   - id: TC101
     canOpen: 0
-    isOpened: 0
-  - id: TC202
-    canOpen: 0
-    isOpened: 0
-  - id: TC201
-    canOpen: 0
-    isOpened: 0
-  - id: TC206
-    canOpen: 0
-    isOpened: 0
-  - id: TC203
-    canOpen: 0
-    isOpened: 0
-  - id: TC204
-    canOpen: 0
-    isOpened: 0
-  - id: Provoker Reward
-    canOpen: 0
-    isOpened: 0
-  - id: TC001
-    canOpen: 0
-    isOpened: 0
+    isOpened: 1
   dialogueEvents:
-  - id: HP102
+  - id: Prisoner (1)
     isAppeared: 1
     dialogueIndex: 0
   - id: HP103
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Prisoner (1)
     isAppeared: 1
     dialogueIndex: 0
   - id: Methus_real_103
     isAppeared: 0
     dialogueIndex: 0
   - id: Flame Servant
-    isAppeared: 0
+    isAppeared: 1
     dialogueIndex: 0
   - id: Methus
     isAppeared: 1
     dialogueIndex: 0
   - id: Methus (1)
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: HP 201
     isAppeared: 1
     dialogueIndex: 0
-  - id: HP 202
+  - id: HP102
     isAppeared: 1
-    dialogueIndex: 0
-  - id: Scholoar
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Healing point
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Guide1
-    isAppeared: 1
-    dialogueIndex: 0
-  - id: Guide3
-    isAppeared: 0
-    dialogueIndex: 0
-  - id: Guide2
-    isAppeared: 0
     dialogueIndex: 0
   blockWalls:
   - id: TP001
     isVisible: 0
-  - id: Teleport lv2
-    isVisible: 1
-  - id: BW EC205 03
-    isVisible: 1
-  - id: BW EC205 01
-    isVisible: 1
-  - id: BW EC205 02
-    isVisible: 1
-  - id: BW EC202 01
-    isVisible: 1
-  - id: BW EC202 02
-    isVisible: 1
-  - id: TP000
-    isVisible: 1
-  - id: BW Guide 2
-    isVisible: 1
-  - id: BW Guide 3
-    isVisible: 1
-  - id: BW Guide 1
-    isVisible: 1
+  - id: Block Wall SV003
+    isVisible: 0
+  - id: Block Wall SV001
+    isVisible: 0
+  - id: Block Wall SV002
+    isVisible: 0
   cutScenes:
-  - id: 201_Timeline
+  - id: 101_CS1_Timeline
+    isVisible: 1
+  - id: 102_CS2_Timeline
     isVisible: 1
   sceneName: Spark Village
-  position: {x: 40.83, y: 0, z: -95.847}
+  position: {x: 40.73, y: 0, z: -112.26}
   respawnAtThisPosition: 0

@@ -16,7 +16,7 @@ namespace UISystem
             _image = GetComponent<Image>();
         }
 
-        public void StartTransition(bool transitionIn)
+        public void TransitionIn(bool transitionIn)
         {
             Debug.Log("transition: " + transitionIn);
             _transitionCoroutine ??= StartCoroutine(Transition(transitionIn));

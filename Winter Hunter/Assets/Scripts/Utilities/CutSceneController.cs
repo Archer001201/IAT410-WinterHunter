@@ -54,7 +54,7 @@ namespace Utilities
             }
             
             transition.gameObject.SetActive(true);
-            transition.StartTransition(true);
+            transition.TransitionIn(true);
             EventHandler.SwitchBgm(BgmType.Cutscene);
             EventHandler.ShowInteractableSign(false, "talk");
             EventHandler.AllowInputControl(false);
