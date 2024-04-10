@@ -54,6 +54,11 @@ namespace Utilities
             };
         }
 
+        public void PlayBossBgm()
+        {
+            _bgmCoroutine = StartCoroutine(SwitchToBossBGM());
+        }
+
         // private void Update()
         // {
         //     if (_playerAttr.isInCombat)
