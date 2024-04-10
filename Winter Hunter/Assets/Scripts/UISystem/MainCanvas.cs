@@ -20,6 +20,7 @@ namespace UISystem
         public GameObject videoDisplay;
         public GameObject fullScreenVideoDisplay;
         public GameObject lowHealthOverlay;
+        public GameObject sceneNameDisplay;
 
         private InputControls _inputControls;
         private Coroutine _showDataCoroutine;
@@ -45,6 +46,8 @@ namespace UISystem
             EventHandler.OnHandleLowHeath += HandleLowHealthOverlay;
             EventHandler.OnHandleFullScreenVideo += HandleFullScreenVideo;
             _inputControls.Enable();
+            sceneNameDisplay.SetActive(true);
+            sceneNameDisplay.GetComponent<LocationDisplay>().DisplaySceneName();
         }
 
         private void OnDisable()

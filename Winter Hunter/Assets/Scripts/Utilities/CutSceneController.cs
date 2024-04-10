@@ -4,6 +4,7 @@ using Props;
 using UISystem;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 
 namespace Utilities
@@ -18,6 +19,8 @@ namespace Utilities
         private LevelSO _levelSO;
         public BgmType nextBgmType;
         public CutsceneTransition transition;
+        public bool notSwitchBgm;
+        public UnityEvent onFinishedEvent;
 
         private void Awake()
         {
@@ -56,7 +59,7 @@ namespace Utilities
             
             transition.gameObject.SetActive(true);
             transition.TransitionIn(true);
-            EventHandler.SwitchBgm(BgmType.Cutscene);
+            EventHandler.SwitchBgm(!notSwitchBgm ? BgmType.Cutscene : BgmType.BossBGM);
             EventHandler.ShowInteractableSign(false, "talk");
             EventHandler.AllowInputControl(false);
             EventHandler.EnableDialogueInputControls(false);
@@ -73,9 +76,10 @@ namespace Utilities
             hasWatched = true;
             SaveData();
             _director.gameObject.SetActive(false);
-            EventHandler.SwitchBgm(nextBgmType);
+            if (!notSwitchBgm) EventHandler.SwitchBgm(nextBgmType);
             EventHandler.AllowInputControl(true);
             EventHandler.EnableDialogueInputControls(true);
+            onFinishedEvent?.Invoke();
             Destroy(gameObject);
         }
         
