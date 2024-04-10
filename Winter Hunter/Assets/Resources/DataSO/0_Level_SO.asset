@@ -13,16 +13,30 @@ MonoBehaviour:
   m_Name: 0_Level_SO
   m_EditorClassIdentifier: 
   enemyCamps:
-  - id: EC104
+  - id: EC102
     isCleared: 1
   - id: EC103
     isCleared: 1
-  - id: EC102
+  - id: EC104
     isCleared: 1
   - id: EC105
     isCleared: 0
   - id: EC101
     isCleared: 1
+  - id: EC204
+    isCleared: 0
+  - id: EC203
+    isCleared: 0
+  - id: EC205
+    isCleared: 0
+  - id: EC207
+    isCleared: 0
+  - id: EC206
+    isCleared: 0
+  - id: EC201
+    isCleared: 0
+  - id: EC202
+    isCleared: 0
   treasureChests:
   - id: TC105
     canOpen: 0
@@ -33,15 +47,33 @@ MonoBehaviour:
   - id: TC101
     canOpen: 0
     isOpened: 1
+  - id: TC202
+    canOpen: 0
+    isOpened: 0
+  - id: Guardian Reward
+    canOpen: 0
+    isOpened: 0
+  - id: TC201
+    canOpen: 0
+    isOpened: 0
+  - id: TC206
+    canOpen: 0
+    isOpened: 0
+  - id: TC203
+    canOpen: 0
+    isOpened: 0
+  - id: Alchemist Reward
+    canOpen: 0
+    isOpened: 0
+  - id: TC204
+    canOpen: 0
+    isOpened: 0
   dialogueEvents:
   - id: Prisoner (1)
     isAppeared: 1
     dialogueIndex: 0
-  - id: HP103
-    isAppeared: 1
-    dialogueIndex: 0
   - id: Methus_real_103
-    isAppeared: 0
+    isAppeared: 1
     dialogueIndex: 0
   - id: Flame Servant
     isAppeared: 1
@@ -55,15 +87,45 @@ MonoBehaviour:
   - id: HP102
     isAppeared: 1
     dialogueIndex: 0
+  - id: HP103
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: BC 101
+    isAppeared: 0
+    dialogueIndex: 0
+  - id: HP 201
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: HP 202
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Scholoar
+    isAppeared: 1
+    dialogueIndex: 0
+  - id: Boss reward
+    isAppeared: 0
+    dialogueIndex: 0
   blockWalls:
   - id: TP001
-    isVisible: 0
+    isVisible: 1
   - id: Block Wall SV003
     isVisible: 0
   - id: Block Wall SV001
     isVisible: 0
   - id: Block Wall SV002
     isVisible: 0
+  - id: Teleport lv2
+    isVisible: 0
+  - id: BW EC205 03
+    isVisible: 1
+  - id: BW EC205 01
+    isVisible: 1
+  - id: BW EC205 02
+    isVisible: 1
+  - id: BW EC202 01
+    isVisible: 1
+  - id: BW EC202 02
+    isVisible: 1
   cutScenes:
   - id: 101_CS1_Timeline
     isVisible: 1
