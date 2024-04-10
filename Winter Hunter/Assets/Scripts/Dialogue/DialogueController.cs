@@ -162,6 +162,11 @@ namespace Dialogue
             dialogueIndex = index;
             FillDialogueStack();
         }
+        
+        public void ChangeNextDialogueIndex(int index)
+        {
+            dialogueIndex = index;
+        }
 
         private void LoadData()
         {

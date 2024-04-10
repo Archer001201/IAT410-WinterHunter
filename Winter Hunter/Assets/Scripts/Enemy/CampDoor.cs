@@ -9,10 +9,11 @@ namespace Enemy
     {
         public EnemyCamp enemyCamp;
         public GameObject vfx;
+        public bool switchBgm;
 
         private void Awake()
         {
-            vfx.SetActive(false);
+            if (vfx != null) vfx.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -23,7 +24,7 @@ namespace Enemy
                 enemyCamp.NotifyEnemiesToChangeChasingState();
                 enemyCamp.isPlayerInCamp = true;
                 EventHandler.ChangePlayerBattleState(true);
-                EventHandler.SwitchBgm(enemyCamp.isBossCamp ? BgmType.BossBGM : BgmType.BattleBGM);
+                if (switchBgm) EventHandler.SwitchBgm(enemyCamp.isBossCamp ? BgmType.BossBGM : BgmType.BattleBGM);
                 EventHandler.EnableInteract(false);
             }
         }

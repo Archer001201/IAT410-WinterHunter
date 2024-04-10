@@ -162,7 +162,7 @@ namespace Enemy
 
             foreach (var door in campDoors)
             {
-                door.vfx.SetActive(true);
+                if (door.vfx != null) door.vfx.SetActive(true);
             }
             
             onPlayerEnter?.Invoke();

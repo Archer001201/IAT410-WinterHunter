@@ -28,7 +28,8 @@ namespace Utilities
             _levelSO = _gameSO.currentGameData.levelSo;
             
             LoadData();
-            gameObject.SetActive(!hasWatched);
+            // gameObject.SetActive(!hasWatched);
+            if (hasWatched) Destroy(gameObject);
             
             if (_director.playOnAwake && !hasWatched) OnPlay(_director);
         }
@@ -75,6 +76,7 @@ namespace Utilities
             EventHandler.SwitchBgm(nextBgmType);
             EventHandler.AllowInputControl(true);
             EventHandler.EnableDialogueInputControls(true);
+            Destroy(gameObject);
         }
         
         private void LoadData()
