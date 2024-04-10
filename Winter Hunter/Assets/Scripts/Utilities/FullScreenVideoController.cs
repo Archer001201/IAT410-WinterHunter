@@ -7,6 +7,7 @@ namespace Utilities
     public class FullScreenVideoController : MonoBehaviour
     {
         private VideoPlayer _videoPlayer;
+        public GameObject audioManager;
 
         private void Awake()
         {
@@ -21,6 +22,7 @@ namespace Utilities
             EventHandler.HandleFullScreenVideo(true);
             Time.timeScale = 0;
             EventHandler.AllowInputControl(false);
+            audioManager.SetActive(false);
         }
         
         public void StopVideo(VideoPlayer videoPlayer)
@@ -30,6 +32,7 @@ namespace Utilities
             videoPlayer.clip = null;
             Time.timeScale = 1;
             EventHandler.AllowInputControl(true);
+            audioManager.SetActive(true);
         }
     }
 }
