@@ -59,7 +59,7 @@ namespace Dialogue
         {
             _inputControls.Enable();
             EventHandler.OnSavingDataAfterDialogue += SaveDialogueData;
-            EventHandler.OnEnbaleInteract += EnableInteract;
+            EventHandler.OnEnableInteract += EnableInteract;
             EventHandler.OnEnableDialogueInputControls += AllowInputControls;
             isAppeared = true;
             if (respawnVfx != null) Instantiate(respawnVfx, transform.position, Quaternion.identity);
@@ -70,7 +70,7 @@ namespace Dialogue
         {
             _inputControls.Disable();
             EventHandler.OnSavingDataAfterDialogue -= SaveDialogueData;
-            EventHandler.OnEnbaleInteract -= EnableInteract;
+            EventHandler.OnEnableInteract -= EnableInteract;
             EventHandler.OnEnableDialogueInputControls -= AllowInputControls;
             EventHandler.ShowInteractableSign(false, "talk");
             // isAppeared = false;

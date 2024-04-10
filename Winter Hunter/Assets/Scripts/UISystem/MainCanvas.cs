@@ -18,6 +18,7 @@ namespace UISystem
         public GameObject teleportPanel;
         public GameObject savingData;
         public GameObject videoDisplay;
+        public GameObject fullScreenVideoDisplay;
         public GameObject lowHealthOverlay;
 
         private InputControls _inputControls;
@@ -42,6 +43,7 @@ namespace UISystem
             EventHandler.OnShowSavingData += StartShowingData;
             EventHandler.OnPlayVideo += HandleVideoPlayer;
             EventHandler.OnHandleLowHeath += HandleLowHealthOverlay;
+            EventHandler.OnHandleFullScreenVideo += HandleFullScreenVideo;
             _inputControls.Enable();
         }
 
@@ -53,6 +55,7 @@ namespace UISystem
             EventHandler.OnShowSavingData -= StartShowingData;
             EventHandler.OnPlayVideo -= HandleVideoPlayer;
             EventHandler.OnHandleLowHeath -= HandleLowHealthOverlay;
+            EventHandler.OnHandleFullScreenVideo -= HandleFullScreenVideo;
             _inputControls.Disable();
         }
 
@@ -136,6 +139,11 @@ namespace UISystem
         private void HandleLowHealthOverlay(bool lowHealth)
         {
             lowHealthOverlay.SetActive(lowHealth);
+        }
+
+        private void HandleFullScreenVideo(bool result)
+        {
+            fullScreenVideoDisplay.SetActive(result);
         }
 
         // private void HandleVideoDisplay(bool play)

@@ -191,11 +191,11 @@ namespace Utilities
             OnRetreatSnowman?.Invoke();
         }
 
-        public static event Action<bool> OnEnbaleInteract;
+        public static event Action<bool> OnEnableInteract;
 
         public static void EnableInteract(bool result)
         {
-            OnEnbaleInteract?.Invoke(result);
+            OnEnableInteract?.Invoke(result);
         }
 
         public static event Action<bool> OnEnableDialogueInputControls;
@@ -210,6 +210,13 @@ namespace Utilities
         public static void HandleLowHealth(bool lowHealth)
         {
             OnHandleLowHeath?.Invoke(lowHealth);
+        }
+
+        public static event Action<bool> OnHandleFullScreenVideo;
+
+        public static void HandleFullScreenVideo(bool result)
+        {
+            OnHandleFullScreenVideo?.Invoke(result);
         }
 
         // public static event Action OnUpdateSkillIcon;
