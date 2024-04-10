@@ -24,7 +24,7 @@ MonoBehaviour:
   - id: EC105
     isCleared: 1
   - id: Enemy Camp
-    isCleared: 0
+    isCleared: 1
   treasureChests:
   - id: TC105
     canOpen: 0
@@ -85,6 +85,8 @@ MonoBehaviour:
   - id: Timeline if
     isVisible: 0
   - id: Timeline if01
+    isVisible: 1
+  - id: Timeline if02
     isVisible: 1
   sceneName: Initial Furnace
   position: {x: 3.999999, y: 0, z: -61}
