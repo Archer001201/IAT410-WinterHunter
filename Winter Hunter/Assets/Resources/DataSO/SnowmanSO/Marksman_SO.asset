@@ -23,5 +23,7 @@ MonoBehaviour:
   manaCost: 50
   movementMode: 2
   shieldBreakEfficiency: 1
-  basicAbilities: 
-  advancedAbilities: 
+  basicAbilities: The Marksman will continuously carry out ranged attacks on nearby
+    enemies.
+  advancedAbilities: Enemies hit will be marked, and player attacks can consume the
+    mark to inflict substantial damage.

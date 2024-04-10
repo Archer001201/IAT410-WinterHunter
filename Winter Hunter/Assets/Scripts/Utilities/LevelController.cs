@@ -126,7 +126,7 @@ namespace Utilities
         {
             _playerSO.maxHealth += 50;
             _playerSO.maxStamina += 50;
-            _playerSO.attack += 10;
+            _playerSO.attack += 15;
             _playerAttr.InitializeAttributes(_playerSO);
             HealPlayer();
         }

@@ -23,5 +23,7 @@ MonoBehaviour:
   manaCost: 60
   movementMode: 1
   shieldBreakEfficiency: 2
-  basicAbilities: 
-  advancedAbilities: 
+  basicAbilities: The alchemist will randomly generate stamina recovery items in
+    the vicinity.
+  advancedAbilities: When picking up the item, a trap that can hurt the enemy will
+    be generated.

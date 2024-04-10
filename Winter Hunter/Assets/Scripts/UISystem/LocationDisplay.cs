@@ -30,7 +30,7 @@ namespace UISystem
         
         private IEnumerator AdjustHeight()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
             const float startHeight = 0; 
             float time = 0;
             _promptSfx.Play();
@@ -39,20 +39,20 @@ namespace UISystem
             {
                 var currentHeight = Mathf.Lerp(startHeight, maxHeight, time / animationDuration);
                 _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, currentHeight);
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 yield return null;
             }
 
             _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, maxHeight);
             
-            yield return new WaitForSeconds(displayDuration);
+            yield return new WaitForSecondsRealtime(displayDuration);
             
             time = 0;
             while (time < animationDuration)
             {
                 var currentHeight = Mathf.Lerp(maxHeight, 0, time / animationDuration);
                 _trans.sizeDelta = new Vector2(_trans.sizeDelta.x, currentHeight);
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 yield return null;
             }
 

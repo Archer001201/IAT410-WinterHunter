@@ -59,6 +59,11 @@ namespace Utilities
             _bgmCoroutine = StartCoroutine(SwitchToBossBGM());
         }
 
+        public void PlayCutsceneBgm()
+        {
+            _bgmCoroutine = StartCoroutine(SwitchToCutscene());
+        }
+
         // private void Update()
         // {
         //     if (_playerAttr.isInCombat)
