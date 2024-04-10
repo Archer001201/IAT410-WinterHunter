@@ -34,6 +34,8 @@ namespace UISystem
             _inputControls = new InputControls();
             _inputControls.Global.OptionButton.performed += _=> HandlePanel(optionsMenu);
             _inputControls.Global.InventoryButton.performed += _ => HandlePanel(inventoryPanel);
+            sceneNameDisplay.SetActive(true);
+            sceneNameDisplay.GetComponent<LocationDisplay>().DisplaySceneName();
         }
 
         private void OnEnable()
@@ -46,8 +48,6 @@ namespace UISystem
             EventHandler.OnHandleLowHeath += HandleLowHealthOverlay;
             EventHandler.OnHandleFullScreenVideo += HandleFullScreenVideo;
             _inputControls.Enable();
-            sceneNameDisplay.SetActive(true);
-            sceneNameDisplay.GetComponent<LocationDisplay>().DisplaySceneName();
         }
 
         private void OnDisable()
