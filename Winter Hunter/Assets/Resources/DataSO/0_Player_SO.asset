@@ -12,20 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6655ec41d8fa04cbf83b9e8a9cfc624a, type: 3}
   m_Name: 0_Player_SO
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxStamina: 100
-  maxMana: 100
-  attack: 30
+  maxHealth: 200
+  maxStamina: 200
+  maxMana: 200
+  attack: 60
   speed: 5
   staminaRecovery: 50
   manaRecovery: 0.2
-  currentHealth: 20
-  currentStamina: 10
-  currentMana: 10
+  currentHealth: 135
+  currentStamina: 147.20042
+  currentMana: 124.67998
   snowmanList:
   - type: 0
     level: 1
+  - type: 1
+    level: 1
   - type: 2
+    level: 1
+  - type: 3
     level: 1
   - type: 4
     level: 1
