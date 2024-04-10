@@ -412,7 +412,7 @@ MonoBehaviour:
   basicAttackCooldown: {x: 4, y: 8}
   basicSkillCooldown: {x: 6, y: 10}
   advancedSkillCooldown: {x: 3, y: 5}
-  shieldChangeSpeed: 5
+  shieldChangeSpeed: 8
   health: 0
   shield: 0
   isChasing: 0

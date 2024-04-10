@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2736488784463518981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 2736488784655662402}
-  progressText: {fileID: 2736488786045660093}
+  showProgressBar: 0
+  progressDisplay: {fileID: 0}
 --- !u!1 &2736488784579049451
 GameObject:
   m_ObjectHideFlags: 0
